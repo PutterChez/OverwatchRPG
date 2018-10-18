@@ -24,7 +24,7 @@ public class Game extends Canvas implements Runnable{
         handler = new Handler();
         this.addKeyListener(new KeyInput(handler));
         
-        new Window(WIDTH,HEIGHT,"Let's Build a Game!",this);
+        new Window(WIDTH,HEIGHT,"Overwatch RPG Test",this);
           
         r = new Random();
         

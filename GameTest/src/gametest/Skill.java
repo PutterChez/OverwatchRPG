@@ -4,15 +4,15 @@ package gametest;
 //Skills for entities to use
 
 public class Skill {
-    private String skillName;
-    private double atkPower; // Percentage
-    private int mpCost;
-    private int accuracy;
-    private String description = "";
+    protected String skillName;
+    protected double skillPower; // Percentage
+    protected int mpCost;
+    protected int accuracy;
+    protected String description = "";
 
     public Skill(String name, double atkPower, int mpCost, int accuracy){
         this.skillName = name;
-        this.atkPower = atkPower;
+        this.skillPower = atkPower;
         this.mpCost = mpCost;
         this.accuracy = accuracy;
     }
@@ -26,11 +26,11 @@ public class Skill {
     }
 
     public double getAtkPower() {
-        return atkPower;
+        return skillPower;
     }
 
     public void setAtkPower(double atkPower) {
-        this.atkPower = atkPower;
+        this.skillPower = atkPower;
     }
 
     public int getMpCost() {

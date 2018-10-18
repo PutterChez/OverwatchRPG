@@ -10,17 +10,19 @@ import java.util.Random;
 public class Entity extends GameObject {
     Random r = new Random();
     
-    private int HP,MP,speed,evasion,defense,attack;
-    private static int maxHP, maxMP;
-    private String charName;
-    private ArrayList<Skill> skillList;
+    protected int HP,MP,speed,evasion,defense,attack;
+    protected static int maxHP, maxMP;
+    protected String charName;
+    protected ArrayList<Skill> skillList;
     
     public Entity(int x,int y,ID id,int width,int height,int HP,int MP){
         super(x,y,id,width,height);
         this.HP = HP;
         this.MP = MP;
     }
-    
+
+
+
     public void tick(){
         x += velX;
         y += velY;

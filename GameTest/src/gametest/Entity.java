@@ -2,8 +2,10 @@ package gametest;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.util.ArrayList;
 import java.util.Random;
+import javax.swing.ImageIcon;
 
 //Main entities of game: player, enemy, npc, etc.
 
@@ -15,10 +17,15 @@ public class Entity extends GameObject {
     protected String charName;
     protected ArrayList<Skill> skillList;
     
-    public Entity(int x,int y,ID id,int width,int height,int HP,int MP){
+    private Image charImg;
+    private String imageDirectory;
+    
+    
+    public Entity(int x,int y,ID id,int width,int height,int HP,int MP,String imageDirectory){
         super(x,y,id,width,height);
         this.HP = HP;
         this.MP = MP;
+        this.imageDirectory = imageDirectory;
     }
 
 
@@ -33,9 +40,18 @@ public class Entity extends GameObject {
     }
     
     public void render(Graphics g){
-        if(id == ID.Player) g.setColor(Color.blue);
-            
-        g.fillRect(x, y, width, height);
+        /* Old Square Player
+        if(id == ID.Player){
+            g.setColor(Color.blue);
+            g.fillRect(x, y, width, height);
+        }*/
+        
+        
+        //New Texture
+        if(id == ID.Player){
+            charImg = new ImageIcon(imageDirectory).getImage();
+            g.drawImage(charImg, x, y, width, height, null);
+        }
     }
     
     //Act test function

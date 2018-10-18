@@ -5,8 +5,9 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Random;
 
+//Main entities of game: player, enemy, npc, etc.
+
 public class Entity extends GameObject {
-    BasicEnemy target;
     Random r = new Random();
     
     private int HP,MP,speed,evasion,defense,attack;
@@ -31,7 +32,6 @@ public class Entity extends GameObject {
     
     public void render(Graphics g){
         if(id == ID.Player) g.setColor(Color.blue);
-        else if(id == ID.Player2) g.setColor(Color.red);
             
         g.fillRect(x, y, width, height);
     }
@@ -49,20 +49,20 @@ public class Entity extends GameObject {
         }
     }
 
-    public BasicEnemy getTarget() {
-        return target;
-    }
-
-    public void setTarget(BasicEnemy target) {
-        this.target = target;
-    }
-
     public static int getMaxHP() {
         return maxHP;
     }
 
     public static void setMaxHP(int maxHP) {
         Entity.maxHP = maxHP;
+    }
+
+    public int getHP() {
+        return HP;
+    }
+
+    public void setHP(int HP) {
+        this.HP = HP;
     }
 
     

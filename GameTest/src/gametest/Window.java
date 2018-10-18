@@ -5,6 +5,8 @@ import java.awt.Dimension;
 
 import javax.swing.JFrame;
 
+// Class for making windows easily
+
 public class Window extends Canvas{
     
     public Window(int width,int height,String title,Game game){

@@ -3,6 +3,9 @@ package gametest;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+
+//Class for key inputs
+
 public class KeyInput extends KeyAdapter{
     
     private Handler handler;
@@ -46,18 +49,6 @@ public class KeyInput extends KeyAdapter{
         for(int i = 0;i < handler.object.size();i++){
             GameObject tempObject = handler.object.get(i);
             
-            /*
-            if(tempObject.getId() == ID.Player){
-                if(key == KeyEvent.VK_Z){
-                    tempObject.setVelX(0);
-                }
-                if(key == KeyEvent.VK_X){
-                    tempObject.setVelY(0);
-                }
-                if(key == KeyEvent.VK_C){
-                    tempObject.setVelX(0);
-                }
-            }*/
             
             if(tempObject.getId() == ID.Player2){
                 //Key events for player 1

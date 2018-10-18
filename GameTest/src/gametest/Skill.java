@@ -1,5 +1,8 @@
 package gametest;
 
+
+//Skills for entities to use
+
 public class Skill {
     String name;
     public Skill(String name){

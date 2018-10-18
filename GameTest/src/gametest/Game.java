@@ -6,6 +6,9 @@ import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.util.Random;
 
+
+//Main game class (main class)
+
 public class Game extends Canvas implements Runnable{
 
     public static final int WIDTH = 1600,HEIGHT = 900;
@@ -26,9 +29,7 @@ public class Game extends Canvas implements Runnable{
         r = new Random();
         
         Entity p1 = new Entity(WIDTH/2-100,WIDTH/2-400,ID.Player,30,30,100,100);
-        BasicEnemy e1 = new BasicEnemy(WIDTH/2+200,WIDTH/2-400,ID.Enemy,15,15,20, 2, Color.GREEN);
         handler.addObject(p1);
-        handler.addObject(e1);
         
         hud = new HUD(p1);
         

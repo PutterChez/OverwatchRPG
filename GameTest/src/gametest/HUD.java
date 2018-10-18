@@ -3,12 +3,14 @@ package gametest;
 import java.awt.Color;
 import java.awt.Graphics;
 
+//HUD for displaying HP and such
+
 public class HUD {
     
     public int HEALTH, MAX_HEALTH;
 
     public HUD(Entity p) {
-        HEALTH = p.HP;
+        HEALTH = p.getHP();
         MAX_HEALTH = HEALTH;
     }
     

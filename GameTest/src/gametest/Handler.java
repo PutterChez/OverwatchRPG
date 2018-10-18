@@ -3,6 +3,9 @@ package gametest;
 import java.util.LinkedList;
 import java.awt.Graphics;
 
+
+//Handler for rendering objects retrived from an objectlist
+
 public class Handler {
     LinkedList<GameObject> object = new LinkedList<GameObject>();
     

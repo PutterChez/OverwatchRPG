@@ -2,6 +2,8 @@ package gametest;
 
 import java.awt.Graphics;
 
+//General gameobject
+
 public abstract class GameObject {
     
     protected int x,y;

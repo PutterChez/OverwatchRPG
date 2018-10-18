@@ -8,10 +8,12 @@ import java.awt.Graphics;
 public class HUD {
     
     public int HEALTH, MAX_HEALTH;
-
+    private Entity p;
+    
     public HUD(Entity p) {
         HEALTH = p.getHP();
         MAX_HEALTH = HEALTH;
+        this.p = p;
     }
     
     public void tick(){ 
@@ -24,10 +26,10 @@ public class HUD {
     public void render(Graphics g){
         //HP Bar, gray background, green bar, and white outline
         g.setColor(Color.GRAY);
-        g.fillRect(15, 15, 200, 32);
+        g.fillRect(p.getX() + 100, p.getY(), 200, 32);
         g.setColor(Color.GREEN);
-        g.fillRect(15, 15, HEALTH * 2, 32);
+        g.fillRect(p.getX() + 100, p.getY(), HEALTH * 2, 32);
         g.setColor(Color.WHITE);
-        g.drawRect(15, 15, 200, 32);
+        g.drawRect(p.getX() + 100, p.getY(), 200, 32);
     }
 }

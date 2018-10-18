@@ -22,15 +22,15 @@ public class KeyInput extends KeyAdapter{
             if(tempObject.getId() == ID.Player){
                 //Key events for player 1
                 if(key == KeyEvent.VK_Z){
-                    ((Player) tempObject).act("Attack");
+                    ((Entity) tempObject).act("Attack");
                     tempObject.setVelX(5);
                 }
                 if(key == KeyEvent.VK_X){
-                    ((Player) tempObject).act("Items");
+                    ((Entity) tempObject).act("Items");
                     tempObject.setVelY(5);
                 }
                 if(key == KeyEvent.VK_C){
-                    ((Player) tempObject).act("Run");
+                    ((Entity) tempObject).act("Run");
                     tempObject.setVelX(-5);
                 }
             }

@@ -7,8 +7,8 @@ public class HUD {
     
     public int HEALTH, MAX_HEALTH;
 
-    public HUD(Player p) {
-        HEALTH = p.hp;
+    public HUD(Entity p) {
+        HEALTH = p.HP;
         MAX_HEALTH = HEALTH;
     }
     

@@ -4,15 +4,15 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.util.Random;
 
-public class Player extends GameObject {
+public class Entity extends GameObject {
     BasicEnemy target;
     Random r = new Random();
-    public int hp,mp;
-    private static int maxHp;
-    public Player(int x,int y,ID id,int width,int height,int hp,int mp){
+    public int HP,MP;
+    private static int maxHP;
+    public Entity(int x,int y,ID id,int width,int height,int HP,int MP){
         super(x,y,id,width,height);
-        this.hp = hp;
-        this.mp = mp;
+        this.HP = HP;
+        this.MP = MP;
     }
     
     public void tick(){
@@ -50,12 +50,12 @@ public class Player extends GameObject {
         this.target = target;
     }
 
-    public static int getMaxHp() {
-        return maxHp;
+    public static int getMaxHP() {
+        return maxHP;
     }
 
-    public static void setMaxHp(int maxHp) {
-        Player.maxHp = maxHp;
+    public static void setMaxHP(int maxHP) {
+        Entity.maxHP = maxHP;
     }
 
     

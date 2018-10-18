@@ -2,13 +2,18 @@ package gametest;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Entity extends GameObject {
     BasicEnemy target;
     Random r = new Random();
-    public int HP,MP;
-    private static int maxHP;
+    
+    private int HP,MP,speed,evasion,defense,attack;
+    private static int maxHP, maxMP;
+    private String charName;
+    private ArrayList<Skill> skillList;
+    
     public Entity(int x,int y,ID id,int width,int height,int HP,int MP){
         super(x,y,id,width,height);
         this.HP = HP;
@@ -19,6 +24,7 @@ public class Entity extends GameObject {
         x += velX;
         y += velY;
         
+        //Clamp function to not let entity go offscreen
         x = Game.clamp(x, 0, Game.WIDTH - 37);
         y = Game.clamp(y, 0, Game.HEIGHT - 66);
     }
@@ -30,6 +36,7 @@ public class Entity extends GameObject {
         g.fillRect(x, y, width, height);
     }
     
+    //Act test function
     public void act(String action){
         if(action.equals("Run")){
             System.out.println("The player flees!");

@@ -16,10 +16,6 @@ public class Game extends Canvas implements Runnable{
     private Random r;
     private Handler handler;
     private HUD hud;
-    private String test;
-    private String test2;
-    private String Punypuny;
-    private String PunyPunyTest;
     
     public Game(){
         handler = new Handler();

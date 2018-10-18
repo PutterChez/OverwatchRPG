@@ -26,15 +26,12 @@ public class KeyInput extends KeyAdapter{
                 //Key events for player 1
                 if(key == KeyEvent.VK_Z){
                     ((Entity) tempObject).act("Attack");
-                    tempObject.setVelX(5);
                 }
                 if(key == KeyEvent.VK_X){
                     ((Entity) tempObject).act("Items");
-                    tempObject.setVelY(5);
                 }
                 if(key == KeyEvent.VK_C){
                     ((Entity) tempObject).act("Run");
-                    tempObject.setVelX(-5);
                 }
             }
             
@@ -49,14 +46,6 @@ public class KeyInput extends KeyAdapter{
         for(int i = 0;i < handler.object.size();i++){
             GameObject tempObject = handler.object.get(i);
             
-            
-            if(tempObject.getId() == ID.Player2){
-                //Key events for player 1
-                if(key == KeyEvent.VK_UP) tempObject.setVelY(0);
-                if(key == KeyEvent.VK_DOWN) tempObject.setVelY(0);
-                if(key == KeyEvent.VK_RIGHT) tempObject.setVelX(0);
-                if(key == KeyEvent.VK_LEFT) tempObject.setVelX(0);
-            }
         }
     }
 }

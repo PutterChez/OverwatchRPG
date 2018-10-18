@@ -20,4 +20,10 @@ public class Action {
             //Do something IDK
         }
     }
+
+    public static void healing(Entity healer, Skill healerSkill, Entity target)
+    {
+        target.HP += (healer.attack * healerSkill.skillPower);
+        healer.MP -= healerSkill.mpCost;
+    }
 }

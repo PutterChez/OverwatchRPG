@@ -29,12 +29,16 @@ public class HUD {
         for (int i = 0; i < party.size(); i++) {
             int health, mp;
             health = party.get(i).getHP();
-            if(party.get(i).getId() == ID.Rein)
-                health += 2;
-            else
-                health += 1;
             mp = party.get(i).getMP();
-            mp += 1;
+            if(party.get(i).getId() == ID.Rein){
+                health += 3;
+                mp += 1;
+            }
+            
+            else{
+                health += 2;
+                mp += 3;
+            }
             health = Game.clamp(health, 0, party.get(i).getMaxHP());
             mp = Game.clamp(mp, 0, party.get(i).getMaxMP());
             party.get(i).setHP(health);

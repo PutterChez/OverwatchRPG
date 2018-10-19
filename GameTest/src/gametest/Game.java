@@ -28,10 +28,16 @@ public class Game extends Canvas implements Runnable{
           
         r = new Random();
         
-        Entity genji = new Entity(WIDTH/2-100,HEIGHT/2-100,ID.Player,400,400,100,100,"C:\\Users\\PRO_10\\Documents\\GitHub\\OverwatchRPG\\resources\\characters\\genji_1.png");
-        Entity doomfist = new Entity(WIDTH/2-400,HEIGHT/2+0,ID.Enemy,200,200,100,100,"C:\\Users\\PRO_10\\Documents\\GitHub\\OverwatchRPG\\resources\\characters\\doom_2.png");
+        Entity genji = new Entity(WIDTH/2-100,HEIGHT/2-300,ID.Player,400,400,"C:\\Users\\PRO_10\\Documents\\GitHub\\OverwatchRPG\\resources\\characters\\genji_1.png",100,100,"Genji");
+        Entity doomfist = new Entity(WIDTH/2-400,HEIGHT/2-200,ID.Enemy,200,200,"C:\\Users\\PRO_10\\Documents\\GitHub\\OverwatchRPG\\resources\\characters\\doom_2.png",100,100,"Doomfist");
+        
+        Menu menu = new Menu(WIDTH/2-700,1000,null,1400,300,"C:\\Users\\PRO_10\\Documents\\GitHub\\OverwatchRPG\\resources\\ui\\game\\menu.png");
+        
+        
         handler.addObject(genji);
         handler.addObject(doomfist);
+        handler.addObject(menu);
+        
         hud = new HUD(genji);
         
     }    

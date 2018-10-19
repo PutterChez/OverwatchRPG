@@ -1,6 +1,5 @@
 package gametest;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.util.ArrayList;
@@ -21,11 +20,15 @@ public class Entity extends GameObject {
     private String imageDirectory;
     
     
-    public Entity(int x,int y,ID id,int width,int height,int HP,int MP,String imageDirectory){
+    public Entity(int x,int y,ID id,int width,int height,String imageDirectory, int maxHP,int maxMP,String charName){
         super(x,y,id,width,height);
-        this.HP = HP;
-        this.MP = MP;
         this.imageDirectory = imageDirectory;
+        
+        this.maxHP = maxHP;
+        this.HP = maxHP;
+        this.maxMP = maxMP;
+        this.MP = maxMP;
+        this.charName = charName;
     }
 
 
@@ -81,5 +84,11 @@ public class Entity extends GameObject {
         this.HP = HP;
     }
 
-    
+    public String getCharName() {
+        return charName;
+    }
+
+    public void setCharName(String charName) {
+        this.charName = charName;
+    }
 }

@@ -1,6 +1,7 @@
 package gametest;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 
 //HUD for displaying HP and such
@@ -31,5 +32,9 @@ public class HUD {
         g.fillRect(p.getX() + 100, p.getY(), HEALTH * 2, 32);
         g.setColor(Color.WHITE);
         g.drawRect(p.getX() + 100, p.getY(), 200, 32);
+        
+        g.setFont(new Font("Minecraft Bold", Font.PLAIN, 50)); 
+        g.setColor(Color.white);
+        g.drawString(p.getCharName() + " : " + HEALTH, p.getX() + 100, p.getY());
     }
 }

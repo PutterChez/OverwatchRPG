@@ -5,5 +5,7 @@ package gametest;
 public enum ID {
     Player(),
     Player2(),
-    Enemy();
+    Enemy(),
+    Menu(),
+    Background();
 }

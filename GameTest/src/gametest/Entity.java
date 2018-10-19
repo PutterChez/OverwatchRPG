@@ -11,8 +11,7 @@ import javax.swing.ImageIcon;
 public class Entity extends GameObject {
     Random r = new Random();
     
-    protected int HP,MP,speed,evasion,defense,attack;
-    protected static int maxHP, maxMP;
+    protected int HP,MP,maxHP, maxMP,speed,evasion,defense,attack;
     protected String charName;
     protected ArrayList<Skill> skillList;
     
@@ -68,12 +67,12 @@ public class Entity extends GameObject {
         }
     }
 
-    public static int getMaxHP() {
+    public int getMaxHP() {
         return maxHP;
     }
 
-    public static void setMaxHP(int maxHP) {
-        Entity.maxHP = maxHP;
+    public void setMaxHP(int maxHP) {
+        this.maxHP = maxHP;
     }
 
     public int getHP() {

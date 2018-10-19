@@ -4,6 +4,7 @@ import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
+import java.util.ArrayList;
 import java.util.Random;
 
 
@@ -28,19 +29,28 @@ public class Game extends Canvas implements Runnable{
           
         r = new Random();
         
-        Entity genji = new Entity(WIDTH/2-100,HEIGHT/2-300,ID.Player,400,400,"C:\\Users\\PRO_10\\Documents\\GitHub\\OverwatchRPG\\resources\\characters\\genji_1.png",100,100,"Genji");
-        Entity doomfist = new Entity(WIDTH/2-400,HEIGHT/2-200,ID.Enemy,200,200,"C:\\Users\\PRO_10\\Documents\\GitHub\\OverwatchRPG\\resources\\characters\\doom_2.png",100,100,"Doomfist");
+        Entity genji = new Entity(WIDTH/2-100,HEIGHT/2-300,ID.Player,400,400,"C:\\Users\\PRO_10\\Documents\\GitHub\\OverwatchRPG\\resources\\characters\\genji_1.png",200,100,"Genji");
+        Entity doomfist = new Entity(WIDTH/2+200,HEIGHT/2-100,ID.Enemy,200,200,"C:\\Users\\PRO_10\\Documents\\GitHub\\OverwatchRPG\\resources\\characters\\doom_1.png",250,100,"Doomfist");
         
         Menu menu = new Menu(WIDTH/2-700,1000,ID.Menu,1400,300,"C:\\Users\\PRO_10\\Documents\\GitHub\\OverwatchRPG\\resources\\maps\\hud_1.png");
-        Menu background = new Menu(0,0,ID.Background,WIDTH,HEIGHT,"C:\\Users\\PRO_10\\Documents\\GitHub\\OverwatchRPG\\resources\\maps\\hanamura_1.png");
+        //Menu background = new Menu(0,0,ID.Background,WIDTH,HEIGHT,"C:\\Users\\PRO_10\\Documents\\GitHub\\OverwatchRPG\\resources\\maps\\hanamura_1.png");
+        Menu background = new Menu(0,0,ID.Background,WIDTH,HEIGHT,null);
         
+        genji.setHP(0);
+        doomfist.setHP(0);
+        
+        ArrayList<Entity> party = new ArrayList();
+        party.add(genji);
+        party.add(doomfist);
         
         handler.addObject(background);
         handler.addObject(menu);
-        handler.addObject(genji);
-        handler.addObject(doomfist);
         
-        hud = new HUD(genji);
+        for(int i = 0; i < party.size();i++){
+            handler.addObject(party.get(i));
+        }
+        
+        hud = new HUD(1000,600,party);
         
     }    
     

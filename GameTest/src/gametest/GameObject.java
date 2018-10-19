@@ -3,25 +3,25 @@ package gametest;
 import java.awt.Graphics;
 
 //General gameobject
-
 public abstract class GameObject {
-    
-    protected int x,y;
+
+    protected int x, y;
     protected ID id;
-    protected int velX,velY;
+    protected int velX, velY;
     protected int width, height;
-    
-    public GameObject(int x,int y,ID id,int width,int height){
+
+    public GameObject(int x, int y, ID id, int width, int height) {
         this.x = x;
         this.y = y;
         this.id = id;
         this.width = width;
         this.height = height;
     }
-    
+
     public abstract void tick();
+
     public abstract void render(Graphics g);
-    
+
     public void setX(int x) {
         this.x = x;
     }
@@ -29,11 +29,11 @@ public abstract class GameObject {
     public void setY(int y) {
         this.y = y;
     }
-    
+
     public void setId(ID id) {
         this.id = id;
     }
-    
+
     public void setVelX(int velX) {
         this.velX = velX;
     }
@@ -41,7 +41,7 @@ public abstract class GameObject {
     public void setVelY(int velY) {
         this.velY = velY;
     }
-    
+
     public int getX() {
         return x;
     }

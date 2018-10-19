@@ -27,8 +27,10 @@ public class Game extends Canvas implements Runnable {
 
         r = new Random();
 
-        Entity genji = new Entity(WIDTH / 2 - 100, HEIGHT / 2 - 300, ID.Hero, 400, 400, "C:\\Users\\PRO_10\\Documents\\GitHub\\OverwatchRPG\\resources\\characters\\genji_1.png", 200, 50, "Genji");
-        Entity doomfist = new Entity(WIDTH / 2 + 200, HEIGHT / 2 - 100, ID.Hero, 200, 200, "C:\\Users\\PRO_10\\Documents\\GitHub\\OverwatchRPG\\resources\\characters\\doom_1.png", 250, 100, "Doomfist");
+        Entity genji = new Entity(WIDTH / 2 + 150, HEIGHT / 2 - 500, ID.Genji, 400, 400, "C:\\Users\\PRO_10\\Documents\\GitHub\\OverwatchRPG\\resources\\characters\\genji_1.png", 200, 100, "Genji");
+        Entity doomfist = new Entity(WIDTH / 2 + 250, HEIGHT / 2 - 100, ID.Doom, 200, 200, "C:\\Users\\PRO_10\\Documents\\GitHub\\OverwatchRPG\\resources\\characters\\doom_1.png", 250, 200, "Doomfist");
+        Entity mercy = new Entity(WIDTH / 2 + 400, HEIGHT / 2 - 300, ID.Mercy, 400, 400, "C:\\Users\\PRO_10\\Documents\\GitHub\\OverwatchRPG\\resources\\characters\\mercy_1.png", 200, 150, "Mercy");
+        Entity reinhardt = new Entity(WIDTH / 2 - 100, HEIGHT / 2 - 250, ID.Rein, 350, 350, "C:\\Users\\PRO_10\\Documents\\GitHub\\OverwatchRPG\\resources\\characters\\rein_1.png", 500, 150, "Reinhardt");
 
         Menu menu = new Menu(WIDTH / 2 - 700, 1000, ID.Menu, 1400, 300, "C:\\Users\\PRO_10\\Documents\\GitHub\\OverwatchRPG\\resources\\maps\\hud_1.png");
         //Menu background = new Menu(0,0,ID.Background,WIDTH,HEIGHT,"C:\\Users\\PRO_10\\Documents\\GitHub\\OverwatchRPG\\resources\\maps\\hanamura_1.png");
@@ -36,10 +38,19 @@ public class Game extends Canvas implements Runnable {
 
         genji.setHP(0);
         doomfist.setHP(0);
+        mercy.setHP(0);
+        reinhardt.setHP(0);
+        
+        genji.setMP(0);
+        doomfist.setMP(0);
+        mercy.setMP(0);
+        reinhardt.setMP(0);
 
         ArrayList<Entity> party = new ArrayList();
         party.add(genji);
         party.add(doomfist);
+        party.add(mercy);
+        party.add(reinhardt);
 
         handler.addObject(background);
         handler.addObject(menu);
@@ -48,7 +59,7 @@ public class Game extends Canvas implements Runnable {
             handler.addObject(party.get(i));
         }
 
-        hud = new HUD(1000, 1000, party);
+        hud = new HUD(1200, 1000, party);
 
     }
 

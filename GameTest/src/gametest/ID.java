@@ -10,5 +10,6 @@ public enum ID {
     Mccree(),
     Enemy(),
     Menu(),
+    PopUp(),
     Background();
 }

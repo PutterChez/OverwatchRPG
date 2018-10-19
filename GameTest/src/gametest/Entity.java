@@ -21,7 +21,8 @@ public class Entity extends GameObject {
     public Entity(int x, int y, ID id, int width, int height, String imageDirectory, int maxHP, int maxMP, String charName) {
         super(x, y, id, width, height);
         this.imageDirectory = imageDirectory;
-
+        this.skillList = new ArrayList<Skill>();
+        
         this.maxHP = maxHP;
         this.HP = maxHP;
         this.maxMP = maxMP;
@@ -34,8 +35,8 @@ public class Entity extends GameObject {
         y += velY;
 
         //Clamp function to not let entity go offscreen
-        x = Game.clamp(x, 0, Game.WIDTH - 37);
-        y = Game.clamp(y, 0, Game.HEIGHT - 66);
+        //x = Game.clamp(x, 0, Game.WIDTH - 37);
+        //y = Game.clamp(y, 0, Game.HEIGHT - 66);
     }
 
     public void render(Graphics g) {
@@ -101,5 +102,7 @@ public class Entity extends GameObject {
         this.maxMP = maxMP;
     }
     
-    
+    public void addSkill(Skill skill){
+        this.skillList.add(skill);
+    }
 }

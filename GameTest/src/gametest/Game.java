@@ -26,12 +26,24 @@ public class Game extends Canvas implements Runnable {
         new Window(WIDTH, HEIGHT, "Overwatch RPG Test", this);
 
         r = new Random();
-
-        Entity genji = new Entity(WIDTH / 2 + 150, HEIGHT / 2 - 500, ID.Genji, 400, 400, "C:\\Users\\PRO_10\\Documents\\GitHub\\OverwatchRPG\\resources\\characters\\genji_1.png", 200, 100, "Genji");
-        Entity doomfist = new Entity(WIDTH / 2 + 250, HEIGHT / 2 - 100, ID.Doom, 200, 200, "C:\\Users\\PRO_10\\Documents\\GitHub\\OverwatchRPG\\resources\\characters\\doom_1.png", 250, 200, "Doomfist");
-        Entity mercy = new Entity(WIDTH / 2 + 400, HEIGHT / 2 - 300, ID.Mercy, 400, 400, "C:\\Users\\PRO_10\\Documents\\GitHub\\OverwatchRPG\\resources\\characters\\mercy_1.png", 200, 150, "Mercy");
-        Entity reinhardt = new Entity(WIDTH / 2 - 100, HEIGHT / 2 - 250, ID.Rein, 350, 350, "C:\\Users\\PRO_10\\Documents\\GitHub\\OverwatchRPG\\resources\\characters\\rein_1.png", 500, 150, "Reinhardt");
-
+        
+        int posX1,posX2,posX3,posX4,posY1,posY2,posY3,posY4;
+        posX1 = WIDTH/2 + 200; posY1 = HEIGHT/2 - 500;
+        posX2 = WIDTH/2 + 250; posY2 = HEIGHT/2 - 100;
+        posX3 = WIDTH/2 + 400; posY3 = HEIGHT/2 - 300;
+        posX4 = WIDTH/2 - 100; posY4 = HEIGHT/2 - 300;
+        
+        Entity genji = new Entity(posX1,posY1, ID.Genji, 400, 400, "C:\\Users\\PRO_10\\Documents\\GitHub\\OverwatchRPG\\resources\\characters\\genji_1.png", 200, 100, "Genji");
+        Entity doomfist = new Entity(posX2,posY2, ID.Doom, 200, 200, "C:\\Users\\PRO_10\\Documents\\GitHub\\OverwatchRPG\\resources\\characters\\doom_1.png", 250, 200, "Doomfist");
+        Entity mercy = new Entity(posX3,posY3, ID.Mercy, 400, 400, "C:\\Users\\PRO_10\\Documents\\GitHub\\OverwatchRPG\\resources\\characters\\mercy_1.png", 200, 150, "Mercy");
+        Entity reinhardt = new Entity(posX4,posY4, ID.Rein, 350, 350, "C:\\Users\\PRO_10\\Documents\\GitHub\\OverwatchRPG\\resources\\characters\\rein_1.png", 500, 150, "Reinhardt");
+        
+        Entity mccree = new Entity(posX1,posY1, ID.Mccree, 400, 400, "C:\\Users\\PRO_10\\Documents\\GitHub\\OverwatchRPG\\resources\\characters\\mccree_1.png", 200, 100, "Mccree");
+        
+        Skill swiftStrike = new Skill("Switft Strike",50,60,80);
+        swiftStrike.setDescription("Genji darts forward, slashing with his katana and passing through foes in his path.");
+        genji.addSkill(swiftStrike);
+        
         Menu menu = new Menu(WIDTH / 2 - 700, 1000, ID.Menu, 1400, 300, "C:\\Users\\PRO_10\\Documents\\GitHub\\OverwatchRPG\\resources\\maps\\hud_1.png");
         //Menu background = new Menu(0,0,ID.Background,WIDTH,HEIGHT,"C:\\Users\\PRO_10\\Documents\\GitHub\\OverwatchRPG\\resources\\maps\\hanamura_1.png");
         Menu background = new Menu(0, 0, ID.Background, WIDTH, HEIGHT, null);
@@ -47,7 +59,8 @@ public class Game extends Canvas implements Runnable {
         reinhardt.setMP(0);
 
         ArrayList<Entity> party = new ArrayList();
-        party.add(genji);
+        //party.add(genji);
+        party.add(mccree);
         party.add(doomfist);
         party.add(mercy);
         party.add(reinhardt);

@@ -7,6 +7,7 @@ public enum ID {
     Doom(),
     Mercy(),
     Rein(),
+    Mccree(),
     Enemy(),
     Menu(),
     Background();

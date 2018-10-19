@@ -8,7 +8,6 @@ public class Menu extends GameObject {
 
     private String imageDirectory;
     private Image texture;
-    private boolean pop = false;
     public Menu(int x, int y, ID id, int width, int height, String imageDirectory) {
         super(x, y, id, width, height);
         this.imageDirectory = imageDirectory;
@@ -32,14 +31,5 @@ public class Menu extends GameObject {
         texture = new ImageIcon(imageDirectory).getImage();
         g.drawImage(texture, x, y, width, height, null);
     }
-
-    public boolean isPop() {
-        return pop;
-    }
-
-    public void setPop(boolean pop) {
-        this.pop = pop;
-    }
-    
     
 }

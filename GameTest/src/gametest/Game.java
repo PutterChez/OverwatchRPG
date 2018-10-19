@@ -46,6 +46,7 @@ public class Game extends Canvas implements Runnable {
         
         Menu menu = new Menu(WIDTH / 2 - 700, 1000, ID.Menu, 1400, 300, "C:\\Users\\PRO_10\\Documents\\GitHub\\OverwatchRPG\\resources\\maps\\hud_1.png");
         Menu popUp = new Menu(WIDTH / 2 - 450, 1000, ID.PopUp, 500, 300, "C:\\Users\\PRO_10\\Documents\\GitHub\\OverwatchRPG\\resources\\maps\\hud_box.png");
+        Menu cursor = new Menu(WIDTH / 2 - 50, 1000, ID.Cursor, 30, 30, "C:\\Users\\PRO_10\\Documents\\GitHub\\OverwatchRPG\\resources\\ui\\cursor.png");
         Menu background = new Menu(0, 0, ID.Background, WIDTH, HEIGHT, null);
 
         genji.setHP(0);
@@ -68,7 +69,8 @@ public class Game extends Canvas implements Runnable {
         handler.addObject(background);
         handler.addObject(menu);
         handler.addObject(popUp);
-
+        handler.addObject(cursor);
+            
         for (int i = 0; i < party.size(); i++) {
             handler.addObject(party.get(i));
         }

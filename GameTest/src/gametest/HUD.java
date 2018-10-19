@@ -53,7 +53,7 @@ public class HUD {
         //HP Bar, gray background, green bar, and white outline
         for (int i = 0; i < party.size(); i++) {
             int barX = x + 100;
-            int barY = y + 50 * (i + 1);
+            int barY = y + 50 * (i + 1)+ 8;
             double hpPercent = (double)( party.get(i).getHP()) / (double) (party.get(i).getMaxHP());
             int currentHP = (int) (hpPercent * 200.0);
             
@@ -73,7 +73,7 @@ public class HUD {
         
         for (int i = 0; i < party.size(); i++) {
             int barX = x + 100;
-            int barY = y + 50 * (i + 1) + 20;
+            int barY = y + 50 * (i + 1) + 28;
             double mpPercent = (double)( party.get(i).getMP()) / (double) (party.get(i).getMaxMP());
             int currentMP = (int) (mpPercent * 200.0);
             

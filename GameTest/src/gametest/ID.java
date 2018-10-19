@@ -11,5 +11,6 @@ public enum ID {
     Enemy(),
     Menu(),
     PopUp(),
+    Cursor(),
     Background();
 }

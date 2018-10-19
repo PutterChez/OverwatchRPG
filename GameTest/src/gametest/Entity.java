@@ -48,10 +48,8 @@ public class Entity extends GameObject {
         
         
         //New Texture
-        if(id == ID.Player){
-            charImg = new ImageIcon(imageDirectory).getImage();
-            g.drawImage(charImg, x, y, width, height, null);
-        }
+        charImg = new ImageIcon(imageDirectory).getImage();
+        g.drawImage(charImg, x, y, width, height, null);
     }
     
     //Act test function

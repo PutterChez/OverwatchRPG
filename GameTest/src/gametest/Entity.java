@@ -84,4 +84,22 @@ public class Entity extends GameObject {
     public void setCharName(String charName) {
         this.charName = charName;
     }
+
+    public int getMP() {
+        return MP;
+    }
+
+    public void setMP(int MP) {
+        this.MP = MP;
+    }
+
+    public int getMaxMP() {
+        return maxMP;
+    }
+
+    public void setMaxMP(int maxMP) {
+        this.maxMP = maxMP;
+    }
+    
+    
 }

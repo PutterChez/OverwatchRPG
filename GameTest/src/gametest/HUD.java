@@ -27,8 +27,10 @@ public class HUD {
         }
     
         for (int i = 0; i < party.size(); i++) {
-            int health = Game.clamp(party.get(i).getHP(), 1, party.get(i).getMaxHP() - 1);
-            party.get(i).setHP(health + 1);
+            int health = party.get(i).getHP();
+            health += 1;
+            health = Game.clamp(health, 0, party.get(i).getMaxHP());
+            party.get(i).setHP(health);
         }
         
         x += velX;
@@ -40,18 +42,40 @@ public class HUD {
         for (int i = 0; i < party.size(); i++) {
             int barX = x + 100;
             int barY = y + 50 * (i + 1);
+            double hpPercent = (double)( party.get(i).getHP()) / (double) (party.get(i).getMaxHP());
+            int currentHP = (int) (hpPercent * 200.0);
+            
             g.setColor(Color.GRAY);
-            g.fillRect(barX - 100, barY, party.get(i).getMaxHP(), 32);
+            g.fillRect(barX - 100, barY, 200, 16);
             g.setColor(Color.GREEN);
-            g.fillRect(barX - 100, barY, party.get(i).getHP(), 32);
+            g.fillRect(barX - 100, barY, currentHP, 16);
             g.setColor(Color.WHITE);
-            g.drawRect(barX - 100, barY, party.get(i).getMaxHP(), 32);
+            g.drawRect(barX - 100, barY, 200, 16);
 
-            g.setFont(new Font("Minecraft Bold", Font.PLAIN, 30));
+            g.setFont(new Font("Minecraft Bold", Font.PLAIN, 15));
             g.setColor(Color.white);
 
-            g.drawString(party.get(i).getCharName(), barX - 425, barY + 25);
-            g.drawString(party.get(i).getHP() + " / " + party.get(i).getMaxHP(), barX - 90, barY + 25);
+            g.drawString(party.get(i).getCharName(), barX - 425, barY + 15);
+            g.drawString(party.get(i).getHP() + " / " + party.get(i).getMaxHP(), barX - 90, barY + 14);
+        }
+        
+        for (int i = 0; i < party.size(); i++) {
+            int barX = x + 100;
+            int barY = y + 50 * (i + 1) + 20;
+            double mpPercent = (double)( party.get(i).getMP()) / (double) (party.get(i).getMaxMP());
+            int currentMP = (int) (mpPercent * 200.0);
+            
+            g.setColor(Color.GRAY);
+            g.fillRect(barX - 100, barY, 200, 16);
+            g.setColor(Color.BLUE);
+            g.fillRect(barX - 100, barY, currentMP, 16);
+            g.setColor(Color.WHITE);
+            g.drawRect(barX - 100, barY, 200, 16);
+
+            g.setFont(new Font("Minecraft Bold", Font.PLAIN, 15));
+            g.setColor(Color.white);
+
+            g.drawString(party.get(i).getMP() + " / " + party.get(i).getMaxMP(), barX - 90, barY + 14);
         }
     }
 }

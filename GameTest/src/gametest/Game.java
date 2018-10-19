@@ -27,8 +27,8 @@ public class Game extends Canvas implements Runnable {
 
         r = new Random();
 
-        Entity genji = new Entity(WIDTH / 2 - 100, HEIGHT / 2 - 300, ID.Player, 400, 400, "C:\\Users\\PRO_10\\Documents\\GitHub\\OverwatchRPG\\resources\\characters\\genji_1.png", 200, 100, "Genji");
-        Entity doomfist = new Entity(WIDTH / 2 + 200, HEIGHT / 2 - 100, ID.Enemy, 200, 200, "C:\\Users\\PRO_10\\Documents\\GitHub\\OverwatchRPG\\resources\\characters\\doom_1.png", 250, 100, "Doomfist");
+        Entity genji = new Entity(WIDTH / 2 - 100, HEIGHT / 2 - 300, ID.Hero, 400, 400, "C:\\Users\\PRO_10\\Documents\\GitHub\\OverwatchRPG\\resources\\characters\\genji_1.png", 200, 100, "Genji");
+        Entity doomfist = new Entity(WIDTH / 2 + 200, HEIGHT / 2 - 100, ID.Hero, 200, 200, "C:\\Users\\PRO_10\\Documents\\GitHub\\OverwatchRPG\\resources\\characters\\doom_1.png", 250, 100, "Doomfist");
 
         Menu menu = new Menu(WIDTH / 2 - 700, 1000, ID.Menu, 1400, 300, "C:\\Users\\PRO_10\\Documents\\GitHub\\OverwatchRPG\\resources\\maps\\hud_1.png");
         //Menu background = new Menu(0,0,ID.Background,WIDTH,HEIGHT,"C:\\Users\\PRO_10\\Documents\\GitHub\\OverwatchRPG\\resources\\maps\\hanamura_1.png");
@@ -48,7 +48,7 @@ public class Game extends Canvas implements Runnable {
             handler.addObject(party.get(i));
         }
 
-        hud = new HUD(1000, 600, party);
+        hud = new HUD(1000, 1000, party);
 
     }
 

@@ -19,7 +19,7 @@ public class KeyInput extends KeyAdapter {
         for (int i = 0; i < handler.object.size(); i++) {
             GameObject tempObject = handler.object.get(i);
 
-            if (tempObject.getId() == ID.Player) {
+            if (tempObject.getId() == ID.Hero) {
                 //Key events for player 1
                 if (key == KeyEvent.VK_Z) {
                     ((Entity) tempObject).act("Attack");

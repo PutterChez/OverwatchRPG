@@ -8,9 +8,6 @@ import javax.swing.ImageIcon;
 
 //Main entities of game: player, enemy, npc, etc.
 public class Entity extends GameObject {
-
-    Random r = new Random();
-
     protected int HP, MP, maxHP, maxMP, speed, evasion, defense, attack;
     protected String charName;
     protected ArrayList<Skill> skillList;

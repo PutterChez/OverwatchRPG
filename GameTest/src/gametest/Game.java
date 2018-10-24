@@ -3,6 +3,8 @@ package gametest;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferStrategy;
 import java.util.ArrayList;
 import java.util.Random;
@@ -10,6 +12,87 @@ import java.util.Random;
 //Main game class (main class)
 public class Game extends Canvas implements Runnable {
 
+    class KeyInput extends KeyAdapter
+    {
+        private Handler handler;
+        private boolean PopUp = false;
+        private int cursorPos = 0, finalPos = 620;
+    
+        public KeyInput(Handler handler) {
+            this.handler = handler;
+        }
+
+        public void keyPressed(KeyEvent e) {
+            int key = e.getKeyCode();
+
+            /*Movement controls*/
+            for (int i = 0; i < handler.object.size(); i++) {
+                GameObject tempObject = handler.object.get(i);
+
+                if(tempObject.getId() == ID.PopUp){
+                    if(key == KeyEvent.VK_ENTER){
+                        if(tempObject.getY() > 550){
+                            tempObject.setY(530);
+                            PopUp = true;
+                        }
+                    }
+                    if(key == KeyEvent.VK_BACK_SPACE){
+                        tempObject.setY(1000);
+                        PopUp = false;
+                    }
+                }
+
+                if(tempObject.getId() == ID.Cursor){
+                    if(PopUp == true){
+                        if(key == KeyEvent.VK_DOWN){
+                            if(cursorPos < 2)
+                                cursorPos++;
+
+                            finalPos = (620 + cursorPos * 50);
+                        }
+
+                        else if(key == KeyEvent.VK_UP){
+                            if(cursorPos != 0)
+                                cursorPos--;
+
+                            finalPos = (620 + cursorPos * 50);
+                        }
+
+                        if(key == KeyEvent.VK_A){
+                            if(cursorPos == 0){
+                                System.out.println("Attack");
+                            }
+                            else if(cursorPos == 1){
+                                System.out.println("Items");
+                            }
+                            else if(cursorPos == 2){
+                                System.out.println("Run");
+                            }
+                        }
+                        tempObject.setY(finalPos);
+                    }
+
+                    else{
+                        tempObject.setY(1000);
+                    }
+                }
+
+                //Temporary exit game method
+                if (key == KeyEvent.VK_ESCAPE) {
+                    System.exit(1);
+                }
+            }   
+        }
+
+        public void keyReleased(KeyEvent e) {
+            int key = e.getKeyCode();
+
+            for (int i = 0; i < handler.object.size(); i++) {
+                GameObject tempObject = handler.object.get(i);
+            }
+        }
+    }
+    
     public static final int WIDTH = 1600, HEIGHT = 900;
 
     private Thread thread;
@@ -21,7 +104,7 @@ public class Game extends Canvas implements Runnable {
 
     public Game() {
         handler = new Handler();
-        this.addKeyListener(new KeyInput(handler));
+        this.addKeyListener(new Game.KeyInput(handler));
 
         new Window(WIDTH, HEIGHT, "Overwatch RPG Test", this);
 
@@ -42,9 +125,9 @@ public class Game extends Canvas implements Runnable {
         enemyX6 = WIDTH/2 - 300; enemyY6 = HEIGHT/2 - 500;
 
         Entity genji = new Entity(posX2,posY2, ID.Genji, 400, 400, "..//resources//characters//genji_1.png", 200, 100, "Genji");
-        Entity mccree = new Entity(posX1,posY1, ID.Doom, 400, 400, "C:\\Users\\PRO_10\\Documents\\GitHub\\OverwatchRPG\\resources\\characters\\mccree_1.png", 250, 200, "Mccree");
-        Entity mercy = new Entity(posX3,posY3, ID.Mercy, 400, 400, "C:\\Users\\PRO_10\\Documents\\GitHub\\OverwatchRPG\\resources\\characters\\mercy_1.png", 200, 150, "Mercy");
-        Entity reinhardt = new Entity(posX4,posY4, ID.Rein, 350, 350, "C:\\Users\\PRO_10\\Documents\\GitHub\\OverwatchRPG\\resources\\characters\\rein_1.png", 500, 150, "Reinhardt");
+        Entity mccree = new Entity(posX1,posY1, ID.Doom, 400, 400, "..\\resources\\characters\\mccree_1.png", 250, 200, "Mccree");
+        Entity mercy = new Entity(posX3,posY3, ID.Mercy, 400, 400, "..\\resources\\characters\\mercy_1.png", 200, 150, "Mercy");
+        Entity reinhardt = new Entity(posX4,posY4, ID.Rein, 350, 350, "..\\resources\\characters\\rein_1.png", 500, 150, "Reinhardt");
         
         Entity doomfist = new Entity(enemyX1, enemyY1, ID.Doom, 300, 300, "..\\resources\\characters\\doom_2.png", 250, 200, "Doomfist");
         Entity widowmaker = new Entity(enemyX2, enemyY2, ID.Widow, 300, 300, "..\\resources\\characters\\widow_2.png", 250, 200, "Widowmaker");

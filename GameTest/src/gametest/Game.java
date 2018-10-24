@@ -158,10 +158,27 @@ public class Game extends Canvas implements Runnable {
         party.add(mercy);
         party.add(reinhardt);
         
+        //0 = North, 1 = West, 2 = South, 3 = East
+        Party playerParty = new Party();
+        playerParty.addMember(mccree, 0);
+        playerParty.addMember(reinhardt, 1);
+        playerParty.addMember(genji, 2);
+        playerParty.addMember(mercy, 3);
+        
         ArrayList<Entity> enemyList = new ArrayList();
         enemyList.add(doomfist);
         enemyList.add(widowmaker);
         enemyList.add(reaper);
+        
+        //Position
+        //0 1
+        //2 3
+        //4 5
+        Party enemyParty = new Party();
+        enemyParty.addMember(doomfist, 0);
+        enemyParty.addMember(widowmaker, 2);
+        enemyParty.addMember(reaper, 4);
+       
         
         handler.addObject(background);
         handler.addObject(menu);
@@ -169,11 +186,13 @@ public class Game extends Canvas implements Runnable {
         handler.addObject(cursor);
             
         for (int i = 0; i < party.size(); i++) {
-            handler.addObject(party.get(i));
+            //handler.addObject(party.get(i));
+            handler.addObject(playerParty.memberList.get(i).entity);
         }
         
         for (int i = 0; i < enemyList.size(); i++) {
-            handler.addObject(enemyList.get(i));
+            //handler.addObject(enemyParty.searchMember(i));
+            handler.addObject(enemyParty.memberList.get(i).entity);
         }
 
         hud = new HUD(1200, 1000, party);

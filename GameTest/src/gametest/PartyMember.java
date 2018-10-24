@@ -17,7 +17,7 @@ public class PartyMember {
     protected Entity entity;
     protected int position;
     
-    PartyMember(Entity self, int position)
+    PartyMember(Entity entity, int position)
     {
         this.entity= entity;
         this.position = position;

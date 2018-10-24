@@ -21,6 +21,19 @@ public class Party {
         ArrayList memberList = new ArrayList(){};
     }
     
+    public void addMember(Entity e, int position)
+    {
+        PartyMember p = new PartyMember(e, position);
+        memberList.add(p);
+    }
     
+    public Entity searchMember(int position)
+    {
+        return memberList.get(position).entity;
+    }
     
+    public void deleteMember(int position)
+    {
+        memberList.remove(position);
+    }
 }

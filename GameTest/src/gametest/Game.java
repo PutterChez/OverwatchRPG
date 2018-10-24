@@ -33,7 +33,7 @@ public class Game extends Canvas implements Runnable {
         posX3 = WIDTH/2 + 400; posY3 = HEIGHT/2 - 300;
         posX4 = WIDTH/2 - 100; posY4 = HEIGHT/2 - 300;
         
-        Entity genji = new Entity(posX2,posY2, ID.Genji, 400, 400, "C:\\Users\\PRO_10\\Documents\\GitHub\\OverwatchRPG\\resources\\characters\\genji_1.png", 200, 100, "Genji");
+        Entity genji = new Entity(posX2,posY2, ID.Genji, 400, 400, "..//resources//characters//genji_1.png", 200, 100, "Genji");
         Entity doomfist = new Entity(posX2,posY2, ID.Doom, 300, 300, "C:\\Users\\PRO_10\\Documents\\GitHub\\OverwatchRPG\\resources\\characters\\doom_1.png", 250, 200, "Doomfist");
         Entity mercy = new Entity(posX3,posY3, ID.Mercy, 400, 400, "C:\\Users\\PRO_10\\Documents\\GitHub\\OverwatchRPG\\resources\\characters\\mercy_1.png", 200, 150, "Mercy");
         Entity reinhardt = new Entity(posX4,posY4, ID.Rein, 350, 350, "C:\\Users\\PRO_10\\Documents\\GitHub\\OverwatchRPG\\resources\\characters\\rein_1.png", 500, 150, "Reinhardt");

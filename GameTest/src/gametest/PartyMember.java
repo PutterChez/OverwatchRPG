@@ -1,7 +1,6 @@
 package gametest;
 
 
-import .*;
 import gametest.Entity;
 
 /*
@@ -15,12 +14,12 @@ import gametest.Entity;
  * @author DELL
  */
 public class PartyMember {
-    protected Entity self;
+    protected Entity entity;
     protected int position;
     
     PartyMember(Entity self, int position)
     {
-        this.self = self;
+        this.entity= entity;
         this.position = position;
     }
 }

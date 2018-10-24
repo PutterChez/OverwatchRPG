@@ -15,7 +15,7 @@ public class Action {
             attacker.MP -= attackerSkill.mpCost;
         } else {
             //Miss
-            //Do something IDK
+            //Do something, IDK
         }
     }
 

@@ -105,6 +105,8 @@ public class Game extends Canvas implements Runnable {
     public Game() {
         handler = new Handler();
         this.addKeyListener(new Game.KeyInput(handler));
+        
+        Game.KeyInput keyInput = new Game.KeyInput(handler);
 
         new Window(WIDTH, HEIGHT, "Overwatch RPG Test", this);
 
@@ -152,11 +154,13 @@ public class Game extends Canvas implements Runnable {
         mercy.setMP(0);
         reinhardt.setMP(0);
 
+        /*
         ArrayList<Entity> party = new ArrayList();
         party.add(genji);
         party.add(mccree);
         party.add(mercy);
         party.add(reinhardt);
+        */
         
         //0 = North, 1 = West, 2 = South, 3 = East
         Party playerParty = new Party();
@@ -165,12 +169,12 @@ public class Game extends Canvas implements Runnable {
         playerParty.addMember(genji, 2);
         playerParty.addMember(mercy, 3);
         
-        /*
+        //Need to change the HUD if going to use the Party class instead of ArrayList(Punypuny :3)
         ArrayList<Entity> enemyList = new ArrayList();
         enemyList.add(doomfist);
         enemyList.add(widowmaker);
         enemyList.add(reaper);
-        */
+        
         
         //Position
         //0 1
@@ -187,12 +191,12 @@ public class Game extends Canvas implements Runnable {
         handler.addObject(popUp);
         handler.addObject(cursor);
             
-        for (int i = 0; i < party.size(); i++) {
+        for (int i = 0; i < playerParty.memberList.size(); i++) {
             //handler.addObject(party.get(i));
             handler.addObject(playerParty.memberList.get(i).entity);
         }
         
-        for (int i = 0; i < enemyList.size(); i++) {
+        for (int i = 0; i < enemyParty.memberList.size(); i++) {
             //handler.addObject(enemyParty.searchMember(i));
             handler.addObject(enemyParty.memberList.get(i).entity);
         }

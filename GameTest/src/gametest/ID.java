@@ -4,10 +4,12 @@ package gametest;
 public enum ID {
 
     Genji(),
-    Doom(),
     Mercy(),
     Rein(),
     Mccree(),
+    Doom(),
+    Widow(),
+    Reaper(),
     Enemy(),
     Menu(),
     PopUp(),

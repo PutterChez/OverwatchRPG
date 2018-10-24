@@ -165,10 +165,12 @@ public class Game extends Canvas implements Runnable {
         playerParty.addMember(genji, 2);
         playerParty.addMember(mercy, 3);
         
+        /*
         ArrayList<Entity> enemyList = new ArrayList();
         enemyList.add(doomfist);
         enemyList.add(widowmaker);
         enemyList.add(reaper);
+        */
         
         //Position
         //0 1

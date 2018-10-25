@@ -16,7 +16,7 @@ public class Game extends Canvas implements Runnable {
     {
         private Handler handler;
         private boolean PopUp = false;
-        private int cursorPos = 0, finalPos = 620;
+        private int cursorPos = 0, finalPos = 660;
     
         public KeyInput(Handler handler) {
             this.handler = handler;
@@ -32,7 +32,7 @@ public class Game extends Canvas implements Runnable {
                 if(tempObject.getId() == ID.PopUp){
                     if(key == KeyEvent.VK_ENTER){
                         if(tempObject.getY() > 550){
-                            tempObject.setY(530);
+                            tempObject.setY(580);
                             PopUp = true;
                         }
                     }
@@ -48,14 +48,14 @@ public class Game extends Canvas implements Runnable {
                             if(cursorPos < 2)
                                 cursorPos++;
 
-                            finalPos = (620 + cursorPos * 50);
+                            finalPos = (660 + cursorPos * 50);
                         }
 
                         else if(key == KeyEvent.VK_UP){
                             if(cursorPos != 0)
                                 cursorPos--;
 
-                            finalPos = (620 + cursorPos * 50);
+                            finalPos = (660 + cursorPos * 50);
                         }
 
                         if(key == KeyEvent.VK_A){
@@ -123,30 +123,29 @@ public class Game extends Canvas implements Runnable {
         posX3 = WIDTH/2 + 400; posY3 = HEIGHT/2 - 300;
         posX4 = WIDTH/2 - 50; posY4 = HEIGHT/2 - 300;
         
-        int enemyX1, enemyX2, enemyX3, enemyX4, enemyX5, enemyX6, enemyY1, enemyY2, enemyY3, enemyY4, enemyY5, enemyY6;
-        enemyX1 = WIDTH/2 - 800; enemyY1 = HEIGHT/2 - 500;
-        enemyX2 = WIDTH/2 - 800; enemyY2 = HEIGHT/2 - 300;
-        enemyX3 = WIDTH/2 - 800; enemyY3 = HEIGHT/2 - 100;
-        enemyX4 = WIDTH/2 - 300; enemyY4 = HEIGHT/2 - 500;
-        enemyX5 = WIDTH/2 - 300; enemyY5 = HEIGHT/2 - 500;
-        enemyX6 = WIDTH/2 - 300; enemyY6 = HEIGHT/2 - 500;
-
+        int enemyX1, enemyX2, enemyX3, enemyX4, enemyX5, enemyX6, enemyY1, enemyY2, enemyY3;
+        enemyX1 = WIDTH/2 - 800; enemyX2 = WIDTH/2 - 600;
+        enemyY1 = HEIGHT/2 - 500; enemyY2 = HEIGHT/2 - 300; enemyY3 = HEIGHT/2 - 100;
+        
         Entity genji = new Entity(posX2,posY2, ID.Genji, 400, 400, "..\\resources\\characters\\genji_1.png", 200, 100, "Genji");
         Entity mccree = new Entity(posX1,posY1, ID.Doom, 400, 400, "..\\resources\\characters\\mccree_1.png", 250, 200, "Mccree");
         Entity mercy = new Entity(posX3,posY3, ID.Mercy, 400, 400, "..\\resources\\characters\\mercy_1.png", 200, 150, "Mercy");
         Entity reinhardt = new Entity(posX4,posY4, ID.Rein, 350, 350, "..\\resources\\characters\\rein_1.png", 500, 150, "Reinhardt");
         
         Entity doomfist = new Entity(enemyX1, enemyY1, ID.Doom, 300, 300, "..\\resources\\characters\\doom_2.png", 250, 200, "Doomfist");
-        Entity widowmaker = new Entity(enemyX2, enemyY2, ID.Widow, 300, 300, "..\\resources\\characters\\widow_2.png", 200, 200, "Widowmaker");
-        Entity reaper = new Entity(enemyX3, enemyY3, ID.Reaper, 300, 300, "..\\resources\\characters\\reaper_2.png", 200, 200, "Reaper");
+        Entity widowmaker = new Entity(enemyX1, enemyY2, ID.Widow, 300, 300, "..\\resources\\characters\\widow_2.png", 200, 200, "Widowmaker");
+        Entity reaper = new Entity(enemyX1, enemyY3, ID.Reaper, 300, 300, "..\\resources\\characters\\reaper_2.png", 200, 200, "Reaper");
+        Entity moira = new Entity(enemyX2, enemyY1, ID.Moira, 300, 300, "..\\resources\\characters\\reaper_2.png", 200, 200, "Moira");
+        Entity sombra = new Entity(enemyX2, enemyY2, ID.Sombra, 300, 300, "..\\resources\\characters\\sombra_2.png", 200, 200, "Sombra");
+        Entity bastion = new Entity(enemyX2, enemyY3, ID.Bastion, 300, 300, "..\\resources\\characters\\bastion_2.png", 200, 200, "Bastion");
         
         Skill swiftStrike = new Skill("Switft Strike",50,60,80);
         swiftStrike.setDescription("Genji darts forward, slashing with his katana and passing through foes in his path.");
         genji.addSkill(swiftStrike);
         
         Menu menu = new Menu(WIDTH / 2 - 700, 1000, ID.Menu, 1400, 300, "..\\resources\\maps\\hud_1.png");
-        Menu popUp = new Menu(WIDTH / 2 - 450, 1000, ID.PopUp, 500, 300, "..\\resources\\maps\\hud_box.png");
-        Menu cursor = new Menu(WIDTH / 2 - 50, 1000, ID.Cursor, 30, 30, "..\\resources\\ui\\cursor.png");
+        Menu popUp = new Menu(WIDTH / 2 - 170, 1000, ID.PopUp, 500, 300, "..\\resources\\maps\\hud_box.png");
+        Menu cursor = new Menu(WIDTH / 2 + 150, 1000, ID.Cursor, 30, 30, "..\\resources\\ui\\cursor.png");
         Menu background = new Menu(0, 0, ID.Background, WIDTH, HEIGHT, null);
 
         genji.setHP(0);
@@ -158,14 +157,6 @@ public class Game extends Canvas implements Runnable {
         doomfist.setMP(0);
         mercy.setMP(0);
         reinhardt.setMP(0);
-
-        /*
-        ArrayList<Entity> party = new ArrayList();
-        party.add(genji);
-        party.add(mccree);
-        party.add(mercy);
-        party.add(reinhardt);
-        */
         
         //0 = North, 1 = West, 2 = South, 3 = East
         Party playerParty = new Party();
@@ -189,6 +180,9 @@ public class Game extends Canvas implements Runnable {
         enemyParty.addMember(doomfist, 0);
         enemyParty.addMember(widowmaker, 2);
         enemyParty.addMember(reaper, 4);
+        enemyParty.addMember(moira, 1);
+        enemyParty.addMember(sombra, 3);
+        enemyParty.addMember(bastion, 5);
        
         
         handler.addObject(background);
@@ -206,8 +200,8 @@ public class Game extends Canvas implements Runnable {
             handler.addObject(enemyParty.memberList.get(i).entity);
         }
 
-        playerHUD = new HUD(1200, 1000, -425, 15, -5, playerParty);
-        enemyHUD = new HUD(200, 1000, -100, -5, -5, enemyParty);
+        playerHUD = new HUD(1250, 1000, -200, 15, -5, 590,50, playerParty);
+        enemyHUD = new HUD(200, 1000, -100, -5, -5, 600,60, enemyParty);
 
     }
 

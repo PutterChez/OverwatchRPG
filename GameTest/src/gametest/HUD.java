@@ -8,21 +8,23 @@ import java.util.ArrayList;
 //HUD for displaying HP and such
 public class HUD {
 
-    private int x, y, nameX, nameY, velX, velY, speed;
+    private int x, y, nameX, nameY, velX, velY, speed, limit, gap;
     private Party party;
     
-    public HUD(int x, int y, int nameX, int nameY,int speed, Party party) {
+    public HUD(int x, int y, int nameX, int nameY,int speed,int limit,int gap, Party party) {
         this.x = x;
         this.y = y;
         this.nameX = nameX;
         this.nameY = nameY;
         this.party = party;
         this.speed = speed;
+        this.limit = limit;
+        this.gap = gap;
     }
 
     public void tick() {
         //Health decrease animaiton test
-        if (y > 590) {
+        if (y > limit) {
                 velY = speed;
         } 
         else {
@@ -58,7 +60,7 @@ public class HUD {
         //HP Bar, gray background, green bar, and white outline
         for (int i = 0; i < party.memberList.size(); i++) {
             int barX = x + 100;
-            int barY = y + 50 * (i + 1)+ 8;
+            int barY = y + gap * (i + 1)+ 8;
             double hpPercent = (double)( party.memberList.get(i).entity.getHP()) / (double) (party.memberList.get(i).entity.getMaxHP());
             int currentHP = (int) (hpPercent * 200.0);
             
@@ -78,7 +80,7 @@ public class HUD {
         
         for (int i = 0; i < party.memberList.size(); i++) {
             int barX = x + 100;
-            int barY = y + 50 * (i + 1) + 28;
+            int barY = y + gap * (i + 1) + 28;
             double mpPercent = (double)( party.memberList.get(i).entity.getMP()) / (double) (party.memberList.get(i).entity.getMaxMP());
             int currentMP = (int) (mpPercent * 200.0);
             

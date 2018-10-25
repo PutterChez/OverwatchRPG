@@ -1,3 +1,4 @@
+/*
 package gametest;
 
 import java.awt.event.KeyAdapter;
@@ -18,7 +19,7 @@ public class KeyInput extends KeyAdapter {
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
 
-        /*Movement controls*/
+        //Movement Control
         for (int i = 0; i < handler.object.size(); i++) {
             GameObject tempObject = handler.object.get(i);
             
@@ -88,3 +89,4 @@ public class KeyInput extends KeyAdapter {
         }
     }
 }
+*/

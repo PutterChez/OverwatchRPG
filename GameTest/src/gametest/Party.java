@@ -18,7 +18,7 @@ public class Party {
     
     Party()
     {
-        ArrayList memberList = new ArrayList(){};
+        memberList = new ArrayList(){};
     }
     
     public void addMember(Entity e, int position)

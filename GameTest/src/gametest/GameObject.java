@@ -3,16 +3,13 @@ package gametest;
 import java.awt.Graphics;
 
 //General gameobject
-public abstract class GameObject {
-
-    protected int x, y;
+public abstract class GameObject extends BaseObject{
     protected ID id;
     protected int velX, velY;
     protected int width, height;
 
     public GameObject(int x, int y, ID id, int width, int height) {
-        this.x = x;
-        this.y = y;
+        super(x,y);
         this.id = id;
         this.width = width;
         this.height = height;

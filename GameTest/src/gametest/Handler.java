@@ -6,11 +6,11 @@ import java.awt.Graphics;
 //Handler for rendering objects retrived from an objectlist
 public class Handler {
 
-    LinkedList<GameObject> object = new LinkedList<GameObject>();
+    LinkedList<BaseObject> object = new LinkedList<BaseObject>();
 
     public void tick() {
         for (int i = 0; i < object.size(); i++) {
-            GameObject tempObject = object.get(i);
+            BaseObject tempObject = object.get(i);
 
             tempObject.tick();
         }
@@ -18,17 +18,17 @@ public class Handler {
 
     public void render(Graphics g) {
         for (int i = 0; i < object.size(); i++) {
-            GameObject tempObject = object.get(i);
+            BaseObject tempObject = object.get(i);
 
             tempObject.render(g);
         }
     }
 
-    public void addObject(GameObject object) {
+    public void addObject(BaseObject object) {
         this.object.add(object);
     }
 
-    public void removeObject(GameObject object) {
+    public void removeObject(BaseObject object) {
         this.object.remove(object);
     }
 }

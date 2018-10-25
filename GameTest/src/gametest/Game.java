@@ -153,14 +153,6 @@ public class Game extends Canvas implements Runnable {
         doomfist.setMP(0);
         mercy.setMP(0);
         reinhardt.setMP(0);
-
-        /*
-        ArrayList<Entity> party = new ArrayList();
-        party.add(genji);
-        party.add(mccree);
-        party.add(mercy);
-        party.add(reinhardt);
-        */
         
         //0 = North, 1 = West, 2 = South, 3 = East
         Party playerParty = new Party();
@@ -185,9 +177,14 @@ public class Game extends Canvas implements Runnable {
         enemyParty.addMember(widowmaker, 2);
         enemyParty.addMember(reaper, 4);
        
+        playerHUD = new HUD(1200, 1000, -425, 15, -5, playerParty);
+        enemyHUD = new HUD(200, 1000, -100, -5, -5, enemyParty);
         
         handler.addObject(background);
         handler.addObject(menu);
+        
+        handler.addObject(playerHUD);
+        
         handler.addObject(popUp);
         handler.addObject(cursor);
             
@@ -200,9 +197,6 @@ public class Game extends Canvas implements Runnable {
             //handler.addObject(enemyParty.searchMember(i));
             handler.addObject(enemyParty.memberList.get(i).entity);
         }
-
-        playerHUD = new HUD(1200, 1000, -425, 15, -5, playerParty);
-        enemyHUD = new HUD(200, 1000, -100, -5, -5, enemyParty);
 
     }
 
@@ -252,8 +246,6 @@ public class Game extends Canvas implements Runnable {
 
     private void tick() {
         handler.tick();
-        playerHUD.tick();
-        enemyHUD.tick();
     }
 
     private void render() {
@@ -269,10 +261,6 @@ public class Game extends Canvas implements Runnable {
         g.fillRect(0, 0, WIDTH, HEIGHT);
 
         handler.render(g);
-
-        playerHUD.render(g);
-        
-        enemyHUD.render(g);
 
         g.dispose();
         bs.show();

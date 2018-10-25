@@ -6,14 +6,13 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 
 //HUD for displaying HP and such
-public class HUD {
+public class HUD extends BaseObject{
 
     private int x, y, nameX, nameY, velX, velY, speed;
     private Party party;
     
     public HUD(int x, int y, int nameX, int nameY,int speed, Party party) {
-        this.x = x;
-        this.y = y;
+        super(x,y);
         this.nameX = nameX;
         this.nameY = nameY;
         this.party = party;

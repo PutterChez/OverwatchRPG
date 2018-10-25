@@ -100,7 +100,7 @@ public class Game extends Canvas implements Runnable {
 
     private Random r;
     private Handler handler;
-    private HUD hud;
+    private HUD playerHUD, enemyHUD;
 
     public Game() {
         handler = new Handler();
@@ -126,14 +126,14 @@ public class Game extends Canvas implements Runnable {
         enemyX5 = WIDTH/2 - 300; enemyY5 = HEIGHT/2 - 500;
         enemyX6 = WIDTH/2 - 300; enemyY6 = HEIGHT/2 - 500;
 
-        Entity genji = new Entity(posX2,posY2, ID.Genji, 400, 400, "..//resources//characters//genji_1.png", 200, 100, "Genji");
+        Entity genji = new Entity(posX2,posY2, ID.Genji, 400, 400, "..\\resources\\characters\\genji_1.png", 200, 100, "Genji");
         Entity mccree = new Entity(posX1,posY1, ID.Doom, 400, 400, "..\\resources\\characters\\mccree_1.png", 250, 200, "Mccree");
         Entity mercy = new Entity(posX3,posY3, ID.Mercy, 400, 400, "..\\resources\\characters\\mercy_1.png", 200, 150, "Mercy");
         Entity reinhardt = new Entity(posX4,posY4, ID.Rein, 350, 350, "..\\resources\\characters\\rein_1.png", 500, 150, "Reinhardt");
         
         Entity doomfist = new Entity(enemyX1, enemyY1, ID.Doom, 300, 300, "..\\resources\\characters\\doom_2.png", 250, 200, "Doomfist");
-        Entity widowmaker = new Entity(enemyX2, enemyY2, ID.Widow, 300, 300, "..\\resources\\characters\\widow_2.png", 250, 200, "Widowmaker");
-        Entity reaper = new Entity(enemyX3, enemyY3, ID.Reaper, 300, 300, "..\\resources\\characters\\reaper_2.png", 250, 200, "Reaper");
+        Entity widowmaker = new Entity(enemyX2, enemyY2, ID.Widow, 300, 300, "..\\resources\\characters\\widow_2.png", 200, 200, "Widowmaker");
+        Entity reaper = new Entity(enemyX3, enemyY3, ID.Reaper, 300, 300, "..\\resources\\characters\\reaper_2.png", 200, 200, "Reaper");
         
         Skill swiftStrike = new Skill("Switft Strike",50,60,80);
         swiftStrike.setDescription("Genji darts forward, slashing with his katana and passing through foes in his path.");
@@ -201,7 +201,8 @@ public class Game extends Canvas implements Runnable {
             handler.addObject(enemyParty.memberList.get(i).entity);
         }
 
-        hud = new HUD(1200, 1000, party);
+        playerHUD = new HUD(1200, 1000, -425, 15, -5, playerParty);
+        enemyHUD = new HUD(200, 1000, -100, -5, -5, enemyParty);
 
     }
 
@@ -251,7 +252,8 @@ public class Game extends Canvas implements Runnable {
 
     private void tick() {
         handler.tick();
-        hud.tick();
+        playerHUD.tick();
+        enemyHUD.tick();
     }
 
     private void render() {
@@ -268,7 +270,9 @@ public class Game extends Canvas implements Runnable {
 
         handler.render(g);
 
-        hud.render(g);
+        playerHUD.render(g);
+        
+        enemyHUD.render(g);
 
         g.dispose();
         bs.show();

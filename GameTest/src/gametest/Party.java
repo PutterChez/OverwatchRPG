@@ -27,7 +27,7 @@ public class Party {
         memberList.add(p);
     }
     
-    public Entity searchMember(int position)
+    public Entity searchMemberByPartyPosition(int position)
     {
         return memberList.get(position).entity;
     }

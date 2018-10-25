@@ -8,29 +8,33 @@ import java.util.ArrayList;
 //HUD for displaying HP and such
 public class HUD {
 
-    private int x, y, velX, velY;
-    private ArrayList<Entity> party;
+    private int x, y, nameX, nameY, velX, velY, speed;
+    private Party party;
     
-    public HUD(int x, int y, ArrayList<Entity> party) {
+    public HUD(int x, int y, int nameX, int nameY,int speed, Party party) {
         this.x = x;
         this.y = y;
+        this.nameX = nameX;
+        this.nameY = nameY;
         this.party = party;
+        this.speed = speed;
     }
 
     public void tick() {
         //Health decrease animaiton test
         if (y > 590) {
-                velY = -5;
+                velY = speed;
         } 
         else {
                 velY = 0;
         }
     
-        for (int i = 0; i < party.size(); i++) {
+        for (int i = 0; i < party.memberList.size(); i++) {
             int health, mp;
-            health = party.get(i).getHP();
-            mp = party.get(i).getMP();
-            if(party.get(i).getId() == ID.Rein){
+            health = party.memberList.get(i).entity.getHP();
+            mp = party.memberList.get(i).entity.getMP();
+            
+            if(party.memberList.get(i).entity.getMaxHP() > 300){
                 health += 3;
                 mp += 1;
             }
@@ -39,10 +43,11 @@ public class HUD {
                 health += 2;
                 mp += 3;
             }
-            health = Game.clamp(health, 0, party.get(i).getMaxHP());
-            mp = Game.clamp(mp, 0, party.get(i).getMaxMP());
-            party.get(i).setHP(health);
-            party.get(i).setMP(mp);
+            
+            health = Game.clamp(health, 0, party.memberList.get(i).entity.getMaxHP());
+            mp = Game.clamp(mp, 0, party.memberList.get(i).entity.getMaxMP());
+            party.memberList.get(i).entity.setHP(health);
+            party.memberList.get(i).entity.setMP(mp);
         }
         
         x += velX;
@@ -51,10 +56,10 @@ public class HUD {
 
     public void render(Graphics g) {
         //HP Bar, gray background, green bar, and white outline
-        for (int i = 0; i < party.size(); i++) {
+        for (int i = 0; i < party.memberList.size(); i++) {
             int barX = x + 100;
             int barY = y + 50 * (i + 1)+ 8;
-            double hpPercent = (double)( party.get(i).getHP()) / (double) (party.get(i).getMaxHP());
+            double hpPercent = (double)( party.memberList.get(i).entity.getHP()) / (double) (party.memberList.get(i).entity.getMaxHP());
             int currentHP = (int) (hpPercent * 200.0);
             
             g.setColor(Color.GRAY);
@@ -67,14 +72,14 @@ public class HUD {
             g.setFont(new Font("Minecraft Bold", Font.PLAIN, 15));
             g.setColor(Color.white);
 
-            g.drawString(party.get(i).getCharName(), barX - 425, barY + 15);
-            g.drawString(party.get(i).getHP() + " / " + party.get(i).getMaxHP(), barX - 90, barY + 14);
+            g.drawString(party.memberList.get(i).entity.getCharName(), barX + nameX, barY + nameY);
+            g.drawString(party.memberList.get(i).entity.getHP() + " / " + party.memberList.get(i).entity.getMaxHP(), barX - 90, barY + 14);
         }
         
-        for (int i = 0; i < party.size(); i++) {
+        for (int i = 0; i < party.memberList.size(); i++) {
             int barX = x + 100;
             int barY = y + 50 * (i + 1) + 28;
-            double mpPercent = (double)( party.get(i).getMP()) / (double) (party.get(i).getMaxMP());
+            double mpPercent = (double)( party.memberList.get(i).entity.getMP()) / (double) (party.memberList.get(i).entity.getMaxMP());
             int currentMP = (int) (mpPercent * 200.0);
             
             g.setColor(Color.GRAY);
@@ -87,7 +92,7 @@ public class HUD {
             g.setFont(new Font("Minecraft Bold", Font.PLAIN, 15));
             g.setColor(Color.white);
             
-            g.drawString(party.get(i).getMP() + " / " + party.get(i).getMaxMP(), barX - 90, barY + 14);
+            g.drawString(party.memberList.get(i).entity.getMP() + " / " + party.memberList.get(i).entity.getMaxMP(), barX - 90, barY + 14);
         }
     }
 }

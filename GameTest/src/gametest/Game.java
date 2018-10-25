@@ -91,6 +91,11 @@ public class Game extends Canvas implements Runnable {
                 GameObject tempObject = handler.object.get(i);
             }
         }
+        
+        public int getKeyPressed(KeyEvent e)
+        {
+            return e.getKeyCode();
+        }
     }
     
     public static final int WIDTH = 1600, HEIGHT = 900;

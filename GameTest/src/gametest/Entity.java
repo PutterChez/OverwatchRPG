@@ -15,7 +15,7 @@ public class Entity extends GameObject {
     private Image charImg;
     private String imageDirectory;
 
-    public Entity(int x, int y, ID id, int width, int height, String imageDirectory, int maxHP, int maxMP, String charName) {
+    public Entity(int x, int y, ID id, int width, int height, String imageDirectory, int maxHP, int maxMP, String charName, int attack, int defense, int speed, int evasion) {
         super(x, y, id, width, height);
         this.imageDirectory = imageDirectory;
         this.skillList = new ArrayList<Skill>();
@@ -25,6 +25,11 @@ public class Entity extends GameObject {
         this.maxMP = maxMP;
         this.MP = maxMP;
         this.charName = charName;
+        
+        this.speed = speed;
+        this.evasion = evasion;
+        this.defense = defense;
+        this.attack = attack;
     }
 
     public void tick() {

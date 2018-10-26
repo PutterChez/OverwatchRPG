@@ -31,26 +31,7 @@ public class HUD {
                 velY = 0;
         }
     
-        for (int i = 0; i < party.memberList.size(); i++) {
-            int health, mp;
-            health = party.memberList.get(i).entity.getHP();
-            mp = party.memberList.get(i).entity.getMP();
-            
-            if(party.memberList.get(i).entity.getMaxHP() > 300){
-                health += 3;
-                mp += 1;
-            }
-            
-            else{
-                health += 2;
-                mp += 3;
-            }
-            
-            health = Game.clamp(health, 0, party.memberList.get(i).entity.getMaxHP());
-            mp = Game.clamp(mp, 0, party.memberList.get(i).entity.getMaxMP());
-            party.memberList.get(i).entity.setHP(health);
-            party.memberList.get(i).entity.setMP(mp);
-        }
+        
         
         x += velX;
         y += velY;

@@ -11,9 +11,10 @@ public class Action {
 
         if (randHit.nextInt(100) < attackHitRate) {
             //Hit
-            target.HP -= (attacker.attack * attackerSkill.getAtkPower());
+            target.HP -= (attacker.attack * ( attackerSkill.getAtkPower() / 100 ) - target.defense);
             attacker.MP -= attackerSkill.mpCost;
         } else {
+            System.out.println("Missed");
             //Miss
             //Do something, IDK
         }

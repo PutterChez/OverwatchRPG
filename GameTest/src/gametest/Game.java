@@ -12,14 +12,18 @@ import java.util.Random;
 //Main game class (main class)
 public class Game extends Canvas implements Runnable {
 
-    class KeyInput extends KeyAdapter
+    class ActionControl extends KeyAdapter
     {
         private Handler handler;
         private boolean PopUp = false;
         private int cursorPos = 0, finalPos = 660;
-    
-        public KeyInput(Handler handler) {
+        Party playerParty;
+        Party enemyParty;
+        
+        public ActionControl(Handler handler, Party player, Party enemy) {
             this.handler = handler;
+            this.playerParty = player;
+            this.enemyParty = enemy;
         }
 
         public void keyPressed(KeyEvent e) {
@@ -60,7 +64,23 @@ public class Game extends Canvas implements Runnable {
 
                         if(key == KeyEvent.VK_A){
                             if(cursorPos == 0){
-                                System.out.println("Attack");
+                                System.out.println();
+                                System.out.println("Mccree HP: " +  playerParty.memberList.get(0).entity.getHP());
+                                System.out.println("Mccree MP: " +  playerParty.memberList.get(0).entity.getMP());
+                                System.out.println("Doomfist HP: " + enemyParty.memberList.get(0).entity.getHP());
+                                System.out.println("Doomfist MP: " + enemyParty.memberList.get(0).entity.getMP());
+                                System.out.println("---------------------------------------------------------");
+                                
+                                System.out.println(playerParty.memberList.get(0).entity.charName + " use " 
+                                        + playerParty.memberList.get(0).entity.skillList.get(0).skillName + " to " + enemyParty.memberList.get(0).entity.charName );
+                                Action.attack(playerParty.memberList.get(0).entity, playerParty.memberList.get(0).entity.skillList.get(0), enemyParty.memberList.get(0).entity);
+                                
+                                System.out.println("After");
+                                System.out.println("Mccree HP: " +  playerParty.memberList.get(0).entity.getHP());
+                                System.out.println("Mccree MP: " +  playerParty.memberList.get(0).entity.getMP());
+                                System.out.println("Doomfist HP: " + enemyParty.memberList.get(0).entity.getHP());
+                                System.out.println("Doomfist MP: " + enemyParty.memberList.get(0).entity.getMP());
+   
                             }
                             else if(cursorPos == 1){
                                 System.out.println("Items");
@@ -109,9 +129,6 @@ public class Game extends Canvas implements Runnable {
 
     public Game() {
         handler = new Handler();
-        this.addKeyListener(new Game.KeyInput(handler));
-        
-        Game.KeyInput keyInput = new Game.KeyInput(handler);
 
         new Window(WIDTH, HEIGHT, "Overwatch RPG Test", this);
 
@@ -127,36 +144,31 @@ public class Game extends Canvas implements Runnable {
         enemyX1 = WIDTH/2 - 800; enemyX2 = WIDTH/2 - 600;
         enemyY1 = HEIGHT/2 - 500; enemyY2 = HEIGHT/2 - 300; enemyY3 = HEIGHT/2 - 100;
         
-        Entity genji = new Entity(posX2,posY2, ID.Genji, 400, 400, "..\\resources\\characters\\genji_1.png", 200, 100, "Genji");
-        Entity mccree = new Entity(posX1,posY1, ID.Doom, 400, 400, "..\\resources\\characters\\mccree_1.png", 250, 200, "Mccree");
-        Entity mercy = new Entity(posX3,posY3, ID.Mercy, 400, 400, "..\\resources\\characters\\mercy_1.png", 200, 150, "Mercy");
-        Entity reinhardt = new Entity(posX4,posY4, ID.Rein, 350, 350, "..\\resources\\characters\\rein_1.png", 500, 150, "Reinhardt");
+        Entity genji = new Entity(posX2,posY2, ID.Genji, 400, 400, "..\\resources\\characters\\genji_1.png", 200, 100, "Genji", 40, 10, 100, 40);
+        Entity mccree = new Entity(posX1,posY1, ID.Doom, 400, 400, "..\\resources\\characters\\mccree_1.png", 250, 200, "Mccree", 40, 10, 100, 40);
+        Entity mercy = new Entity(posX3,posY3, ID.Mercy, 400, 400, "..\\resources\\characters\\mercy_1.png", 200, 150, "Mercy", 40, 10, 100, 40);
+        Entity reinhardt = new Entity(posX4,posY4, ID.Rein, 350, 350, "..\\resources\\characters\\rein_1.png", 500, 150, "Reinhardt", 40, 10, 100, 40);
         
-        Entity doomfist = new Entity(enemyX1, enemyY1, ID.Doom, 300, 300, "..\\resources\\characters\\doom_2.png", 250, 200, "Doomfist");
-        Entity widowmaker = new Entity(enemyX1, enemyY2, ID.Widow, 300, 300, "..\\resources\\characters\\widow_2.png", 200, 200, "Widowmaker");
-        Entity reaper = new Entity(enemyX1, enemyY3, ID.Reaper, 300, 300, "..\\resources\\characters\\reaper_2.png", 200, 200, "Reaper");
-        Entity moira = new Entity(enemyX2, enemyY1, ID.Moira, 300, 300, "..\\resources\\characters\\reaper_2.png", 200, 200, "Moira");
-        Entity sombra = new Entity(enemyX2, enemyY2, ID.Sombra, 300, 300, "..\\resources\\characters\\sombra_2.png", 200, 200, "Sombra");
-        Entity bastion = new Entity(enemyX2, enemyY3, ID.Bastion, 300, 300, "..\\resources\\characters\\bastion_2.png", 200, 200, "Bastion");
+        Entity doomfist = new Entity(enemyX1, enemyY1, ID.Doom, 300, 300, "..\\resources\\characters\\doom_2.png", 250, 200, "Doomfist", 40, 10, 100, 40);
+        Entity widowmaker = new Entity(enemyX1, enemyY2, ID.Widow, 300, 300, "..\\resources\\characters\\widow_2.png", 200, 200, "Widowmaker", 40, 10, 100, 40);
+        Entity reaper = new Entity(enemyX1, enemyY3, ID.Reaper, 300, 300, "..\\resources\\characters\\reaper_2.png", 200, 200, "Reaper", 40, 10, 100, 40);
+        Entity moira = new Entity(enemyX2, enemyY1, ID.Moira, 300, 300, "..\\resources\\characters\\reaper_2.png", 200, 200, "Moira", 40, 10, 100, 40);
+        Entity sombra = new Entity(enemyX2, enemyY2, ID.Sombra, 300, 300, "..\\resources\\characters\\sombra_2.png", 200, 200, "Sombra", 40, 10, 100, 40);
+        Entity bastion = new Entity(enemyX2, enemyY3, ID.Bastion, 300, 300, "..\\resources\\characters\\bastion_2.png", 200, 200, "Bastion", 40, 10, 100, 40);
         
         Skill swiftStrike = new Skill("Switft Strike",50,60,80);
         swiftStrike.setDescription("Genji darts forward, slashing with his katana and passing through foes in his path.");
         genji.addSkill(swiftStrike);
+        
+        Skill headShot = new Skill("Head Shot", 200,40, 200 );
+        headShot.setDescription("Mccree click the head");
+        mccree.addSkill(headShot);
         
         Menu menu = new Menu(WIDTH / 2 - 700, 1000, ID.Menu, 1400, 300, "..\\resources\\maps\\hud_1.png");
         Menu popUp = new Menu(WIDTH / 2 - 170, 1000, ID.PopUp, 500, 300, "..\\resources\\maps\\hud_box.png");
         Menu cursor = new Menu(WIDTH / 2 + 150, 1000, ID.Cursor, 30, 30, "..\\resources\\ui\\cursor.png");
         Menu background = new Menu(0, 0, ID.Background, WIDTH, HEIGHT, null);
 
-        genji.setHP(0);
-        doomfist.setHP(0);
-        mercy.setHP(0);
-        reinhardt.setHP(0);
-        
-        genji.setMP(0);
-        doomfist.setMP(0);
-        mercy.setMP(0);
-        reinhardt.setMP(0);
         
         //0 = North, 1 = West, 2 = South, 3 = East
         Party playerParty = new Party();
@@ -202,6 +214,8 @@ public class Game extends Canvas implements Runnable {
 
         playerHUD = new HUD(1250, 1000, -200, 15, -5, 590,50, playerParty);
         enemyHUD = new HUD(200, 1000, -100, -5, -5, 600,60, enemyParty);
+        
+        this.addKeyListener(new Game.ActionControl(handler, playerParty, enemyParty));
 
     }
 

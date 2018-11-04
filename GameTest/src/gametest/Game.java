@@ -128,6 +128,11 @@ public class Game extends Canvas implements Runnable {
     private HUD playerHUD, enemyHUD;
 
     public Game() {
+       this.BattlePhase();
+    }
+    
+    private void BattlePhase()
+    {
         handler = new Handler();
 
         new Window(WIDTH, HEIGHT, "Overwatch RPG Test", this);

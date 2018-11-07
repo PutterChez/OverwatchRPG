@@ -218,7 +218,7 @@ public class Game extends Canvas implements Runnable {
         }
 
         playerHUD = new HUD(1250, 1000, -200, 15, -5, 590,50, playerParty);
-        enemyHUD = new HUD(200, 1000, -100, -5, -5, 600,60, enemyParty);
+        enemyHUD = new HUD(150, 1000, -100, -5, -5, 600,60, enemyParty);
         
         this.addKeyListener(new Game.ActionControl(handler, playerParty, enemyParty));
 

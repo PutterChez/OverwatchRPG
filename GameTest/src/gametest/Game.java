@@ -128,7 +128,7 @@ public class Game extends Canvas implements Runnable {
     private HUD playerHUD, enemyHUD;
 
     public Game() {
-       this.BattlePhase();
+       ;
     }
     
     private void BattlePhase()
@@ -307,7 +307,8 @@ public class Game extends Canvas implements Runnable {
     }
 
     public static void main(String[] args) {
-        new Game();
+        Game test = new Game();
+        test.BattlePhase();
     }
 
 }

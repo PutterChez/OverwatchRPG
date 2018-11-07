@@ -17,6 +17,7 @@ public class Game extends Canvas implements Runnable {
         private Handler handler;
         private boolean PopUp = false;
         private int cursorPos = 0, finalPos = 660;
+        
         Party playerParty;
         Party enemyParty;
         
@@ -29,79 +30,103 @@ public class Game extends Canvas implements Runnable {
         public void keyPressed(KeyEvent e) {
             int key = e.getKeyCode();
 
-            /*Movement controls*/
-            for (int i = 0; i < handler.object.size(); i++) {
-                GameObject tempObject = handler.object.get(i);
+            if(BattlePhase)
+            {
+                /*Movement controls*/
+                for (int i = 0; i < handler.object.size(); i++) {
 
-                if(tempObject.getId() == ID.PopUp){
-                    if(key == KeyEvent.VK_ENTER){
-                        if(tempObject.getY() > 550){
-                            tempObject.setY(580);
-                            PopUp = true;
+                    GameObject tempObject = handler.object.get(i);
+
+                    if(tempObject.getId() == ID.PopUp){
+                        if(key == KeyEvent.VK_ENTER){
+                            if(tempObject.getY() > 550){
+                                tempObject.setY(580);
+                                PopUp = true;
+                            }
+                        }
+                        if(key == KeyEvent.VK_BACK_SPACE){
+                            tempObject.setY(1000);
+                            PopUp = false;
                         }
                     }
-                    if(key == KeyEvent.VK_BACK_SPACE){
-                        tempObject.setY(1000);
-                        PopUp = false;
+
+                    if(tempObject.getId() == ID.Cursor){
+                        if(PopUp == true){
+                            if(key == KeyEvent.VK_DOWN){
+                                if(cursorPos < 2)
+                                    cursorPos++;
+
+                                finalPos = (660 + cursorPos * 50);
+                            }
+
+                            else if(key == KeyEvent.VK_UP){
+                                if(cursorPos != 0)
+                                    cursorPos--;
+
+                                finalPos = (660 + cursorPos * 50);
+                            }
+
+                            if(key == KeyEvent.VK_A){
+                                if(cursorPos == 0){
+                                    System.out.println();
+                                    System.out.println("Mccree HP: " +  playerParty.memberList.get(0).entity.getHP());
+                                    System.out.println("Mccree MP: " +  playerParty.memberList.get(0).entity.getMP());
+                                    System.out.println("Doomfist HP: " + enemyParty.memberList.get(0).entity.getHP());
+                                    System.out.println("Doomfist MP: " + enemyParty.memberList.get(0).entity.getMP());
+                                    System.out.println("---------------------------------------------------------");
+
+                                    System.out.println(playerParty.memberList.get(0).entity.charName + " use " 
+                                            + playerParty.memberList.get(0).entity.skillList.get(0).skillName + " to " + enemyParty.memberList.get(0).entity.charName );
+                                    Action.attack(playerParty.memberList.get(0).entity, playerParty.memberList.get(0).entity.skillList.get(0), enemyParty.memberList.get(0).entity);
+
+                                    System.out.println("After");
+                                    System.out.println("Mccree HP: " +  playerParty.memberList.get(0).entity.getHP());
+                                    System.out.println("Mccree MP: " +  playerParty.memberList.get(0).entity.getMP());
+                                    System.out.println("Doomfist HP: " + enemyParty.memberList.get(0).entity.getHP());
+                                    System.out.println("Doomfist MP: " + enemyParty.memberList.get(0).entity.getMP());
+
+                                }
+                                else if(cursorPos == 1){
+                                    System.out.println("Items");
+                                }
+                                else if(cursorPos == 2){
+                                    System.out.println("Run");
+                                }
+                            }
+                            tempObject.setY(finalPos);
+                        }
+
+                        else{
+                            tempObject.setY(1000);
+                        }
+                    }
+                    
+                    if (key == KeyEvent.VK_ESCAPE) {
+                            BattlePhase = false;
                     }
                 }
-
-                if(tempObject.getId() == ID.Cursor){
-                    if(PopUp == true){
-                        if(key == KeyEvent.VK_DOWN){
-                            if(cursorPos < 2)
-                                cursorPos++;
-
-                            finalPos = (660 + cursorPos * 50);
-                        }
-
-                        else if(key == KeyEvent.VK_UP){
-                            if(cursorPos != 0)
-                                cursorPos--;
-
-                            finalPos = (660 + cursorPos * 50);
-                        }
-
-                        if(key == KeyEvent.VK_A){
-                            if(cursorPos == 0){
-                                System.out.println();
-                                System.out.println("Mccree HP: " +  playerParty.memberList.get(0).entity.getHP());
-                                System.out.println("Mccree MP: " +  playerParty.memberList.get(0).entity.getMP());
-                                System.out.println("Doomfist HP: " + enemyParty.memberList.get(0).entity.getHP());
-                                System.out.println("Doomfist MP: " + enemyParty.memberList.get(0).entity.getMP());
-                                System.out.println("---------------------------------------------------------");
-                                
-                                System.out.println(playerParty.memberList.get(0).entity.charName + " use " 
-                                        + playerParty.memberList.get(0).entity.skillList.get(0).skillName + " to " + enemyParty.memberList.get(0).entity.charName );
-                                Action.attack(playerParty.memberList.get(0).entity, playerParty.memberList.get(0).entity.skillList.get(0), enemyParty.memberList.get(0).entity);
-                                
-                                System.out.println("After");
-                                System.out.println("Mccree HP: " +  playerParty.memberList.get(0).entity.getHP());
-                                System.out.println("Mccree MP: " +  playerParty.memberList.get(0).entity.getMP());
-                                System.out.println("Doomfist HP: " + enemyParty.memberList.get(0).entity.getHP());
-                                System.out.println("Doomfist MP: " + enemyParty.memberList.get(0).entity.getMP());
-   
-                            }
-                            else if(cursorPos == 1){
-                                System.out.println("Items");
-                            }
-                            else if(cursorPos == 2){
-                                System.out.println("Run");
-                            }
-                        }
-                        tempObject.setY(finalPos);
-                    }
-
-                    else{
-                        tempObject.setY(1000);
-                    }
+                
+            }   
+            else
+            {
+                if (key == KeyEvent.VK_B)
+                {
+                    System.out.println("Entering Battle Phase");
+                    BattlePhase = true;
+                    
                 }
+                
+                if (key == KeyEvent.VK_UP)
+                {
+                    System.out.println("Character move up");
+                }
+                   
 
                 //Temporary exit game method
                 if (key == KeyEvent.VK_ESCAPE) {
                     System.exit(1);
                 }
-            }   
+            }
         }
 
         public void keyReleased(KeyEvent e) {
@@ -126,18 +151,13 @@ public class Game extends Canvas implements Runnable {
     private Random r;
     private Handler handler;
     private HUD playerHUD, enemyHUD;
+    
+    private boolean BattlePhase = false;
 
     public Game() {
-       ;
-    }
-    
-    private void BattlePhase()
-    {
         handler = new Handler();
 
         new Window(WIDTH, HEIGHT, "Overwatch RPG Test", this);
-
-        r = new Random();
         
         int posX1,posX2,posX3,posX4,posY1,posY2,posY3,posY4;
         posX1 = WIDTH/2 + 200; posY1 = HEIGHT/2 - 500;
@@ -183,10 +203,12 @@ public class Game extends Canvas implements Runnable {
         playerParty.addMember(mercy, 3);
         
         //Need to change the HUD if going to use the Party class instead of ArrayList(Punypuny :3)
+        /*
         ArrayList<Entity> enemyList = new ArrayList();
         enemyList.add(doomfist);
         enemyList.add(widowmaker);
         enemyList.add(reaper);
+        */
         
         
         //Position
@@ -201,24 +223,26 @@ public class Game extends Canvas implements Runnable {
         enemyParty.addMember(sombra, 3);
         enemyParty.addMember(bastion, 5);
        
-        
-        handler.addObject(background);
-        handler.addObject(menu);
-        handler.addObject(popUp);
-        handler.addObject(cursor);
-            
-        for (int i = 0; i < playerParty.memberList.size(); i++) {
-            //handler.addObject(party.get(i));
-            handler.addObject(playerParty.memberList.get(i).entity);
-        }
-        
-        for (int i = 0; i < enemyParty.memberList.size(); i++) {
-            //handler.addObject(enemyParty.searchMember(i));
-            handler.addObject(enemyParty.memberList.get(i).entity);
-        }
+        if (BattlePhase)
+        {
+            handler.addObject(background);
+            handler.addObject(menu);
+            handler.addObject(popUp);
+            handler.addObject(cursor);
 
-        playerHUD = new HUD(1250, 1000, -200, 15, -5, 590,50, playerParty);
-        enemyHUD = new HUD(150, 1000, -100, -5, -5, 600,60, enemyParty);
+            for (int i = 0; i < playerParty.memberList.size(); i++) {
+                //handler.addObject(party.get(i));
+                handler.addObject(playerParty.memberList.get(i).entity);
+            }
+
+            for (int i = 0; i < enemyParty.memberList.size(); i++) {
+                //handler.addObject(enemyParty.searchMember(i));
+                handler.addObject(enemyParty.memberList.get(i).entity);
+            }
+
+            playerHUD = new HUD(1250, 1000, -200, 15, -5, 590,50, playerParty);
+            enemyHUD = new HUD(150, 1000, -100, -5, -5, 600,60, enemyParty);
+        }
         
         this.addKeyListener(new Game.ActionControl(handler, playerParty, enemyParty));
 
@@ -270,8 +294,12 @@ public class Game extends Canvas implements Runnable {
 
     private void tick() {
         handler.tick();
-        playerHUD.tick();
-        enemyHUD.tick();
+        
+        if (BattlePhase)
+        {
+            playerHUD.tick();
+            enemyHUD.tick();
+        }
     }
 
     private void render() {
@@ -287,10 +315,12 @@ public class Game extends Canvas implements Runnable {
         g.fillRect(0, 0, WIDTH, HEIGHT);
 
         handler.render(g);
-
-        playerHUD.render(g);
         
-        enemyHUD.render(g);
+        if (BattlePhase)
+        {
+            playerHUD.render(g);
+            enemyHUD.render(g);
+        }
 
         g.dispose();
         bs.show();
@@ -308,7 +338,6 @@ public class Game extends Canvas implements Runnable {
 
     public static void main(String[] args) {
         Game test = new Game();
-        test.BattlePhase();
     }
 
 }

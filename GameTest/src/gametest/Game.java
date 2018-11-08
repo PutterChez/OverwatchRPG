@@ -149,13 +149,18 @@ public class Game extends Canvas implements Runnable {
     private boolean running = false;
 
     private Random r;
-    private Handler handler;
+    private Handler battleHandler;
     private HUD playerHUD, enemyHUD;
     
     private boolean BattlePhase = false;
 
     public Game() {
-        handler = new Handler();
+        ;
+    }
+    
+    public void BattlePhase()
+    {
+        battleHandler = new Handler();
 
         new Window(WIDTH, HEIGHT, "Overwatch RPG Test", this);
         
@@ -223,28 +228,26 @@ public class Game extends Canvas implements Runnable {
         enemyParty.addMember(sombra, 3);
         enemyParty.addMember(bastion, 5);
        
-        if (BattlePhase)
-        {
-            handler.addObject(background);
-            handler.addObject(menu);
-            handler.addObject(popUp);
-            handler.addObject(cursor);
-
-            for (int i = 0; i < playerParty.memberList.size(); i++) {
-                //handler.addObject(party.get(i));
-                handler.addObject(playerParty.memberList.get(i).entity);
-            }
-
-            for (int i = 0; i < enemyParty.memberList.size(); i++) {
-                //handler.addObject(enemyParty.searchMember(i));
-                handler.addObject(enemyParty.memberList.get(i).entity);
-            }
-
-            playerHUD = new HUD(1250, 1000, -200, 15, -5, 590,50, playerParty);
-            enemyHUD = new HUD(150, 1000, -100, -5, -5, 600,60, enemyParty);
-        }
         
-        this.addKeyListener(new Game.ActionControl(handler, playerParty, enemyParty));
+        battleHandler.addObject(background);
+        battleHandler.addObject(menu);
+        battleHandler.addObject(popUp);
+        battleHandler.addObject(cursor);
+
+        for (int i = 0; i < playerParty.memberList.size(); i++) {
+            //handler.addObject(party.get(i));
+            battleHandler.addObject(playerParty.memberList.get(i).entity);
+        }
+
+        for (int i = 0; i < enemyParty.memberList.size(); i++) {
+            //handler.addObject(enemyParty.searchMember(i));
+            battleHandler.addObject(enemyParty.memberList.get(i).entity);
+        }
+            
+        playerHUD = new HUD(1250, 1000, -200, 15, -5, 590,50, playerParty);
+        enemyHUD = new HUD(150, 1000, -100, -5, -5, 600,60, enemyParty);
+        
+        this.addKeyListener(new Game.ActionControl(battleHandler, playerParty, enemyParty));
 
     }
 
@@ -293,7 +296,7 @@ public class Game extends Canvas implements Runnable {
     }
 
     private void tick() {
-        handler.tick();
+        battleHandler.tick();
         
         if (BattlePhase)
         {
@@ -313,11 +316,10 @@ public class Game extends Canvas implements Runnable {
 
         g.setColor(Color.black);
         g.fillRect(0, 0, WIDTH, HEIGHT);
-
-        handler.render(g);
-        
+  
         if (BattlePhase)
         {
+            battleHandler.render(g);
             playerHUD.render(g);
             enemyHUD.render(g);
         }
@@ -338,6 +340,7 @@ public class Game extends Canvas implements Runnable {
 
     public static void main(String[] args) {
         Game test = new Game();
+        test.BattlePhase();
     }
 
 }

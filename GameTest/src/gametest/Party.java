@@ -21,13 +21,13 @@ public class Party {
         memberList = new ArrayList(){};
     }
     
-    public void addMember(BattlePhaseEntity e, int position)
+    public void addMember(Entity e, int position)
     {
         PartyMember p = new PartyMember(e, position);
         memberList.add(p);
     }
     
-    public BattlePhaseEntity searchMemberByPartyPosition(int position)
+    public Entity searchMemberByPartyPosition(int position)
     {
         return memberList.get(position).entity;
     }

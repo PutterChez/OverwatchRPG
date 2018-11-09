@@ -42,15 +42,6 @@ public class HUD {
         for (int i = 0; i < party.memberList.size(); i++) {
             int barX = x + 100;
             int barY = y + gap * (i + 1)+ 8;
-            
-            if((party.memberList.size() > 4) && (i >= 3)){
-                barX = x + 350;
-                barY = y + gap * (i - 3 + 1)+ 8;
-            }
-            else{
-                barY = y + gap * (i + 1)+ 8;
-            }
-            
             double hpPercent = (double)( party.memberList.get(i).entity.getHP()) / (double) (party.memberList.get(i).entity.getMaxHP());
             int currentHP = (int) (hpPercent * 200.0);
             
@@ -71,15 +62,6 @@ public class HUD {
         for (int i = 0; i < party.memberList.size(); i++) {
             int barX = x + 100;
             int barY = y + gap * (i + 1) + 28;
-            
-            if((party.memberList.size() > 4) && (i >= 3)){
-                barX = x + 350;
-                barY = y + gap * (i - 3 + 1)+ 28;
-            }
-            else{
-                barY = y + gap * (i + 1)+ 28;
-            }
-            
             double mpPercent = (double)( party.memberList.get(i).entity.getMP()) / (double) (party.memberList.get(i).entity.getMaxMP());
             int currentMP = (int) (mpPercent * 200.0);
             

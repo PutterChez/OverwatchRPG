@@ -17,6 +17,5 @@ public enum ID {
     Menu(),
     PopUp(),
     Cursor(),
-    Background(),
-    Player();
+    Background();
 }

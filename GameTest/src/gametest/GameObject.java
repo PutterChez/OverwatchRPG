@@ -7,8 +7,8 @@ public abstract class GameObject {
 
     protected int x, y;
     protected ID id;
-    protected int width, height;
     protected int velX, velY;
+    protected int width, height;
 
     public GameObject(int x, int y, ID id, int width, int height) {
         this.x = x;
@@ -34,6 +34,14 @@ public abstract class GameObject {
         this.id = id;
     }
 
+    public void setVelX(int velX) {
+        this.velX = velX;
+    }
+
+    public void setVelY(int velY) {
+        this.velY = velY;
+    }
+
     public int getX() {
         return x;
     }
@@ -44,6 +52,14 @@ public abstract class GameObject {
 
     public ID getId() {
         return id;
+    }
+
+    public int getVelX() {
+        return velX;
+    }
+
+    public int getVelY() {
+        return velY;
     }
 
     public int getWidth() {
@@ -61,22 +77,4 @@ public abstract class GameObject {
     public void setHeight(int height) {
         this.height = height;
     }
-
-    public int getVelX() {
-        return velX;
-    }
-
-    public void setVelX(int velX) {
-        this.velX = velX;
-    }
-
-    public int getVelY() {
-        return velY;
-    }
-
-    public void setVelY(int velY) {
-        this.velY = velY;
-    }
-    
-    
 }

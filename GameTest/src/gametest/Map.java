@@ -31,6 +31,12 @@ public class Map extends GameObject{
         //x = Game.clamp(x, 0, Game.WIDTH - 37);
         //y = Game.clamp(y, 0, Game.HEIGHT - 66);
     }
+    
+    public void setPosition(int x, int y)
+    {
+        super.x = x;
+        super.y = y;
+    }
 
     public void render(Graphics g) {
         /* Old Square Player

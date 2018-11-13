@@ -132,28 +132,28 @@ public class Game extends Canvas implements Runnable {
                     BattlePhase = true;
                 }
                 
-                if (key == KeyEvent.VK_UP)
+                if (key == KeyEvent.VK_W)
                 {
                     System.out.println("Character Moving Up");
                     //player.setVelY(-playerSpeed);
                     currentMap.setVelY(mapSpeed);
                 }
                 
-                if (key == KeyEvent.VK_LEFT)
+                if (key == KeyEvent.VK_A)
                 {
                     System.out.println("Character Moving Left");
                     //player.setVelX(-playerSpeed);
                     currentMap.setVelX(mapSpeed);
                 }
                 
-                else if (key == KeyEvent.VK_DOWN)
+                else if (key == KeyEvent.VK_S)
                 {
                     System.out.println("Character Moving Down");
                     //player.setVelY(playerSpeed);
                     currentMap.setVelY(-mapSpeed);
                 }
                 
-                else if (key == KeyEvent.VK_RIGHT)
+                else if (key == KeyEvent.VK_D)
                 {
                     System.out.println("Character Moving Right");
                     //player.setVelX(playerSpeed);
@@ -201,7 +201,7 @@ public class Game extends Canvas implements Runnable {
         
         //WorldPhase Part-----------------------------------------------------------------------------------------------------
         WorldPhaseEntity player = new WorldPhaseEntity(800, 450, ID.Player, 200, 200, "..\\resources\\characters\\genji_1.png", "Genji");
-        Map testMap = new Map(0, 0, ID.Background, 3200, 3200, "..\\resources\\maps\\open_world.png");
+        Map testMap = new Map(-1400, -7200, ID.Background, 9600, 9600, "..\\resources\\maps\\open_world_extra_border.png");
         worldHandler.addObject(testMap);
         worldHandler.addObject(player);
         

@@ -17,7 +17,7 @@ public class Wall extends Map{
     
     Wall(int x, int y, ID id,int width, int height, Image mapImg, String imgDirectory)
     {
-        super(x, y, id, width, height, mapImg, imgDirectory);
+        super(x, y, id, width, height,imgDirectory);
     }
     
     public void tick() {

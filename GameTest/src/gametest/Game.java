@@ -17,6 +17,9 @@ public class Game extends Canvas implements Runnable {
         private Handler handler;
         private boolean PopUp = false;
         private int cursorPos = 0, finalPos = 660;
+        boolean movePlayer = false;
+        
+        private int mapSpeed = 10;
         
         Party playerParty;
         Party enemyParty;
@@ -118,39 +121,43 @@ public class Game extends Canvas implements Runnable {
             }   
             else //WorldPhase part
             {
+                System.out.println("CurrentMap x: " + currentMap.x);
+                System.out.println("CurrentMap y:" + currentMap.y);
+                System.out.println("Player x:" + player.x);
+                System.out.println("Player y:" + player.y);
+             
                 if (key == KeyEvent.VK_B)
                 {
                     System.out.println("Entering Battle Phase");
                     BattlePhase = true;
-                    
                 }
                 
                 if (key == KeyEvent.VK_UP)
                 {
                     System.out.println("Character Moving Up");
-                    //player.setVelY(-2);
-                    currentMap.setVelY(2);
+                    //player.setVelY(-playerSpeed);
+                    currentMap.setVelY(mapSpeed);
                 }
                 
                 if (key == KeyEvent.VK_LEFT)
                 {
                     System.out.println("Character Moving Left");
-                    //player.setVelX(-2);
-                    currentMap.setVelX(2);
+                    //player.setVelX(-playerSpeed);
+                    currentMap.setVelX(mapSpeed);
                 }
                 
                 else if (key == KeyEvent.VK_DOWN)
                 {
                     System.out.println("Character Moving Down");
-                    //player.setVelY(2);
-                    currentMap.setVelY(-2);
+                    //player.setVelY(playerSpeed);
+                    currentMap.setVelY(-mapSpeed);
                 }
                 
                 else if (key == KeyEvent.VK_RIGHT)
                 {
                     System.out.println("Character Moving Right");
-                    //player.setVelX(2);
-                    currentMap.setVelX(-2);
+                    //player.setVelX(playerSpeed);
+                    currentMap.setVelX(-mapSpeed);
                 }
                    
 
@@ -167,9 +174,11 @@ public class Game extends Canvas implements Runnable {
             for (int i = 0; i < handler.object.size(); i++) {
                 GameObject tempObject = handler.object.get(i);
             }
-            
+            //player.setVelX(0);
+            //player.setVelY(0);
             currentMap.setVelX(0);
             currentMap.setVelY(0);
+            
         }
     }
     
@@ -191,7 +200,7 @@ public class Game extends Canvas implements Runnable {
         new Window(WIDTH, HEIGHT, "Overwatch RPG Test", this);
         
         //WorldPhase Part-----------------------------------------------------------------------------------------------------
-        WorldPhaseEntity player = new WorldPhaseEntity(WIDTH/2, HEIGHT/2, ID.Player, 200, 200, "..\\resources\\characters\\genji_1.png", "Genji");
+        WorldPhaseEntity player = new WorldPhaseEntity(800, 450, ID.Player, 200, 200, "..\\resources\\characters\\genji_1.png", "Genji");
         Map testMap = new Map(0, 0, ID.Background, 3200, 3200, "..\\resources\\maps\\open_world.png");
         worldHandler.addObject(testMap);
         worldHandler.addObject(player);

@@ -7,7 +7,7 @@ import java.util.Random;
 import javax.swing.ImageIcon;
 
 //Main entities of game: player, enemy, npc, etc.
-public class Entity extends GameObject {
+public class BattlePhaseEntity extends GameObject {
     protected int HP, MP, maxHP, maxMP, speed, evasion, defense, attack;
     protected String charName;
     protected ArrayList<Skill> skillList;
@@ -15,7 +15,7 @@ public class Entity extends GameObject {
     private Image charImg;
     private String imageDirectory;
 
-    public Entity(int x, int y, ID id, int width, int height, String imageDirectory, int maxHP, int maxMP, String charName, int attack, int defense, int speed, int evasion) {
+    public BattlePhaseEntity(int x, int y, ID id, int width, int height, String imageDirectory, int maxHP, int maxMP, String charName, int attack, int defense, int speed, int evasion) {
         super(x, y, id, width, height);
         this.imageDirectory = imageDirectory;
         this.skillList = new ArrayList<Skill>();
@@ -33,8 +33,8 @@ public class Entity extends GameObject {
     }
 
     public void tick() {
-        x += velX;
-        y += velY;
+        //x += velX;
+        //y += velY;
 
         //Clamp function to not let entity go offscreen
         //x = Game.clamp(x, 0, Game.WIDTH - 37);

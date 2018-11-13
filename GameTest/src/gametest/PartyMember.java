@@ -1,7 +1,7 @@
 package gametest;
 
 
-import gametest.BattlePhaseEntity;
+import gametest.Entity;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -14,10 +14,10 @@ import gametest.BattlePhaseEntity;
  * @author DELL
  */
 public class PartyMember {
-    protected BattlePhaseEntity entity;
+    protected Entity entity;
     protected int position;
     
-    PartyMember(BattlePhaseEntity entity, int position)
+    PartyMember(Entity entity, int position)
     {
         this.entity= entity;
         this.position = position;

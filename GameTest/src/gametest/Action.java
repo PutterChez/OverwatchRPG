@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Action {
 
-    public static void attack(BattlePhaseEntity attacker, Skill attackerSkill, BattlePhaseEntity target) {
+    public static void attack(Entity attacker, Skill attackerSkill, Entity target) {
         //Example
         Random randHit = new Random(System.currentTimeMillis());
         int attackHitRate = attackerSkill.accuracy - target.evasion;
@@ -20,7 +20,7 @@ public class Action {
         }
     }
 
-    public static void healing(BattlePhaseEntity healer, Skill healerSkill, BattlePhaseEntity target) {
+    public static void healing(Entity healer, Skill healerSkill, Entity target) {
         target.HP += (healer.attack * healerSkill.skillPower);
         healer.MP -= healerSkill.mpCost;
     }

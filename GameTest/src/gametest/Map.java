@@ -17,16 +17,15 @@ public class Map extends GameObject{
     protected Image mapImage;
     protected String imageDirectory;
     
-    Map(int x, int y, ID id,int width, int height, Image mapImg, String imgDirectory)
+    Map(int x, int y, ID id,int width, int height, String imgDirectory)
     {
         super(x, y, id, width, height);
-        this.mapImage = mapImg;
         this.imageDirectory = imgDirectory;
     }
     
     public void tick() {
-        //x += velX;
-        //y += velY;
+        x += velX;
+        y += velY;
 
         //Clamp function to not let entity go offscreen
         //x = Game.clamp(x, 0, Game.WIDTH - 37);

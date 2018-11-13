@@ -15,7 +15,7 @@ import javax.swing.ImageIcon;
  */
 public class Wall extends Map{
     
-    Wall(int x, int y, ID id,int width, int height, Image mapImg, String imgDirectory)
+    Wall(int x, int y, ID id,int width, int height, String imgDirectory)
     {
         super(x, y, id, width, height,imgDirectory);
     }

@@ -21,12 +21,18 @@ public class Game extends Canvas implements Runnable {
         Party playerParty;
         Party enemyParty;
         GameObject player;
+        Map currentMap;
         
         public ActionControl(Handler handler, Party player, Party enemy, GameObject playerUnit) {
             this.handler = handler;
             this.playerParty = player;
             this.enemyParty = enemy;
             this.player = playerUnit;
+        }
+        
+        public void setMap(Map e)
+        {
+            this.currentMap = e;
         }
 
         public void keyPressed(KeyEvent e) {
@@ -122,25 +128,29 @@ public class Game extends Canvas implements Runnable {
                 if (key == KeyEvent.VK_UP)
                 {
                     System.out.println("Character Moving Up");
-                    player.setVelY(-2);
+                    //player.setVelY(-2);
+                    currentMap.setVelY(2);
                 }
                 
                 if (key == KeyEvent.VK_LEFT)
                 {
                     System.out.println("Character Moving Left");
-                    player.setVelX(-2);
+                    //player.setVelX(-2);
+                    currentMap.setVelX(2);
                 }
                 
                 else if (key == KeyEvent.VK_DOWN)
                 {
                     System.out.println("Character Moving Down");
-                    player.setVelY(2);
+                    //player.setVelY(2);
+                    currentMap.setVelY(-2);
                 }
                 
                 else if (key == KeyEvent.VK_RIGHT)
                 {
                     System.out.println("Character Moving Right");
-                    player.setVelX(2);
+                    //player.setVelX(2);
+                    currentMap.setVelX(-2);
                 }
                    
 
@@ -158,8 +168,8 @@ public class Game extends Canvas implements Runnable {
                 GameObject tempObject = handler.object.get(i);
             }
             
-            player.setVelX(0);
-            player.setVelY(0);
+            currentMap.setVelX(0);
+            currentMap.setVelY(0);
         }
     }
     
@@ -182,6 +192,8 @@ public class Game extends Canvas implements Runnable {
         
         //WorldPhase Part-----------------------------------------------------------------------------------------------------
         WorldPhaseEntity player = new WorldPhaseEntity(WIDTH/2, HEIGHT/2, ID.Player, 200, 200, "..\\resources\\characters\\genji_1.png", "Genji");
+        Map testMap = new Map(0, 0, ID.Background, 3200, 3200, "..\\resources\\maps\\open_world.png");
+        worldHandler.addObject(testMap);
         worldHandler.addObject(player);
         
         //BattlePhase Part----------------------------------------------------------------------------------------------------
@@ -268,7 +280,9 @@ public class Game extends Canvas implements Runnable {
         playerHUD = new HUD(1250, 1000, -200, 15, -5, 590,50, playerParty);
         enemyHUD = new HUD(150, 1000, -100, -5, -5, 600,60, enemyParty);
         
-        this.addKeyListener(new Game.ActionControl(battleHandler, playerParty, enemyParty, player));
+        Game.ActionControl control = new Game.ActionControl(battleHandler, playerParty, enemyParty, player);
+        control.setMap(testMap);
+        this.addKeyListener(control);
 
     }
 

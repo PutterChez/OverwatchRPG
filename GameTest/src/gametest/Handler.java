@@ -7,7 +7,7 @@ import java.awt.Graphics;
 public class Handler {
 
     LinkedList<GameObject> object = new LinkedList<GameObject>();
-    LinkedList<GameObject> colisionObject = new LinkedList<GameObject>();
+    LinkedList<ColisionObject> colisionObject = new LinkedList<ColisionObject>();
 
     public void tick() {
         for (int i = 0; i < object.size(); i++) {
@@ -25,21 +25,23 @@ public class Handler {
         }
     }
     
-    public void colisionDetection(WorldPhaseEntity p)
+    public boolean colisionDetection(WorldPhaseEntity p)
     {
         for (int i = 0; i < colisionObject.size(); i++)
         {
-            ;
-            //Pseudo Code
-            // if(colisionObject.get(i).checkColision
+            if (colisionObject.get(i).checkColision(p))
+            {
+                return true;
+            }
         }
+        return false;
     }
 
     public void addObject(GameObject object) {
         this.object.add(object);
     }
     
-    public void addColisionObject(GameObject object)
+    public void addColisionObject(ColisionObject object)
     {
         this.colisionObject.add(object);
     }
@@ -48,7 +50,7 @@ public class Handler {
         this.object.remove(object);
     }
     
-    public void removeColisionObject(GameObject object)
+    public void removeColisionObject(ColisionObject object)
     {
         this.colisionObject.remove(object);
     }

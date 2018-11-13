@@ -8,6 +8,7 @@ package gametest;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.ImageIcon;
 
 /**
@@ -15,6 +16,8 @@ import javax.swing.ImageIcon;
  * @author DELL
  */
 public class WorldPhaseEntity extends GameObject{
+    
+    protected List<Coordinate> cornerList;
     protected String charName;
     private Image charImg;
     private String imageDirectory;
@@ -23,6 +26,13 @@ public class WorldPhaseEntity extends GameObject{
         super(x, y, id, width, height);
         this.imageDirectory = imageDirectory;
         this.charName = charName;
+        cornerList = new ArrayList<>();
+        
+        //Coordinate x and y for each corner
+        cornerList.add(new Coordinate(x, y));
+        cornerList.add(new Coordinate(x + width, y));
+        cornerList.add(new Coordinate(x, y + height));
+        cornerList.add(new Coordinate(x + width, y + height));
     }
 
     public void tick() {

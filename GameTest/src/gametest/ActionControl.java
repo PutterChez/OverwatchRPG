@@ -135,53 +135,32 @@ import java.awt.event.KeyEvent;
                 
                 if (key == KeyEvent.VK_W)
                 {
-                    //System.out.println("Character Moving Up");
-                    //move colisionObject
-                    
-                    if(colision)
-                        currentMap.setVelY(-mapSpeed);
-                    else
-                        currentMap.setVelY(mapSpeed);
-                    
-                    currentMap.setVelX(0);
+                    System.out.println("Character Moving Up");
+                    player.setVelY(-1);
+                    player.setVelX(0);
                 }
-                
+
                 if (key == KeyEvent.VK_A)
                 {
-                    //System.out.println("Character Moving Left");            
-                    if(colision)
-                       currentMap.setVelX(-mapSpeed);
-                    else
-                       currentMap.setVelX(mapSpeed);
-                    currentMap.setVelY(0);
-                    
-                    player.setImageDirectory("..\\resources\\characters\\genji_1.png");
+                    System.out.println("Character Moving Left");
+                    player.setVelX(-1);
+                    player.setVelY(0);
                 }
-                
+
                 else if (key == KeyEvent.VK_S)
                 {
-                    //System.out.println("Character Moving Down");
-            
-                    if(colision)
-                        currentMap.setVelY(mapSpeed);
-                    else
-                        currentMap.setVelY(-mapSpeed);
-                    currentMap.setVelX(0);
+                    System.out.println("Character Moving Down");
+                    player.setVelY(1);
+                    player.setVelX(0);
                 }
-                
+
                 else if (key == KeyEvent.VK_D)
                 {
-                    //System.out.println("Character Moving Right");
-
-                    if(colision)
-                        currentMap.setVelX(mapSpeed);
-                    else
-                        currentMap.setVelX(-mapSpeed);
-                    currentMap.setVelY(0);
-                    
-                    player.setImageDirectory("..\\resources\\characters\\genji_2.png");
+                    System.out.println("Character Moving Right");
+                    player.setVelX(1);
+                    player.setVelY(0);
                 }
-                   
+
 
                 //Temporary exit game method
                 else if (key == KeyEvent.VK_ESCAPE) {
@@ -189,17 +168,9 @@ import java.awt.event.KeyEvent;
                 }
             }
         }
-        
+
         public void keyReleased(KeyEvent e) {
-            //player.setVelX(0);
-            //player.setVelY(0);           
-            currentMap.setVelX(0);
-            currentMap.setVelY(0);
-            
-            //for(int i = 0; i < handler.colisionObject.size(); i++)
-            //{
-            //    handler.colisionObject.get(i).velY = 0;
-            //    handler.colisionObject.get(i).velX = 0;
-            //}
+            player.setVelX(0);
+            player.setVelY(0);
         }
  }

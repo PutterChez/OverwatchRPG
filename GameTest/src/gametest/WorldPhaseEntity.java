@@ -24,7 +24,7 @@ public class WorldPhaseEntity extends GameObject{
     private String imageDirectory;
 
     WorldPhaseEntity(int x, int y, ID id, int width, int height, String imageDirectory, String charName) {
-        super(x, y, id, width, height);
+        super(x, y, width, height, charName, id);
         this.imageDirectory = imageDirectory;
         this.charName = charName;
         cornerList = new ArrayList<>();

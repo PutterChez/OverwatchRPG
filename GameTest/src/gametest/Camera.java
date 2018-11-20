@@ -5,7 +5,7 @@ import java.awt.Graphics;
 public class Camera extends GameObject{
     WorldPhaseEntity player;
     public Camera(int x, int y, ID id, int width, int height, WorldPhaseEntity player) {
-        super(x, y, id, width, height);
+        super(x, y, width, height, "Camera", ID.Camera);
         this.player = player;
     }
     

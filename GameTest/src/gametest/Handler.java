@@ -22,13 +22,13 @@ public class Handler {
     RenderModule battleRender;
     RenderModule worldRender;
     
-    List<GameObject> objectList;
+    LinkedList<GameObject> objectList;
     
     Handler()
     {
         this.battleRender = new RenderModule();
         this.worldRender = new RenderModule();
-        objectList = new ArrayList<>();
+        objectList = new LinkedList<>();
     }
     
     public void tick() {

@@ -15,11 +15,11 @@ import java.util.*;
  * @author DELL
  */
 public class RenderModule {
-    List<GameObject> renderList;
+    LinkedList<GameObject> renderList;
     
     RenderModule()
     {
-        renderList = new ArrayList<>();
+        renderList = new LinkedList<>();
     }
     
     public void render(Graphics g)
@@ -33,6 +33,15 @@ public class RenderModule {
         renderList.add(p);
     }
     
+    public GameObject search(String name)
+    {
+        for(GameObject o : renderList)
+            if (o.getName().equals(name))
+            {
+                return o;
+            }
+    }
+    
     public void remove(String name)
     {
         for(GameObject o : renderList)
@@ -41,5 +50,27 @@ public class RenderModule {
                 renderList.remove(o);
                 break;
              }
+    }
+    
+    public void bringToFront(String name)
+    {
+        for (GameObject o : renderList)
+            if (o.getName().equals(name))
+            {
+                GameObject temp = o;
+                renderList.remove(o);
+                renderList.addLast(temp);
+            }
+    }
+    
+    public void sentToBack(String name)
+    {
+        for (GameObject o : renderList)
+            if (o.getName().equals(name))
+            {
+                GameObject temp = o;
+                renderList.remove(o);
+                renderList.addFirst(temp);
+            }
     }
 }

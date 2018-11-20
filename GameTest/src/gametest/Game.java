@@ -136,26 +136,29 @@ public class Game extends Canvas implements Runnable {
                 if (key == KeyEvent.VK_W)
                 {
                     System.out.println("Character Moving Up");
-                    player.setVelY(-5);
+                    player.setVelY(-1);
+                    player.setVelX(0);
                 }
 
                 if (key == KeyEvent.VK_A)
                 {
                     System.out.println("Character Moving Left");
-                    player.setVelX(-5);
+                    player.setVelX(-1);
+                    player.setVelY(0);
                 }
 
                 else if (key == KeyEvent.VK_S)
                 {
                     System.out.println("Character Moving Down");
-                    player.setVelY(5);
+                    player.setVelY(1);
+                    player.setVelX(0);
                 }
 
                 else if (key == KeyEvent.VK_D)
                 {
                     System.out.println("Character Moving Right");
-                    player.setVelX(5);
-
+                    player.setVelX(1);
+                    player.setVelY(0);
                 }
 
 

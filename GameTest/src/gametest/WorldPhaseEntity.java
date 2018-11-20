@@ -8,6 +8,7 @@ package gametest;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import javax.swing.ImageIcon;
 
@@ -34,27 +35,11 @@ public class WorldPhaseEntity extends GameObject{
         cornerList.add(new Coordinate(x, y + height));
         cornerList.add(new Coordinate(x + width, y + height));
     }
-
+    
+    
     public void tick() {
         x += velX;
         y += velY;
-
-        //Update cornerList Position
-        for(int i = 0; i < cornerList.size(); i++)
-        {
-              cornerList.get(i).x += velX;
-              cornerList.get(i).y += velY;
-        }
-        
-        
-        //for(int i = 0; i < cornerList.size(); i++)
-        //{
-        //      System.out.println("Player Corner " + i + " :" + cornerList.get(i).x + "|" + cornerList.get(i).y );
-        //}
-        
-        //Clamp function to not let entity go offscreen
-        //x = Game.clamp(x, 0, Game.WIDTH - 37);
-        //y = Game.clamp(y, 0, Game.HEIGHT - 66);
     }
 
     public void render(Graphics g) {

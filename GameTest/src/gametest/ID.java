@@ -18,5 +18,7 @@ public enum ID {
     PopUp(),
     Cursor(),
     Background(),
-    Player();
+    Player(),
+    Box(),
+    Camera();
 }

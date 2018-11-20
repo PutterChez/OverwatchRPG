@@ -3,6 +3,7 @@ package gametest;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferStrategy;
@@ -15,6 +16,7 @@ public class Game extends Canvas implements Runnable {
     class ActionControl extends KeyAdapter
     {
         private Handler handler;
+        
         private boolean PopUp = false;
         private int cursorPos = 0, finalPos = 660;
         //boolean movePlayer = false;
@@ -122,6 +124,7 @@ public class Game extends Canvas implements Runnable {
             }   
             else //WorldPhase part
             {
+<<<<<<< HEAD
                // System.out.println("CurrentMap x: " + currentMap.x);
                // System.out.println("CurrentMap y:" + currentMap.y);
                // System.out.println("Player x:" + player.x);
@@ -137,6 +140,11 @@ public class Game extends Canvas implements Runnable {
                     colision = false;
                     System.out.println("Colision not detected!!!");
                 }
+=======
+                System.out.println("Player x:" + player.x);
+                System.out.println("Player y:" + player.y);
+                
+>>>>>>> CameraBranch
                 if (key == KeyEvent.VK_B)
                 {
                     System.out.println("Entering Battle Phase");
@@ -145,6 +153,7 @@ public class Game extends Canvas implements Runnable {
                 
                 if (key == KeyEvent.VK_W)
                 {
+<<<<<<< HEAD
                     //System.out.println("Character Moving Up");
                     //move colisionObject
                     for(int i = 0; i < handler.colisionObject.size(); i++)
@@ -162,10 +171,15 @@ public class Game extends Canvas implements Runnable {
                         currentMap.setVelY(mapSpeed);
                     
                     currentMap.setVelX(0);
+=======
+                    System.out.println("Character Moving Up");
+                    player.setVelY(-5);
+>>>>>>> CameraBranch
                 }
                 
                 if (key == KeyEvent.VK_A)
                 {
+<<<<<<< HEAD
                     //System.out.println("Character Moving Left");
                     for(int i = 0; i < handler.colisionObject.size(); i++)
                     {
@@ -183,10 +197,15 @@ public class Game extends Canvas implements Runnable {
                     currentMap.setVelY(0);
                     
                     player.setImageDirectory("..\\resources\\characters\\genji_1.png");
+=======
+                    System.out.println("Character Moving Left");
+                    player.setVelX(-5);
+>>>>>>> CameraBranch
                 }
                 
                 else if (key == KeyEvent.VK_S)
                 {
+<<<<<<< HEAD
                     //System.out.println("Character Moving Down");
                     for(int i = 0; i < handler.colisionObject.size(); i++)
                     {
@@ -203,10 +222,15 @@ public class Game extends Canvas implements Runnable {
                     else
                         currentMap.setVelY(-mapSpeed);
                     currentMap.setVelX(0);
+=======
+                    System.out.println("Character Moving Down");
+                    player.setVelY(5);
+>>>>>>> CameraBranch
                 }
                 
                 else if (key == KeyEvent.VK_D)
                 {
+<<<<<<< HEAD
                     //System.out.println("Character Moving Right");
                     for(int i = 0; i < handler.colisionObject.size(); i++)
                     {
@@ -224,6 +248,11 @@ public class Game extends Canvas implements Runnable {
                     currentMap.setVelY(0);
                     
                     player.setImageDirectory("..\\resources\\characters\\genji_2.png");
+=======
+                    System.out.println("Character Moving Right");
+                    player.setVelX(5);
+                    
+>>>>>>> CameraBranch
                 }
                    
 
@@ -240,21 +269,15 @@ public class Game extends Canvas implements Runnable {
             for (int i = 0; i < handler.object.size(); i++) {
                 GameObject tempObject = handler.object.get(i);
             }
-            //player.setVelX(0);
-            //player.setVelY(0);
-            currentMap.setVelX(0);
-            currentMap.setVelY(0);
-            for(int i = 0; i < handler.colisionObject.size(); i++)
-            {
-                handler.colisionObject.get(i).velY = 0;
-                handler.colisionObject.get(i).velX = 0;
-            }
+            player.setVelX(0);
+            player.setVelY(0);
             
         }
     }
     
     public static final int WIDTH = 1600, HEIGHT = 900;
-
+    
+    private Camera cam;
     private Thread thread;
     private boolean running = false;
 
@@ -268,21 +291,28 @@ public class Game extends Canvas implements Runnable {
     public Game() {
         BattleControlHandler = new Handler();  
         WorldRenderHandler = new Handler();
-        
+          
         new Window(WIDTH, HEIGHT, "Overwatch RPG Test", this);
         
         //WorldPhase Part-----------------------------------------------------------------------------------------------------
         WorldPhaseEntity player = new WorldPhaseEntity(800, 450, ID.Player, 92, 50, "..\\resources\\characters\\genji_1.png", "Genji");
         Map testMap = new Map(-1400, -7200, ID.Background, 9600, 9600, "..\\resources\\maps\\open_world_extra_border.png");
+        cam = new Camera(0,0,ID.Camera,0,0,player);
         WorldRenderHandler.addObject(testMap);
         WorldRenderHandler.addObject(player);
+        WorldRenderHandler.addObject(cam);
         
+<<<<<<< HEAD
         //testColisionDetection
         ColisionObject test = new ColisionObject(775, 250, ID.Background, 200, 100);
         test.setImageDirectory("..\\resources\\maps\\spawn_wall.png");
+=======
+        WorldPhaseEntity box = new WorldPhaseEntity(1000, 450, ID.Box, 200, 200, "..\\resources\\maps\\spawn_wall.png", "Box");
+        WorldPhaseEntity box2 = new WorldPhaseEntity(1500, 450, ID.Box, 200, 200, "..\\resources\\maps\\spawn_wall.png", "Box");
+>>>>>>> CameraBranch
         
-        WorldRenderHandler.addObject(test);
-        BattleControlHandler.addColisionObject(test);
+        WorldRenderHandler.addObject(box);
+        WorldRenderHandler.addObject(box2);
         
         
         //BattlePhase Part----------------------------------------------------------------------------------------------------
@@ -329,14 +359,6 @@ public class Game extends Canvas implements Runnable {
         playerParty.addMember(genji, 2);
         playerParty.addMember(mercy, 3);
         
-        //Need to change the HUD if going to use the Party class instead of ArrayList(Punypuny :3)
-        /*
-        ArrayList<Entity> enemyList = new ArrayList();
-        enemyList.add(doomfist);
-        enemyList.add(widowmaker);
-        enemyList.add(reaper);
-        */
-        
         
         //Position
         //0 1
@@ -357,12 +379,10 @@ public class Game extends Canvas implements Runnable {
         BattleControlHandler.addObject(cursor);
 
         for (int i = 0; i < playerParty.memberList.size(); i++) {
-            //handler.addObject(party.get(i));
             BattleControlHandler.addObject(playerParty.memberList.get(i).entity);
         }
 
         for (int i = 0; i < enemyParty.memberList.size(); i++) {
-            //handler.addObject(enemyParty.searchMember(i));
             BattleControlHandler.addObject(enemyParty.memberList.get(i).entity);
         }
             
@@ -422,7 +442,6 @@ public class Game extends Canvas implements Runnable {
     private void tick() {
         WorldRenderHandler.tick();
         BattleControlHandler.tick();
-        
         if (BattlePhase)
         {
             playerHUD.tick();
@@ -439,10 +458,12 @@ public class Game extends Canvas implements Runnable {
         }
 
         Graphics g = bs.getDrawGraphics();
-
+        Graphics2D g2d = (Graphics2D) g;    
+         
         g.setColor(Color.black);
         g.fillRect(0, 0, WIDTH, HEIGHT);
-  
+       
+        
         if (BattlePhase)
         {
             BattleControlHandler.render(g);
@@ -451,9 +472,11 @@ public class Game extends Canvas implements Runnable {
         }
         else
         {
+            g2d.translate(cam.getX(),cam.getY());
             WorldRenderHandler.render(g);
+            g2d.translate(-cam.getX(),-cam.getY());
         }
-
+        
         g.dispose();
         bs.show();
     }

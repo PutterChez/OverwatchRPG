@@ -124,16 +124,8 @@ public class Game extends Canvas implements Runnable {
             }   
             else //WorldPhase part
             {
-                System.out.println("CurrentMap x: " + currentMap.x);
-                System.out.println("CurrentMap y:" + currentMap.y);
                 System.out.println("Player x:" + player.x);
                 System.out.println("Player y:" + player.y);
-             
-                if (handler.colisionDetection(player))
-                {
-                    colision = true;
-                    System.out.println("Colision detected!!!");
-                }
                 
                 if (key == KeyEvent.VK_B)
                 {
@@ -145,60 +137,25 @@ public class Game extends Canvas implements Runnable {
                 {
                     System.out.println("Character Moving Up");
                     player.setVelY(-5);
-                    /*
-                    currentMap.setVelY(mapSpeed);
-                    for(int i = 0; i < handler.colisionObject.size(); i++)
-                    {
-                        handler.colisionObject.get(i).velY = mapSpeed;
-                        handler.colisionObject.get(i).velX = 0;
-                    }
-                    currentMap.setVelX(0);
-                    */
                 }
                 
                 if (key == KeyEvent.VK_A)
                 {
                     System.out.println("Character Moving Left");
                     player.setVelX(-5);
-                    /*
-                    for(int i = 0; i < handler.colisionObject.size(); i++)
-                    {
-                        handler.colisionObject.get(i).velY = 0;
-                        handler.colisionObject.get(i).velX = mapSpeed;
-                    }
-                    currentMap.setVelX(mapSpeed);
-                    currentMap.setVelY(0);
-                    */
                 }
                 
                 else if (key == KeyEvent.VK_S)
                 {
                     System.out.println("Character Moving Down");
                     player.setVelY(5);
-                    /*
-                    for(int i = 0; i < handler.colisionObject.size(); i++)
-                    {
-                        handler.colisionObject.get(i).velY = -mapSpeed;
-                        handler.colisionObject.get(i).velX = 0;
-                    }
-                    currentMap.setVelY(-mapSpeed);
-                    currentMap.setVelX(0);
-                    */
                 }
                 
                 else if (key == KeyEvent.VK_D)
                 {
                     System.out.println("Character Moving Right");
                     player.setVelX(5);
-                    /*
-                    for(int i = 0; i < handler.colisionObject.size(); i++)
-                    {
-                        handler.colisionObject.get(i).velY = 0;
-                        handler.colisionObject.get(i).velX = -mapSpeed;
-                    }
-                    currentMap.setVelX(-mapSpeed);
-                    currentMap.setVelY(0);
-                    */
+                    
                 }
                    
 
@@ -217,13 +174,6 @@ public class Game extends Canvas implements Runnable {
             }
             player.setVelX(0);
             player.setVelY(0);
-            currentMap.setVelX(0);
-            currentMap.setVelY(0);
-            for(int i = 0; i < handler.colisionObject.size(); i++)
-            {
-                handler.colisionObject.get(i).velY = 0;
-                handler.colisionObject.get(i).velX = 0;
-            }
             
         }
     }
@@ -306,14 +256,6 @@ public class Game extends Canvas implements Runnable {
         playerParty.addMember(genji, 2);
         playerParty.addMember(mercy, 3);
         
-        //Need to change the HUD if going to use the Party class instead of ArrayList(Punypuny :3)
-        /*
-        ArrayList<Entity> enemyList = new ArrayList();
-        enemyList.add(doomfist);
-        enemyList.add(widowmaker);
-        enemyList.add(reaper);
-        */
-        
         
         //Position
         //0 1
@@ -334,12 +276,10 @@ public class Game extends Canvas implements Runnable {
         BattleControlHandler.addObject(cursor);
 
         for (int i = 0; i < playerParty.memberList.size(); i++) {
-            //handler.addObject(party.get(i));
             BattleControlHandler.addObject(playerParty.memberList.get(i).entity);
         }
 
         for (int i = 0; i < enemyParty.memberList.size(); i++) {
-            //handler.addObject(enemyParty.searchMember(i));
             BattleControlHandler.addObject(enemyParty.memberList.get(i).entity);
         }
             

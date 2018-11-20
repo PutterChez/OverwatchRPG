@@ -11,7 +11,7 @@ public class Menu extends GameObject {
     private String imageDirectory;
     private Image texture;
     public Menu(int x, int y, ID id, int width, int height, String imageDirectory) {
-        super(x, y, id, width, height);
+        super(x, y, width, height, "Menu", id);
         this.imageDirectory = imageDirectory;
     }
 

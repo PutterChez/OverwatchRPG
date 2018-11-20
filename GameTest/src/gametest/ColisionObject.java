@@ -21,7 +21,7 @@ public class ColisionObject extends GameObject{
     protected List<Coordinate> cornerList;
     
     ColisionObject(int x, int y, ID id, int width, int height) {
-        super(x, y, id, width, height);
+        super(x, y, width, height, "ColisionObject", id);
         cornerList = new ArrayList<>();
         
         //Coordinate x and y for each corner

@@ -1,57 +1,78 @@
 package gametest;
 
-import java.util.LinkedList;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/**
+ *
+ * @author DELL
+ */
+
+import java.util.*;
 import java.awt.Graphics;
+
 
 //Handler for rendering objects retrived from an objectlist
 public class Handler {
-
-    LinkedList<GameObject> object = new LinkedList<GameObject>();
-    LinkedList<ColisionObject> colisionObject = new LinkedList<ColisionObject>();
-
+    boolean battlePhase = false;
+    
+    RenderModule battleRender;
+    RenderModule worldRender;
+    
+    List<GameObject> objectList;
+    
+    Handler()
+    {
+        this.battleRender = new RenderModule();
+        this.worldRender = new RenderModule();
+        objectList = new ArrayList<>();
+    }
+    
     public void tick() {
-        for (int i = 0; i < object.size(); i++) {
-            GameObject tempObject = object.get(i);
-
-            tempObject.tick();
+        for (GameObject obj : objectList)
+        {
+            obj.tick();
         }
     }
 
     public void render(Graphics g) {
-        for (int i = 0; i < object.size(); i++) {
-            GameObject tempObject = object.get(i);
-
-            tempObject.render(g);
-        }
+        if(battlePhase)
+            battleRender.render(g);
+        else
+            worldRender.render(g);
     }
     
-    public boolean colisionDetection(WorldPhaseEntity p)
+    public void addBattlePhaseObject(GameObject p)
     {
-        for (int i = 0; i < colisionObject.size(); i++)
-        {
-            if (colisionObject.get(i).checkColision(p))
+       battleRender.add(p);
+       objectList.add(p);
+    }
+    
+    public void addWorldPhaseObject(GameObject p)
+    {
+        worldRender.add(p);
+        objectList.add(p);
+    }
+    
+    public void removeObject(String name)
+    {
+        worldRender.remove(name);
+        battleRender.remove(name);
+        
+        for(GameObject o : objectList)
+            if (o.getName().equals(name))
             {
-                return true;
+                objectList.remove(o);
+                break;
             }
-        }
-        return false;
-    }
-
-    public void addObject(GameObject object) {
-        this.object.add(object);
     }
     
-    public void addColisionObject(ColisionObject object)
-    {
-        this.colisionObject.add(object);
-    }
-
-    public void removeObject(GameObject object) {
-        this.object.remove(object);
-    }
+    public void battlePhaseOn(){ battlePhase = true;}
+    public void battlePhaseOff(){ battlePhase = false;}
+    public boolean battlePhaseStatus(){ return battlePhase; }
     
-    public void removeColisionObject(ColisionObject object)
-    {
-        this.colisionObject.remove(object);
-    }
 }
+

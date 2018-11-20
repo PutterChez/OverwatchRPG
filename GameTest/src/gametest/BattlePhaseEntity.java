@@ -16,7 +16,7 @@ public class BattlePhaseEntity extends GameObject {
     private String imageDirectory;
 
     public BattlePhaseEntity(int x, int y, ID id, int width, int height, String imageDirectory, int maxHP, int maxMP, String charName, int attack, int defense, int speed, int evasion) {
-        super(x, y, id, width, height);
+        super(x, y, width, height, "BEntity", id);
         this.imageDirectory = imageDirectory;
         this.skillList = new ArrayList<Skill>();
         

@@ -19,7 +19,7 @@ public class Map extends GameObject{
     
     Map(int x, int y, ID id,int width, int height, String imgDirectory)
     {
-        super(x, y, id, width, height);
+        super(x, y, width, height,"Map", id);
         this.imageDirectory = imgDirectory;
     }
     

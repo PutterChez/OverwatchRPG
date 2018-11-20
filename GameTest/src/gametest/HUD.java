@@ -8,7 +8,7 @@ import java.util.ArrayList;
 //HUD for displaying HP and such
 public class HUD extends GameObject{
 
-    private int x, y, nameX, nameY, velX, velY, speed, limit, gap;
+    private int nameX, nameY, velX, velY, speed, limit, gap;
     private Party party;
     
     public HUD(int x, int y, int nameX, int nameY,int speed,int limit,int gap, Party party) {
@@ -23,15 +23,15 @@ public class HUD extends GameObject{
 
     public void tick() {
         //Health decrease animaiton test
-        if (y > limit) {
+        if (super.y > limit) {
                 velY = speed;
         } 
         else {
                 velY = 0;
         }
     
-        x += velX;
-        y += velY;
+        super.x += velX;
+        super.y += velY;
     }
 
     public void render(Graphics g) {
@@ -66,7 +66,7 @@ public class HUD extends GameObject{
         }
         
         for (int i = 0; i < party.memberList.size(); i++) {
-            int barX = x + 100;
+            int barX = super.x + 100;
             int barY = y + gap * (i + 1) + 28;
             
             if((party.memberList.size() > 4) && (i >= 3)){

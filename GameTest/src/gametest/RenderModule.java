@@ -40,6 +40,7 @@ public class RenderModule {
             {
                 return o;
             }
+        return null;
     }
     
     public void remove(String name)

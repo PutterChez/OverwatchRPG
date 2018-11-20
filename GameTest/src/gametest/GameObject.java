@@ -1,49 +1,53 @@
 package gametest;
 
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/**
+ *
+ * @author DELL
+ */
 import java.awt.Graphics;
 
 //General gameobject
 public abstract class GameObject {
 
     protected int x, y;
-    protected ID id;
     protected int width, height;
     protected int velX, velY;
+    protected ID id;
+    protected String name;
 
-    public GameObject(int x, int y, ID id, int width, int height) {
+    public GameObject(int x, int y,int width, int height, String name, ID id) {
         this.x = x;
         this.y = y;
-        this.id = id;
         this.width = width;
         this.height = height;
+        this.name = name;
+        this.id = id;
     }
 
     public abstract void tick();
 
     public abstract void render(Graphics g);
 
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    public void setY(int y) {
-        this.y = y;
-    }
-
-    public void setId(ID id) {
-        this.id = id;
-    }
-
     public int getX() {
         return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
     }
 
     public int getY() {
         return y;
     }
 
-    public ID getId() {
-        return id;
+    public void setY(int y) {
+        this.y = y;
     }
 
     public int getWidth() {
@@ -77,6 +81,23 @@ public abstract class GameObject {
     public void setVelY(int velY) {
         this.velY = velY;
     }
-    
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public ID getId() {
+        return id;
+    }
+
+    public void setId(ID id) {
+        this.id = id;
+    }
+
     
 }
+

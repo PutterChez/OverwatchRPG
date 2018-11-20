@@ -39,6 +39,19 @@ public class WorldPhaseEntity extends GameObject{
         x += velX;
         y += velY;
 
+        //Update cornerList Position
+        for(int i = 0; i < cornerList.size(); i++)
+        {
+              cornerList.get(i).x += velX;
+              cornerList.get(i).y += velY;
+        }
+        
+        
+        //for(int i = 0; i < cornerList.size(); i++)
+        //{
+        //      System.out.println("Player Corner " + i + " :" + cornerList.get(i).x + "|" + cornerList.get(i).y );
+        //}
+        
         //Clamp function to not let entity go offscreen
         //x = Game.clamp(x, 0, Game.WIDTH - 37);
         //y = Game.clamp(y, 0, Game.HEIGHT - 66);

@@ -34,7 +34,7 @@ public class WorldPhaseEntity extends GameObject{
         cornerList.add(new Coordinate(x, y + height));
         cornerList.add(new Coordinate(x + width, y + height));
     }
-
+    
     public void tick() {
         x += velX;
         y += velY;

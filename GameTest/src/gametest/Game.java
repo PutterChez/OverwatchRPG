@@ -124,7 +124,7 @@ public class Game extends Canvas implements Runnable {
             }   
             else //WorldPhase part
             {
-<<<<<<< HEAD
+
                // System.out.println("CurrentMap x: " + currentMap.x);
                // System.out.println("CurrentMap y:" + currentMap.y);
                // System.out.println("Player x:" + player.x);
@@ -140,11 +140,11 @@ public class Game extends Canvas implements Runnable {
                     colision = false;
                     System.out.println("Colision not detected!!!");
                 }
-=======
+
                 System.out.println("Player x:" + player.x);
                 System.out.println("Player y:" + player.y);
                 
->>>>>>> CameraBranch
+
                 if (key == KeyEvent.VK_B)
                 {
                     System.out.println("Entering Battle Phase");
@@ -153,7 +153,7 @@ public class Game extends Canvas implements Runnable {
                 
                 if (key == KeyEvent.VK_W)
                 {
-<<<<<<< HEAD
+
                     //System.out.println("Character Moving Up");
                     //move colisionObject
                     for(int i = 0; i < handler.colisionObject.size(); i++)
@@ -171,15 +171,15 @@ public class Game extends Canvas implements Runnable {
                         currentMap.setVelY(mapSpeed);
                     
                     currentMap.setVelX(0);
-=======
+
                     System.out.println("Character Moving Up");
                     player.setVelY(-5);
->>>>>>> CameraBranch
+
                 }
                 
                 if (key == KeyEvent.VK_A)
                 {
-<<<<<<< HEAD
+
                     //System.out.println("Character Moving Left");
                     for(int i = 0; i < handler.colisionObject.size(); i++)
                     {
@@ -197,15 +197,15 @@ public class Game extends Canvas implements Runnable {
                     currentMap.setVelY(0);
                     
                     player.setImageDirectory("..\\resources\\characters\\genji_1.png");
-=======
+
                     System.out.println("Character Moving Left");
                     player.setVelX(-5);
->>>>>>> CameraBranch
+
                 }
                 
                 else if (key == KeyEvent.VK_S)
                 {
-<<<<<<< HEAD
+
                     //System.out.println("Character Moving Down");
                     for(int i = 0; i < handler.colisionObject.size(); i++)
                     {
@@ -222,15 +222,15 @@ public class Game extends Canvas implements Runnable {
                     else
                         currentMap.setVelY(-mapSpeed);
                     currentMap.setVelX(0);
-=======
+
                     System.out.println("Character Moving Down");
                     player.setVelY(5);
->>>>>>> CameraBranch
+
                 }
                 
                 else if (key == KeyEvent.VK_D)
                 {
-<<<<<<< HEAD
+
                     //System.out.println("Character Moving Right");
                     for(int i = 0; i < handler.colisionObject.size(); i++)
                     {
@@ -248,11 +248,11 @@ public class Game extends Canvas implements Runnable {
                     currentMap.setVelY(0);
                     
                     player.setImageDirectory("..\\resources\\characters\\genji_2.png");
-=======
+
                     System.out.println("Character Moving Right");
                     player.setVelX(5);
                     
->>>>>>> CameraBranch
+
                 }
                    
 
@@ -302,14 +302,14 @@ public class Game extends Canvas implements Runnable {
         WorldRenderHandler.addObject(player);
         WorldRenderHandler.addObject(cam);
         
-<<<<<<< HEAD
+
         //testColisionDetection
         ColisionObject test = new ColisionObject(775, 250, ID.Background, 200, 100);
         test.setImageDirectory("..\\resources\\maps\\spawn_wall.png");
-=======
+
         WorldPhaseEntity box = new WorldPhaseEntity(1000, 450, ID.Box, 200, 200, "..\\resources\\maps\\spawn_wall.png", "Box");
         WorldPhaseEntity box2 = new WorldPhaseEntity(1500, 450, ID.Box, 200, 200, "..\\resources\\maps\\spawn_wall.png", "Box");
->>>>>>> CameraBranch
+
         
         WorldRenderHandler.addObject(box);
         WorldRenderHandler.addObject(box2);

@@ -16,7 +16,7 @@ import gametest.BattlePhaseEntity;
 public class PartyMember {
     protected BattlePhaseEntity entity;
     protected int position;
-    
+
     PartyMember(BattlePhaseEntity entity, int position)
     {
         this.entity= entity;

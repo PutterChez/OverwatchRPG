@@ -68,6 +68,11 @@ public class WorldPhaseEntity extends GameObject{
         charImg = new ImageIcon(imageDirectory).getImage();
         g.drawImage(charImg, x, y, width, height, null);
     }
+    
+    public void setImageDirectory(String imgDirect)
+    {
+        this.imageDirectory = imgDirect;
+    }
 
     //Act test function
     public void act(String action) {

@@ -20,8 +20,8 @@ public class Game extends Canvas implements Runnable {
         //boolean movePlayer = false;
         boolean colision = false;
         
-        private int mapSpeed = 10;
-        
+        private int mapSpeed = 1;
+               
         Party playerParty;
         Party enemyParty;
         WorldPhaseEntity player;
@@ -135,8 +135,8 @@ public class Game extends Canvas implements Runnable {
                 else
                 {
                     colision = false;
+                    System.out.println("Colision not detected!!!");
                 }
-                
                 if (key == KeyEvent.VK_B)
                 {
                     System.out.println("Entering Battle Phase");
@@ -145,71 +145,85 @@ public class Game extends Canvas implements Runnable {
                 
                 if (key == KeyEvent.VK_W)
                 {
-                    System.out.println("Character Moving Up");
+                    //System.out.println("Character Moving Up");
                     //move colisionObject
                     for(int i = 0; i < handler.colisionObject.size(); i++)
                     {
-                        handler.colisionObject.get(i).velY = mapSpeed;
+                        if(colision)
+                            handler.colisionObject.get(i).velY = -mapSpeed;
+                        else
+                            handler.colisionObject.get(i).velY = mapSpeed;
                         handler.colisionObject.get(i).velX = 0;
                     }
                     
-                    currentMap.setVelY(mapSpeed);
                     if(colision)
-                    {
-                        //Bring Player out of Colision
-                    }
+                        currentMap.setVelY(-mapSpeed);
+                    else
+                        currentMap.setVelY(mapSpeed);
+                    
                     currentMap.setVelX(0);
                 }
                 
                 if (key == KeyEvent.VK_A)
                 {
-                    System.out.println("Character Moving Left");
+                    //System.out.println("Character Moving Left");
                     for(int i = 0; i < handler.colisionObject.size(); i++)
                     {
                         handler.colisionObject.get(i).velY = 0;
-                        handler.colisionObject.get(i).velX = mapSpeed;
+                        if(colision)
+                            handler.colisionObject.get(i).velX = -mapSpeed;
+                        else
+                            handler.colisionObject.get(i).velX = mapSpeed;
                     }
                                         
-                    currentMap.setVelX(mapSpeed);
                     if(colision)
-                    {
-                        //Bring Player out of Colision
-                    }
+                       currentMap.setVelX(-mapSpeed);
+                    else
+                       currentMap.setVelX(mapSpeed);
                     currentMap.setVelY(0);
+                    
+                    player.setImageDirectory("..\\resources\\characters\\genji_1.png");
                 }
                 
                 else if (key == KeyEvent.VK_S)
                 {
-                    System.out.println("Character Moving Down");
+                    //System.out.println("Character Moving Down");
                     for(int i = 0; i < handler.colisionObject.size(); i++)
                     {
-                        handler.colisionObject.get(i).velY = -mapSpeed;
+                        if(colision)
+                            handler.colisionObject.get(i).velY = mapSpeed;
+                        else
+                            handler.colisionObject.get(i).velY = -mapSpeed;
                         handler.colisionObject.get(i).velX = 0;
                     }
                     
-                    currentMap.setVelY(-mapSpeed);
+                    
                     if(colision)
-                    {
-                        //Bring Player out of Colision
-                    }
+                        currentMap.setVelY(mapSpeed);
+                    else
+                        currentMap.setVelY(-mapSpeed);
                     currentMap.setVelX(0);
                 }
                 
                 else if (key == KeyEvent.VK_D)
                 {
-                    System.out.println("Character Moving Right");
+                    //System.out.println("Character Moving Right");
                     for(int i = 0; i < handler.colisionObject.size(); i++)
                     {
                         handler.colisionObject.get(i).velY = 0;
-                        handler.colisionObject.get(i).velX = -mapSpeed;
+                        if(colision)
+                            handler.colisionObject.get(i).velX = mapSpeed;
+                        else
+                            handler.colisionObject.get(i).velX = -mapSpeed;
                     }
                     
-                    currentMap.setVelX(-mapSpeed);
                     if(colision)
-                    {
-                        //Bring Player out of Colision
-                    }
+                        currentMap.setVelX(mapSpeed);
+                    else
+                        currentMap.setVelX(-mapSpeed);
                     currentMap.setVelY(0);
+                    
+                    player.setImageDirectory("..\\resources\\characters\\genji_2.png");
                 }
                    
 
@@ -258,13 +272,13 @@ public class Game extends Canvas implements Runnable {
         new Window(WIDTH, HEIGHT, "Overwatch RPG Test", this);
         
         //WorldPhase Part-----------------------------------------------------------------------------------------------------
-        WorldPhaseEntity player = new WorldPhaseEntity(800, 450, ID.Player, 200, 200, "..\\resources\\characters\\genji_1.png", "Genji");
+        WorldPhaseEntity player = new WorldPhaseEntity(800, 450, ID.Player, 92, 50, "..\\resources\\characters\\genji_1.png", "Genji");
         Map testMap = new Map(-1400, -7200, ID.Background, 9600, 9600, "..\\resources\\maps\\open_world_extra_border.png");
         WorldRenderHandler.addObject(testMap);
         WorldRenderHandler.addObject(player);
         
         //testColisionDetection
-        ColisionObject test = new ColisionObject(800, 450, ID.Background, 100, 100);
+        ColisionObject test = new ColisionObject(775, 250, ID.Background, 200, 100);
         test.setImageDirectory("..\\resources\\maps\\spawn_wall.png");
         
         WorldRenderHandler.addObject(test);
@@ -378,7 +392,7 @@ public class Game extends Canvas implements Runnable {
 
     public void run() {
         long lastTime = System.nanoTime();
-        double amountOfTicks = 60.0;
+        double amountOfTicks = 360.0;
         double ns = 1000000000 / amountOfTicks;
         double delta = 0;
         long timer = System.currentTimeMillis();

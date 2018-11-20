@@ -29,6 +29,10 @@ public class ColisionObject extends GameObject{
         cornerList.add(new Coordinate(x + width, y));
         cornerList.add(new Coordinate(x, y + height));
         cornerList.add(new Coordinate(x + width, y + height));
+        
+        //cornerList index for each corner
+        // 0 1
+        // 2 3
     }
     
     public void tick() {
@@ -64,12 +68,13 @@ public class ColisionObject extends GameObject{
         for(int i = 0; i < p.cornerList.size(); i++)
         {
             Coordinate temp = p.cornerList.get(i);
-            for(int j = 0; j < cornerList.size(); j++)
-            {
-                Coordinate corner = cornerList.get(j);
-                if (corner.x <= temp.x && corner.x + width >= temp.x && corner.y <= temp.y && corner.y + height >= temp.y)
-                    return true;
-            }
+            Coordinate upperLeft = cornerList.get(0);
+            Coordinate lowerRight = cornerList.get(3);
+            
+            
+            //check if temp is in ColisionObjecct cconer
+            if (temp.x >= upperLeft.x && temp.x <= lowerRight.x && temp.y >= upperLeft.y && temp.y <= lowerRight.y)
+                return true;
         }
         return false;
     }

@@ -17,7 +17,7 @@ public class Game extends Canvas implements Runnable {
         private Handler handler;
         private boolean PopUp = false;
         private int cursorPos = 0, finalPos = 660;
-        boolean movePlayer = false;
+        //boolean movePlayer = false;
         boolean colision = false;
         
         private int mapSpeed = 10;
@@ -122,15 +122,19 @@ public class Game extends Canvas implements Runnable {
             }   
             else //WorldPhase part
             {
-                System.out.println("CurrentMap x: " + currentMap.x);
-                System.out.println("CurrentMap y:" + currentMap.y);
-                System.out.println("Player x:" + player.x);
-                System.out.println("Player y:" + player.y);
+               // System.out.println("CurrentMap x: " + currentMap.x);
+               // System.out.println("CurrentMap y:" + currentMap.y);
+               // System.out.println("Player x:" + player.x);
+               // System.out.println("Player y:" + player.y);
              
                 if (handler.colisionDetection(player))
                 {
                     colision = true;
                     System.out.println("Colision detected!!!");
+                }
+                else
+                {
+                    colision = false;
                 }
                 
                 if (key == KeyEvent.VK_B)
@@ -142,12 +146,17 @@ public class Game extends Canvas implements Runnable {
                 if (key == KeyEvent.VK_W)
                 {
                     System.out.println("Character Moving Up");
-                    //player.setVelY(-playerSpeed);
-                    currentMap.setVelY(mapSpeed);
+                    //move colisionObject
                     for(int i = 0; i < handler.colisionObject.size(); i++)
                     {
                         handler.colisionObject.get(i).velY = mapSpeed;
                         handler.colisionObject.get(i).velX = 0;
+                    }
+                    
+                    currentMap.setVelY(mapSpeed);
+                    if(colision)
+                    {
+                        //Bring Player out of Colision
                     }
                     currentMap.setVelX(0);
                 }
@@ -155,39 +164,51 @@ public class Game extends Canvas implements Runnable {
                 if (key == KeyEvent.VK_A)
                 {
                     System.out.println("Character Moving Left");
-                    //player.setVelX(-playerSpeed);
                     for(int i = 0; i < handler.colisionObject.size(); i++)
                     {
                         handler.colisionObject.get(i).velY = 0;
                         handler.colisionObject.get(i).velX = mapSpeed;
                     }
+                                        
                     currentMap.setVelX(mapSpeed);
+                    if(colision)
+                    {
+                        //Bring Player out of Colision
+                    }
                     currentMap.setVelY(0);
                 }
                 
                 else if (key == KeyEvent.VK_S)
                 {
                     System.out.println("Character Moving Down");
-                    //player.setVelY(playerSpeed);
                     for(int i = 0; i < handler.colisionObject.size(); i++)
                     {
                         handler.colisionObject.get(i).velY = -mapSpeed;
                         handler.colisionObject.get(i).velX = 0;
                     }
+                    
                     currentMap.setVelY(-mapSpeed);
+                    if(colision)
+                    {
+                        //Bring Player out of Colision
+                    }
                     currentMap.setVelX(0);
                 }
                 
                 else if (key == KeyEvent.VK_D)
                 {
                     System.out.println("Character Moving Right");
-                    //player.setVelX(playerSpeed);
                     for(int i = 0; i < handler.colisionObject.size(); i++)
                     {
                         handler.colisionObject.get(i).velY = 0;
                         handler.colisionObject.get(i).velX = -mapSpeed;
                     }
+                    
                     currentMap.setVelX(-mapSpeed);
+                    if(colision)
+                    {
+                        //Bring Player out of Colision
+                    }
                     currentMap.setVelY(0);
                 }
                    

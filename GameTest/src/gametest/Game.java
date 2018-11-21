@@ -14,7 +14,14 @@ import java.util.Random;
 public class Game extends Canvas implements Runnable {
 
     public static final int WIDTH = 1600, HEIGHT = 900;
-
+    
+    public static final Coordinate POS1 = new Coordinate(WIDTH/2 - 800,HEIGHT/2 - 500);
+    public static final Coordinate POS2 = new Coordinate(WIDTH/2 - 800,HEIGHT/2 - 300);
+    public static final Coordinate POS3 = new Coordinate(WIDTH/2 - 800,HEIGHT/2 - 100);
+    public static final Coordinate POS4 = new Coordinate(WIDTH/2 - 600,HEIGHT/2 - 500);
+    public static final Coordinate POS5 = new Coordinate(WIDTH/2 - 600,HEIGHT/2 - 300);
+    public static final Coordinate POS6 = new Coordinate(WIDTH/2 - 600,HEIGHT/2 - 100);
+    
     private Camera cam;
     private Thread thread;
     private boolean running = false;
@@ -59,21 +66,17 @@ public class Game extends Canvas implements Runnable {
         posX3 = WIDTH/2 + 400; posY3 = HEIGHT/2 - 300;
         posX4 = WIDTH/2 - 50; posY4 = HEIGHT/2 - 300;
 
-        int enemyX1, enemyX2, enemyX3, enemyX4, enemyX5, enemyX6, enemyY1, enemyY2, enemyY3;
-        enemyX1 = WIDTH/2 - 800; enemyX2 = WIDTH/2 - 600;
-        enemyY1 = HEIGHT/2 - 500; enemyY2 = HEIGHT/2 - 300; enemyY3 = HEIGHT/2 - 100;
-
         BattlePhaseEntity genji = new BattlePhaseEntity(posX2,posY2, ID.Ally, 400, 400, "..\\resources\\characters\\genji_1.png", 200, 100, "Genji", 40, 10, 100, 40);
         BattlePhaseEntity mccree = new BattlePhaseEntity(posX1,posY1, ID.Ally, 400, 400, "..\\resources\\characters\\mccree_1.png", 250, 200, "Mccree", 40, 10, 100, 40);
         BattlePhaseEntity mercy = new BattlePhaseEntity(posX3,posY3, ID.Ally, 400, 400, "..\\resources\\characters\\mercy_1.png", 200, 150, "Mercy", 40, 10, 100, 40);
         BattlePhaseEntity reinhardt = new BattlePhaseEntity(posX4,posY4, ID.Ally, 350, 350, "..\\resources\\characters\\rein_1.png", 500, 150, "Reinhardt", 40, 10, 100, 40);
 
-        BattlePhaseEntity doomfist = new BattlePhaseEntity(enemyX1, enemyY1, ID.Enemy, 300, 300, "..\\resources\\characters\\doom_2.png", 250, 200, "Doomfist", 40, 10, 100, 40);
-        BattlePhaseEntity widowmaker = new BattlePhaseEntity(enemyX1, enemyY2, ID.Enemy, 300, 300, "..\\resources\\characters\\widow_2.png", 200, 200, "Widowmaker", 40, 10, 100, 40);
-        BattlePhaseEntity reaper = new BattlePhaseEntity(enemyX1, enemyY3, ID.Enemy, 300, 300, "..\\resources\\characters\\reaper_2.png", 200, 200, "Reaper", 40, 10, 100, 40);
-        BattlePhaseEntity moira = new BattlePhaseEntity(enemyX2, enemyY1, ID.Enemy, 300, 300, "..\\resources\\characters\\reaper_2.png", 200, 200, "Moira", 40, 10, 100, 40);
-        BattlePhaseEntity sombra = new BattlePhaseEntity(enemyX2, enemyY2, ID.Enemy, 300, 300, "..\\resources\\characters\\sombra_2.png", 200, 200, "Sombra", 40, 10, 100, 40);
-        BattlePhaseEntity bastion = new BattlePhaseEntity(enemyX2, enemyY3, ID.Enemy, 300, 300, "..\\resources\\characters\\bastion_2.png", 200, 200, "Bastion", 40, 10, 100, 40);
+        BattlePhaseEntity doomfist = new BattlePhaseEntity(POS1.x, POS1.y, ID.Enemy, 300, 300, "..\\resources\\characters\\doom_2.png", 250, 200, "Doomfist", 40, 10, 100, 40);
+        BattlePhaseEntity widowmaker = new BattlePhaseEntity(POS2.x, POS2.y, ID.Enemy, 300, 300, "..\\resources\\characters\\widow_2.png", 200, 200, "Widowmaker", 40, 10, 100, 40);
+        BattlePhaseEntity reaper = new BattlePhaseEntity(POS3.x, POS3.y, ID.Enemy, 300, 300, "..\\resources\\characters\\reaper_2.png", 200, 200, "Reaper", 40, 10, 100, 40);
+        BattlePhaseEntity moira = new BattlePhaseEntity(POS4.x, POS4.y, ID.Enemy, 300, 300, "..\\resources\\characters\\reaper_2.png", 200, 200, "Moira", 40, 10, 100, 40);
+        BattlePhaseEntity sombra = new BattlePhaseEntity(POS5.x, POS5.y, ID.Enemy, 300, 300, "..\\resources\\characters\\sombra_2.png", 200, 200, "Sombra", 40, 10, 100, 40);
+        BattlePhaseEntity bastion = new BattlePhaseEntity(POS6.x, POS6.y, ID.Enemy, 300, 300, "..\\resources\\characters\\bastion_2.png", 200, 200, "Bastion", 40, 10, 100, 40);
 
         Skill swiftStrike = new Skill("Switft Strike",50,60,80);
         swiftStrike.setDescription("Genji darts forward, slashing with his katana and passing through foes in his path.");

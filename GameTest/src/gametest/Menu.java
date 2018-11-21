@@ -16,14 +16,6 @@ public class Menu extends GameObject {
     }
 
     public void tick() {
-        if (id == ID.Menu) {
-            if (y > 590) {
-                velY = -5;
-            } else {
-                velY = 0;
-            }
-        }
-
         x += velX;
         y += velY;
 

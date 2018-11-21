@@ -88,9 +88,9 @@ public class Game extends Canvas implements Runnable {
         headShot.setDescription("Mccree click the head");
         mccree.addSkill(headShot);
 
-        Menu menu = new Menu(WIDTH / 2 - 700, 1000, ID.Menu, 1400, 300, "..\\resources\\maps\\hud_1.png");
-        Menu popUp = new Menu(WIDTH / 2 - 170, 1000, ID.PopUp, 500, 300, "..\\resources\\maps\\hud_box.png");
-        Menu cursor = new Menu(WIDTH / 2 + 150, 1000, ID.Cursor, 30, 30, "..\\resources\\ui\\cursor.png");
+        Menu menu = new Menu(WIDTH / 2 - 700,  600, ID.Menu, 1400, 300, "..\\resources\\maps\\hud_1.png");
+        Menu popUp = new Menu(WIDTH / 2 - 170, 600, ID.PopUp, 500, 300, "..\\resources\\maps\\hud_box.png");
+        Menu cursor = new Menu(WIDTH / 2 + 150, 600, ID.Cursor, 30, 30, "..\\resources\\ui\\cursor.png");
         Menu background = new Menu(0, 0, ID.Background, WIDTH, HEIGHT, null);
 
 

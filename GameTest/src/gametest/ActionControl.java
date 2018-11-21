@@ -47,7 +47,6 @@ import java.awt.event.KeyEvent;
             {
                 /*Movement controls*/
                 for (int i = 0; i < handler.objectList.size(); i++) {
-
                     GameObject tempObject = handler.objectList.get(i);
 
                     if(tempObject.getId() == ID.PopUp){
@@ -81,6 +80,7 @@ import java.awt.event.KeyEvent;
 
                             if(key == KeyEvent.VK_A){
                                 if(cursorPos == 0){
+                                    /*
                                     System.out.println();
                                     System.out.println("Mccree HP: " +  playerParty.memberList.get(0).entity.getHP());
                                     System.out.println("Mccree MP: " +  playerParty.memberList.get(0).entity.getMP());
@@ -96,8 +96,10 @@ import java.awt.event.KeyEvent;
                                     System.out.println("Mccree HP: " +  playerParty.memberList.get(0).entity.getHP());
                                     System.out.println("Mccree MP: " +  playerParty.memberList.get(0).entity.getMP());
                                     System.out.println("Doomfist HP: " + enemyParty.memberList.get(0).entity.getHP());
-                                    System.out.println("Doomfist MP: " + enemyParty.memberList.get(0).entity.getMP());
-
+                                    System.out.println("Doomfist MP: " + enemyParty.memberList.get(0).entity.getMP());*/
+                                    
+                                    finalPos = Game.POS1.x;
+                                             
                                 }
                                 else if(cursorPos == 1){
                                     System.out.println("Items");
@@ -106,7 +108,9 @@ import java.awt.event.KeyEvent;
                                     System.out.println("Run");
                                 }
                             }
+                            
                             tempObject.setY(finalPos);
+                         
                         }
 
                         else{

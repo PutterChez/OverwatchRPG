@@ -74,14 +74,14 @@ import java.awt.event.KeyEvent;
                                 if(cursorPos < 2)
                                     cursorPos++;
 
-                                finalPos = (660 + cursorPos * 50);
+                                finalPos = (playerY + 240 + cursorPos * 50);
                             }
 
                             else if(key == KeyEvent.VK_UP){
                                 if(cursorPos != 0)
                                     cursorPos--;
 
-                                finalPos = (660 + cursorPos * 50);
+                                finalPos = (playerY + 240 + cursorPos * 50);
                             }
 
                             if(key == KeyEvent.VK_A){
@@ -115,7 +115,7 @@ import java.awt.event.KeyEvent;
                         }
 
                         else{
-                            tempObject.setY(1000);
+                            tempObject.setY(playerY + 1200);
                         }
                     }
                     

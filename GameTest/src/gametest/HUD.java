@@ -22,16 +22,6 @@ public class HUD extends GameObject{
     }
 
     public void tick() {
-        //Health decrease animaiton test
-        if (super.y > limit) {
-                velY = speed;
-        } 
-        else {
-                velY = 0;
-        }
-    
-        super.x += velX;
-        super.y += velY;
     }
 
     public void render(Graphics g) {

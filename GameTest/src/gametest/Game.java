@@ -126,8 +126,8 @@ public class Game extends Canvas implements Runnable {
             handler.addBattlePhaseObject(enemyParty.memberList.get(i).entity);
         }
 
-        playerHUD = new HUD(1250, 1000, -200, 15, -5, 590,50, playerParty);
-        enemyHUD = new HUD(150, 1000, -100, -5, -5, 600,60, enemyParty);
+        playerHUD = new HUD(1250, 610, -200, 15, -5, 590,50, playerParty);
+        enemyHUD = new HUD(150, 610, -100, -5, -5, 600,60, enemyParty);
         
         handler.addBattlePhaseObject(playerHUD);
         handler.addBattlePhaseObject(enemyHUD);

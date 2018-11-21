@@ -53,7 +53,7 @@ public class Player extends WorldPhaseEntity{
         return null;
     }        
             
-    /* RIP DOES NOT WORK
+    /* RIP DOES NOT 
     public boolean checkInteractColision(WorldPhaseEntity e)
     {
         switch(direction)

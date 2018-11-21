@@ -15,8 +15,6 @@ import java.awt.event.KeyEvent;
  class ActionControl extends KeyAdapter
     {
         private Handler handler;
-        private boolean PopUp = false;
-        private int cursorPos = 0, finalPos = 660;
 
         boolean colision = false;
         
@@ -41,47 +39,58 @@ import java.awt.event.KeyEvent;
 
         public void keyPressed(KeyEvent e) {
             int key = e.getKeyCode();
-             
+            boolean PopUp = false;
             if(handler.battlePhaseStatus())
             {
-                int playerX = 800,playerY = 450;
+                int cursorPos = 0, finalPos = 660;
+                int playerY = 450;
+                
                 /*Movement controls*/
                 for (int i = 0; i < handler.objectList.size(); i++) {
 
                     GameObject tempObject = handler.objectList.get(i);
+                    finalPos = playerY + 210;
                     
                     if(tempObject.getId() == ID.Player){
-                        playerX = tempObject.getX();
                         playerY = tempObject.getY();
                     }
                     
                     if(tempObject.getId() == ID.PopUp){
-                        if(key == KeyEvent.VK_ENTER){
-                            if(tempObject.getY() > playerY + 100){
+                        if(PopUp == true){
+                            if(key == KeyEvent.VK_BACK_SPACE){
+                                tempObject.setY(playerY + 550);
+                                PopUp = false;
+                            }
+                        }
+                        
+                        else{
+                            if(key == KeyEvent.VK_ENTER){
                                 tempObject.setY(playerY + 150);
                                 PopUp = true;
                             }
-                        }
-                        if(key == KeyEvent.VK_BACK_SPACE){
-                            tempObject.setY(playerY + 550);
-                            PopUp = false;
+                            else{
+                                tempObject.setY(playerY + 1000);
+                            }
                         }
                     }
 
                     if(tempObject.getId() == ID.Cursor){
+                        System.out.println(cursorPos);
+                        System.out.println("PopUp: " + PopUp);
                         if(PopUp == true){
                             if(key == KeyEvent.VK_DOWN){
                                 if(cursorPos < 2)
                                     cursorPos++;
 
-                                finalPos = (playerY + 240 + cursorPos * 50);
+                                finalPos += cursorPos * 50;
                             }
 
                             else if(key == KeyEvent.VK_UP){
                                 if(cursorPos != 0)
                                     cursorPos--;
 
-                                finalPos = (playerY + 240 + cursorPos * 50);
+                                finalPos += cursorPos * 50;
+                                System.out.println(finalPos);
                             }
 
                             if(key == KeyEvent.VK_A){
@@ -110,21 +119,21 @@ import java.awt.event.KeyEvent;
                                 else if(cursorPos == 2){
                                     System.out.println("Run");
                                 }
+                             
                             }
                             tempObject.setY(finalPos);
                         }
-
+                         
                         else{
-                            tempObject.setY(playerY + 1200);
+                            tempObject.setY(playerY + 450);
                         }
                     }
-                    
-                    if (key == KeyEvent.VK_ESCAPE) {
-                            System.out.println("Exit Battle Phase");
-                            handler.battlePhaseOff();
-                    }
                 }
-                
+                if (key == KeyEvent.VK_ESCAPE) {
+                    PopUp = false;
+                    System.out.println("Exit Battle Phase");
+                    handler.battlePhaseOff();
+                }
             }   
             else //WorldPhase part
             {

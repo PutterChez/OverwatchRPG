@@ -41,23 +41,29 @@ import java.awt.event.KeyEvent;
 
         public void keyPressed(KeyEvent e) {
             int key = e.getKeyCode();
-
+             
             if(handler.battlePhaseStatus())
             {
+                int playerX = 800,playerY = 450;
                 /*Movement controls*/
                 for (int i = 0; i < handler.objectList.size(); i++) {
 
                     GameObject tempObject = handler.objectList.get(i);
-
+                    
+                    if(tempObject.getId() == ID.Player){
+                        playerX = tempObject.getX();
+                        playerY = tempObject.getY();
+                    }
+                    
                     if(tempObject.getId() == ID.PopUp){
                         if(key == KeyEvent.VK_ENTER){
-                            if(tempObject.getY() > 550){
-                                tempObject.setY(580);
+                            if(tempObject.getY() > playerY + 100){
+                                tempObject.setY(playerY + 150);
                                 PopUp = true;
                             }
                         }
                         if(key == KeyEvent.VK_BACK_SPACE){
-                            tempObject.setY(1000);
+                            tempObject.setY(playerY + 550);
                             PopUp = false;
                         }
                     }

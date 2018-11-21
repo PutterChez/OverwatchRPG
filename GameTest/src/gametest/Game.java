@@ -183,24 +183,22 @@ public class Game extends Canvas implements Runnable {
     }
 
     private void tick() {
+        boolean colision = false;
         handler.tick();
-        handler.updateBattleObject(player);
-        
-        Coordinate temp = new Coordinate(0,0);
+            
         for(WorldPhaseEntity obj : handler.colisionList)
         {
             if(obj.checkColision(player))
             {
-               temp = obj.getOutOfHere(player);
-                //System.out.println(obj);
+               obj.getOutOfHere(player);
+               colision = true;
+               break;
+               //System.out.println(obj);
             }
         }
         
-        for(GameObject obj : handler.battleRender.renderList)
-        {
-            //update X and Y
-            //update X and Y
-        }
+        if(!colision)
+            handler.updateBattleObject(player);
         
     }
 

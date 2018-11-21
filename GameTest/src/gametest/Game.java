@@ -21,7 +21,7 @@ public class Game extends Canvas implements Runnable {
 
     private Handler handler;
     private HUD playerHUD, enemyHUD;
-    WorldPhaseEntity player;
+    Player player;
     
     //private WorldPhaseEntity player;
     //private boolean BattlePhase = false;
@@ -32,7 +32,7 @@ public class Game extends Canvas implements Runnable {
         new Window(WIDTH, HEIGHT, "Overwatch RPG Test", this);
 
         //WorldPhase Part-----------------------------------------------------------------------------------------------------
-        player = new WorldPhaseEntity(800, 450, ID.Player, 92, 50, "..\\resources\\characters\\RedSquare.png", "Genji");
+        player = new Player(800, 450, ID.Player, 92, 50, "..\\resources\\characters\\RedSquare.png", "Player");
         Map testMap = new Map(-1400, -7200, ID.Background, 9600, 9600, "..\\resources\\maps\\open_world_extra_border.png");
         cam = new Camera(0, 0,ID.Camera,0,0,player);
         
@@ -47,6 +47,9 @@ public class Game extends Canvas implements Runnable {
         //handler.addWorldPhaseObject(box2);
         handler.addWorldColisionObject(box);
         handler.addWorldColisionObject(box2);
+        
+        WorldPhaseEntity testNPC = new WorldPhaseEntity(400, 450, ID.NPC, 92, 50, "..\\resources\\characters\\genji_1.png", "Genji");
+        handler.addWorldColisionObject(testNPC);
 
 
         //BattlePhase Part----------------------------------------------------------------------------------------------------
@@ -177,6 +180,17 @@ public class Game extends Canvas implements Runnable {
     private void tick() {
         handler.tick();
         handler.updateBattleObject(player);
+        
+        for(WorldPhaseEntity obj : handler.colisionList)
+        {
+            if(obj.checkColision(player))
+            {
+                obj.getOutOfHere(player);
+                System.out.println(obj);
+                break;
+            }
+        }
+        
     }
 
     private void render() {

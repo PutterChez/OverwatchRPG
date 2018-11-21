@@ -36,16 +36,14 @@ public class WorldPhaseEntity extends GameObject{
         cornerList.add(new Coordinate(x + width, y + height));
     }
     
+    public void act(){
+        System.out.println("NPC do something :D");
+    }
     
     public void tick() {
         x += velX;
         y += velY;
-        
-        for(int i = 0; i < cornerList.size(); i++)
-        {
-              cornerList.get(i).x += velX;
-              cornerList.get(i).y += velY;
-        }
+        updateCorner();
     }
 
     public void render(Graphics g) {
@@ -58,6 +56,18 @@ public class WorldPhaseEntity extends GameObject{
         //New Texture
         charImg = new ImageIcon(imageDirectory).getImage();
         g.drawImage(charImg, x, y, width, height, null);
+    }
+    
+    public void updateCorner()
+    {
+        cornerList.get(0).x = x;
+        cornerList.get(0).y = y;
+        cornerList.get(1).x = x + width;
+        cornerList.get(1).y = y;
+        cornerList.get(2).x = x;
+        cornerList.get(2).y = y + height;
+        cornerList.get(3).x = x + width;
+        cornerList.get(3).y = y + height;
     }
     
     public void setImageDirectory(String imgDirect)
@@ -73,7 +83,7 @@ public class WorldPhaseEntity extends GameObject{
         this.charName = charName;
     }
     
-    public boolean checkColision(WorldPhaseEntity p)
+    public boolean checkColision(Player p)
     {
         //Prototype
         for(int i = 0; i < p.cornerList.size(); i++)
@@ -89,4 +99,35 @@ public class WorldPhaseEntity extends GameObject{
         }
         return false;
     }
+    
+    public void getOutOfHere(Player p)
+    {
+        if(p.velX < 0 && p.velY == 0)
+        {
+            p.x = x + width + 10;
+        }
+        else if (p.velX > 0 && p.velY == 0)
+        {
+            p.x = x - 10 - p.width;
+        }
+        else if (p.velX == 0 && p.velY > 0)
+        {
+            p.y = y - 10 - p.height;
+        }
+        else if (p.velX == 0 && p.velY < 0)
+        {
+            p.y = y + height + 10;
+        }
+        else
+            System.out.println("Colision Error!!!");
+        
+        p.updateCorner();
+    }
+
+    @Override
+    public String toString() {
+        return "WorldPhaseEntity: " + charName;
+    }
+    
+    
 }

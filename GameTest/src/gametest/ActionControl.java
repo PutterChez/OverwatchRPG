@@ -17,18 +17,17 @@ import java.awt.event.KeyEvent;
         private Handler handler;
         private boolean PopUp = false;
         private int cursorPos = 0, finalPos = 660;
-        private int defaultPlayerMovement = 4;
-        private int playerMovement = defaultPlayerMovement;
+
         boolean colision = false;
         
-        private int mapSpeed = 1;
+        //private int mapSpeed = 1;
                
         Party playerParty;
         Party enemyParty;
-        WorldPhaseEntity player;
+        Player player;
         Map currentMap;
         
-        public ActionControl(Handler handler, Party player, Party enemy, WorldPhaseEntity playerUnit) {
+        public ActionControl(Handler handler, Party player, Party enemy, Player playerUnit) {
             this.handler = handler;
             this.playerParty = player;
             this.enemyParty = enemy;
@@ -134,35 +133,30 @@ import java.awt.event.KeyEvent;
                     handler.battlePhaseOn();
                 }
                 
-                if(handler.checkColision(player))
-                    playerMovement = -playerMovement * 2;
-                else
-                    playerMovement = defaultPlayerMovement;
-                
                 if (key == KeyEvent.VK_W)
                 {
                     System.out.println("Character Moving Up");
-                    player.setVelY(-playerMovement);
+                    player.setVelY(-player.currentSpeed);
                     player.setVelX(0);
                 }
                 else if (key == KeyEvent.VK_A)
                 {
                     System.out.println("Character Moving Left");
-                    player.setVelX(-playerMovement);
+                    player.setVelX(-player.currentSpeed);
                     player.setVelY(0);
                 }
 
                 else if (key == KeyEvent.VK_S)
                 {
                     System.out.println("Character Moving Down");
-                    player.setVelY(playerMovement);
+                    player.setVelY(player.currentSpeed);
                     player.setVelX(0);
                 }
 
                 else if (key == KeyEvent.VK_D)
                 {
                     System.out.println("Character Moving Right");
-                    player.setVelX(playerMovement);
+                    player.setVelX(player.currentSpeed);
                     player.setVelY(0);
                 }
                 

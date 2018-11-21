@@ -17,7 +17,8 @@ import java.awt.event.KeyEvent;
         private Handler handler;
         private boolean PopUp = false;
         private int cursorPos = 0, finalPos = 660;
-        //boolean movePlayer = false;
+        private int defaultPlayerMovement = 4;
+        private int playerMovement = defaultPlayerMovement;
         boolean colision = false;
         
         private int mapSpeed = 1;
@@ -122,10 +123,10 @@ import java.awt.event.KeyEvent;
             }   
             else //WorldPhase part
             {
-               // System.out.println("CurrentMap x: " + currentMap.x);
-               // System.out.println("CurrentMap y:" + currentMap.y);
-               // System.out.println("Player x:" + player.x);
-               // System.out.println("Player y:" + player.y);
+               //System.out.println("CurrentMap x: " + currentMap.x);
+               //System.out.println("CurrentMap y:" + currentMap.y);
+               System.out.println("Player x:" + player.x);
+               System.out.println("Player y:" + player.y);
              
                 if (key == KeyEvent.VK_B)
                 {
@@ -133,39 +134,45 @@ import java.awt.event.KeyEvent;
                     handler.battlePhaseOn();
                 }
                 
+                if(handler.checkColision(player))
+                    playerMovement = -playerMovement * 2;
+                else
+                    playerMovement = defaultPlayerMovement;
+                
                 if (key == KeyEvent.VK_W)
                 {
                     System.out.println("Character Moving Up");
-                    player.setVelY(-1);
+                    player.setVelY(-playerMovement);
                     player.setVelX(0);
                 }
 
                 if (key == KeyEvent.VK_A)
                 {
                     System.out.println("Character Moving Left");
-                    player.setVelX(-1);
+                    player.setVelX(-playerMovement);
                     player.setVelY(0);
                 }
 
                 else if (key == KeyEvent.VK_S)
                 {
                     System.out.println("Character Moving Down");
-                    player.setVelY(1);
+                    player.setVelY(playerMovement);
                     player.setVelX(0);
                 }
 
                 else if (key == KeyEvent.VK_D)
                 {
                     System.out.println("Character Moving Right");
-                    player.setVelX(1);
+                    player.setVelX(playerMovement);
                     player.setVelY(0);
                 }
-
+                
 
                 //Temporary exit game method
                 else if (key == KeyEvent.VK_ESCAPE) {
                     System.exit(1);
                 }
+                
             }
         }
 

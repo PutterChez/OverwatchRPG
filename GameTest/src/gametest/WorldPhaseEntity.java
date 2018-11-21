@@ -40,6 +40,12 @@ public class WorldPhaseEntity extends GameObject{
     public void tick() {
         x += velX;
         y += velY;
+        
+        for(int i = 0; i < cornerList.size(); i++)
+        {
+              cornerList.get(i).x += velX;
+              cornerList.get(i).y += velY;
+        }
     }
 
     public void render(Graphics g) {
@@ -59,22 +65,28 @@ public class WorldPhaseEntity extends GameObject{
         this.imageDirectory = imgDirect;
     }
 
-    //Act test function
-    public void act(String action) {
-        if (action.equals("Run")) {
-            System.out.println("The player flees!");
-        } else if (action.equals("Attack")) {
-            System.out.println("The player attacks!");
-        } else if (action.equals("Items")) {
-            System.out.println("The player uses an item!");
-        }
-    }
-
     public String getCharName() {
         return charName;
     }
 
     public void setCharName(String charName) {
         this.charName = charName;
+    }
+    
+    public boolean checkColision(WorldPhaseEntity p)
+    {
+        //Prototype
+        for(int i = 0; i < p.cornerList.size(); i++)
+        {
+            Coordinate temp = p.cornerList.get(i);
+            Coordinate upperLeft = cornerList.get(0);
+            Coordinate lowerRight = cornerList.get(3);
+            
+            
+            //check if temp is in ColisionObjecct cconer
+            if (temp.x >= upperLeft.x && temp.x <= lowerRight.x && temp.y >= upperLeft.y && temp.y <= lowerRight.y)
+                return true;
+        }
+        return false;
     }
 }

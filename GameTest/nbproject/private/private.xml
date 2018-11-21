@@ -4,9 +4,10 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/DELL/Desktop/Works/GitHub/OverwatchRPG/GameTest/src/gametest/Game.java</file>
+            <file>file:/C:/Users/DELL/Desktop/Works/GitHub/OverwatchRPG/GameTest/src/gametest/Camera.java</file>
             <file>file:/C:/Users/DELL/Desktop/Works/GitHub/OverwatchRPG/GameTest/src/gametest/WorldPhaseEntity.java</file>
-            <file>file:/C:/Users/DELL/Desktop/Works/GitHub/OverwatchRPG/GameTest/src/gametest/Handler.java</file>
-            <file>file:/C:/Users/DELL/Desktop/Works/GitHub/OverwatchRPG/GameTest/src/gametest/ColisionObject.java</file>
+            <file>file:/C:/Users/DELL/Desktop/Works/GitHub/OverwatchRPG/GameTest/src/gametest/ActionControl.java</file>
+            <file>file:/C:/Users/DELL/Desktop/Works/GitHub/OverwatchRPG/GameTest/src/gametest/KeyInput.java</file>
         </group>
     </open-files>
 </project-private>

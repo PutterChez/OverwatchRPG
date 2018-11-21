@@ -13,5 +13,6 @@ public enum ID {
     Background(),
     Player(),
     Box(),
+    Colision(),
     Camera();
 }

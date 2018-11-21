@@ -18,17 +18,20 @@ import java.awt.Graphics;
 //Handler for rendering objects retrived from an objectlist
 public class Handler {
     boolean battlePhase = false;
+    boolean colision = false;
     
     RenderModule battleRender;
     RenderModule worldRender;
     
     LinkedList<GameObject> objectList;
+    LinkedList<WorldPhaseEntity> colisionList;
     
     Handler()
     {
         this.battleRender = new RenderModule();
         this.worldRender = new RenderModule();
         objectList = new LinkedList<>();
+        colisionList = new LinkedList<>();
     }
     
     public void tick() {
@@ -36,6 +39,7 @@ public class Handler {
         {
             obj.tick();
         }
+        
     }
 
     public void render(Graphics g) {
@@ -51,10 +55,18 @@ public class Handler {
        objectList.add(p);
     }
     
+    //add PassableObject to WorldPhase
     public void addWorldPhaseObject(GameObject p)
     {
         worldRender.add(p);
         objectList.add(p);
+    }
+    
+    //add ImpassableObject to WorldPhase
+    public void addWorldColisionObject(WorldPhaseEntity p)
+    {
+        worldRender.add(p);
+        colisionList.add(p);
     }
     
     public void removeObject(String name)
@@ -70,9 +82,31 @@ public class Handler {
             }
     }
     
+    public void removeColisionObject(String name)
+    {
+        worldRender.remove(name);
+        for(WorldPhaseEntity o : colisionList)
+            if (o.getName().equals(name))
+            {
+                objectList.remove(o);
+                break;
+            }
+    }
+    
+    public boolean checkColision(WorldPhaseEntity p)
+    {
+        for(WorldPhaseEntity c: colisionList)
+            if(c.checkColision(p))
+                return true;
+        return false;
+    }
+    
     public void battlePhaseOn(){ battlePhase = true;}
     public void battlePhaseOff(){ battlePhase = false;}
     public boolean battlePhaseStatus(){ return battlePhase; }
     
+    public void colisionDetected(){ colision = true; }
+    public void colisionNotDetected(){ colision = false; }
+    public boolean colisionStatus(){ return colision; }
 }
 

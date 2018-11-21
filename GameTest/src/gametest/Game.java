@@ -21,8 +21,9 @@ public class Game extends Canvas implements Runnable {
 
     private Handler handler;
     private HUD playerHUD, enemyHUD;
-
-    private boolean BattlePhase = false;
+    
+    //private WorldPhaseEntity player;
+    //private boolean BattlePhase = false;
 
     public Game() {
         handler = new Handler();
@@ -30,9 +31,9 @@ public class Game extends Canvas implements Runnable {
         new Window(WIDTH, HEIGHT, "Overwatch RPG Test", this);
 
         //WorldPhase Part-----------------------------------------------------------------------------------------------------
-        WorldPhaseEntity player = new WorldPhaseEntity(800, 450, ID.Player, 92, 50, "..\\resources\\characters\\genji_1.png", "Genji");
+        WorldPhaseEntity player = new WorldPhaseEntity(800, 450, ID.Player, 92, 50, "..\\resources\\characters\\RedSquare.png", "Genji");
         Map testMap = new Map(-1400, -7200, ID.Background, 9600, 9600, "..\\resources\\maps\\open_world_extra_border.png");
-        cam = new Camera(0,0,ID.Camera,0,0,player);
+        cam = new Camera(0, 0,ID.Camera,0,0,player);
         
         handler.addWorldPhaseObject(testMap);
         handler.addWorldPhaseObject(player);
@@ -41,8 +42,10 @@ public class Game extends Canvas implements Runnable {
         WorldPhaseEntity box = new WorldPhaseEntity(1000, 450, ID.Box, 200, 200, "..\\resources\\maps\\spawn_wall.png", "Box");
         WorldPhaseEntity box2 = new WorldPhaseEntity(1500, 450, ID.Box, 200, 200, "..\\resources\\maps\\spawn_wall.png", "Box");
 
-        handler.addWorldPhaseObject(box);
-        handler.addWorldPhaseObject(box2);
+        //handler.addWorldPhaseObject(box);
+        //handler.addWorldPhaseObject(box2);
+        handler.addWorldColisionObject(box);
+        handler.addWorldColisionObject(box2);
 
 
         //BattlePhase Part----------------------------------------------------------------------------------------------------
@@ -143,7 +146,7 @@ public class Game extends Canvas implements Runnable {
 
     public void run() {
         long lastTime = System.nanoTime();
-        double amountOfTicks = 360.0;
+        double amountOfTicks = 60;
         double ns = 1000000000 / amountOfTicks;
         double delta = 0;
         long timer = System.currentTimeMillis();

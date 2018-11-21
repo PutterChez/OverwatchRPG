@@ -11,11 +11,12 @@ public class Camera extends GameObject{
     
    
     public void tick(){
-        x = -player.getX() + Game.WIDTH/2 - 100;
-        y = -player.getY() + Game.HEIGHT/2 - 150;
+        x = -player.getX() + Game.WIDTH/2 - player.width/2;
+        y = -player.getY() + Game.HEIGHT/2 - player.height/2;
     }
     
     public void render(Graphics g){
+        ;
     }
     
 }

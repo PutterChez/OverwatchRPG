@@ -16,8 +16,8 @@ import javax.swing.ImageIcon;
  *
  * @author DELL
  */
-public class WorldPhaseEntity extends GameObject{
-    
+public class WorldPhaseEntity extends GameObject {
+
     protected List<Coordinate> cornerList;
     protected String charName;
     private Image charImg;
@@ -28,18 +28,18 @@ public class WorldPhaseEntity extends GameObject{
         this.imageDirectory = imageDirectory;
         this.charName = charName;
         cornerList = new ArrayList<>();
-        
+
         //Coordinate x and y for each corner
         cornerList.add(new Coordinate(x, y));
         cornerList.add(new Coordinate(x + width, y));
         cornerList.add(new Coordinate(x, y + height));
         cornerList.add(new Coordinate(x + width, y + height));
     }
-    
-    public void interacted(){
+
+    public void interacted() {
         System.out.println("NPC do something :D");
     }
-    
+
     public void tick() {
         x += velX;
         y += velY;
@@ -57,9 +57,8 @@ public class WorldPhaseEntity extends GameObject{
         charImg = new ImageIcon(imageDirectory).getImage();
         g.drawImage(charImg, x, y, width, height, null);
     }
-    
-    public void updateCorner()
-    {
+
+    public void updateCorner() {
         cornerList.get(0).x = x;
         cornerList.get(0).y = y;
         cornerList.get(1).x = x + width;
@@ -69,9 +68,8 @@ public class WorldPhaseEntity extends GameObject{
         cornerList.get(3).x = x + width;
         cornerList.get(3).y = y + height;
     }
-    
-    public void setImageDirectory(String imgDirect)
-    {
+
+    public void setImageDirectory(String imgDirect) {
         this.imageDirectory = imgDirect;
     }
 
@@ -82,45 +80,35 @@ public class WorldPhaseEntity extends GameObject{
     public void setCharName(String charName) {
         this.charName = charName;
     }
-    
-    public boolean checkColision(WorldPhaseEntity p)
-    {
+
+    public boolean checkColision(WorldPhaseEntity p) {
         //Prototype
-        for(int i = 0; i < p.cornerList.size(); i++)
-        {
+        for (int i = 0; i < p.cornerList.size(); i++) {
             Coordinate temp = p.cornerList.get(i);
             Coordinate upperLeft = cornerList.get(0);
             Coordinate lowerRight = cornerList.get(3);
-            
-            
+
             //check if temp is in ColisionObjecct cconer
-            if (temp.x >= upperLeft.x && temp.x <= lowerRight.x && temp.y >= upperLeft.y && temp.y <= lowerRight.y)
+            if (temp.x >= upperLeft.x && temp.x <= lowerRight.x && temp.y >= upperLeft.y && temp.y <= lowerRight.y) {
                 return true;
+            }
         }
         return false;
     }
-    
-    public Coordinate getOutOfHere(WorldPhaseEntity p)
-    {
-        if(p.velX < 0 && p.velY == 0)
-        {
+
+    public Coordinate getOutOfHere(WorldPhaseEntity p) {
+        if (p.velX < 0 && p.velY == 0) {
             p.x = x + width + 1;
-        }
-        else if (p.velX > 0 && p.velY == 0)
-        {
+        } else if (p.velX > 0 && p.velY == 0) {
             p.x = x - 1 - p.width;
-        }
-        else if (p.velX == 0 && p.velY > 0)
-        {
+        } else if (p.velX == 0 && p.velY > 0) {
             p.y = y - 1 - p.height;
-        }
-        else if (p.velX == 0 && p.velY < 0)
-        {
+        } else if (p.velX == 0 && p.velY < 0) {
             p.y = y + height + 1;
-        }
-        else
+        } else {
             System.out.println("Colision Error!!!");
-        
+        }
+
         p.updateCorner();
         return new Coordinate(p.x, p.y);
     }
@@ -129,6 +117,5 @@ public class WorldPhaseEntity extends GameObject{
     public String toString() {
         return "WorldPhaseEntity: " + charName;
     }
-    
-    
+
 }

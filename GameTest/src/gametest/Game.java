@@ -39,7 +39,8 @@ public class Game extends Canvas implements Runnable {
         new Window(WIDTH, HEIGHT, "Overwatch RPG Test", this);
 
         //WorldPhase Part-----------------------------------------------------------------------------------------------------
-        player = new Player(800, 450, ID.Player, 92, 50, "..\\resources\\characters\\RedSquare.png", "Player");
+        player = new Player(800, 450, ID.Player, 50, 50, "..\\resources\\characters\\RedSquare.png", "Player");
+        
         Map testMap = new Map(-1400, -7200, ID.Background, 9600, 9600, "..\\resources\\maps\\open_world_extra_border.png");
         cam = new Camera(0, 0,ID.Camera,0,0,player);
         

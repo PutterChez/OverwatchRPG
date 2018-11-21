@@ -36,7 +36,7 @@ public class WorldPhaseEntity extends GameObject{
         cornerList.add(new Coordinate(x + width, y + height));
     }
     
-    public void act(){
+    public void interacted(){
         System.out.println("NPC do something :D");
     }
     
@@ -83,7 +83,7 @@ public class WorldPhaseEntity extends GameObject{
         this.charName = charName;
     }
     
-    public boolean checkColision(Player p)
+    public boolean checkColision(WorldPhaseEntity p)
     {
         //Prototype
         for(int i = 0; i < p.cornerList.size(); i++)
@@ -100,7 +100,7 @@ public class WorldPhaseEntity extends GameObject{
         return false;
     }
     
-    public void getOutOfHere(Player p)
+    public void getOutOfHere(WorldPhaseEntity p)
     {
         if(p.velX < 0 && p.velY == 0)
         {

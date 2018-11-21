@@ -102,7 +102,7 @@ public class Handler {
             }
     }
     
-    public boolean checkColision(Player p)
+    public boolean checkColision(WorldPhaseEntity p)
     {
         for(WorldPhaseEntity c: colisionList)
             if(c.checkColision(p))

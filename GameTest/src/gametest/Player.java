@@ -8,6 +8,7 @@ package gametest;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import javax.swing.ImageIcon;
 
@@ -16,29 +17,94 @@ import javax.swing.ImageIcon;
  * @author DELL
  */
 public class Player extends WorldPhaseEntity{
-    protected int initSpeed = 4;
-    protected int currentSpeed = initSpeed;
+    protected int currentSpeed = 4;
+    protected Direction direction = Direction.North;
+    protected WorldPhaseEntity interactW, interactA, interactS, interactD;
+    protected LinkedList<WorldPhaseEntity> interactList; 
     
     Player(int x, int y, ID id, int width, int height, String imageDirectory, String charName) {
         super(x, y, id, width, height, imageDirectory, charName);
+        interactW = new WorldPhaseEntity(x, y, ID.Default, width, height,"..\\resources\\characters\\BlueSquare.png", "interactArea" );
+        interactA = new WorldPhaseEntity(x, y, ID.Default, width, height,"..\\resources\\characters\\BlueSquare.png", "interactArea" );
+        interactS = new WorldPhaseEntity(x, y, ID.Default, width, height,"..\\resources\\characters\\BlueSquare.png", "interactArea" );
+        interactD = new WorldPhaseEntity(x, y, ID.Default, width, height,"..\\resources\\characters\\BlueSquare.png", "interactArea" );
+        
+        interactList = new LinkedList<>();
+        interactList.add(interactW);
+        interactList.add(interactA);
+        interactList.add(interactS);
+        interactList.add(interactD);
+        
+        interactW.y -= interactW.height;
+        interactA.x -= interactW.width; 
+        interactS.y += height;
+        interactD.x += width;
     }
     
-    public void resetSpeed()
+    /*
+    public void setInteractAreaDirection(int side) 
     {
-        currentSpeed = initSpeed;
+        resetInteractAreaPosition();
+        // W = 0, A = 1, S = 2, D = 3
+        if (side == 0)
+        {
+            interactW.y -= interactW.height;
+        }
+        else if (side == 1)
+        {
+            interactW.x -= interactW.width; 
+        }
+        else if (side == 2)
+        {
+            interactW.y += height;
+        }
+        else if (side == 3)
+        {
+            interactW.x += width;
+        }
+        else
+        {
+            System.out.println("Interaction Error");
+        }
+        interactW.updateCorner();
     }
     
-    public void colisionSpeed()
+    public void resetInteractAreaPosition()
     {
-        currentSpeed = -currentSpeed * 2;
+        interactW.x = x;
+        interactW.y = y;
+        interactW.updateCorner();
     }
-
-    public int getInitSpeed() {
-        return initSpeed;
+    */
+    
+    public void tick() {
+        x += velX;
+        y += velY;
+        updateCorner();
+        
+        for (WorldPhaseEntity interact : interactList)
+        {
+            interact.x = x;
+            interact.y = y;
+        }
+        
+        interactW.y -= interactW.height;
+        interactA.x -= interactW.width; 
+        interactS.y += height;
+        interactD.x += width;
+        
+        for (WorldPhaseEntity interact : interactList)
+            interact.updateCorner();
     }
-
-    public void setInitSpeed(int initSpeed) {
-        this.initSpeed = initSpeed;
+    
+    public void render(Graphics g)
+    {
+        super.render(g);
+        
+        interactW.render(g);
+        interactA.render(g);
+        interactS.render(g);
+        interactD.render(g);
     }
     
     

@@ -197,8 +197,10 @@ import java.awt.event.KeyEvent;
                     for (WorldPhaseEntity obj : handler.colisionList)
                     {
                         WorldPhaseEntity temp = player.getInteractArea();
-                        if(obj.checkColision(temp))
-                            obj.interacted();
+                        if(obj.checkColision(temp)){
+                            if(obj.id == ID.NPC)
+                                obj.interacted();
+                        }
                     }
                 }
             

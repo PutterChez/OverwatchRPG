@@ -41,6 +41,46 @@ public class Player extends WorldPhaseEntity{
         interactD.x += width;
     }
     
+    public WorldPhaseEntity getInteractArea()
+    {
+        switch(direction)
+        {
+            case North: return interactW;
+            case West: return interactA;
+            case South: return interactS;
+            case East: return interactD;
+        }
+        return null;
+    }        
+            
+    /* RIP DOES NOT WORK
+    public boolean checkInteractColision(WorldPhaseEntity e)
+    {
+        switch(direction)
+        {
+            case North: return interactW.checkColision(e);
+            case West: return interactA.checkColision(e);
+            case South: return interactS.checkColision(e);
+            case East: return interactD.checkColision(e);
+        }
+        return false;
+    }
+    */
+    
+    public void setDirection(int side)
+    {
+        if (side == 0)
+            direction = Direction.North;
+        else if (side == 1)
+            direction = Direction.West;
+        else if (side == 2)
+            direction = Direction.South;
+        else if (side == 3)
+            direction = Direction.East;
+        else
+            System.out.println("Direcction Error");
+    }
+    
     /*
     public void setInteractAreaDirection(int side) 
     {
@@ -101,10 +141,13 @@ public class Player extends WorldPhaseEntity{
     {
         super.render(g);
         
-        interactW.render(g);
-        interactA.render(g);
-        interactS.render(g);
-        interactD.render(g);
+        switch(direction)
+        {
+            case North: interactW.render(g); break;
+            case West: interactA.render(g); break;
+            case South: interactS.render(g); break;
+            case East: interactD.render(g); break;
+        }
     }
     
     

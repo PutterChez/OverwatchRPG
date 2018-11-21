@@ -130,8 +130,8 @@ import java.awt.event.KeyEvent;
             {
                //System.out.println("CurrentMap x: " + currentMap.x);
                //System.out.println("CurrentMap y:" + currentMap.y);
-               System.out.println("Player x:" + player.x);
-               System.out.println("Player y:" + player.y);
+               //System.out.println("Player x:" + player.x);
+               //System.out.println("Player y:" + player.y);
              
                 if (key == KeyEvent.VK_B)
                 {
@@ -141,27 +141,31 @@ import java.awt.event.KeyEvent;
                 
                 if (key == KeyEvent.VK_W)
                 {
-                    System.out.println("Character Moving Up");
+                    //System.out.println("Character Moving Up");
+                    player.setDirection(0);
                     player.setVelY(-player.currentSpeed);
                     player.setVelX(0);
                 }
                 else if (key == KeyEvent.VK_A)
                 {
-                    System.out.println("Character Moving Left");
+                    //System.out.println("Character Moving Left")
+                    player.setDirection(1);
                     player.setVelX(-player.currentSpeed);
                     player.setVelY(0);
                 }
 
                 else if (key == KeyEvent.VK_S)
                 {
-                    System.out.println("Character Moving Down");
+                    //System.out.println("Character Moving Down");
+                    player.setDirection(2);
                     player.setVelY(player.currentSpeed);
                     player.setVelX(0);
                 }
 
                 else if (key == KeyEvent.VK_D)
                 {
-                    System.out.println("Character Moving Right");
+                    //System.out.println("Character Moving Right");
+                    player.setDirection(3);
                     player.setVelX(player.currentSpeed);
                     player.setVelY(0);
                 }
@@ -171,10 +175,24 @@ import java.awt.event.KeyEvent;
                     System.exit(1);
                 }
                 
+                //System.out.println(player.direction);
+                
             }
         }
 
         public void keyReleased(KeyEvent e) {
+            int key = e.getKeyCode();
+            
+            if (key == KeyEvent.VK_ENTER)
+                {
+                    for (WorldPhaseEntity obj : handler.colisionList)
+                    {
+                        WorldPhaseEntity temp = player.getInteractArea();
+                        if(obj.checkColision(temp))
+                            obj.interacted();
+                    }
+                }
+            
             player.setVelX(0);
             player.setVelY(0);
         }

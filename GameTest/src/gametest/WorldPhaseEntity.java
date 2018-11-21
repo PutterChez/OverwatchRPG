@@ -100,7 +100,7 @@ public class WorldPhaseEntity extends GameObject{
         return false;
     }
     
-    public void getOutOfHere(WorldPhaseEntity p)
+    public Coordinate getOutOfHere(WorldPhaseEntity p)
     {
         if(p.velX < 0 && p.velY == 0)
         {
@@ -122,6 +122,7 @@ public class WorldPhaseEntity extends GameObject{
             System.out.println("Colision Error!!!");
         
         p.updateCorner();
+        return new Coordinate(p.x, p.y);
     }
 
     @Override

@@ -21,6 +21,7 @@ public class Game extends Canvas implements Runnable {
 
     private Handler handler;
     private HUD playerHUD, enemyHUD;
+    WorldPhaseEntity player;
     
     //private WorldPhaseEntity player;
     //private boolean BattlePhase = false;
@@ -31,7 +32,7 @@ public class Game extends Canvas implements Runnable {
         new Window(WIDTH, HEIGHT, "Overwatch RPG Test", this);
 
         //WorldPhase Part-----------------------------------------------------------------------------------------------------
-        WorldPhaseEntity player = new WorldPhaseEntity(800, 450, ID.Player, 92, 50, "..\\resources\\characters\\RedSquare.png", "Genji");
+        player = new WorldPhaseEntity(800, 450, ID.Player, 92, 50, "..\\resources\\characters\\RedSquare.png", "Genji");
         Map testMap = new Map(-1400, -7200, ID.Background, 9600, 9600, "..\\resources\\maps\\open_world_extra_border.png");
         cam = new Camera(0, 0,ID.Camera,0,0,player);
         
@@ -175,6 +176,7 @@ public class Game extends Canvas implements Runnable {
 
     private void tick() {
         handler.tick();
+        handler.updateBattleObject(player);
     }
 
     private void render() {

@@ -145,8 +145,7 @@ import java.awt.event.KeyEvent;
                     player.setVelY(-playerMovement);
                     player.setVelX(0);
                 }
-
-                if (key == KeyEvent.VK_A)
+                else if (key == KeyEvent.VK_A)
                 {
                     System.out.println("Character Moving Left");
                     player.setVelX(-playerMovement);
@@ -167,9 +166,8 @@ import java.awt.event.KeyEvent;
                     player.setVelY(0);
                 }
                 
-
                 //Temporary exit game method
-                else if (key == KeyEvent.VK_ESCAPE) {
+                if (key == KeyEvent.VK_ESCAPE) {
                     System.exit(1);
                 }
                 

@@ -49,6 +49,15 @@ public class Handler {
             worldRender.render(g);
     }
     
+    public void updateBattleObject(WorldPhaseEntity player)
+    {
+        for(GameObject obj : battleRender.renderList)
+        {
+            obj.x += player.velX;
+            obj.y += player.velY;
+        }
+    }
+    
     public void addBattlePhaseObject(GameObject p)
     {
        battleRender.add(p);

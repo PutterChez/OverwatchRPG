@@ -56,9 +56,10 @@ public class Game extends Canvas implements Runnable {
         handler.addWorldColisionObject(box);
         handler.addWorldColisionObject(box2);
         
-        WorldPhaseEntity testNPC = new WorldPhaseEntity(400, 450, ID.NPC, 92, 50, "..\\resources\\characters\\genji_1.png", "Genji");
+        //Interaction Test----------------------------------------------------------------------------------------------------
+        WorldPhaseEntity testNPC = new WorldPhaseEntity(400, 450, ID.NPC, 92, 50, "..\\resources\\characters\\RedSquare.png", "Genji");
         handler.addWorldColisionObject(testNPC);
-
+        
 
         //BattlePhase Part----------------------------------------------------------------------------------------------------
         int posX1,posX2,posX3,posX4,posY1,posY2,posY3,posY4;
@@ -190,7 +191,7 @@ public class Game extends Canvas implements Runnable {
             if(obj.checkColision(player))
             {
                 obj.getOutOfHere(player);
-                System.out.println(obj);
+                //System.out.println(obj);
                 break;
             }
         }

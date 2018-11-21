@@ -104,19 +104,19 @@ public class WorldPhaseEntity extends GameObject{
     {
         if(p.velX < 0 && p.velY == 0)
         {
-            p.x = x + width + 10;
+            p.x = x + width + 1;
         }
         else if (p.velX > 0 && p.velY == 0)
         {
-            p.x = x - 10 - p.width;
+            p.x = x - 1 - p.width;
         }
         else if (p.velX == 0 && p.velY > 0)
         {
-            p.y = y - 10 - p.height;
+            p.y = y - 1 - p.height;
         }
         else if (p.velX == 0 && p.velY < 0)
         {
-            p.y = y + height + 10;
+            p.y = y + height + 1;
         }
         else
             System.out.println("Colision Error!!!");

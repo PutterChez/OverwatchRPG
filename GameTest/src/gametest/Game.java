@@ -97,7 +97,7 @@ public class Game extends Canvas implements Runnable {
         Menu menu = new Menu(WIDTH / 2 - 700,  600, ID.Menu, 1400, 300, "..\\resources\\maps\\hud_1.png");
         Menu popUp = new Menu(WIDTH / 2 - 170, 1000, ID.PopUp, 500, 300, "..\\resources\\maps\\hud_box.png");
         Menu cursor = new Menu(WIDTH / 2 + 150, 1000, ID.Cursor, 30, 30, "..\\resources\\ui\\cursor.png");
-        Menu background = new Menu(0, 0, ID.Background, WIDTH, HEIGHT, "..\\resources\\maps\\battle_bg.png");
+        Menu background = new Menu(20, 0, ID.Background, WIDTH, HEIGHT, "..\\resources\\maps\\battle_bg.png");
 
 
         //0 = North, 1 = West, 2 = South, 3 = East

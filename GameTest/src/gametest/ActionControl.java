@@ -24,6 +24,8 @@ import java.awt.event.KeyEvent;
         Party enemyParty;
         Player player;
         Map currentMap;
+        boolean PopUp = false;
+        int cursorPos = 0, finalPos = 660;
         
         public ActionControl(Handler handler, Party player, Party enemy, Player playerUnit) {
             this.handler = handler;
@@ -39,10 +41,8 @@ import java.awt.event.KeyEvent;
 
         public void keyPressed(KeyEvent e) {
             int key = e.getKeyCode();
-            boolean PopUp = false;
             if(handler.battlePhaseStatus())
             {
-                int cursorPos = 0, finalPos = 660;
                 int playerY = 450;
                 
                 /*Movement controls*/
@@ -76,7 +76,6 @@ import java.awt.event.KeyEvent;
 
                     if(tempObject.getId() == ID.Cursor){
                         System.out.println(cursorPos);
-                        System.out.println("PopUp: " + PopUp);
                         if(PopUp == true){
                             if(key == KeyEvent.VK_DOWN){
                                 if(cursorPos < 2)
@@ -90,7 +89,6 @@ import java.awt.event.KeyEvent;
                                     cursorPos--;
 
                                 finalPos += cursorPos * 50;
-                                System.out.println(finalPos);
                             }
 
                             if(key == KeyEvent.VK_A){

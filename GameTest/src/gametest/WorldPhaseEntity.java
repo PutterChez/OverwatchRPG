@@ -22,6 +22,10 @@ public class WorldPhaseEntity extends GameObject {
     protected String charName;
     protected Image charImg;
     protected String imageDirectory;
+    
+    protected LinkedList<String> dialogueList;
+    protected int currentDialogue = 0;
+    
     protected String dialogue;
     protected boolean interacted = false;
     
@@ -39,6 +43,8 @@ public class WorldPhaseEntity extends GameObject {
         cornerList.add(new Coordinate(x, y + height));
         cornerList.add(new Coordinate(x + width, y + height));
         enemyParty = new Party();
+        
+        dialogueList = new LinkedList<>();
     }
 
     public void tick() {
@@ -128,7 +134,21 @@ public class WorldPhaseEntity extends GameObject {
         dialogue = script;
     }
     
-    public String getDialogue(){ return dialogue; }
+    public String getDialogue(){ 
+        if(currentDialogue == dialogueList.size())
+        {
+            currentDialogue = 0;
+            return null;
+        }
+        
+        String text = dialogueList.get(currentDialogue);
+        currentDialogue++;
+        return text;
+    }
+    
+    public  String getDialogue(int index) { return dialogueList.get(index); }
+    
+    public void addDialogue(String script){ dialogueList.add(script); }
     
     public void addEnemyPartyMember(BattlePhaseEntity p, int position)
     {

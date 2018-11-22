@@ -7,6 +7,7 @@ package gametest;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 
 /**
  *
@@ -30,6 +31,7 @@ import java.awt.event.KeyEvent;
         
         boolean PopUp = false;
         boolean select = false;
+        ArrayList<Coordinate> coord_list;
         int cursorPos = 0,selectPos = 0, finalPosX = 950,finalPosY = 660;
         
         public ActionControl(Handler handler, Party player, Party enemy, Player playerUnit) {
@@ -37,6 +39,10 @@ import java.awt.event.KeyEvent;
             this.playerParty = player;
             this.enemyParty = enemy;
             this.player = playerUnit;
+            
+            coord_list = new ArrayList<Coordinate>();
+            coord_list.add(Game.POS1); coord_list.add(Game.POS2); coord_list.add(Game.POS3);
+            coord_list.add(Game.POS4); coord_list.add(Game.POS5); coord_list.add(Game.POS6);
         }
         
         public void setMap(Map e)
@@ -121,29 +127,32 @@ import java.awt.event.KeyEvent;
                         else if(select == true){
                             System.out.println("Enter Select Mode");
                             
-                            tempObject.setX(enemyParty.memberList.get(selectPos).entity.getX());
-                            tempObject.setY(enemyParty.memberList.get(selectPos).entity.getY());
-                            
                             if(key == KeyEvent.VK_RIGHT){
-                                if(selectPos < 6)
+                                if(selectPos < 5){
                                     selectPos++;
+                                }
+                                System.out.println(coord_list.get(selectPos).x + " , " + coord_list.get(selectPos).y);
                             }
                             
                             if(key == KeyEvent.VK_LEFT){
-                                if(selectPos > 1)
+                                if(selectPos > 0)
                                     selectPos--;
+                                System.out.println(coord_list.get(selectPos).x + " , " + coord_list.get(selectPos).y);
                             }
                             
                             if(key == KeyEvent.VK_E){
                                 System.out.println("Attacked " + enemyParty.memberList.get(selectPos).entity.getCharName());
                                 Action.attack(playerParty.memberList.get(0).entity, playerParty.memberList.get(0).entity.skillList.get(0), enemyParty.memberList.get(selectPos).entity);
                                 
+                            }
+                            
+                            if(key == KeyEvent.VK_BACK_SPACE){
                                 select = false;
                                 PopUp = true;
-                                
-                                tempObject.setX(playerX + 230);
-                                tempObject.setY(playerY + 230);
                             }
+                            
+                            tempObject.setX(coord_list.get(selectPos).x + 200);
+                            tempObject.setY(coord_list.get(selectPos).y + 200); 
                         }
                         
                         else{
@@ -151,7 +160,7 @@ import java.awt.event.KeyEvent;
                         }
                     }
                 }
-                if (key == KeyEvent.VK_ESCAPE) {
+                if (key == KeyEvent.VK_ESCAPE){
                     PopUp = false;
                     System.out.println("Exit Battle Phase");
                     handler.uninteracted();

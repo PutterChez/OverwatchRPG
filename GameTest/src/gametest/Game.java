@@ -37,7 +37,7 @@ public class Game extends Canvas implements Runnable {
         handler = new Handler();
 
         new Window(WIDTH, HEIGHT, "Overwatch RPG Test", this);
-
+        
         //WorldPhase Part-----------------------------------------------------------------------------------------------------
         player = new Player(800, 450, ID.Player, 50, 60, "..\\resources\\characters\\RedSquare.png", "Player");
         

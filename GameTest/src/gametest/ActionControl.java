@@ -49,7 +49,7 @@ import java.awt.event.KeyEvent;
                 for (int i = 0; i < handler.objectList.size(); i++) {
 
                     GameObject tempObject = handler.objectList.get(i);
-                    finalPos = playerY + 210;
+                    finalPos = playerY + 230;
                     
                     if(tempObject.getId() == ID.Player){
                         playerY = tempObject.getY();
@@ -81,14 +81,14 @@ import java.awt.event.KeyEvent;
                                 if(cursorPos < 2)
                                     cursorPos++;
 
-                                finalPos += cursorPos * 50;
+                                finalPos += cursorPos * 60;
                             }
 
                             else if(key == KeyEvent.VK_UP){
                                 if(cursorPos != 0)
                                     cursorPos--;
 
-                                finalPos += cursorPos * 50;
+                                finalPos += cursorPos * 60;
                             }
 
                             if(key == KeyEvent.VK_A){
@@ -121,7 +121,7 @@ import java.awt.event.KeyEvent;
                             }
                             tempObject.setY(finalPos);
                         }
-                         
+                       
                         else{
                             tempObject.setY(playerY + 450);
                         }

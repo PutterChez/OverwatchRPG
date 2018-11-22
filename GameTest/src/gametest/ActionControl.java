@@ -179,6 +179,11 @@ import java.awt.event.KeyEvent;
                         player.setVelX(player.currentSpeed);
                         player.setVelY(0);
                     }
+                    
+                    if (key == KeyEvent.VK_E)
+                    {
+                        System.out.println(player.x + " , " + player.y);
+                    }
                 }
                 
                 //Temporary exit game method

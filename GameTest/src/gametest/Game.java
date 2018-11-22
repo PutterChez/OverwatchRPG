@@ -48,13 +48,20 @@ public class Game extends Canvas implements Runnable {
         handler.addWorldPhaseObject(player);
         handler.addWorldPhaseObject(cam);
         
-        WorldPhaseEntity box = new WorldPhaseEntity(1000, 450, ID.Box, 200, 200, "..\\resources\\maps\\spawn_wall.png", "Box");
-        WorldPhaseEntity box2 = new WorldPhaseEntity(1500, 450, ID.Box, 200, 200, "..\\resources\\maps\\spawn_wall.png", "Box");
-
-        //handler.addWorldPhaseObject(box);
-        //handler.addWorldPhaseObject(box2);
-        handler.addWorldColisionObject(box);
-        handler.addWorldColisionObject(box2);
+        //String path = "..\\resources\\maps\\spawn_wall.png";
+        String path = null;
+        
+        WorldPhaseEntity spawn_wall_left = new WorldPhaseEntity(65, -300, ID.Box, 200, 1030, path, "Spawn_LeftWall");
+        WorldPhaseEntity spawn_wall_right = new WorldPhaseEntity(1480, -300, ID.Box, 200, 1030, path, "Spawn_RightWall");
+        WorldPhaseEntity spawn_wall_bottom = new WorldPhaseEntity(270, 740, ID.Box, 1200, 200, path, "Spawn_BottomWall");
+        WorldPhaseEntity spawn_fountains_left = new WorldPhaseEntity(720, 0, ID.Box, 50, 480, path, "Spawn_LeftFountains");
+        WorldPhaseEntity spawn_fountains_right = new WorldPhaseEntity(980, 0, ID.Box, 50, 480, path, "Spawn_RightFountains");
+        
+        handler.addWorldColisionObject(spawn_wall_left);
+        handler.addWorldColisionObject(spawn_wall_right);
+        handler.addWorldColisionObject(spawn_wall_bottom);
+        handler.addWorldColisionObject(spawn_fountains_left);
+        handler.addWorldColisionObject(spawn_fountains_right);
         
         //Interaction Test----------------------------------------------------------------------------------------------------
         WorldPhaseEntity testNPC = new NPC(400, 450, ID.NPC, 92, 50, "..\\resources\\characters\\RedSquare.png", "testNPC_01");

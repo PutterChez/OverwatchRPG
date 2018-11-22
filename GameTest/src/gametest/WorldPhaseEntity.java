@@ -22,6 +22,7 @@ public class WorldPhaseEntity extends GameObject {
     protected String charName;
     private Image charImg;
     private String imageDirectory;
+    boolean interacted = false;
 
     WorldPhaseEntity(int x, int y, ID id, int width, int height, String imageDirectory, String charName) {
         super(x, y, width, height, charName, id);
@@ -34,10 +35,6 @@ public class WorldPhaseEntity extends GameObject {
         cornerList.add(new Coordinate(x + width, y));
         cornerList.add(new Coordinate(x, y + height));
         cornerList.add(new Coordinate(x + width, y + height));
-    }
-
-    public void interacted() {
-        System.out.println("NPC do something :D");
     }
 
     public void tick() {
@@ -117,5 +114,11 @@ public class WorldPhaseEntity extends GameObject {
     public String toString() {
         return "WorldPhaseEntity: " + charName;
     }
+    
+    public void interacted(){ interacted = true; }
+    
+    public void unInteracted(){ interacted = false; }
+    
+    
 
 }

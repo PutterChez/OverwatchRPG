@@ -17,6 +17,7 @@ import java.awt.Graphics;
 
 //Handler for rendering objects retrived from an objectlist
 public class Handler {
+    boolean interacting = false;
     boolean battlePhase = false;
     boolean colision = false;
     
@@ -117,5 +118,9 @@ public class Handler {
     public void colisionDetected(){ colision = true; }
     public void colisionNotDetected(){ colision = false; }
     public boolean colisionStatus(){ return colision; }
+    
+    public void interacted(){ interacting = true; }
+    public void uninteracted() { interacting = false; }
+    public boolean interactStatus() { return interacting; }
 }
 

@@ -57,7 +57,9 @@ public class Game extends Canvas implements Runnable {
         handler.addWorldColisionObject(box2);
         
         //Interaction Test----------------------------------------------------------------------------------------------------
-        WorldPhaseEntity testNPC = new WorldPhaseEntity(400, 450, ID.NPC, 92, 50, "..\\resources\\characters\\RedSquare.png", "Genji");
+        //WorldPhaseEntity testNPC = new WorldPhaseEntity(400, 450, ID.NPC, 92, 50, "..\\resources\\characters\\RedSquare.png", "Genji");
+        NPC testNPC = new NPC(400, 450, ID.NPC, 92, 50, "..\\resources\\characters\\RedSquare.png", "testNPC_01");
+        testNPC.setDialogue("Hello, I'm the testNPC");
         handler.addWorldColisionObject(testNPC);
         
 

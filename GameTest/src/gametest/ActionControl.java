@@ -198,8 +198,19 @@ import java.awt.event.KeyEvent;
                     {
                         WorldPhaseEntity temp = player.getInteractArea();
                         if(obj.checkColision(temp)){
-                            if(obj.id == ID.NPC)
-                                obj.interacted();
+                            if(!handler.interactStatus())
+                            {
+                                if(obj.id == ID.NPC)
+                                {
+                                    handler.interacted();
+                                    obj.interacted();
+                                }
+                            }
+                            else
+                            {
+                                handler.uninteracted();
+                                obj.unInteracted();
+                            }
                         }
                     }
                 }

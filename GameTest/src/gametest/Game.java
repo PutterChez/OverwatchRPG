@@ -15,12 +15,12 @@ public class Game extends Canvas implements Runnable {
 
     public static final int WIDTH = 1600, HEIGHT = 900;
     
-    public static final Coordinate POS1 = new Coordinate(WIDTH/2 - 800,HEIGHT/2 - 500);
-    public static final Coordinate POS2 = new Coordinate(WIDTH/2 - 800,HEIGHT/2 - 300);
-    public static final Coordinate POS3 = new Coordinate(WIDTH/2 - 800,HEIGHT/2 - 100);
-    public static final Coordinate POS4 = new Coordinate(WIDTH/2 - 600,HEIGHT/2 - 500);
-    public static final Coordinate POS5 = new Coordinate(WIDTH/2 - 600,HEIGHT/2 - 300);
-    public static final Coordinate POS6 = new Coordinate(WIDTH/2 - 600,HEIGHT/2 - 100);
+    public static final Coordinate POS1 = new Coordinate(WIDTH/2 - 800,HEIGHT/2 - 475);
+    public static final Coordinate POS2 = new Coordinate(WIDTH/2 - 800,HEIGHT/2 - 275);
+    public static final Coordinate POS3 = new Coordinate(WIDTH/2 - 800,HEIGHT/2 - 75);
+    public static final Coordinate POS4 = new Coordinate(WIDTH/2 - 600,HEIGHT/2 - 475);
+    public static final Coordinate POS5 = new Coordinate(WIDTH/2 - 600,HEIGHT/2 - 275);
+    public static final Coordinate POS6 = new Coordinate(WIDTH/2 - 600,HEIGHT/2 - 75);
     
     private Camera cam;
     private Thread thread;

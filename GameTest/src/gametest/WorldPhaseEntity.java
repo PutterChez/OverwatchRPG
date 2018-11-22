@@ -23,7 +23,9 @@ public class WorldPhaseEntity extends GameObject {
     protected Image charImg;
     protected String imageDirectory;
     protected String dialogue;
-    boolean interacted = false;
+    protected boolean interacted = false;
+    
+    protected Party enemyParty;
 
     WorldPhaseEntity(int x, int y, ID id, int width, int height, String imageDirectory, String charName) {
         super(x, y, width, height, charName, id);
@@ -36,6 +38,7 @@ public class WorldPhaseEntity extends GameObject {
         cornerList.add(new Coordinate(x + width, y));
         cornerList.add(new Coordinate(x, y + height));
         cornerList.add(new Coordinate(x + width, y + height));
+        enemyParty = new Party();
     }
 
     public void tick() {
@@ -126,4 +129,11 @@ public class WorldPhaseEntity extends GameObject {
     }
     
     public String getDialogue(){ return dialogue; }
+    
+    public void addEnemyPartyMember(BattlePhaseEntity p, int position)
+    {
+        this.enemyParty.addMember(p, position);
+    }
+    
+    public Party getEnemyParty(){ return this.enemyParty; }
 }

@@ -67,6 +67,15 @@ public class Game extends Canvas implements Runnable {
         WorldPhaseEntity testNPC = new WorldPhaseEntity(400, 450, ID.NPC, 200, 200, "..\\resources\\characters\\hog_1.png", "Hog");
         testNPC.setDialogue("Whole Hog!!!");
         handler.addWorldColisionObject(testNPC);
+        
+        
+        //Battle NPC Test-----------------------------------------------------------------------------------------------------
+        WorldPhaseEntity testBattleNPC = new WorldPhaseEntity(1000, 450, ID.BattleNPC, 200, 200, "..\\resources\\characters\\dva_1.png", "DvaBattle");
+        testBattleNPC.setDialogue("Love DVA!!!");
+        handler.addWorldColisionObject(testBattleNPC);
+        
+        BattlePhaseEntity dva = new BattlePhaseEntity(POS1.x + 200, POS1.y + 200, ID.Enemy, 300, 300, "..\\resources\\characters\\dva_2.png", 250, 200, "Enemy_Dva", 40, 10, 100, 40);
+        testBattleNPC.enemyParty.addMember(dva, 0);
 
         //BattlePhase Part----------------------------------------------------------------------------------------------------
         int posX1,posX2,posX3,posX4,posY1,posY2,posY3,posY4;
@@ -141,6 +150,9 @@ public class Game extends Canvas implements Runnable {
         handler.addBattlePhaseObject(enemyHUD);
 
         ActionControl control = new ActionControl(handler, playerParty, enemyParty, player);
+        control.setPlayerHUD(playerHUD);
+        control.setEnemyHUD(enemyHUD);
+        
         this.addKeyListener(control);
 
     }

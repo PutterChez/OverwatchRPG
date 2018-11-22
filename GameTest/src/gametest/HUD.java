@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class HUD extends GameObject{
 
     private int nameX, nameY, velX, velY, speed, limit, gap;
-    private Party party;
+    protected Party party;
     
     public HUD(int x, int y, int nameX, int nameY,int speed,int limit,int gap, Party party) {
         super(x, y, 100, 100, "HUD", ID.Background);

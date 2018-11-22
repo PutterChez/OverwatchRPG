@@ -184,7 +184,7 @@ public class Player extends WorldPhaseEntity{
         charImg = new ImageIcon(imageDirectory).getImage();
         g.drawImage(charImg, x, y, width, height, null);
         
-        /*
+        /* Interaction Test
         switch(direction)
         {
             case North: interactW.render(g); break;

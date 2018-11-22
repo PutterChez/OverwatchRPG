@@ -6,6 +6,7 @@ package gametest;
 public enum ID {
     Default(),
     NPC(),
+    BattleNPC(),
     Ally(),
     Enemy(),
     Menu(),

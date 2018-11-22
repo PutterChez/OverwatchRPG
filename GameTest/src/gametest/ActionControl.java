@@ -24,6 +24,10 @@ import java.awt.event.KeyEvent;
         Party enemyParty;
         Player player;
         Map currentMap;
+        
+        HUD playerHUD;
+        HUD enemyHUD;
+        
         boolean PopUp = false;
         int cursorPos = 0, finalPos = 660;
         
@@ -38,6 +42,9 @@ import java.awt.event.KeyEvent;
         {
             this.currentMap = e;
         }
+        
+        public void setPlayerHUDParty(Party p) { this.playerHUD.party = p; }
+        public void setEnemyHUDParty(Party p) { this.enemyHUD.party = p; }
 
         public void keyPressed(KeyEvent e) {
             int key = e.getKeyCode();
@@ -130,6 +137,8 @@ import java.awt.event.KeyEvent;
                 if (key == KeyEvent.VK_ESCAPE) {
                     PopUp = false;
                     System.out.println("Exit Battle Phase");
+                    handler.uninteracted();
+                    player.unInteracted();
                     handler.battlePhaseOff();
                 }
                 //System.out.println(cursorPos);
@@ -213,6 +222,34 @@ import java.awt.event.KeyEvent;
                                     player.setDialogue(obj.getDialogue());
                                     player.interacted();
                                 }
+                                
+                                try
+                                {
+                                    if(obj.id == ID.BattleNPC)
+                                    {
+                                        handler.interacted();
+                                        player.setDialogue(obj.getDialogue());
+                                        player.interacted();
+                                        
+                                        for(int i = 0; i < enemyParty.memberList.size(); i++)
+                                        {
+                                            String tempName = enemyParty.memberList.get(i).entity.getCharName();
+                                            handler.removeObject(tempName);
+                                        }
+
+                                        enemyParty= obj.getEnemyParty();
+                                        setEnemyHUDParty(enemyParty);
+                                        
+                                        for(int i = 0; i < enemyParty.memberList.size(); i++)
+                                            handler.addBattlePhaseObject(enemyParty.memberList.get(i).entity);
+                                        
+                                        Thread.sleep(2000);
+                                        handler.battlePhaseOn();
+                                    }
+                                }
+                                catch(InterruptedException ex) {
+                                    Thread.currentThread().interrupt();
+                                }
                             }
                             else
                             {
@@ -226,4 +263,14 @@ import java.awt.event.KeyEvent;
             player.setVelX(0);
             player.setVelY(0);
         }
+
+    public void setPlayerHUD(HUD playerHUD) {
+        this.playerHUD = playerHUD;
+    }
+
+    public void setEnemyHUD(HUD enemyHUD) {
+        this.enemyHUD = enemyHUD;
+    }
+        
+        
  }

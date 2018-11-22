@@ -75,21 +75,23 @@ import java.awt.event.KeyEvent;
                     }
 
                     if(tempObject.getId() == ID.Cursor){
-                        System.out.println(cursorPos);
+                        //System.out.println(cursorPos);
                         if(PopUp == true){
                             if(key == KeyEvent.VK_DOWN){
                                 if(cursorPos < 2)
                                     cursorPos++;
-
-                                finalPos += cursorPos * 60;
+                                else if (cursorPos >= 2)
+                                    cursorPos = 0;
                             }
 
                             else if(key == KeyEvent.VK_UP){
-                                if(cursorPos != 0)
+                                if(cursorPos >= 0)
                                     cursorPos--;
-
-                                finalPos += cursorPos * 60;
                             }
+                            
+                            finalPos += cursorPos * 60;
+                            System.out.println("FinalPos: " +finalPos);
+                            tempObject.setY(finalPos);
 
                             if(key == KeyEvent.VK_A){
                                 if(cursorPos == 0){
@@ -117,9 +119,7 @@ import java.awt.event.KeyEvent;
                                 else if(cursorPos == 2){
                                     System.out.println("Run");
                                 }
-                             
                             }
-                            tempObject.setY(finalPos);
                         }
                        
                         else{
@@ -132,6 +132,7 @@ import java.awt.event.KeyEvent;
                     System.out.println("Exit Battle Phase");
                     handler.battlePhaseOff();
                 }
+                //System.out.println(cursorPos);
             }   
             else //WorldPhase part
             {

@@ -25,7 +25,7 @@ import java.awt.event.KeyEvent;
         Player player;
         Map currentMap;
         boolean PopUp = false;
-        int cursorPos = 0, finalPos = 660;
+        int cursorPos = 0, finalPosX = 950,finalPosY = 660;
         
         public ActionControl(Handler handler, Party player, Party enemy, Player playerUnit) {
             this.handler = handler;
@@ -49,7 +49,7 @@ import java.awt.event.KeyEvent;
                 for (int i = 0; i < handler.objectList.size(); i++) {
 
                     GameObject tempObject = handler.objectList.get(i);
-                    finalPos = playerY + 230;
+                    finalPosY = playerY + 230;
                     
                     if(tempObject.getId() == ID.Player){
                         playerY = tempObject.getY();
@@ -89,12 +89,13 @@ import java.awt.event.KeyEvent;
                                     cursorPos--;
                             }
                             
-                            finalPos += cursorPos * 60;
-                            System.out.println("FinalPos: " +finalPos);
-                            tempObject.setY(finalPos);
+                            finalPosY += cursorPos * 60;
+                            System.out.println("FinalPos: " +finalPosY);
+                            
 
                             if(key == KeyEvent.VK_A){
                                 if(cursorPos == 0){
+                                    /*
                                     System.out.println();
                                     System.out.println("Mccree HP: " +  playerParty.memberList.get(0).entity.getHP());
                                     System.out.println("Mccree MP: " +  playerParty.memberList.get(0).entity.getMP());
@@ -110,7 +111,9 @@ import java.awt.event.KeyEvent;
                                     System.out.println("Mccree HP: " +  playerParty.memberList.get(0).entity.getHP());
                                     System.out.println("Mccree MP: " +  playerParty.memberList.get(0).entity.getMP());
                                     System.out.println("Doomfist HP: " + enemyParty.memberList.get(0).entity.getHP());
-                                    System.out.println("Doomfist MP: " + enemyParty.memberList.get(0).entity.getMP());
+                                    System.out.println("Doomfist MP: " + enemyParty.memberList.get(0).entity.getMP());*/
+                                    finalPosX = Game.POS2.x + 200;
+                                    finalPosY = Game.POS2.y + 75;
 
                                 }
                                 else if(cursorPos == 1){
@@ -120,6 +123,8 @@ import java.awt.event.KeyEvent;
                                     System.out.println("Run");
                                 }
                             }
+                            tempObject.setY(finalPosY);
+                            tempObject.setX(finalPosX);
                         }
                        
                         else{

@@ -5,6 +5,8 @@
  */
 package gametest;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.util.ArrayList;
@@ -21,6 +23,9 @@ public class Player extends WorldPhaseEntity{
     protected Direction direction = Direction.North;
     protected WorldPhaseEntity interactW, interactA, interactS, interactD;
     protected LinkedList<WorldPhaseEntity> interactList; 
+    protected boolean interacting;
+    protected Menu dialogueBox;
+    protected String dialogue;
     
     Player(int x, int y, ID id, int width, int height, String imageDirectory, String charName) {
         super(x, y, id, width, height, imageDirectory, charName);
@@ -39,6 +44,9 @@ public class Player extends WorldPhaseEntity{
         interactA.x -= interactW.width; 
         interactS.y += height;
         interactD.x += width;
+        
+        //Please adjust x and y
+        dialogueBox = new Menu(x - 950, y + 200, ID.Default, 1400, 200, "..\\resources\\ui\\game\\menu.png");
     }
     
     public WorldPhaseEntity getInteractArea()
@@ -148,7 +156,31 @@ public class Player extends WorldPhaseEntity{
             case South: interactS.render(g); break;
             case East: interactD.render(g); break;
         }
+        
+        if(interacted)
+        {
+            dialogueBox.render(g);
+            g.setFont(new Font("Minecraft Bold", Font.PLAIN, 30));
+            g.setColor(Color.white);
+            
+            g.drawString(dialogue, dialogueBox.x + 100, dialogueBox.y + 100);
+        }
     }
+    
+    public void setDialogueBoxPosition(int x, int y)
+    {
+        dialogueBox.x = x;
+        dialogueBox.y = y;
+    }
+    
+    public void setDialogue(String s)
+    {
+        dialogue = s;
+    }
+    
+    public void interacted(){ interacted = true; }
+    
+    public void unInteracted(){ interacted = false; }
     
     
 }

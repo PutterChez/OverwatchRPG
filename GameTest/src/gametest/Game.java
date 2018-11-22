@@ -57,10 +57,12 @@ public class Game extends Canvas implements Runnable {
         handler.addWorldColisionObject(box2);
         
         //Interaction Test----------------------------------------------------------------------------------------------------
-        //WorldPhaseEntity testNPC = new WorldPhaseEntity(400, 450, ID.NPC, 92, 50, "..\\resources\\characters\\RedSquare.png", "Genji");
-        NPC testNPC = new NPC(400, 450, ID.NPC, 92, 50, "..\\resources\\characters\\RedSquare.png", "testNPC_01");
+        WorldPhaseEntity testNPC = new NPC(400, 450, ID.NPC, 92, 50, "..\\resources\\characters\\RedSquare.png", "testNPC_01");
         testNPC.setDialogue("Hello, I'm the testNPC");
         handler.addWorldColisionObject(testNPC);
+        
+        WorldPhaseEntity testNPC2 = new NPC(400, 450, ID.NPC, 92, 50, "..\\resources\\characters\\RedSquare.png", "testNPC_01");
+        
         
 
         //BattlePhase Part----------------------------------------------------------------------------------------------------
@@ -70,7 +72,7 @@ public class Game extends Canvas implements Runnable {
         posX3 = WIDTH/2 + 400; posY3 = HEIGHT/2 - 300;
         posX4 = WIDTH/2 - 50; posY4 = HEIGHT/2 - 300;
 
-        BattlePhaseEntity genji = new BattlePhaseEntity(posX2,posY2, ID.Ally, 400, 400, "..\\resources\\characters\\genji_1.png", 200, 100, "Genji", 40, 10, 100, 40);
+        BattlePhaseEntity genji = new BattlePhaseEntity(posX2,posY2, ID.Ally, 400, 400, "..\\resources\\characters\\genji_1a.png", 200, 100, "Genji", 40, 10, 100, 40);
         BattlePhaseEntity mccree = new BattlePhaseEntity(posX1,posY1, ID.Ally, 400, 400, "..\\resources\\characters\\mccree_1.png", 250, 200, "Mccree", 40, 10, 100, 40);
         BattlePhaseEntity mercy = new BattlePhaseEntity(posX3,posY3, ID.Ally, 400, 400, "..\\resources\\characters\\mercy_1.png", 200, 150, "Mercy", 40, 10, 100, 40);
         BattlePhaseEntity reinhardt = new BattlePhaseEntity(posX4,posY4, ID.Ally, 350, 350, "..\\resources\\characters\\rein_1.png", 500, 150, "Reinhardt", 40, 10, 100, 40);
@@ -201,7 +203,6 @@ public class Game extends Canvas implements Runnable {
         
         if(!colision)
             handler.updateBattleObject(player);
-        
     }
 
     private void render() {

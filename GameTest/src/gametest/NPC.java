@@ -20,12 +20,19 @@ public class NPC extends WorldPhaseEntity{
     NPC(int x, int y, ID id, int width, int height, String imageDirectory, String charName)
     {
         super(x, y, id, width, height, imageDirectory, charName);
-        dialogueBox = new Menu(-150, 700, ID.Default, 1400, 200, "..\\resources\\ui\\game\\menu.png");
+        dialogueBox = new Menu(-150, 700, ID.NPC, 1400, 200, "..\\resources\\ui\\game\\menu.png");
     }
     
-    protected void setDialogue(String script)
+    public void setDialogue(String script)
     {
         dialogue = script;
+    }
+    public String getDialogue(){ return dialogue; }
+    
+    public void setDialogueXY(int x, int y)
+    {
+        dialogueBox.x = x;
+        dialogueBox.y = y;
     }
     
     public void interacted()

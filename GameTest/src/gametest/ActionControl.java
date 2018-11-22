@@ -203,13 +203,14 @@ import java.awt.event.KeyEvent;
                                 if(obj.id == ID.NPC)
                                 {
                                     handler.interacted();
-                                    obj.interacted();
+                                    player.setDialogue(obj.getDialogue());
+                                    player.interacted();
                                 }
                             }
                             else
                             {
                                 handler.uninteracted();
-                                obj.unInteracted();
+                                player.unInteracted();
                             }
                         }
                     }

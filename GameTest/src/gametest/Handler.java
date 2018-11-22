@@ -39,8 +39,7 @@ public class Handler {
         for (GameObject obj : objectList)
         {
             obj.tick();
-        }
-        
+        }   
     }
 
     public void render(Graphics g) {

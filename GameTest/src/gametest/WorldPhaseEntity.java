@@ -20,8 +20,8 @@ public class WorldPhaseEntity extends GameObject {
 
     protected List<Coordinate> cornerList;
     protected String charName;
-    private Image charImg;
-    private String imageDirectory;
+    protected Image charImg;
+    protected String imageDirectory;
     protected String dialogue;
     boolean interacted = false;
 

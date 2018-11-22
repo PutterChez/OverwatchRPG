@@ -199,7 +199,7 @@ import java.awt.event.KeyEvent;
         public void keyReleased(KeyEvent e) {
             int key = e.getKeyCode();
             
-            if (key == KeyEvent.VK_ENTER)
+            if (key == KeyEvent.VK_SPACE)
                 {
                     for (WorldPhaseEntity obj : handler.colisionList)
                     {

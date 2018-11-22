@@ -39,7 +39,7 @@ public class Game extends Canvas implements Runnable {
         new Window(WIDTH, HEIGHT, "Overwatch RPG Test", this);
 
         //WorldPhase Part-----------------------------------------------------------------------------------------------------
-        player = new Player(800, 450, ID.Player, 50, 50, "..\\resources\\characters\\RedSquare.png", "Player");
+        player = new Player(800, 450, ID.Player, 50, 60, "..\\resources\\characters\\RedSquare.png", "Player");
         
         Map testMap = new Map(-1400, -7200, ID.Background, 9600, 9600, "..\\resources\\maps\\open_world_extra_border.png");
         cam = new Camera(0, 0,ID.Camera,0,0,player);
@@ -64,15 +64,9 @@ public class Game extends Canvas implements Runnable {
         handler.addWorldColisionObject(spawn_fountains_right);
         
         //Interaction Test----------------------------------------------------------------------------------------------------
-        WorldPhaseEntity testNPC = new NPC(400, 450, ID.NPC, 92, 50, "..\\resources\\characters\\RedSquare.png", "testNPC_01");
-        testNPC.setDialogue("Hello, I'm the testNPC");
+        WorldPhaseEntity testNPC = new WorldPhaseEntity(400, 450, ID.NPC, 200, 200, "..\\resources\\characters\\hog_1.png", "Hog");
+        testNPC.setDialogue("Whole Hog!!!");
         handler.addWorldColisionObject(testNPC);
-        
-        WorldPhaseEntity testNPC2 = new NPC(400, 600, ID.NPC, 92, 50, "..\\resources\\characters\\RedSquare.png", "testNPC_01");
-        testNPC2.setDialogue("Hello, I'm the 2nd testNPC");
-        handler.addWorldColisionObject(testNPC2);
-        
-        
 
         //BattlePhase Part----------------------------------------------------------------------------------------------------
         int posX1,posX2,posX3,posX4,posY1,posY2,posY3,posY4;

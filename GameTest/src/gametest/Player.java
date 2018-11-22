@@ -26,6 +26,7 @@ public class Player extends WorldPhaseEntity{
     protected boolean interacting;
     protected Menu dialogueBox;
     protected String dialogue;
+    protected LinkedList<String> imgList;
     
     Player(int x, int y, ID id, int width, int height, String imageDirectory, String charName) {
         super(x, y, id, width, height, imageDirectory, charName);
@@ -46,7 +47,25 @@ public class Player extends WorldPhaseEntity{
         interactD.x += width;
         
         //Please adjust x and y
-        dialogueBox = new Menu(x, y, ID.Default, 1400, 200, "..\\resources\\ui\\game\\menu.png");
+        dialogueBox = new Menu(x, y, ID.Default, 1400, 200, "..\\resources\\ui\\hud_box_full_res.png");
+        
+        imgList = new LinkedList<>();
+        //North
+        imgList.add("..\\resources\\player\\player_back_1.png");
+        imgList.add("..\\resources\\player\\player_back_2.png");
+        imgList.add("..\\resources\\player\\player_back_3.png");
+        //West
+        imgList.add("..\\resources\\player\\player_left_1.png");
+        imgList.add("..\\resources\\player\\player_left_2.png");
+        imgList.add("..\\resources\\player\\player_left_3.png");
+        //South
+        imgList.add("..\\resources\\player\\player_front_1.png");
+        imgList.add("..\\resources\\player\\player_front_2.png");
+        imgList.add("..\\resources\\player\\player_front_3.png");
+        //East
+        imgList.add("..\\resources\\player\\player_right_1.png");
+        imgList.add("..\\resources\\player\\player_right_2.png");
+        imgList.add("..\\resources\\player\\player_right_3.png");
     }
     
     public WorldPhaseEntity getInteractArea()
@@ -87,6 +106,11 @@ public class Player extends WorldPhaseEntity{
             direction = Direction.East;
         else
             System.out.println("Direcction Error");
+    }
+    
+    public void addPicture(String imgDirect)
+    {
+        imgList.add(imgDirect);
     }
     
     /*
@@ -149,8 +173,18 @@ public class Player extends WorldPhaseEntity{
     
     public void render(Graphics g)
     {
-        super.render(g);
+        switch(direction)
+        {
+            case North: imageDirectory = imgList.get(1); break;
+            case West: imageDirectory = imgList.get(4); break;
+            case South: imageDirectory = imgList.get(7); break;
+            case East: imageDirectory = imgList.get(10); break;
+        }
         
+        charImg = new ImageIcon(imageDirectory).getImage();
+        g.drawImage(charImg, x, y, width, height, null);
+        
+        /*
         switch(direction)
         {
             case North: interactW.render(g); break;
@@ -158,6 +192,7 @@ public class Player extends WorldPhaseEntity{
             case South: interactS.render(g); break;
             case East: interactD.render(g); break;
         }
+        */
         
         if(interacted)
         {

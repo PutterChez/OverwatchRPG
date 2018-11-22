@@ -128,7 +128,7 @@ import java.util.ArrayList;
                             System.out.println("Enter Select Mode");
                             
                             if(key == KeyEvent.VK_RIGHT){
-                                if(selectPos < 5){
+                                if(selectPos < enemyParty.memberList.size()-1){
                                     selectPos++;
                                 }
                                 System.out.println(coord_list.get(selectPos).x + " , " + coord_list.get(selectPos).y);

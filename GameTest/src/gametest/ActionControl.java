@@ -29,7 +29,8 @@ import java.awt.event.KeyEvent;
         HUD enemyHUD;
         
         boolean PopUp = false;
-        int cursorPos = 0, finalPosX = 950,finalPosY = 660;
+        boolean select = false;
+        int cursorPos = 0,selectPos = 0, finalPosX = 950,finalPosY = 660;
         
         public ActionControl(Handler handler, Party player, Party enemy, Player playerUnit) {
             this.handler = handler;
@@ -51,6 +52,7 @@ import java.awt.event.KeyEvent;
             if(handler.battlePhaseStatus())
             {
                 int playerY = 450;
+                int playerX = 740;
                 
                 /*Movement controls*/
                 for (int i = 0; i < handler.objectList.size(); i++) {
@@ -60,6 +62,7 @@ import java.awt.event.KeyEvent;
                     
                     if(tempObject.getId() == ID.Player){
                         playerY = tempObject.getY();
+                        playerX = tempObject.getX();
                     }
                     
                     if(tempObject.getId() == ID.PopUp){
@@ -82,7 +85,6 @@ import java.awt.event.KeyEvent;
                     }
 
                     if(tempObject.getId() == ID.Cursor){
-                        //System.out.println(cursorPos);
                         if(PopUp == true){
                             if(key == KeyEvent.VK_DOWN){
                                 if(cursorPos < 2)
@@ -97,30 +99,12 @@ import java.awt.event.KeyEvent;
                             }
                             
                             finalPosY += cursorPos * 60;
-                            System.out.println("FinalPos: " +finalPosY);
                             
 
                             if(key == KeyEvent.VK_A){
                                 if(cursorPos == 0){
-                                    /*
-                                    System.out.println();
-                                    System.out.println("Mccree HP: " +  playerParty.memberList.get(0).entity.getHP());
-                                    System.out.println("Mccree MP: " +  playerParty.memberList.get(0).entity.getMP());
-                                    System.out.println("Doomfist HP: " + enemyParty.memberList.get(0).entity.getHP());
-                                    System.out.println("Doomfist MP: " + enemyParty.memberList.get(0).entity.getMP());
-                                    System.out.println("---------------------------------------------------------");
-
-                                    System.out.println(playerParty.memberList.get(0).entity.charName + " use " 
-                                            + playerParty.memberList.get(0).entity.skillList.get(0).skillName + " to " + enemyParty.memberList.get(0).entity.charName );
-                                    Action.attack(playerParty.memberList.get(0).entity, playerParty.memberList.get(0).entity.skillList.get(0), enemyParty.memberList.get(0).entity);
-
-                                    System.out.println("After");
-                                    System.out.println("Mccree HP: " +  playerParty.memberList.get(0).entity.getHP());
-                                    System.out.println("Mccree MP: " +  playerParty.memberList.get(0).entity.getMP());
-                                    System.out.println("Doomfist HP: " + enemyParty.memberList.get(0).entity.getHP());
-                                    System.out.println("Doomfist MP: " + enemyParty.memberList.get(0).entity.getMP());*/
-                                    finalPosX = Game.POS2.x + 200;
-                                    finalPosY = Game.POS2.y + 75;
+                                    select = true;
+                                    PopUp = false;
 
                                 }
                                 else if(cursorPos == 1){
@@ -133,7 +117,35 @@ import java.awt.event.KeyEvent;
                             tempObject.setY(finalPosY);
                             tempObject.setX(finalPosX);
                         }
-                       
+                        
+                        else if(select == true){
+                            System.out.println("Enter Select Mode");
+                            
+                            tempObject.setX(enemyParty.memberList.get(selectPos).entity.getX());
+                            tempObject.setY(enemyParty.memberList.get(selectPos).entity.getY());
+                            
+                            if(key == KeyEvent.VK_RIGHT){
+                                if(selectPos < 6)
+                                    selectPos++;
+                            }
+                            
+                            if(key == KeyEvent.VK_LEFT){
+                                if(selectPos > 1)
+                                    selectPos--;
+                            }
+                            
+                            if(key == KeyEvent.VK_E){
+                                System.out.println("Attacked " + enemyParty.memberList.get(selectPos).entity.getCharName());
+                                Action.attack(playerParty.memberList.get(0).entity, playerParty.memberList.get(0).entity.skillList.get(0), enemyParty.memberList.get(selectPos).entity);
+                                
+                                select = false;
+                                PopUp = true;
+                                
+                                tempObject.setX(playerX + 230);
+                                tempObject.setY(playerY + 230);
+                            }
+                        }
+                        
                         else{
                             tempObject.setY(playerY + 450);
                         }

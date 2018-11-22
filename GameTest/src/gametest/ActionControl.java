@@ -7,6 +7,7 @@ package gametest;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 
 /**
  *
@@ -29,13 +30,19 @@ import java.awt.event.KeyEvent;
         HUD enemyHUD;
         
         boolean PopUp = false;
-        int cursorPos = 0, finalPosX = 950,finalPosY = 660;
+        boolean select = false;
+        ArrayList<Coordinate> coord_list;
+        int cursorPos = 0,selectPos = 0, finalPosX = 950,finalPosY = 660;
         
         public ActionControl(Handler handler, Party player, Party enemy, Player playerUnit) {
             this.handler = handler;
             this.playerParty = player;
             this.enemyParty = enemy;
             this.player = playerUnit;
+            
+            coord_list = new ArrayList<Coordinate>();
+            coord_list.add(Game.POS1); coord_list.add(Game.POS2); coord_list.add(Game.POS3);
+            coord_list.add(Game.POS4); coord_list.add(Game.POS5); coord_list.add(Game.POS6);
         }
         
         public void setMap(Map e)
@@ -51,6 +58,7 @@ import java.awt.event.KeyEvent;
             if(handler.battlePhaseStatus())
             {
                 int playerY = 450;
+                int playerX = 740;
                 
                 /*Movement controls*/
                 for (int i = 0; i < handler.objectList.size(); i++) {
@@ -60,6 +68,7 @@ import java.awt.event.KeyEvent;
                     
                     if(tempObject.getId() == ID.Player){
                         playerY = tempObject.getY();
+                        playerX = tempObject.getX();
                     }
                     
                     if(tempObject.getId() == ID.PopUp){
@@ -82,7 +91,6 @@ import java.awt.event.KeyEvent;
                     }
 
                     if(tempObject.getId() == ID.Cursor){
-                        //System.out.println(cursorPos);
                         if(PopUp == true){
                             if(key == KeyEvent.VK_DOWN){
                                 if(cursorPos < 2)
@@ -97,30 +105,12 @@ import java.awt.event.KeyEvent;
                             }
                             
                             finalPosY += cursorPos * 60;
-                            System.out.println("FinalPos: " +finalPosY);
                             
 
                             if(key == KeyEvent.VK_A){
                                 if(cursorPos == 0){
-                                    /*
-                                    System.out.println();
-                                    System.out.println("Mccree HP: " +  playerParty.memberList.get(0).entity.getHP());
-                                    System.out.println("Mccree MP: " +  playerParty.memberList.get(0).entity.getMP());
-                                    System.out.println("Doomfist HP: " + enemyParty.memberList.get(0).entity.getHP());
-                                    System.out.println("Doomfist MP: " + enemyParty.memberList.get(0).entity.getMP());
-                                    System.out.println("---------------------------------------------------------");
-
-                                    System.out.println(playerParty.memberList.get(0).entity.charName + " use " 
-                                            + playerParty.memberList.get(0).entity.skillList.get(0).skillName + " to " + enemyParty.memberList.get(0).entity.charName );
-                                    Action.attack(playerParty.memberList.get(0).entity, playerParty.memberList.get(0).entity.skillList.get(0), enemyParty.memberList.get(0).entity);
-
-                                    System.out.println("After");
-                                    System.out.println("Mccree HP: " +  playerParty.memberList.get(0).entity.getHP());
-                                    System.out.println("Mccree MP: " +  playerParty.memberList.get(0).entity.getMP());
-                                    System.out.println("Doomfist HP: " + enemyParty.memberList.get(0).entity.getHP());
-                                    System.out.println("Doomfist MP: " + enemyParty.memberList.get(0).entity.getMP());*/
-                                    finalPosX = Game.POS2.x + 200;
-                                    finalPosY = Game.POS2.y + 75;
+                                    select = true;
+                                    PopUp = false;
 
                                 }
                                 else if(cursorPos == 1){
@@ -133,13 +123,44 @@ import java.awt.event.KeyEvent;
                             tempObject.setY(finalPosY);
                             tempObject.setX(finalPosX);
                         }
-                       
+                        
+                        else if(select == true){
+                            System.out.println("Enter Select Mode");
+                            
+                            if(key == KeyEvent.VK_RIGHT){
+                                if(selectPos < enemyParty.memberList.size()-1){
+                                    selectPos++;
+                                }
+                                System.out.println(coord_list.get(selectPos).x + " , " + coord_list.get(selectPos).y);
+                            }
+                            
+                            if(key == KeyEvent.VK_LEFT){
+                                if(selectPos > 0)
+                                    selectPos--;
+                                System.out.println(coord_list.get(selectPos).x + " , " + coord_list.get(selectPos).y);
+                            }
+                            
+                            if(key == KeyEvent.VK_E){
+                                System.out.println("Attacked " + enemyParty.memberList.get(selectPos).entity.getCharName());
+                                Action.attack(playerParty.memberList.get(0).entity, playerParty.memberList.get(0).entity.skillList.get(0), enemyParty.memberList.get(selectPos).entity);
+                                
+                            }
+                            
+                            if(key == KeyEvent.VK_BACK_SPACE){
+                                select = false;
+                                PopUp = true;
+                            }
+                            
+                            tempObject.setX(coord_list.get(selectPos).x + 200);
+                            tempObject.setY(coord_list.get(selectPos).y + 200); 
+                        }
+                        
                         else{
                             tempObject.setY(playerY + 450);
                         }
                     }
                 }
-                if (key == KeyEvent.VK_ESCAPE) {
+                if (key == KeyEvent.VK_ESCAPE){
                     PopUp = false;
                     System.out.println("Exit Battle Phase");
                     handler.uninteracted();

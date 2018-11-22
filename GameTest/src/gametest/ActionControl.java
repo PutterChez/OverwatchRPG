@@ -148,35 +148,38 @@ import java.awt.event.KeyEvent;
                     handler.battlePhaseOn();
                 }
                 
-                if (key == KeyEvent.VK_W)
+                if(!handler.interactStatus())
                 {
-                    //System.out.println("Character Moving Up");
-                    player.setDirection(0);
-                    player.setVelY(-player.currentSpeed);
-                    player.setVelX(0);
-                }
-                else if (key == KeyEvent.VK_A)
-                {
-                    //System.out.println("Character Moving Left")
-                    player.setDirection(1);
-                    player.setVelX(-player.currentSpeed);
-                    player.setVelY(0);
-                }
+                    if (key == KeyEvent.VK_W)
+                    {
+                        //System.out.println("Character Moving Up");
+                        player.setDirection(0);
+                        player.setVelY(-player.currentSpeed);
+                        player.setVelX(0);
+                    }
+                    else if (key == KeyEvent.VK_A)
+                    {
+                        //System.out.println("Character Moving Left")
+                        player.setDirection(1);
+                        player.setVelX(-player.currentSpeed);
+                        player.setVelY(0);
+                    }
 
-                else if (key == KeyEvent.VK_S)
-                {
-                    //System.out.println("Character Moving Down");
-                    player.setDirection(2);
-                    player.setVelY(player.currentSpeed);
-                    player.setVelX(0);
-                }
+                    else if (key == KeyEvent.VK_S)
+                    {
+                        //System.out.println("Character Moving Down");
+                        player.setDirection(2);
+                        player.setVelY(player.currentSpeed);
+                        player.setVelX(0);
+                    }
 
-                else if (key == KeyEvent.VK_D)
-                {
-                    //System.out.println("Character Moving Right");
-                    player.setDirection(3);
-                    player.setVelX(player.currentSpeed);
-                    player.setVelY(0);
+                    else if (key == KeyEvent.VK_D)
+                    {
+                        //System.out.println("Character Moving Right");
+                        player.setDirection(3);
+                        player.setVelX(player.currentSpeed);
+                        player.setVelY(0);
+                    }
                 }
                 
                 //Temporary exit game method

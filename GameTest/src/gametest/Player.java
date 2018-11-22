@@ -46,7 +46,7 @@ public class Player extends WorldPhaseEntity{
         interactD.x += width;
         
         //Please adjust x and y
-        dialogueBox = new Menu(x - 950, y + 200, ID.Default, 1400, 200, "..\\resources\\ui\\game\\menu.png");
+        dialogueBox = new Menu(x, y, ID.Default, 1400, 200, "..\\resources\\ui\\game\\menu.png");
     }
     
     public WorldPhaseEntity getInteractArea()
@@ -143,6 +143,8 @@ public class Player extends WorldPhaseEntity{
         
         for (WorldPhaseEntity interact : interactList)
             interact.updateCorner();
+        
+        setDialogueBoxPosition(x - 700, y + 200);
     }
     
     public void render(Graphics g)

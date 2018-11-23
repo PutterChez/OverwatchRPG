@@ -45,6 +45,17 @@ public class Game extends Canvas implements Runnable {
         
         //WorldPhase Part-----------------------------------------------------------------------------------------------------
         player = new Player(800, 450, ID.Player, 50, 60, "..\\resources\\characters\\RedSquare.png", "Player");
+        Item test1 = new HPItem(ID.Item, "HP Potion1", 100);
+        Item test2 = new HPItem(ID.Item, "MP Potion1", 200);
+        Item test3 = new HPItem(ID.Item, "HP Potion2", 100);
+        Item test4 = new HPItem(ID.Item, "HP Potion3", 100);
+        Item test5 = new HPItem(ID.Item, "MP Potion2", 100);
+        
+        player.addItem(test1);
+        player.addItem(test2);
+        player.addItem(test3);
+        player.addItem(test4);
+        player.addItem(test5);
         
         Map testMap = new Map(-1400, -7200, ID.Background, 9600, 9600, "..\\resources\\maps\\open_world_extra_border_2.png");
         cam = new Camera(0, 0,ID.Camera,0,0,player);

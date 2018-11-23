@@ -168,7 +168,7 @@ import java.util.ArrayList;
                                     selectPos--;
                             }
                             
-                            tempObject.setX(finalPosX + coord_list.get(selectPos).x - 600);
+                            tempObject.setX(finalPosX + coord_list.get(selectPos).x - 700);
                             tempObject.setY(finalPosY + coord_list.get(selectPos).y - 550); 
                             
                             if(key == KeyEvent.VK_E){

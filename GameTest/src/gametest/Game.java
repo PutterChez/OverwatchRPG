@@ -15,17 +15,17 @@ public class Game extends Canvas implements Runnable {
 
     public static final int WIDTH = 1600, HEIGHT = 900;
 
-    public static final Coordinate POS1 = new Coordinate(WIDTH / 2 - 800, HEIGHT / 2 - 475);
-    public static final Coordinate POS2 = new Coordinate(WIDTH / 2 - 800, HEIGHT / 2 - 275);
-    public static final Coordinate POS3 = new Coordinate(WIDTH / 2 - 800, HEIGHT / 2 - 75);
-    public static final Coordinate POS4 = new Coordinate(WIDTH / 2 - 600, HEIGHT / 2 - 475);
-    public static final Coordinate POS5 = new Coordinate(WIDTH / 2 - 600, HEIGHT / 2 - 275);
-    public static final Coordinate POS6 = new Coordinate(WIDTH / 2 - 600, HEIGHT / 2 - 75);
+    public static final Coordinate POS1 = new Coordinate(WIDTH / 2 - 700, HEIGHT / 2 - 400);
+    public static final Coordinate POS2 = new Coordinate(WIDTH / 2 - 700, HEIGHT / 2 - 200);
+    public static final Coordinate POS3 = new Coordinate(WIDTH / 2 - 700, HEIGHT / 2 - 0);
+    public static final Coordinate POS4 = new Coordinate(WIDTH / 2 - 500, HEIGHT / 2 - 400);
+    public static final Coordinate POS5 = new Coordinate(WIDTH / 2 - 500, HEIGHT / 2 - 200);
+    public static final Coordinate POS6 = new Coordinate(WIDTH / 2 - 500, HEIGHT / 2 - 0);
 
-    public static final Coordinate P_POS1 = new Coordinate(WIDTH / 2 + 200, HEIGHT / 2 - 500);
-    public static final Coordinate P_POS2 = new Coordinate(WIDTH / 2 + 250, HEIGHT / 2 - 150);
-    public static final Coordinate P_POS3 = new Coordinate(WIDTH / 2 + 400, HEIGHT / 2 - 300);
-    public static final Coordinate P_POS4 = new Coordinate(WIDTH / 2 - 50, HEIGHT / 2 - 300);
+    public static final Coordinate P_POS1 = new Coordinate(WIDTH / 2 + 200, HEIGHT / 2 - 400);
+    public static final Coordinate P_POS2 = new Coordinate(WIDTH / 2 + 250, HEIGHT / 2 - 50);
+    public static final Coordinate P_POS3 = new Coordinate(WIDTH / 2 + 400, HEIGHT / 2 - 200);
+    public static final Coordinate P_POS4 = new Coordinate(WIDTH / 2 - 50, HEIGHT / 2 - 200);
 
     private Camera cam;
     private Thread thread;
@@ -151,17 +151,17 @@ public class Game extends Canvas implements Runnable {
         HPItem itemTest = new HPItem(ID.Item, "AtkBoost", 10);
 
         //BattlePhase Part----------------------------------------------------------------------------------------------------
-        BattlePhaseEntity genji = new BattlePhaseEntity(P_POS1.x, P_POS1.y, ID.Ally, 400, 400, "..\\resources\\characters_fixed\\genji_1.png", 200, 100, "Genji", 40, 10, 100, 40);
-        BattlePhaseEntity mccree = new BattlePhaseEntity(P_POS2.x, P_POS2.y, ID.Ally, 400, 400, "..\\resources\\characters_fixed\\mccree_1.png", 250, 200, "Mccree", 40, 10, 100, 40);
-        BattlePhaseEntity mercy = new BattlePhaseEntity(P_POS3.x, P_POS3.y, ID.Ally, 400, 400, "..\\resources\\characters_fixed\\mercy_1.png", 200, 150, "Mercy", 40, 10, 100, 40);
-        BattlePhaseEntity reinhardt = new BattlePhaseEntity(P_POS4.x, P_POS4.y, ID.Ally, 350, 350, "..\\resources\\characters_fixed\\rein_1.png", 500, 150, "Reinhardt", 40, 10, 100, 40);
+        BattlePhaseEntity genji = new BattlePhaseEntity(P_POS1.x, P_POS1.y, ID.Ally, 230, 230, "..\\resources\\characters_fixed\\genji_1.png", 200, 100, "Genji", 40, 10, 100, 40);
+        BattlePhaseEntity mccree = new BattlePhaseEntity(P_POS2.x, P_POS2.y, ID.Ally, 170, 170, "..\\resources\\characters_fixed\\mccree_1.png", 250, 200, "Mccree", 40, 10, 100, 40);
+        BattlePhaseEntity mercy = new BattlePhaseEntity(P_POS3.x, P_POS3.y, ID.Ally, 230, 230, "..\\resources\\characters_fixed\\mercy_1.png", 200, 150, "Mercy", 40, 10, 100, 40);
+        BattlePhaseEntity reinhardt = new BattlePhaseEntity(P_POS4.x, P_POS4.y, ID.Ally, 280, 250, "..\\resources\\characters_fixed\\rein_1.png", 500, 150, "Reinhardt", 40, 10, 100, 40);
 
-        BattlePhaseEntity doomfist = new BattlePhaseEntity(POS1.x, POS1.y, ID.Enemy, 300, 300, "..\\resources\\characters_fixed\\doom_2.png", 250, 200, "Doomfist", 40, 10, 100, 40);
-        BattlePhaseEntity widowmaker = new BattlePhaseEntity(POS2.x, POS2.y, ID.Enemy, 300, 300, "..\\resources\\characters_fixed\\widow_2.png", 200, 200, "Widowmaker", 40, 10, 100, 40);
-        BattlePhaseEntity reaper = new BattlePhaseEntity(POS3.x, POS3.y, ID.Enemy, 300, 300, "..\\resources\\characters_fixed\\reaper_2.png", 200, 200, "Reaper", 40, 10, 100, 40);
-        BattlePhaseEntity junkrat = new BattlePhaseEntity(POS4.x, POS4.y, ID.Enemy, 300, 300, "..\\resources\\characters_fixed\\jake_2.png", 200, 200, "Junkrat", 40, 10, 100, 40);
-        BattlePhaseEntity sombra = new BattlePhaseEntity(POS5.x, POS5.y, ID.Enemy, 300, 300, "..\\resources\\characters_fixed\\sombra_2.png", 200, 200, "Sombra", 40, 10, 100, 40);
-        BattlePhaseEntity bastion = new BattlePhaseEntity(POS6.x, POS6.y, ID.Enemy, 300, 300, "..\\resources\\characters_fixed\\bastion_2.png", 200, 200, "Bastion", 40, 10, 100, 40);
+        BattlePhaseEntity doomfist = new BattlePhaseEntity(POS1.x, POS1.y, ID.Enemy, 170, 170, "..\\resources\\characters_fixed\\doom_2.png", 250, 200, "Doomfist", 40, 10, 100, 40);
+        BattlePhaseEntity widowmaker = new BattlePhaseEntity(POS2.x, POS2.y, ID.Enemy, 170, 170, "..\\resources\\characters_fixed\\widow_2.png", 200, 200, "Widowmaker", 40, 10, 100, 40);
+        BattlePhaseEntity reaper = new BattlePhaseEntity(POS3.x, POS3.y, ID.Enemy, 170, 170, "..\\resources\\characters_fixed\\reaper_2.png", 200, 200, "Reaper", 40, 10, 100, 40);
+        BattlePhaseEntity junkrat = new BattlePhaseEntity(POS4.x, POS4.y, ID.Enemy, 170, 170, "..\\resources\\characters_fixed\\jake_2.png", 200, 200, "Junkrat", 40, 10, 100, 40);
+        BattlePhaseEntity sombra = new BattlePhaseEntity(POS5.x, POS5.y, ID.Enemy, 170, 170, "..\\resources\\characters_fixed\\sombra_2.png", 200, 200, "Sombra", 40, 10, 100, 40);
+        BattlePhaseEntity bastion = new BattlePhaseEntity(POS6.x, POS6.y, ID.Enemy, 170, 170, "..\\resources\\characters_fixed\\bastion_2.png", 200, 200, "Bastion", 40, 10, 100, 40);
 
         Skill swiftStrike = new Skill("Swift Strike", 50, 60, 80);
         swiftStrike.setDescription("Genji darts forward, slashing with his katana and passing through foes in his path");

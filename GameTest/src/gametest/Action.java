@@ -15,6 +15,7 @@ public class Action {
             attacker.MP -= attackerSkill.mpCost;
         } else {
             System.out.println(attacker.getCharName() + " missed!");
+            attacker.MP -= attackerSkill.mpCost;
             //Miss
             //Do something, IDK
         }

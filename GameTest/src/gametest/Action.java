@@ -9,10 +9,10 @@ public class Action {
         Random randHit = new Random(System.currentTimeMillis());
         int attackHitRate = attackerSkill.accuracy - target.evasion;
 
+        attacker.MP -= attackerSkill.mpCost;
         if (randHit.nextInt(100) < attackHitRate) {
             //Hit
-            target.HP -= (attacker.attack * ( attackerSkill.getAtkPower() / 100 ) - target.defense);
-            attacker.MP -= attackerSkill.mpCost;
+            target.HP -= (attacker.attack * (attackerSkill.getAtkPower() / 100) - target.defense);
         } else {
             System.out.println(attacker.getCharName() + " missed!");
             attacker.MP -= attackerSkill.mpCost;

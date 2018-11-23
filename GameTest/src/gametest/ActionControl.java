@@ -66,35 +66,29 @@ import java.util.ArrayList;
             int key = e.getKeyCode();
             if(handler.battlePhaseStatus())
             {
-                int playerY = 450;
-                int playerX = 740;
-                
                 /*Movement controls*/
                 for (int i = 0; i < handler.objectList.size(); i++) {
 
                     GameObject tempObject = handler.objectList.get(i);
-                    finalPosY = playerY + 230;
-                    
-                    if(tempObject.getId() == ID.Player){
-                        playerY = tempObject.getY();
-                        playerX = tempObject.getX();
-                    }
+                    finalPosY = player.getY() + 230;
+                    finalPosX = player.getX() + 50;
                     
                     if(tempObject.getId() == ID.PopUp){
                         if(PopUp == true){
                             if(key == KeyEvent.VK_BACK_SPACE){
-                                tempObject.setY(playerY + 550);
+                                System.out.println("Set Y: "  + (player.getY() + 550));
+                                tempObject.setY(player.getY() + 550);
                                 PopUp = false;
                             }
                         }
                         
                         else{
                             if(key == KeyEvent.VK_ENTER){
-                                tempObject.setY(playerY + 150);
+                                tempObject.setY(player.getY() + 150);
                                 PopUp = true;
                             }
                             else{
-                                tempObject.setY(playerY + 1000);
+                                tempObject.setY(player.getY() + 1000);
                             }
                         }
                     }
@@ -105,17 +99,16 @@ import java.util.ArrayList;
                             if(key == KeyEvent.VK_DOWN){
                                 if(cursorPos < 2)
                                     cursorPos++;
-                                else if (cursorPos >= 2)
+                                else if (cursorPos > 2)
                                     cursorPos = 0;
                             }
 
                             else if(key == KeyEvent.VK_UP){
-                                if(cursorPos >= 0)
+                                if(cursorPos > 0)
                                     cursorPos--;
                             }
                             
                             finalPosY += cursorPos * 60;
-                            finalPosX = playerX + 100;
 
                             if(key == KeyEvent.VK_A){
                                 if(cursorPos == 0){
@@ -153,7 +146,7 @@ import java.util.ArrayList;
                                 playerParty.memberList.get(k).entity.setSelectSkill(selectedSkill);                      
                                 attack_list.add(selectedSkill);
                             }
-                            tempObject.setY(playerY + 450);
+                            tempObject.setY(player.getY() + 450);
                             PopUp = false;
                             select = true;
                             playerSelect = false;
@@ -161,8 +154,8 @@ import java.util.ArrayList;
                         
                         else if(select == true){
                             System.out.println("Enter select");
-                            //tempObject.setY(playerY + 210);
-                            //tempObject.setX(playerX + 150);
+                            //tempObject.setY(player.getY() + 210);
+                            //tempObject.setX(player.getX() + 150);
                             
                             if(key == KeyEvent.VK_RIGHT){
                                 if(selectPos < enemyParty.memberList.size()-1){
@@ -175,7 +168,7 @@ import java.util.ArrayList;
                                     selectPos--;
                             }
                             
-                            tempObject.setX(finalPosX + coord_list.get(selectPos).x - 700);
+                            tempObject.setX(finalPosX + coord_list.get(selectPos).x - 600);
                             tempObject.setY(finalPosY + coord_list.get(selectPos).y - 550); 
                             
                             if(key == KeyEvent.VK_E){
@@ -185,12 +178,12 @@ import java.util.ArrayList;
                                 }
                                 selectPos = 0;
                                 select = false;
-                                tempObject.setY(playerY + 450);
+                                tempObject.setY(player.getY() + 450);
                             }
                         }
                         
                         else{
-                            tempObject.setY(playerY + 450);
+                            tempObject.setY(player.getY() + 450);
                         }
                     }
                 }

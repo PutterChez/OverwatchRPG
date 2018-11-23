@@ -19,7 +19,7 @@ import javax.swing.ImageIcon;
  * @author DELL
  */
 public class Player extends WorldPhaseEntity{
-    protected int currentSpeed = 4;
+    protected int currentSpeed = 6;
     protected Direction direction = Direction.North;
     protected WorldPhaseEntity interactW, interactA, interactS, interactD;
     protected LinkedList<WorldPhaseEntity> interactList; 
@@ -100,6 +100,11 @@ public class Player extends WorldPhaseEntity{
         return false;
     }
     */
+    
+    public void addItem(Item e)
+    {
+        inventory.addItem(e);
+    }
     
     public void setDirection(int side)
     {
@@ -211,9 +216,31 @@ public class Player extends WorldPhaseEntity{
             g.drawString(dialogue, dialogueBox.x + 100, dialogueBox.y + 100);
         }
         
+        //Render Inventory
         if(inventoryStatus)
         {
             inventory.itemViewer.render(g);
+            g.setFont(new Font("Minecraft Bold", Font.PLAIN, 30));
+            g.setColor(Color.white);
+            
+            
+            int posX = inventory.x + 325;
+            int posY = inventory.y + 300;
+            int rowCount = 0;
+            
+            for(Item e : inventory.itemList)
+            {
+                g.drawString(e.itemName, posX, posY);
+                posX += 400;
+                rowCount += 1;
+                if(rowCount == 3)
+                {
+                    rowCount = 0;
+                    posY += 65;
+                    posX = inventory.x + 325;
+                }
+            }
+            
         }
     }
     

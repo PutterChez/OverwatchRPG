@@ -45,6 +45,17 @@ public class Game extends Canvas implements Runnable {
         
         //WorldPhase Part-----------------------------------------------------------------------------------------------------
         player = new Player(800, 450, ID.Player, 50, 60, "..\\resources\\characters\\RedSquare.png", "Player");
+        Item test1 = new HPItem(ID.Item, "HP Potion1", 100);
+        Item test2 = new HPItem(ID.Item, "MP Potion1", 200);
+        Item test3 = new HPItem(ID.Item, "HP Potion2", 100);
+        Item test4 = new HPItem(ID.Item, "HP Potion3", 100);
+        Item test5 = new HPItem(ID.Item, "MP Potion2", 100);
+        
+        player.addItem(test1);
+        player.addItem(test2);
+        player.addItem(test3);
+        player.addItem(test4);
+        player.addItem(test5);
         
         Map testMap = new Map(-1400, -7200, ID.Background, 9600, 9600, "..\\resources\\maps\\open_world_extra_border_2.png");
         cam = new Camera(0, 0,ID.Camera,0,0,player);
@@ -60,17 +71,43 @@ public class Game extends Canvas implements Runnable {
         WorldPhaseEntity spawn_wall_left = new WorldPhaseEntity(65, -300, ID.Box, 200, 1030, path, "Spawn_LeftWall");
         WorldPhaseEntity spawn_wall_right = new WorldPhaseEntity(1480, -300, ID.Box, 200, 1030, path, "Spawn_RightWall");
         WorldPhaseEntity spawn_wall_bottom = new WorldPhaseEntity(270, 740, ID.Box, 1200, 200, path, "Spawn_BottomWall");
-        WorldPhaseEntity spawn_fountains_left = new WorldPhaseEntity(720, 0, ID.Box, 50, 480, path, "Spawn_LeftFountains");
-        WorldPhaseEntity spawn_fountains_right = new WorldPhaseEntity(980, 0, ID.Box, 50, 480, path, "Spawn_RightFountains");
+        WorldPhaseEntity spawn_fountains_left = new WorldPhaseEntity(720, 0, ID.Box, 45, 460, path, "Spawn_LeftFountains");
+        WorldPhaseEntity spawn_fountains_right = new WorldPhaseEntity(980, 0, ID.Box, 45, 460, path, "Spawn_RightFountains");
+        WorldPhaseEntity spawn_walls_top1 = new WorldPhaseEntity(266, -300, ID.Box, 440, 100, path, "Spawn_TopWall1");
+        WorldPhaseEntity spawn_walls_top2 = new WorldPhaseEntity(1036, -300, ID.Box, 440, 100, path, "Spawn_TopWall2");
+        
+        WorldPhaseEntity house1 = new WorldPhaseEntity(390, 80, ID.Box, 260, 300, path, "House1");
+        WorldPhaseEntity house2 = new WorldPhaseEntity(1100, 80, ID.Box, 245, 300, path, "House2");
+        WorldPhaseEntity house1_left_roof = new WorldPhaseEntity(340,125,ID.Box,55,130,"..\\resources\\maps\\nihon_roof_left.png","House1_Roof_Left");
+        WorldPhaseEntity house2_left_roof = new WorldPhaseEntity(1050,125,ID.Box,55,130,"..\\resources\\maps\\nihon_roof_left.png","House2_Roof_Left");
+        WorldPhaseEntity house1_right_roof = new WorldPhaseEntity(640,125,ID.Box,55,130,"..\\resources\\maps\\nihon_roof_right.png","House1_Roof_Right");
+        WorldPhaseEntity house2_right_roof = new WorldPhaseEntity(1350,125,ID.Box,55,130,"..\\resources\\maps\\nihon_roof_right.png","House2_Roof_Right");
         
         handler.addWorldColisionObject(spawn_wall_left);
         handler.addWorldColisionObject(spawn_wall_right);
         handler.addWorldColisionObject(spawn_wall_bottom);
         handler.addWorldColisionObject(spawn_fountains_left);
         handler.addWorldColisionObject(spawn_fountains_right);
+        handler.addWorldColisionObject(spawn_walls_top1);
+        handler.addWorldColisionObject(spawn_walls_top2);
+        
+        handler.addWorldColisionObject(house1);
+        handler.addWorldColisionObject(house2);
+        
+        handler.addWorldPhaseObject(house1_left_roof);
+        handler.addWorldPhaseObject(house2_left_roof);
+        handler.addWorldPhaseObject(house1_right_roof);
+        handler.addWorldPhaseObject(house2_right_roof);
+        
+        //Object Interaction
+        WorldPhaseEntity obj_box = new WorldPhaseEntity(275, 380, ID.NPC, 45, 70, "..\\\\resources\\\\maps\\\\spawn_wall.png", "obj_left_fountain");
+        obj_box.addDialogue("It's a fountain.");
+        obj_box.addDialogue("Don't try to drink the water.");
+        
+        handler.addWorldColisionObject(obj_box);
         
         //Interaction Test----------------------------------------------------------------------------------------------------
-        WorldPhaseEntity testNPC = new WorldPhaseEntity(400, 450, ID.NPC, 100, 100, "..\\resources\\characters_fixed\\hog_1.png", "Hog");
+        WorldPhaseEntity testNPC = new WorldPhaseEntity(420, 480, ID.NPC, 150, 150, "..\\resources\\characters_fixed\\hog_2.png", "Hog");
         testNPC.addDialogue("First Dialogue : Hello World");
         testNPC.addDialogue("Second Dialogue : Whole HOG !!!");
         testNPC.addDialogue("Third Dialogue: Hook!!!");
@@ -92,7 +129,6 @@ public class Game extends Canvas implements Runnable {
         //Item Test-----------------------------------------------------------------------------------------------------------
         HPItem itemTest = new HPItem(ID.Item, "AtkBoost", 10);
         
-
         //BattlePhase Part----------------------------------------------------------------------------------------------------
 
         BattlePhaseEntity genji = new BattlePhaseEntity(P_POS1.x,P_POS1.y, ID.Ally, 400, 400, "..\\resources\\characters\\genji_1a.png", 200, 100, "Genji", 40, 10, 100, 40);

@@ -64,11 +64,14 @@ public class Game extends Canvas implements Runnable {
         handler.addWorldColisionObject(spawn_fountains_right);
         
         //Interaction Test----------------------------------------------------------------------------------------------------
-        WorldPhaseEntity testNPC = new WorldPhaseEntity(400, 450, ID.NPC, 200, 200, "..\\resources\\characters\\hog_1.png", "Hog");
-        testNPC.addDialogue("First Dialogue : Hello Wolrd");
+        WorldPhaseEntity testNPC = new WorldPhaseEntity(400, 450, ID.NPC, 100, 100, "..\\resources\\characters_fixed\\hog_1.png", "Hog");
+        testNPC.addDialogue("First Dialogue : Hello World");
         testNPC.addDialogue("Second Dialogue : Whole HOG !!!");
+        testNPC.addDialogue("Third Dialogue: Hook!!!");
         handler.addWorldColisionObject(testNPC);
         
+        //Normal NPC can talk in long dialogue ( use addDialogue Method )
+        //Battle NPC must have only 1 dialuge ( use setDialogue Method )
         
         //Battle NPC Test-----------------------------------------------------------------------------------------------------
         WorldPhaseEntity testBattleNPC = new WorldPhaseEntity(1000, 450, ID.BattleNPC, 200, 200, "..\\resources\\characters\\dva_1.png", "DvaBattle");
@@ -79,6 +82,10 @@ public class Game extends Canvas implements Runnable {
         //Add Enemy into the Party
         BattlePhaseEntity dva = new BattlePhaseEntity(POS1.x + 200, POS1.y + 200, ID.Enemy, 300, 300, "..\\resources\\characters\\dva_2.png", 250, 200, "Enemy_Dva", 40, 10, 100, 40);
         testBattleNPC.addEnemyPartyMember(dva, 0);
+        
+        //Item Test-----------------------------------------------------------------------------------------------------------
+        HPItem itemTest = new HPItem(ID.Item, "AtkBoost");
+        
 
         //BattlePhase Part----------------------------------------------------------------------------------------------------
         int posX1,posX2,posX3,posX4,posY1,posY2,posY3,posY4;

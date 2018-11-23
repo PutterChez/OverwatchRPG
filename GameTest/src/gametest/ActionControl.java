@@ -306,12 +306,18 @@ import java.util.ArrayList;
                                             String tempName = enemyParty.memberList.get(i).entity.getCharName();
                                             handler.removeObject(tempName);
                                         }
-
+                                        
                                         enemyParty= obj.getEnemyParty();
                                         setEnemyHUDParty(enemyParty);
                                         
                                         for(int i = 0; i < enemyParty.memberList.size(); i++)
+                                        {
+                                            //Need to set each ObjectPosition somehow
+                                            enemyParty.memberList.get(i).entity.x += player.x - 800;
+                                            enemyParty.memberList.get(i).entity.y += player.y - 450;
+                                            
                                             handler.addBattlePhaseObject(enemyParty.memberList.get(i).entity);
+                                        }
                                         
                                         Thread.sleep(2000);
                                         handler.battlePhaseOn();

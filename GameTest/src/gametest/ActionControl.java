@@ -101,8 +101,6 @@ import java.util.ArrayList;
 
                     if(tempObject.getId() == ID.Cursor){
                         if(PopUp == true){
-                            finalPosX = 950; 
-                            finalPosY = 660;
                             
                             if(key == KeyEvent.VK_DOWN){
                                 if(cursorPos < 2)
@@ -162,6 +160,7 @@ import java.util.ArrayList;
                         }
                         
                         else if(select == true){
+                            System.out.println("Enter select");
                             //tempObject.setY(playerY + 210);
                             //tempObject.setX(playerX + 150);
                             
@@ -176,8 +175,8 @@ import java.util.ArrayList;
                                     selectPos--;
                             }
                             
-                            tempObject.setX(coord_list.get(selectPos).x + 200);
-                            tempObject.setY(coord_list.get(selectPos).y + 150); 
+                            tempObject.setX(finalPosX + coord_list.get(selectPos).x - 700);
+                            tempObject.setY(finalPosY + coord_list.get(selectPos).y - 550); 
                             
                             if(key == KeyEvent.VK_E){
                                 for(int k = 0; k < playerParty.memberList.size(); k++){

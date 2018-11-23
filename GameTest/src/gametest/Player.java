@@ -103,7 +103,14 @@ public class Player extends WorldPhaseEntity{
     
     public void addItem(Item e)
     {
+        if(inventory.itemList.size() >= 21)
+            System.out.println("Exceed Storage limit");
         inventory.addItem(e);
+    }
+    
+    public void removeItem(String name)
+    {
+        inventory.removeItem(name);
     }
     
     public void setDirection(int side)
@@ -225,7 +232,7 @@ public class Player extends WorldPhaseEntity{
             
             
             int posX = inventory.itemViewer.x + 200;
-            int posY = inventory.itemViewer.y + 300;
+            int posY = inventory.itemViewer.y + 250;
             int rowCount = 0;
             
             for(Item e : inventory.itemList)

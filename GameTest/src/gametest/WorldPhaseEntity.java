@@ -128,7 +128,7 @@ public class WorldPhaseEntity extends GameObject {
     public void interacted(){ interacted = true; }
     
     public void unInteracted(){ interacted = false; }
-    
+       
     public void setDialogue(String script)
     {
         dialogue = script;

@@ -252,8 +252,22 @@ import java.util.ArrayList;
                     if (key == KeyEvent.VK_E)
                     {
                         System.out.println(player.x + " , " + player.y);
-                    }
+                    }    
                 }
+                
+                if (key == KeyEvent.VK_I)
+                    {
+                        if(!handler.interactStatus())
+                        {
+                            handler.interacted();
+                            player.inventoryOpen();
+                        }
+                        else
+                        {
+                            handler.uninteracted();
+                            player.inventoryClose();
+                        }
+                    }
                 
                 //Temporary exit game method
                 if (key == KeyEvent.VK_ESCAPE) {
@@ -316,7 +330,7 @@ import java.util.ArrayList;
                                 if(obj.getId() == ID.NPC)
                                 {
                                     //Please becareful when edit below codes
-                                    //.getDialogue must be called exactly 1 time
+                                    //.getDialogue() must be called exactly 1 time
                                     String temp_String = obj.getDialogue();
                                     if(temp_String != null)
                                         player.setDialogue(temp_String);

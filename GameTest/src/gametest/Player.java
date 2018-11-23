@@ -23,10 +23,14 @@ public class Player extends WorldPhaseEntity{
     protected Direction direction = Direction.North;
     protected WorldPhaseEntity interactW, interactA, interactS, interactD;
     protected LinkedList<WorldPhaseEntity> interactList; 
+    
     protected boolean interacting;
+    protected boolean inventoryStatus = false;
+    
     protected Menu dialogueBox;
     protected String dialogue;
     protected LinkedList<String> imgList;
+    protected Inventory inventory;
     
     Player(int x, int y, ID id, int width, int height, String imageDirectory, String charName) {
         super(x, y, id, width, height, imageDirectory, charName);
@@ -66,6 +70,9 @@ public class Player extends WorldPhaseEntity{
         imgList.add("..\\resources\\player\\player_right_1.png");
         imgList.add("..\\resources\\player\\player_right_2.png");
         imgList.add("..\\resources\\player\\player_right_3.png");
+        
+        //Inventory
+        inventory = new Inventory();
     }
     
     public WorldPhaseEntity getInteractArea()
@@ -169,6 +176,7 @@ public class Player extends WorldPhaseEntity{
             interact.updateCorner();
         
         setDialogueBoxPosition(x - 700, y + 200);
+        inventory.setInventoryPosition(x - 675, y - 425);
     }
     
     public void render(Graphics g)
@@ -202,6 +210,11 @@ public class Player extends WorldPhaseEntity{
             
             g.drawString(dialogue, dialogueBox.x + 100, dialogueBox.y + 100);
         }
+        
+        if(inventoryStatus)
+        {
+            inventory.itemViewer.render(g);
+        }
     }
     
     public void setDialogueBoxPosition(int x, int y)
@@ -218,6 +231,9 @@ public class Player extends WorldPhaseEntity{
     public void interacted(){ interacted = true; }
     
     public void unInteracted(){ interacted = false; }
+    
+    public void inventoryOpen(){ inventoryStatus = true; }
+    public void inventoryClose(){ inventoryStatus = false; }
     
     
 }

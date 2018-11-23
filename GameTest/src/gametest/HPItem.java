@@ -12,9 +12,9 @@ package gametest;
 public class HPItem extends Item{
     protected int speed, evasion, defense, attack = 0;
     
-    HPItem(ID id, String name)
+    HPItem(ID id, String name, int price)
     {
-        super(id, name);
+        super(id, name, price);
     }
     
     public void setAttributeAtk(int e)

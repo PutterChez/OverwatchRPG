@@ -17,5 +17,7 @@ public enum ID {
     Box(),
     Item(),
     Colision(),
+    Merchant(),
+    WorldItem(),
     Camera();
 }

@@ -27,6 +27,10 @@ public class RenderModule {
         for (GameObject o : renderList)
             if(o.alive())
                 o.render(g);
+        
+        for (GameObject o : renderList)
+            if(o.getName().equals("SelectionCursor"))
+                o.render(g);
     }
     
     public void add(GameObject p)

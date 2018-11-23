@@ -344,6 +344,21 @@ class ActionControl extends KeyAdapter {
                 enemyParty.deleteMember(i);
             }
         }
+        
+        if (enemyParty.memberList.size() <= 0) {
+                PopUp = false;
+                System.out.println("Exit Battle Phase");
+                handler.battlePhaseOff();
+
+                for (WorldPhaseEntity obj : handler.colisionList) {
+                    WorldPhaseEntity temp = player.getInteractArea();
+                    if (obj.checkColision(temp)) {
+                        if (obj.getId() == ID.BattleNPC) {
+                            player.setDialogue(obj.getDialogue());
+                        }
+                    }
+                }
+            }
 
         player.setVelX(0);
         player.setVelY(0);

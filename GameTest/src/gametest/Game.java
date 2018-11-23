@@ -21,6 +21,11 @@ public class Game extends Canvas implements Runnable {
     public static final Coordinate POS4 = new Coordinate(WIDTH/2 - 600,HEIGHT/2 - 475);
     public static final Coordinate POS5 = new Coordinate(WIDTH/2 - 600,HEIGHT/2 - 275);
     public static final Coordinate POS6 = new Coordinate(WIDTH/2 - 600,HEIGHT/2 - 75);
+        
+    public static final Coordinate P_POS1 = new Coordinate(WIDTH/2 + 200,HEIGHT/2 - 500);
+    public static final Coordinate P_POS2 = new Coordinate(WIDTH/2 + 250,HEIGHT/2 - 150);
+    public static final Coordinate P_POS3 = new Coordinate(WIDTH/2 + 400,HEIGHT/2 - 300);
+    public static final Coordinate P_POS4 = new Coordinate(WIDTH/2 - 50,HEIGHT/2 - 300);
     
     private Camera cam;
     private Thread thread;
@@ -81,16 +86,11 @@ public class Game extends Canvas implements Runnable {
         testBattleNPC.addEnemyPartyMember(dva, 0);
 
         //BattlePhase Part----------------------------------------------------------------------------------------------------
-        int posX1,posX2,posX3,posX4,posY1,posY2,posY3,posY4;
-        posX1 = WIDTH/2 + 200; posY1 = HEIGHT/2 - 500;
-        posX2 = WIDTH/2 + 250; posY2 = HEIGHT/2 - 150;
-        posX3 = WIDTH/2 + 400; posY3 = HEIGHT/2 - 300;
-        posX4 = WIDTH/2 - 50; posY4 = HEIGHT/2 - 300;
 
-        BattlePhaseEntity genji = new BattlePhaseEntity(posX2,posY2, ID.Ally, 400, 400, "..\\resources\\characters\\genji_1a.png", 200, 100, "Genji", 40, 10, 100, 40);
-        BattlePhaseEntity mccree = new BattlePhaseEntity(posX1,posY1, ID.Ally, 400, 400, "..\\resources\\characters\\mccree_1.png", 250, 200, "Mccree", 40, 10, 100, 40);
-        BattlePhaseEntity mercy = new BattlePhaseEntity(posX3,posY3, ID.Ally, 400, 400, "..\\resources\\characters\\mercy_1.png", 200, 150, "Mercy", 40, 10, 100, 40);
-        BattlePhaseEntity reinhardt = new BattlePhaseEntity(posX4,posY4, ID.Ally, 350, 350, "..\\resources\\characters\\rein_1.png", 500, 150, "Reinhardt", 40, 10, 100, 40);
+        BattlePhaseEntity genji = new BattlePhaseEntity(P_POS1.x,P_POS1.y, ID.Ally, 400, 400, "..\\resources\\characters\\genji_1a.png", 200, 100, "Genji", 40, 10, 100, 40);
+        BattlePhaseEntity mccree = new BattlePhaseEntity(P_POS2.x,P_POS2.y, ID.Ally, 400, 400, "..\\resources\\characters\\mccree_1.png", 250, 200, "Mccree", 40, 10, 100, 40);
+        BattlePhaseEntity mercy = new BattlePhaseEntity(P_POS3.x,P_POS3.y, ID.Ally, 400, 400, "..\\resources\\characters\\mercy_1.png", 200, 150, "Mercy", 40, 10, 100, 40);
+        BattlePhaseEntity reinhardt = new BattlePhaseEntity(P_POS4.x,P_POS4.y, ID.Ally, 350, 350, "..\\resources\\characters\\rein_1.png", 500, 150, "Reinhardt", 40, 10, 100, 40);
 
         BattlePhaseEntity doomfist = new BattlePhaseEntity(POS1.x, POS1.y, ID.Enemy, 300, 300, "..\\resources\\characters\\doom_2.png", 250, 200, "Doomfist", 40, 10, 100, 40);
         BattlePhaseEntity widowmaker = new BattlePhaseEntity(POS2.x, POS2.y, ID.Enemy, 300, 300, "..\\resources\\characters\\widow_2.png", 200, 200, "Widowmaker", 40, 10, 100, 40);
@@ -136,7 +136,6 @@ public class Game extends Canvas implements Runnable {
         handler.addBattlePhaseObject(background);
         handler.addBattlePhaseObject(menu);
         handler.addBattlePhaseObject(popUp);
-        handler.addBattlePhaseObject(cursor);
 
         for (int i = 0; i < playerParty.memberList.size(); i++) {
             handler.addBattlePhaseObject(playerParty.memberList.get(i).entity);
@@ -151,7 +150,8 @@ public class Game extends Canvas implements Runnable {
         
         handler.addBattlePhaseObject(playerHUD);
         handler.addBattlePhaseObject(enemyHUD);
-
+        handler.addBattlePhaseObject(cursor);
+        
         ActionControl control = new ActionControl(handler, playerParty, enemyParty, player);
         control.setPlayerHUD(playerHUD);
         control.setEnemyHUD(enemyHUD);

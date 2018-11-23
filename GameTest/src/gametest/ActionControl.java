@@ -25,13 +25,16 @@ import java.util.ArrayList;
         Party enemyParty;
         Player player;
         Map currentMap;
+        BattlePhaseEntity selectedEntity;
         
         HUD playerHUD;
         HUD enemyHUD;
         
         boolean PopUp = false;
         boolean select = false;
+        boolean playerSelect = false;
         ArrayList<Coordinate> coord_list;
+        ArrayList<Coordinate> player_coord_list;
         int cursorPos = 0,selectPos = 0, finalPosX = 950,finalPosY = 660;
         
         public ActionControl(Handler handler, Party player, Party enemy, Player playerUnit) {
@@ -41,8 +44,12 @@ import java.util.ArrayList;
             this.player = playerUnit;
             
             coord_list = new ArrayList<Coordinate>();
+            player_coord_list = new ArrayList<Coordinate>();
             coord_list.add(Game.POS1); coord_list.add(Game.POS2); coord_list.add(Game.POS3);
             coord_list.add(Game.POS4); coord_list.add(Game.POS5); coord_list.add(Game.POS6);
+            
+            player_coord_list.add(Game.P_POS1); player_coord_list.add(Game.P_POS2); player_coord_list.add(Game.P_POS3);
+            player_coord_list.add(Game.P_POS4);
         }
         
         public void setMap(Map e)
@@ -109,7 +116,7 @@ import java.util.ArrayList;
 
                             if(key == KeyEvent.VK_A){
                                 if(cursorPos == 0){
-                                    select = true;
+                                    playerSelect = true;
                                     PopUp = false;
 
                                 }
@@ -124,33 +131,60 @@ import java.util.ArrayList;
                             tempObject.setX(finalPosX);
                         }
                         
-                        else if(select == true){
-                            System.out.println("Enter Select Mode");
+                        else if(playerSelect == true){
+                            System.out.println("Player Select Mode");
                             
-                            if(key == KeyEvent.VK_RIGHT){
-                                if(selectPos < enemyParty.memberList.size()-1){
-                                    selectPos++;
+                            if(playerSelect == true){
+                                if(key == KeyEvent.VK_RIGHT){
+                                    if(selectPos < playerParty.memberList.size()-1){
+                                        selectPos++;
+                                    }
                                 }
-                                System.out.println(coord_list.get(selectPos).x + " , " + coord_list.get(selectPos).y);
+
+                                if(key == KeyEvent.VK_LEFT){
+                                    if(selectPos > 0)
+                                        selectPos--;
+                                }
+
+                                if(key == KeyEvent.VK_E){
+                                    System.out.println(selectPos);
+                                    selectedEntity = playerParty.memberList.get(selectPos).entity;
+                                    select = true;
+                                    playerSelect = false;
+                                    selectPos = 0;
+                                }
+
+                                tempObject.setX(player_coord_list.get(selectPos).x + 200);
+                                tempObject.setY(player_coord_list.get(selectPos).y + 200); 
                             }
                             
+                            
+                            
+                            if(key == KeyEvent.VK_BACK_SPACE){
+                                    select = false;
+                                    PopUp = false;
+                                    tempObject.setY(playerY + 450);
+                            }
+                        }
+                        
+                        else if(select == true){
+                            System.out.println("Enemy Select Mode");
+                            if(key == KeyEvent.VK_RIGHT){
+                                if(selectPos < enemyParty.memberList.size()-1){
+                                   selectPos++;
+                                }
+                            }
+
                             if(key == KeyEvent.VK_LEFT){
                                 if(selectPos > 0)
                                     selectPos--;
-                                System.out.println(coord_list.get(selectPos).x + " , " + coord_list.get(selectPos).y);
                             }
-                            
+
                             if(key == KeyEvent.VK_E){
-                                System.out.println("Attacked " + enemyParty.memberList.get(selectPos).entity.getCharName());
-                                Action.attack(playerParty.memberList.get(0).entity, playerParty.memberList.get(0).entity.skillList.get(0), enemyParty.memberList.get(selectPos).entity);
-                                
+                                System.out.println(selectedEntity.getCharName() + " attacked " + enemyParty.memberList.get(selectPos).entity.getCharName());
+                                Action.attack(selectedEntity, selectedEntity.skillList.get(0), enemyParty.memberList.get(selectPos).entity);
                             }
-                            
-                            if(key == KeyEvent.VK_BACK_SPACE){
-                                select = false;
-                                PopUp = true;
-                            }
-                            
+
                             tempObject.setX(coord_list.get(selectPos).x + 200);
                             tempObject.setY(coord_list.get(selectPos).y + 200); 
                         }

@@ -120,7 +120,6 @@ import java.util.ArrayList;
                                 if(cursorPos == 0){
                                     playerSelect = true;
                                     PopUp = false;
-
                                 }
                                 else if(cursorPos == 1){
                                     System.out.println("Items");
@@ -135,7 +134,6 @@ import java.util.ArrayList;
                         
                         else if(playerSelect == true){
                             System.out.println("Player Select Mode");
-                            System.out.println(playerParty.memberList.size());
                             for(int k = 0; k < playerParty.memberList.size(); k++){
                                 System.out.println(playerParty.memberList.get(k).entity.getCharName());
                                 System.out.println("--------------------------------");
@@ -154,14 +152,11 @@ import java.util.ArrayList;
                                 Skill selectedSkill = playerParty.memberList.get(k).entity.skillList.get(0);
                                 playerParty.memberList.get(k).entity.setSelectSkill(selectedSkill);                      
                                 attack_list.add(selectedSkill);
-                                k++;
                             }
-
-                            playerSelect = false;
-                            select = true;
-                            PopUp = false;
                             tempObject.setY(playerY + 450);
-                            
+                            PopUp = false;
+                            select = true;
+                            playerSelect = false;
                         }
                         
                         else if(select == true){
@@ -176,16 +171,19 @@ import java.util.ArrayList;
                                 if(selectPos > 0)
                                     selectPos--;
                             }
-
+                            
+                            tempObject.setX(coord_list.get(selectPos).x + 200);
+                            tempObject.setY(coord_list.get(selectPos).y + 150); 
+                            
                             if(key == KeyEvent.VK_E){
-                                for(int k = 0; k < playerParty.memberList.size()-1; k++){
+                                for(int k = 0; k < playerParty.memberList.size(); k++){
                                     System.out.println(playerParty.memberList.get(k).entity.getCharName() + " attacked " + enemyParty.memberList.get(selectPos).entity.getCharName());
                                     Action.attack(playerParty.memberList.get(k).entity, playerParty.memberList.get(k).entity.getSelectSkill(), enemyParty.memberList.get(selectPos).entity);
                                 }
+                                selectPos = 0;
+                                select = false;
+                                tempObject.setY(playerY + 450);
                             }
-
-                            tempObject.setX(coord_list.get(selectPos).x + 200);
-                            tempObject.setY(coord_list.get(selectPos).y + 200); 
                         }
                         
                         else{

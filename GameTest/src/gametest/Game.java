@@ -144,24 +144,24 @@ public class Game extends Canvas implements Runnable {
         handler.addWorldColisionObject(testBattleNPC);
 
         //Add Enemy into the Party
-        BattlePhaseEntity dva = new BattlePhaseEntity(POS1.x + 200, POS1.y + 200, ID.Enemy, 300, 300, "..\\resources\\characters\\dva_2.png", 250, 200, "Enemy_Dva", 40, 10, 100, 40);
+        BattlePhaseEntity dva = new BattlePhaseEntity(POS1.x, POS1.y, ID.Enemy, 300, 300, "..\\resources\\characters_fixed\\dva_2.png", 250, 200, "Enemy_Dva", 40, 10, 100, 40);
         testBattleNPC.addEnemyPartyMember(dva, 0);
 
         //Item Test-----------------------------------------------------------------------------------------------------------
         HPItem itemTest = new HPItem(ID.Item, "AtkBoost", 10);
 
         //BattlePhase Part----------------------------------------------------------------------------------------------------
-        BattlePhaseEntity genji = new BattlePhaseEntity(P_POS1.x, P_POS1.y, ID.Ally, 400, 400, "..\\resources\\characters\\genji_1a.png", 200, 100, "Genji", 40, 10, 100, 40);
-        BattlePhaseEntity mccree = new BattlePhaseEntity(P_POS2.x, P_POS2.y, ID.Ally, 400, 400, "..\\resources\\characters\\mccree_1.png", 250, 200, "Mccree", 40, 10, 100, 40);
-        BattlePhaseEntity mercy = new BattlePhaseEntity(P_POS3.x, P_POS3.y, ID.Ally, 400, 400, "..\\resources\\characters\\mercy_1.png", 200, 150, "Mercy", 40, 10, 100, 40);
-        BattlePhaseEntity reinhardt = new BattlePhaseEntity(P_POS4.x, P_POS4.y, ID.Ally, 350, 350, "..\\resources\\characters\\rein_1.png", 500, 150, "Reinhardt", 40, 10, 100, 40);
+        BattlePhaseEntity genji = new BattlePhaseEntity(P_POS1.x, P_POS1.y, ID.Ally, 400, 400, "..\\resources\\characters_fixed\\genji_1.png", 200, 100, "Genji", 40, 10, 100, 40);
+        BattlePhaseEntity mccree = new BattlePhaseEntity(P_POS2.x, P_POS2.y, ID.Ally, 400, 400, "..\\resources\\characters_fixed\\mccree_1.png", 250, 200, "Mccree", 40, 10, 100, 40);
+        BattlePhaseEntity mercy = new BattlePhaseEntity(P_POS3.x, P_POS3.y, ID.Ally, 400, 400, "..\\resources\\characters_fixed\\mercy_1.png", 200, 150, "Mercy", 40, 10, 100, 40);
+        BattlePhaseEntity reinhardt = new BattlePhaseEntity(P_POS4.x, P_POS4.y, ID.Ally, 350, 350, "..\\resources\\characters_fixed\\rein_1.png", 500, 150, "Reinhardt", 40, 10, 100, 40);
 
-        BattlePhaseEntity doomfist = new BattlePhaseEntity(POS1.x, POS1.y, ID.Enemy, 300, 300, "..\\resources\\characters\\doom_2.png", 250, 200, "Doomfist", 40, 10, 100, 40);
-        BattlePhaseEntity widowmaker = new BattlePhaseEntity(POS2.x, POS2.y, ID.Enemy, 300, 300, "..\\resources\\characters\\widow_2.png", 200, 200, "Widowmaker", 40, 10, 100, 40);
-        BattlePhaseEntity reaper = new BattlePhaseEntity(POS3.x, POS3.y, ID.Enemy, 300, 300, "..\\resources\\characters\\reaper_2.png", 200, 200, "Reaper", 40, 10, 100, 40);
-        BattlePhaseEntity junkrat = new BattlePhaseEntity(POS4.x, POS4.y, ID.Enemy, 300, 300, "..\\resources\\characters\\jake_2.png", 200, 200, "Junkrat", 40, 10, 100, 40);
-        BattlePhaseEntity sombra = new BattlePhaseEntity(POS5.x, POS5.y, ID.Enemy, 300, 300, "..\\resources\\characters\\sombra_2.png", 200, 200, "Sombra", 40, 10, 100, 40);
-        BattlePhaseEntity bastion = new BattlePhaseEntity(POS6.x, POS6.y, ID.Enemy, 300, 300, "..\\resources\\characters\\bastion_2.png", 200, 200, "Bastion", 40, 10, 100, 40);
+        BattlePhaseEntity doomfist = new BattlePhaseEntity(POS1.x, POS1.y, ID.Enemy, 300, 300, "..\\resources\\characters_fixed\\doom_2.png", 250, 200, "Doomfist", 40, 10, 100, 40);
+        BattlePhaseEntity widowmaker = new BattlePhaseEntity(POS2.x, POS2.y, ID.Enemy, 300, 300, "..\\resources\\characters_fixed\\widow_2.png", 200, 200, "Widowmaker", 40, 10, 100, 40);
+        BattlePhaseEntity reaper = new BattlePhaseEntity(POS3.x, POS3.y, ID.Enemy, 300, 300, "..\\resources\\characters_fixed\\reaper_2.png", 200, 200, "Reaper", 40, 10, 100, 40);
+        BattlePhaseEntity junkrat = new BattlePhaseEntity(POS4.x, POS4.y, ID.Enemy, 300, 300, "..\\resources\\characters_fixed\\jake_2.png", 200, 200, "Junkrat", 40, 10, 100, 40);
+        BattlePhaseEntity sombra = new BattlePhaseEntity(POS5.x, POS5.y, ID.Enemy, 300, 300, "..\\resources\\characters_fixed\\sombra_2.png", 200, 200, "Sombra", 40, 10, 100, 40);
+        BattlePhaseEntity bastion = new BattlePhaseEntity(POS6.x, POS6.y, ID.Enemy, 300, 300, "..\\resources\\characters_fixed\\bastion_2.png", 200, 200, "Bastion", 40, 10, 100, 40);
 
         Skill swiftStrike = new Skill("Swift Strike", 50, 60, 80);
         swiftStrike.setDescription("Genji darts forward, slashing with his katana and passing through foes in his path");

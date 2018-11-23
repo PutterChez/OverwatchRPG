@@ -12,11 +12,13 @@ package gametest;
 public abstract class Item {
     protected ID id;
     protected String itemName;
+    protected int itemPrice;
     
-    Item(ID id, String name)
+    Item(ID id, String name, int price)
     {
         this.id = id;
         this.itemName = name;
+        this.itemPrice = price;
     }
     
     public abstract void use(BattlePhaseEntity e);

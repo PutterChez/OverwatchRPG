@@ -49,8 +49,9 @@ public class Game extends Canvas implements Runnable {
         Map testMap = new Map(-1400, -7200, ID.Background, 9600, 9600, "..\\resources\\maps\\open_world_extra_border_2.png");
         cam = new Camera(0, 0,ID.Camera,0,0,player);
         
+        
+        //handler.addWorldPhaseObject(player); has been move down to the end of function
         handler.addWorldPhaseObject(testMap);
-        handler.addWorldPhaseObject(player);
         handler.addWorldPhaseObject(cam);
         
         //String path = "..\\resources\\maps\\spawn_wall.png";
@@ -102,11 +103,11 @@ public class Game extends Canvas implements Runnable {
         handler.addWorldColisionObject(testNPC);
         
         //Normal NPC can talk in long dialogue ( use addDialogue Method )
-        //Battle NPC must have only 1 dialuge ( use setDialogue Method )
+        //Battle NPC must have only 1 dialuge ( use addDialogue Method only 1 time )
         
         //Battle NPC Test-----------------------------------------------------------------------------------------------------
         WorldPhaseEntity testBattleNPC = new WorldPhaseEntity(1000, 450, ID.BattleNPC, 200, 200, "..\\resources\\characters\\dva_1.png", "DvaBattle");
-        testBattleNPC.setDialogue("Love DVA!!!");
+        testBattleNPC.addDialogue("Love DVA!!!");
         handler.addWorldColisionObject(testBattleNPC);
         
         
@@ -115,7 +116,7 @@ public class Game extends Canvas implements Runnable {
         testBattleNPC.addEnemyPartyMember(dva, 0);
         
         //Item Test-----------------------------------------------------------------------------------------------------------
-        HPItem itemTest = new HPItem(ID.Item, "AtkBoost");
+        HPItem itemTest = new HPItem(ID.Item, "AtkBoost", 10);
         
         //BattlePhase Part----------------------------------------------------------------------------------------------------
 
@@ -198,6 +199,8 @@ public class Game extends Canvas implements Runnable {
         ActionControl control = new ActionControl(handler, playerParty, enemyParty, player);
         control.setPlayerHUD(playerHUD);
         control.setEnemyHUD(enemyHUD);
+        
+        handler.addWorldPhaseObject(player);
         
         this.addKeyListener(control);
 

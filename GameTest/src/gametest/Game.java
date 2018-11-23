@@ -144,7 +144,7 @@ public class Game extends Canvas implements Runnable {
         handler.addWorldColisionObject(testBattleNPC);
 
         //Add Enemy into the Party
-        BattlePhaseEntity dva = new BattlePhaseEntity(POS1.x, POS1.y, ID.Enemy, 300, 300, "..\\resources\\characters_fixed\\dva_2.png", 250, 200, "Enemy_Dva", 40, 10, 100, 40);
+        BattlePhaseEntity dva = new BattlePhaseEntity(POS1.x, POS1.y, ID.Enemy, 200, 200, "..\\resources\\characters_fixed\\dva_2.png", 250, 200, "Enemy_Dva", 40, 10, 100, 40);
         testBattleNPC.addEnemyPartyMember(dva, 0);
 
         //Item Test-----------------------------------------------------------------------------------------------------------

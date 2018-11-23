@@ -135,7 +135,7 @@ public class WorldPhaseEntity extends GameObject {
     }
     
     public String getDialogue(){ 
-        System.out.println(currentDialogue);
+        //System.out.println(currentDialogue);
         if(currentDialogue == dialogueList.size())
         {
             currentDialogue = 0;

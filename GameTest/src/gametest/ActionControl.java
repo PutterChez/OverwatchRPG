@@ -312,7 +312,7 @@ import java.util.ArrayList;
                                         
                                         for(int i = 0; i < enemyParty.memberList.size(); i++)
                                         {
-                                            //Need to set each ObjectPosition somehow
+                                            //800, 450 = PlayerOrigin (Spawn)
                                             enemyParty.memberList.get(i).entity.x += player.x - 800;
                                             enemyParty.memberList.get(i).entity.y += player.y - 450;
                                             

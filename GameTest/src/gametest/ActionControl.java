@@ -115,7 +115,7 @@ import java.util.ArrayList;
                             }
                             
                             finalPosY += cursorPos * 60;
-                            
+                            finalPosX = playerX + 100;
 
                             if(key == KeyEvent.VK_A){
                                 if(cursorPos == 0){

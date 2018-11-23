@@ -46,7 +46,7 @@ public class Game extends Canvas implements Runnable {
         //WorldPhase Part-----------------------------------------------------------------------------------------------------
         player = new Player(800, 450, ID.Player, 50, 60, "..\\resources\\characters\\RedSquare.png", "Player");
         
-        Map testMap = new Map(-1400, -7200, ID.Background, 9600, 9600, "..\\resources\\maps\\open_world_extra_border.png");
+        Map testMap = new Map(-1400, -7200, ID.Background, 9600, 9600, "..\\resources\\maps\\open_world_extra_border_2.png");
         cam = new Camera(0, 0,ID.Camera,0,0,player);
         
         handler.addWorldPhaseObject(testMap);

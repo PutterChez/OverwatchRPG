@@ -45,11 +45,11 @@ public class Game extends Canvas implements Runnable {
         
         //WorldPhase Part-----------------------------------------------------------------------------------------------------
         player = new Player(800, 450, ID.Player, 50, 60, "..\\resources\\characters\\RedSquare.png", "Player");
-        Item test1 = new HPItem(ID.Item, "HP Potion1", 100);
-        Item test2 = new HPItem(ID.Item, "MP Potion1", 200);
-        Item test3 = new HPItem(ID.Item, "HP Potion2", 100);
-        Item test4 = new HPItem(ID.Item, "HP Potion3", 100);
-        Item test5 = new HPItem(ID.Item, "MP Potion2", 100);
+        HPItem test1 = new HPItem(ID.Item, "HP Potion1", 100);
+        HPItem test2 = new HPItem(ID.Item, "MP Potion1", 200);
+        HPItem test3 = new HPItem(ID.Item, "HP Potion2", 100);
+        HPItem test4 = new HPItem(ID.Item, "HP Potion3", 100);
+        HPItem test5 = new HPItem(ID.Item, "MP Potion2", 100);
         
         player.addItem(test1);
         player.addItem(test2);

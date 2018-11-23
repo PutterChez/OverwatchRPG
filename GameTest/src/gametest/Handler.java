@@ -20,6 +20,7 @@ public class Handler {
     boolean interacting = false;
     boolean battlePhase = false;
     boolean colision = false;
+    boolean inventory = false;
     
     RenderModule battleRender;
     RenderModule worldRender;
@@ -121,5 +122,9 @@ public class Handler {
     public void interacted(){ interacting = true; }
     public void uninteracted() { interacting = false; }
     public boolean interactStatus() { return interacting; }
+    
+    public void inventoryOpen(){ inventory = true; }
+    public void inventoryClose() { inventory = false; }
+    public boolean inventoryStatus() { return inventory; }
 }
 

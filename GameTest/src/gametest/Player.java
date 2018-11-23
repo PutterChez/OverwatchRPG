@@ -224,8 +224,8 @@ public class Player extends WorldPhaseEntity{
             g.setColor(Color.white);
             
             
-            int posX = inventory.x + 325;
-            int posY = inventory.y + 300;
+            int posX = inventory.itemViewer.x + 200;
+            int posY = inventory.itemViewer.y + 300;
             int rowCount = 0;
             
             for(Item e : inventory.itemList)
@@ -237,7 +237,7 @@ public class Player extends WorldPhaseEntity{
                 {
                     rowCount = 0;
                     posY += 65;
-                    posX = inventory.x + 325;
+                    posX = inventory.itemViewer.x+ 200;
                 }
             }
             

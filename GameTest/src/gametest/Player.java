@@ -181,7 +181,7 @@ public class Player extends WorldPhaseEntity{
             interact.updateCorner();
         
         setDialogueBoxPosition(x - 700, y + 200);
-        inventory.setInventoryPosition(x - 675, y - 425);
+        inventory.setInventoryPosition(x - 675, y - 400);
     }
     
     public void render(Graphics g)

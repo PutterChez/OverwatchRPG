@@ -101,6 +101,9 @@ import java.util.ArrayList;
 
                     if(tempObject.getId() == ID.Cursor){
                         if(PopUp == true){
+                            finalPosX = 950; 
+                            finalPosY = 660;
+                            
                             if(key == KeyEvent.VK_DOWN){
                                 if(cursorPos < 2)
                                     cursorPos++;
@@ -133,7 +136,6 @@ import java.util.ArrayList;
                         }
                         
                         else if(playerSelect == true){
-                            System.out.println("Player Select Mode");
                             for(int k = 0; k < playerParty.memberList.size(); k++){
                                 System.out.println(playerParty.memberList.get(k).entity.getCharName());
                                 System.out.println("--------------------------------");
@@ -160,7 +162,9 @@ import java.util.ArrayList;
                         }
                         
                         else if(select == true){
-                            System.out.println("Enemy Select Mode");
+                            //tempObject.setY(playerY + 210);
+                            //tempObject.setX(playerX + 150);
+                            
                             if(key == KeyEvent.VK_RIGHT){
                                 if(selectPos < enemyParty.memberList.size()-1){
                                    selectPos++;

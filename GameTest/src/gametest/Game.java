@@ -51,12 +51,11 @@ public class Game extends Canvas implements Runnable {
         HPItem test5 = new HPItem(ID.Item, "MP Potion2", 100);
 
         //Inventory limit
-        // Not more than 21 items
+        // Not more than 20 items
         player.addItem(test1);
         player.addItem(test2);
         player.addItem(test3);
         player.addItem(test4);
-        player.addItem(test5);
         player.addItem(test5);
         player.addItem(test5);
         player.addItem(test5);
@@ -136,11 +135,13 @@ public class Game extends Canvas implements Runnable {
         testNPC.addDialogue("Roadhog: Hook!!!");
         handler.addWorldColisionObject(testNPC);
 
-        //Normal NPC can talk in long dialogue ( use addDialogue Method )
-        //Battle NPC must have only 1 dialuge ( use addDialogue Method only 1 time )
         //Battle NPC Test-----------------------------------------------------------------------------------------------------
         WorldPhaseEntity testBattleNPC = new WorldPhaseEntity(1000, 450, ID.BattleNPC, 150, 150, "..\\resources\\characters_world\\dva_1.png", "DvaBattle");
+        //Pre - Battle Dialogue
         testBattleNPC.addDialogue("Love DVA!!!");
+        //Post - Battle Dialogue
+        testBattleNPC.addDialogue("Dva 1 : 0 Enemy");
+        testBattleNPC.addDialogue("GitGud");
         handler.addWorldColisionObject(testBattleNPC);
 
         //Add Enemy into the Party

@@ -18,7 +18,7 @@ public class Inventory {
     Inventory()
     {
         itemList = new LinkedList<>();
-        itemViewer = new Menu(0, 0,ID.Default, 1400, 800, "..\\resources\\misc\\inventory.png");
+        itemViewer = new Menu(0, 0,ID.Default, 1000, 571, "..\\resources\\misc\\inventory.png");
         itemViewer.name = "PlayerInventory";
     }
     

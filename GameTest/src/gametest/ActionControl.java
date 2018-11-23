@@ -190,12 +190,20 @@ import java.util.ArrayList;
                         }
                     }
                 }
+                
+                //Change to battle finishd function later
                 if (key == KeyEvent.VK_ESCAPE){
                     PopUp = false;
                     System.out.println("Exit Battle Phase");
-                    handler.uninteracted();
-                    player.unInteracted();
                     handler.battlePhaseOff();
+                    
+                    for (WorldPhaseEntity obj : handler.colisionList)
+                    {
+                        WorldPhaseEntity temp = player.getInteractArea();
+                        if(obj.checkColision(temp))
+                            if(obj.getId() == ID.BattleNPC)
+                                player.setDialogue(obj.getDialogue());
+                    }
                 }
                 //System.out.println(cursorPos);
             }   
@@ -278,7 +286,7 @@ import java.util.ArrayList;
         public void keyReleased(KeyEvent e) {
             int key = e.getKeyCode();
             
-            if (key == KeyEvent.VK_SPACE)
+            if (key == KeyEvent.VK_SPACE && !handler.battlePhaseStatus())
                 {
                     for (WorldPhaseEntity obj : handler.colisionList)
                     {
@@ -318,7 +326,7 @@ import java.util.ArrayList;
                                             
                                             handler.addBattlePhaseObject(enemyParty.memberList.get(i).entity);
                                         }
-                                        
+                          
                                         Thread.sleep(2000);
                                         handler.battlePhaseOn();
                                     }
@@ -343,9 +351,15 @@ import java.util.ArrayList;
                                     }
                                 }
                                 else if (obj.getId() == ID.BattleNPC)
-                                {
-                                    handler.uninteracted();
-                                    player.unInteracted();
+                                {      
+                                    String temp_String = obj.getDialogue();
+                                    if(temp_String != null)
+                                        player.setDialogue(temp_String);
+                                    else
+                                    {
+                                        handler.uninteracted();
+                                        player.unInteracted();
+                                    }
                                 }
                             }
                         }

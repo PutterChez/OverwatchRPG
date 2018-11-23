@@ -34,10 +34,10 @@ public class Player extends WorldPhaseEntity{
     
     Player(int x, int y, ID id, int width, int height, String imageDirectory, String charName) {
         super(x, y, id, width, height, imageDirectory, charName);
-        interactW = new WorldPhaseEntity(x, y, ID.Default, width, height,"..\\resources\\characters\\BlueSquare.png", "interactArea" );
-        interactA = new WorldPhaseEntity(x, y, ID.Default, width, height,"..\\resources\\characters\\BlueSquare.png", "interactArea" );
-        interactS = new WorldPhaseEntity(x, y, ID.Default, width, height,"..\\resources\\characters\\BlueSquare.png", "interactArea" );
-        interactD = new WorldPhaseEntity(x, y, ID.Default, width, height,"..\\resources\\characters\\BlueSquare.png", "interactArea" );
+        interactW = new WorldPhaseEntity(x, y, ID.Default, 35, 35,"..\\resources\\characters\\BlueSquare.png", "interactArea" );
+        interactA = new WorldPhaseEntity(x, y, ID.Default, 35, 35,"..\\resources\\characters\\BlueSquare.png", "interactArea" );
+        interactS = new WorldPhaseEntity(x, y, ID.Default, 35, 35,"..\\resources\\characters\\BlueSquare.png", "interactArea" );
+        interactD = new WorldPhaseEntity(x, y, ID.Default, 35, 35,"..\\resources\\characters\\BlueSquare.png", "interactArea" );
         
         interactList = new LinkedList<>();
         interactList.add(interactW);
@@ -45,10 +45,12 @@ public class Player extends WorldPhaseEntity{
         interactList.add(interactS);
         interactList.add(interactD);
         
+        /*
         interactW.y -= interactW.height;
-        interactA.x -= interactW.width; 
-        interactS.y += height;
+        interactA.x -= interactW.width;
+        interactS.y += height; 
         interactD.x += width;
+        */
         
         //Please adjust x and y
         dialogueBox = new Menu(x, y, ID.Default, 1400, 200, "..\\resources\\ui\\hud_box_full_res.png");
@@ -175,20 +177,27 @@ public class Player extends WorldPhaseEntity{
         
         for (WorldPhaseEntity interact : interactList)
         {
-            interact.x = x;
-            interact.y = y;
+            interact.x = x + width/2 - width/4;
+            interact.y = y + height/2 - height/4;
         }
         
-        interactW.y -= interactW.height;
-        interactA.x -= interactW.width; 
-        interactS.y += height;
-        interactD.x += width;
+
+        interactW.y -= interactW.height + height/4;
+        interactW.x -= 5;
+        
+        interactA.x -= interactW.width + width/4 + 1; 
+        
+        interactS.y += height - height/4;
+        interactS.x -= 5;
+        
+        interactD.x += width - width/4 - 1;
+
         
         for (WorldPhaseEntity interact : interactList)
             interact.updateCorner();
         
         setDialogueBoxPosition(x - 700, y + 200);
-        inventory.setInventoryPosition(x - 675, y - 400);
+        inventory.setInventoryPosition(x - 500, y - 300);
     }
     
     public void render(Graphics g)
@@ -200,6 +209,9 @@ public class Player extends WorldPhaseEntity{
             case South: imageDirectory = imgList.get(7); break;
             case East: imageDirectory = imgList.get(10); break;
         }
+        
+        //RedSquare for testing
+        //imageDirectory = "..\\resources\\characters\\RedSquare.png";
         
         charImg = new ImageIcon(imageDirectory).getImage();
         g.drawImage(charImg, x, y, width, height, null);
@@ -227,24 +239,24 @@ public class Player extends WorldPhaseEntity{
         if(inventoryStatus)
         {
             inventory.itemViewer.render(g);
-            g.setFont(new Font("Minecraft Bold", Font.PLAIN, 30));
+            g.setFont(new Font("Minecraft Bold", Font.PLAIN, 25));
             g.setColor(Color.white);
             
             
-            int posX = inventory.itemViewer.x + 200;
-            int posY = inventory.itemViewer.y + 250;
+            int posX = inventory.itemViewer.x + 125;
+            int posY = inventory.itemViewer.y + 185;
             int rowCount = 0;
             
             for(Item e : inventory.itemList)
             {
                 g.drawString(e.itemName, posX, posY);
-                posX += 400;
+                posX += 200;
                 rowCount += 1;
-                if(rowCount == 3)
+                if(rowCount == 4)
                 {
                     rowCount = 0;
-                    posY += 65;
-                    posX = inventory.itemViewer.x+ 200;
+                    posY += 70;
+                    posX = inventory.itemViewer.x + 125;
                 }
             }
             

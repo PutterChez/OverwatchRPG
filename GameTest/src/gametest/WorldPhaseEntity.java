@@ -147,7 +147,7 @@ public class WorldPhaseEntity extends GameObject {
         return text;
     }
     
-    //public  String getDialogue(int index) { return dialogueList.get(index); }
+    public  String getDialogue(int index) { return dialogueList.get(index); }
     
     public void addDialogue(String script){ dialogueList.add(script); }
     

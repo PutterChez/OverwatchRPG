@@ -106,13 +106,24 @@ public class Game extends Canvas implements Runnable {
         BattlePhaseEntity sombra = new BattlePhaseEntity(POS5.x, POS5.y, ID.Enemy, 300, 300, "..\\resources\\characters\\sombra_2.png", 200, 200, "Sombra", 40, 10, 100, 40);
         BattlePhaseEntity bastion = new BattlePhaseEntity(POS6.x, POS6.y, ID.Enemy, 300, 300, "..\\resources\\characters\\bastion_2.png", 200, 200, "Bastion", 40, 10, 100, 40);
 
-        Skill swiftStrike = new Skill("Switft Strike",50,60,80);
-        swiftStrike.setDescription("Genji darts forward, slashing with his katana and passing through foes in his path.");
+        Skill swiftStrike = new Skill("Swift Strike",50,60,80);
+        swiftStrike.setDescription("Genji darts forward, slashing with his katana and passing through foes in his path");
+        Skill dragonBlade = new Skill("Dragonblade",120,100,200);
+        dragonBlade.setDescription("Genji brandishes his katana for a brief period of time");
         genji.addSkill(swiftStrike);
+        genji.addSkill(dragonBlade);
 
         Skill headShot = new Skill("Head Shot", 200,40, 200 );
-        headShot.setDescription("Mccree click the head");
+        headShot.setDescription("Mccree aims for the target's head and fires with accuracy");
         mccree.addSkill(headShot);
+        
+        Skill blaster = new Skill("Caduceus Blaster",20,10,100);
+        blaster.setDescription("Mercy shoots a round from her sidearm");
+        mercy.addSkill(blaster);
+        
+        Skill hammer = new Skill("Rocket Hammer",75,40,150);
+        hammer.setDescription("Reinhardt swings his hammer in a wide arc");
+        reinhardt.addSkill(hammer);
 
         Menu menu = new Menu(WIDTH / 2 - 700,  600, ID.Menu, 1400, 300, "..\\resources\\maps\\hud_1.png");
         Menu popUp = new Menu(WIDTH / 2 - 170, 1000, ID.PopUp, 500, 300, "..\\resources\\maps\\hud_box.png");

@@ -25,7 +25,6 @@ import java.util.ArrayList;
         Party enemyParty;
         Player player;
         Map currentMap;
-        BattlePhaseEntity selectedEntity;
         
         HUD playerHUD;
         HUD enemyHUD;
@@ -35,7 +34,8 @@ import java.util.ArrayList;
         boolean playerSelect = false;
         ArrayList<Coordinate> coord_list;
         ArrayList<Coordinate> player_coord_list;
-        int cursorPos = 0,selectPos = 0, finalPosX = 950,finalPosY = 660;
+        ArrayList<Skill> attack_list;
+        int cursorPos = 0,selectPos = 0,selectSkill = 0, finalPosX = 950,finalPosY = 660;
         
         public ActionControl(Handler handler, Party player, Party enemy, Player playerUnit) {
             this.handler = handler;
@@ -45,6 +45,8 @@ import java.util.ArrayList;
             
             coord_list = new ArrayList<Coordinate>();
             player_coord_list = new ArrayList<Coordinate>();
+            attack_list = new ArrayList<Skill>();
+            
             coord_list.add(Game.POS1); coord_list.add(Game.POS2); coord_list.add(Game.POS3);
             coord_list.add(Game.POS4); coord_list.add(Game.POS5); coord_list.add(Game.POS6);
             
@@ -133,38 +135,33 @@ import java.util.ArrayList;
                         
                         else if(playerSelect == true){
                             System.out.println("Player Select Mode");
-                            
-                            if(playerSelect == true){
-                                if(key == KeyEvent.VK_RIGHT){
-                                    if(selectPos < playerParty.memberList.size()-1){
-                                        selectPos++;
-                                    }
+                            System.out.println(playerParty.memberList.size());
+                            for(int k = 0; k < playerParty.memberList.size(); k++){
+                                System.out.println(playerParty.memberList.get(k).entity.getCharName());
+                                System.out.println("--------------------------------");
+                                
+                                //Print Skills
+                                for(int j = 0; j < playerParty.memberList.get(k).entity.skillList.size();j++){
+                                    Skill selectedSkill = playerParty.memberList.get(k).entity.skillList.get(j);
+                                    System.out.println(selectedSkill.getSkillName());
+                                    System.out.println(selectedSkill.getDescription());
+                                    System.out.println("********************************");
                                 }
-
-                                if(key == KeyEvent.VK_LEFT){
-                                    if(selectPos > 0)
-                                        selectPos--;
-                                }
-
-                                if(key == KeyEvent.VK_E){
-                                    System.out.println(selectPos);
-                                    selectedEntity = playerParty.memberList.get(selectPos).entity;
-                                    select = true;
-                                    playerSelect = false;
-                                    selectPos = 0;
-                                }
-
-                                tempObject.setX(player_coord_list.get(selectPos).x + 200);
-                                tempObject.setY(player_coord_list.get(selectPos).y + 200); 
+                                
+                                System.out.println("--------------------------------\n");
+                                
+                                //Select First Skill by automatic TEST
+                                Skill selectedSkill = playerParty.memberList.get(k).entity.skillList.get(0);
+                                playerParty.memberList.get(k).entity.setSelectSkill(selectedSkill);                      
+                                attack_list.add(selectedSkill);
+                                k++;
                             }
+
+                            playerSelect = false;
+                            select = true;
+                            PopUp = false;
+                            tempObject.setY(playerY + 450);
                             
-                            
-                            
-                            if(key == KeyEvent.VK_BACK_SPACE){
-                                    select = false;
-                                    PopUp = false;
-                                    tempObject.setY(playerY + 450);
-                            }
                         }
                         
                         else if(select == true){
@@ -181,8 +178,10 @@ import java.util.ArrayList;
                             }
 
                             if(key == KeyEvent.VK_E){
-                                System.out.println(selectedEntity.getCharName() + " attacked " + enemyParty.memberList.get(selectPos).entity.getCharName());
-                                Action.attack(selectedEntity, selectedEntity.skillList.get(0), enemyParty.memberList.get(selectPos).entity);
+                                for(int k = 0; k < playerParty.memberList.size()-1; k++){
+                                    System.out.println(playerParty.memberList.get(k).entity.getCharName() + " attacked " + enemyParty.memberList.get(selectPos).entity.getCharName());
+                                    Action.attack(playerParty.memberList.get(k).entity, playerParty.memberList.get(k).entity.getSelectSkill(), enemyParty.memberList.get(selectPos).entity);
+                                }
                             }
 
                             tempObject.setX(coord_list.get(selectPos).x + 200);

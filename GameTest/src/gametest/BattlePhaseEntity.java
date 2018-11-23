@@ -11,6 +11,7 @@ public class BattlePhaseEntity extends GameObject {
     protected int HP, MP, maxHP, maxMP, speed, evasion, defense, attack;
     protected String charName;
     protected ArrayList<Skill> skillList;
+    protected Skill selectSkill;
 
     private Image charImg;
     private String imageDirectory;
@@ -106,5 +107,13 @@ public class BattlePhaseEntity extends GameObject {
     
     public void addSkill(Skill skill){
         this.skillList.add(skill);
+    }
+
+    public Skill getSelectSkill() {
+        return selectSkill;
+    }
+
+    public void setSelectSkill(Skill selectSkill) {
+        this.selectSkill = selectSkill;
     }
 }

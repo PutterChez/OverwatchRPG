@@ -10,6 +10,7 @@ public class HUD extends GameObject{
 
     private int nameX, nameY, velX, velY, speed, limit, gap;
     protected Party party;
+    protected int originalSize;
     
     public HUD(int x, int y, int nameX, int nameY,int speed,int limit,int gap, Party party) {
         super(x, y, 100, 100, "HUD", ID.Background);
@@ -19,6 +20,7 @@ public class HUD extends GameObject{
         this.speed = speed;
         this.limit = limit;
         this.gap = gap;
+        this.originalSize = party.memberList.size();
     }
 
     public void tick() {
@@ -36,6 +38,10 @@ public class HUD extends GameObject{
             }
             else{
                 barY = y + gap * (i + 1)+ 8;
+                if((i == 3) && (originalSize > 4)){
+                    barX = x + 350;
+                    barY = y + gap * 1 + 8;
+                }
             }
             
             double hpPercent = (double)( party.memberList.get(i).entity.getHP()) / (double) (party.memberList.get(i).entity.getMaxHP());
@@ -65,6 +71,10 @@ public class HUD extends GameObject{
             }
             else{
                 barY = y + gap * (i + 1)+ 28;
+                if((i == 3) && (originalSize > 4)){
+                    barX = x + 350;
+                    barY = y + gap * 1 + 28;
+                }
             }
             
             double mpPercent = (double)( party.memberList.get(i).entity.getMP()) / (double) (party.memberList.get(i).entity.getMaxMP());

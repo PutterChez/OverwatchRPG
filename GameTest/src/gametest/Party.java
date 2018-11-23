@@ -6,6 +6,7 @@
 package gametest;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 
@@ -14,11 +15,11 @@ import java.util.List;
  * @author DELL
  */
 public class Party {
-    protected List<PartyMember> memberList;
+    protected LinkedList<PartyMember> memberList;
     
     Party()
     {
-        memberList = new ArrayList(){};
+        memberList = new LinkedList(){};
     }
     
     public void addMember(BattlePhaseEntity e, int position)

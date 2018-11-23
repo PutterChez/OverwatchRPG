@@ -338,7 +338,7 @@ class ActionControl extends KeyAdapter {
         }
 
         //Check for alive member of the enemyParty
-        for (int i = 0; i < playerParty.memberList.size(); i++) {
+        for (int i = 0; i < enemyParty.memberList.size(); i++) {
             if (!enemyParty.memberList.get(i).entity.alive()) {
                 System.out.println("Dead: " + enemyParty.memberList.get(i).entity.charName);
                 enemyParty.deleteMember(i);

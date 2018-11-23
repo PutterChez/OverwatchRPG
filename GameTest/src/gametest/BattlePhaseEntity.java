@@ -12,6 +12,7 @@ public class BattlePhaseEntity extends GameObject {
     protected String charName;
     protected ArrayList<Skill> skillList;
     protected Skill selectSkill;
+    protected boolean alive = true;
 
     private Image charImg;
     private String imageDirectory;
@@ -34,6 +35,12 @@ public class BattlePhaseEntity extends GameObject {
     }
 
     public void tick() {
+        if(HP <= 0)
+        {
+            HP = 0;
+            die();
+        }
+            
         //x += velX;
         //y += velY;
 
@@ -116,4 +123,7 @@ public class BattlePhaseEntity extends GameObject {
     public void setSelectSkill(Skill selectSkill) {
         this.selectSkill = selectSkill;
     }
-}
+    
+    public void die(){ alive = false; }
+    public boolean alive() {return alive;}
+} 

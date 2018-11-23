@@ -168,13 +168,16 @@ import java.util.ArrayList;
                                     selectPos--;
                             }
                             
-                            tempObject.setX(finalPosX + coord_list.get(selectPos).x - 700);
-                            tempObject.setY(finalPosY + coord_list.get(selectPos).y - 550); 
+                            tempObject.setX(finalPosX + enemyParty.memberList.get(selectPos).entity.getX() - 700);
+                            tempObject.setY(finalPosY + enemyParty.memberList.get(selectPos).entity.getY() - 550); 
                             
                             if(key == KeyEvent.VK_E){
                                 for(int k = 0; k < playerParty.memberList.size(); k++){
                                     System.out.println(playerParty.memberList.get(k).entity.getCharName() + " attacked " + enemyParty.memberList.get(selectPos).entity.getCharName());
                                     Action.attack(playerParty.memberList.get(k).entity, playerParty.memberList.get(k).entity.getSelectSkill(), enemyParty.memberList.get(selectPos).entity);
+                                    if(!enemyParty.memberList.get(k).entity.alive()){
+                                       enemyParty.deleteMember(0);
+                                    }
                                 }
                                 selectPos = 0;
                                 select = false;

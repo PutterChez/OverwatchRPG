@@ -25,7 +25,8 @@ public class RenderModule {
     public void render(Graphics g)
     {
         for (GameObject o : renderList)
-            o.render(g);
+            if(o.alive())
+                o.render(g);
     }
     
     public void add(GameObject p)

@@ -98,6 +98,15 @@ public abstract class GameObject {
         this.id = id;
     }
 
+    public void die()
+    {
+        ;
+    }
+    
+    public boolean alive()
+    {
+        return true;
+    }
     
 }
 

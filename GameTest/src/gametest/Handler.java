@@ -44,7 +44,7 @@ public class Handler {
     }
 
     public void render(Graphics g) {
-        if(battlePhase)
+        if(battlePhase)  
             battleRender.render(g);
         else
             worldRender.render(g);

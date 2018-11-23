@@ -377,7 +377,6 @@ import java.util.ArrayList;
             
             player.setVelX(0);
             player.setVelY(0);
-            handler.battleRender.bringToFront("SelectionCursor");
         }
 
     public void setPlayerHUD(HUD playerHUD) {

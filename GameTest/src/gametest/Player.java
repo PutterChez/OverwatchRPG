@@ -101,6 +101,18 @@ public class Player extends WorldPhaseEntity{
     }
     */
     
+    public void addItem(Item e)
+    {
+        if(inventory.itemList.size() >= 21)
+            System.out.println("Exceed Storage limit");
+        inventory.addItem(e);
+    }
+    
+    public void removeItem(String name)
+    {
+        inventory.removeItem(name);
+    }
+    
     public void setDirection(int side)
     {
         if (side == 0)
@@ -176,7 +188,7 @@ public class Player extends WorldPhaseEntity{
             interact.updateCorner();
         
         setDialogueBoxPosition(x - 700, y + 200);
-        inventory.setInventoryPosition(x - 675, y - 425);
+        inventory.setInventoryPosition(x - 675, y - 400);
     }
     
     public void render(Graphics g)
@@ -211,9 +223,31 @@ public class Player extends WorldPhaseEntity{
             g.drawString(dialogue, dialogueBox.x + 100, dialogueBox.y + 100);
         }
         
+        //Render Inventory
         if(inventoryStatus)
         {
             inventory.itemViewer.render(g);
+            g.setFont(new Font("Minecraft Bold", Font.PLAIN, 30));
+            g.setColor(Color.white);
+            
+            
+            int posX = inventory.itemViewer.x + 200;
+            int posY = inventory.itemViewer.y + 250;
+            int rowCount = 0;
+            
+            for(Item e : inventory.itemList)
+            {
+                g.drawString(e.itemName, posX, posY);
+                posX += 400;
+                rowCount += 1;
+                if(rowCount == 3)
+                {
+                    rowCount = 0;
+                    posY += 65;
+                    posX = inventory.itemViewer.x+ 200;
+                }
+            }
+            
         }
     }
     

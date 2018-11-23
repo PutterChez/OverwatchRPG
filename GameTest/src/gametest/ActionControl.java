@@ -250,14 +250,14 @@ import java.util.ArrayList;
                 
                 if (key == KeyEvent.VK_I)
                     {
-                        if(!handler.interactStatus())
+                        if(!handler.interactStatus() && !handler.inventoryStatus())
                         {
-                            handler.interacted();
+                            handler.inventoryOpen();
                             player.inventoryOpen();
                         }
-                        else
+                        else if (!handler.interactStatus() && handler.inventoryStatus())
                         {
-                            handler.uninteracted();
+                            handler.inventoryClose();
                             player.inventoryClose();
                         }
                     }

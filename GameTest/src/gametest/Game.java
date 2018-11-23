@@ -118,23 +118,28 @@ public class Game extends Canvas implements Runnable {
         handler.addWorldPhaseObject(house2_right_roof);
 
         //Object Interaction
-        WorldPhaseEntity obj_box = new WorldPhaseEntity(275, 380, ID.NPC, 45, 70, "..\\\\resources\\\\maps\\\\spawn_wall.png", "obj_left_fountain");
-        obj_box.addDialogue("It's a fountain.");
-        obj_box.addDialogue("Don't try to drink the water.");
+        WorldPhaseEntity obj_box = new WorldPhaseEntity(275, 380, ID.NPC, 45, 70, null, "obj_left_fountain");
+        obj_box.addDialogue("It's Roadhog's fountain.");
+        obj_box.addDialogue("It seems like the water hasn't been changed in days.");
 
         handler.addWorldColisionObject(obj_box);
+        
+        WorldPhaseEntity obj_box2 = new WorldPhaseEntity(1440, 380, ID.NPC, 45, 70, "..\\\\resources\\\\maps\\\\spawn_wall.png", "obj_right_fountain");
+        obj_box2.addDialogue("It's DVA's fountain.");
+        obj_box2.addDialogue("The water looks very clear.");
 
+        handler.addWorldColisionObject(obj_box2);
         //Interaction Test----------------------------------------------------------------------------------------------------
         WorldPhaseEntity testNPC = new WorldPhaseEntity(420, 480, ID.NPC, 150, 150, "..\\resources\\characters_fixed\\hog_2.png", "Hog");
-        testNPC.addDialogue("First Dialogue : Hello World");
-        testNPC.addDialogue("Second Dialogue : Whole HOG !!!");
-        testNPC.addDialogue("Third Dialogue: Hook!!!");
+        testNPC.addDialogue("Roadhog : Hello World");
+        testNPC.addDialogue("Roadhog: Whole HOG !!!");
+        testNPC.addDialogue("Roadhog: Hook!!!");
         handler.addWorldColisionObject(testNPC);
 
         //Normal NPC can talk in long dialogue ( use addDialogue Method )
         //Battle NPC must have only 1 dialuge ( use addDialogue Method only 1 time )
         //Battle NPC Test-----------------------------------------------------------------------------------------------------
-        WorldPhaseEntity testBattleNPC = new WorldPhaseEntity(1000, 450, ID.BattleNPC, 200, 200, "..\\resources\\characters\\dva_1.png", "DvaBattle");
+        WorldPhaseEntity testBattleNPC = new WorldPhaseEntity(1000, 450, ID.BattleNPC, 150, 150, "..\\resources\\characters_world\\dva_1.png", "DvaBattle");
         testBattleNPC.addDialogue("Love DVA!!!");
         handler.addWorldColisionObject(testBattleNPC);
 

@@ -168,8 +168,17 @@ import java.util.ArrayList;
                                     selectPos--;
                             }
                             
-                            tempObject.setX(finalPosX + enemyParty.memberList.get(selectPos).entity.getX() - 700);
-                            tempObject.setY(finalPosY + enemyParty.memberList.get(selectPos).entity.getY() - 550); 
+                            System.out.println("selectPos: " + selectPos);
+                            
+                            System.out.println("X: " + enemyParty.memberList.get(selectPos).entity.getX());
+                            System.out.println("Y: " + enemyParty.memberList.get(selectPos).entity.getY());
+                            
+                            //CHEZBALL WHY DO U NEED FINAL POS AND STUFF
+                            //tempObject.setX(finalPosX + enemyParty.memberList.get(selectPos).entity.getX() - 700);
+                            //tempObject.setY(finalPosY + enemyParty.memberList.get(selectPos).entity.getY() - 550); 
+                            
+                            tempObject.setX(enemyParty.memberList.get(selectPos).entity.getX() + 60);
+                            tempObject.setY(enemyParty.memberList.get(selectPos).entity.getY() + 70);
                             
                             if(key == KeyEvent.VK_E){
                                 for(int k = 0; k < playerParty.memberList.size(); k++){
@@ -368,6 +377,7 @@ import java.util.ArrayList;
             
             player.setVelX(0);
             player.setVelY(0);
+            handler.battleRender.bringToFront("SelectionCursor");
         }
 
     public void setPlayerHUD(HUD playerHUD) {

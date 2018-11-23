@@ -20,6 +20,11 @@ public class Menu extends GameObject {
         y += velY;
 
     }
+    
+    public void setName(String name)
+    {
+        super.name = name;
+    }
 
     public void render(Graphics g) {
         texture = new ImageIcon(imageDirectory).getImage();

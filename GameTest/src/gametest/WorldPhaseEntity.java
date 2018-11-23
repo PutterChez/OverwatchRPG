@@ -135,6 +135,7 @@ public class WorldPhaseEntity extends GameObject {
     }
     
     public String getDialogue(){ 
+        System.out.println(currentDialogue);
         if(currentDialogue == dialogueList.size())
         {
             currentDialogue = 0;
@@ -142,11 +143,11 @@ public class WorldPhaseEntity extends GameObject {
         }
         
         String text = dialogueList.get(currentDialogue);
-        currentDialogue++;
+        currentDialogue += 1;
         return text;
     }
     
-    public  String getDialogue(int index) { return dialogueList.get(index); }
+    //public  String getDialogue(int index) { return dialogueList.get(index); }
     
     public void addDialogue(String script){ dialogueList.add(script); }
     

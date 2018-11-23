@@ -246,7 +246,7 @@ import java.util.ArrayList;
                                 {
                                     handler.interacted();
                                     player.setDialogue(obj.getDialogue());
-                                    player.interacted();
+                                    player.interacted(); 
                                 }
                                 
                                 try
@@ -279,8 +279,24 @@ import java.util.ArrayList;
                             }
                             else
                             {
-                                handler.uninteracted();
-                                player.unInteracted();
+                                if(obj.getId() == ID.NPC)
+                                {
+                                    //Please becareful when edit below codes
+                                    //.getDialogue must be called exactly 1 time
+                                    String temp_String = obj.getDialogue();
+                                    if(temp_String != null)
+                                        player.setDialogue(temp_String);
+                                    else
+                                    {
+                                        handler.uninteracted();
+                                        player.unInteracted();
+                                    }
+                                }
+                                else if (obj.getId() == ID.BattleNPC)
+                                {
+                                    handler.uninteracted();
+                                    player.unInteracted();
+                                }
                             }
                         }
                     }

@@ -65,7 +65,8 @@ public class Game extends Canvas implements Runnable {
         
         //Interaction Test----------------------------------------------------------------------------------------------------
         WorldPhaseEntity testNPC = new WorldPhaseEntity(400, 450, ID.NPC, 200, 200, "..\\resources\\characters\\hog_1.png", "Hog");
-        testNPC.setDialogue("Whole Hog!!!");
+        testNPC.addDialogue("First Dialogue : Hello Wolrd");
+        testNPC.addDialogue("Second Dialogue : Whole HOG !!!");
         handler.addWorldColisionObject(testNPC);
         
         

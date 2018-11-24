@@ -27,8 +27,10 @@ public class RenderModule {
         for (GameObject o : renderList)
             if(o.alive())
                 o.render(g);
+
         
         //Always Render Cursor at the Top
+        
         for (GameObject o : renderList)
             if(o.getName().equals("SelectionCursor"))
                 o.render(g);

@@ -29,6 +29,10 @@ public class WorldPhaseEntity extends GameObject {
     protected String dialogue;
     protected boolean interacted = false;
     
+    protected LinkedList<Item> lootList;
+    protected int currentLoot = 0;
+    protected boolean lootStatus = true;
+    
     protected Party enemyParty;
 
     WorldPhaseEntity(int x, int y, ID id, int width, int height, String imageDirectory, String charName) {
@@ -45,6 +49,7 @@ public class WorldPhaseEntity extends GameObject {
         enemyParty = new Party();
         
         dialogueList = new LinkedList<>();
+        lootList = new LinkedList<>();
     }
 
     public void tick() {
@@ -147,7 +152,7 @@ public class WorldPhaseEntity extends GameObject {
         return text;
     }
     
-    public  String getDialogue(int index) { return dialogueList.get(index); }
+    //public  String getDialogue(int index) { return dialogueList.get(index); }
     
     public void addDialogue(String script){ dialogueList.add(script); }
     
@@ -157,4 +162,22 @@ public class WorldPhaseEntity extends GameObject {
     }
     
     public Party getEnemyParty(){ return this.enemyParty; }
+    
+    public void addLoot(Item e){ lootList.add(e); }
+    
+    public Item getLoot()
+    {
+        if (currentLoot == lootList.size())
+        {
+            currentLoot = 0;
+            lootStatus = false;
+            return null;
+        }
+        
+        Item loot = lootList.get(currentLoot);
+        currentLoot += 1;
+        return loot;
+    }
+    
+    public boolean getLootStatus() { return lootStatus; }
 }

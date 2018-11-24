@@ -90,6 +90,13 @@ public class Handler {
                 objectList.remove(o);
                 break;
             }
+        
+        for(WorldPhaseEntity o : colisionList)
+            if (o.getName().equals(name))
+            {
+                colisionList.remove(o);
+                break;
+            }
     }
     
     public void removeColisionObject(String name)

@@ -58,6 +58,8 @@ public class Game extends Canvas implements Runnable {
         player.addItem(test4);
         player.addItem(test5);
         player.addItem(test5);
+        
+        /*
         player.addItem(test5);
         player.addItem(test5);
         player.addItem(test5);
@@ -72,9 +74,10 @@ public class Game extends Canvas implements Runnable {
         player.addItem(test5);
         player.addItem(test5);
         player.addItem(test5);
-
-
+        */
         //player.removeItem("HP Potion1");
+        
+        //Test Map
         Map testMap = new Map(-1400, -7200, ID.Background, 9600, 9600, "..\\resources\\maps\\open_world_extra_border_2.png");
         cam = new Camera(0, 0, ID.Camera, 0, 0, player);
 
@@ -150,6 +153,12 @@ public class Game extends Canvas implements Runnable {
 
         //Item Test-----------------------------------------------------------------------------------------------------------
         HPItem itemTest = new HPItem(ID.Item, "AtkBoost", 10);
+        
+        //Chest Test-----------------------------------------------------------------------------------------------------------
+        WorldPhaseEntity testChest = new WorldPhaseEntity(800, 0, ID.Chest, 50, 50, "..\\resources\\misc\\chest_closed.png", "TreasureChest");
+        testChest.addLoot(new HPItem(ID.Item, "100$", 100));
+        testChest.addLoot(new HPItem(ID.Item, "200$", 200));
+        handler.addWorldColisionObject(testChest);
 
         //BattlePhase Part----------------------------------------------------------------------------------------------------
         BattlePhaseEntity genji = new BattlePhaseEntity(P_POS1.x, P_POS1.y, ID.Ally, 230, 230, "..\\resources\\characters_fixed\\genji_1.png", 200, 100, "Genji", 40, 10, 100, 40);

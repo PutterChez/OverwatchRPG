@@ -19,5 +19,6 @@ public enum ID {
     Colision(),
     Merchant(),
     WorldItem(),
+    Chest(),
     Camera();
 }

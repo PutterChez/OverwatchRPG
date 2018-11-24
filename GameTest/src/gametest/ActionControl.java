@@ -283,6 +283,18 @@ class ActionControl extends KeyAdapter {
                             player.setDialogue(obj.getDialogue());
                             player.interacted();
                         }
+                        
+                        if (obj.id == ID.Chest)
+                        {
+                            handler.interacted();
+                            Item tempLoot = obj.getLoot();
+                            obj.setImageDirectory("..\\resources\\misc\\chest_opened.png");
+                            obj.addDialogue("You got " + tempLoot.itemName);
+                            
+                            player.addItem(tempLoot);
+                            player.setDialogue(obj.getDialogue());
+                            player.interacted();
+                        }
 
                         try {
                             if (obj.id == ID.BattleNPC) {
@@ -328,6 +340,19 @@ class ActionControl extends KeyAdapter {
                             if (temp_String != null) {
                                 player.setDialogue(temp_String);
                             } else {
+                                handler.uninteracted();
+                                player.unInteracted();
+                            }
+                        } else if (obj.getId() == ID.Chest){
+                            Item tempLoot = obj.getLoot();
+                            if(tempLoot != null)
+                            {
+                                player.addItem(tempLoot);
+                                player.setDialogue("You got " + tempLoot.itemName);
+                            }
+                            else
+                            {
+                                handler.removeObject(obj.getName());
                                 handler.uninteracted();
                                 player.unInteracted();
                             }

@@ -399,9 +399,9 @@ class ActionControl extends KeyAdapter {
                                     if (player.inventory.currentMoney > obj.merchantCondition) {
                                         player.addItem(obj.lootList.get(0));
                                         player.inventory.reduceMoney(obj.merchantCondition);
-                                        player.setDialogue("Thanks for your patronage");
+                                        player.setDialogue("Thank you for your patronage!!!");
                                     } else {
-                                        player.setDialogue("You don't have enough money :(");
+                                        player.setDialogue("You do not have enough money!!!");
                                     }
                                 } else {
                                     player.setDialogue("Too bad, see you next time!!!");

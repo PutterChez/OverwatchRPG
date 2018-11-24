@@ -48,7 +48,7 @@ public class Handler {
         if(battlePhase)  
             battleRender.render(g);
         else
-            worldRender.render(g);
+            worldRender.render(g);           
     }
     
     public void updateBattleObject(WorldPhaseEntity player)
@@ -82,8 +82,8 @@ public class Handler {
     
     public void removeObject(String name)
     {
-        //worldRender.remove(name);
-        //battleRender.remove(name);
+        worldRender.remove(name);
+        battleRender.remove(name);
         
         for(GameObject o : objectList)
             if (o.getName().equals(name))

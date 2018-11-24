@@ -123,4 +123,46 @@ public class BattlePhaseEntity extends GameObject {
     public void setSelectSkill(Skill selectSkill) {
         this.selectSkill = selectSkill;
     }
+
+    public int getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(int speed) {
+        this.speed = speed;
+    }
+
+    public int getEvasion() {
+        return evasion;
+    }
+
+    public void setEvasion(int evasion) {
+        this.evasion = evasion;
+    }
+
+    public int getDefense() {
+        return defense;
+    }
+
+    public void setDefense(int defense) {
+        this.defense = defense;
+    }
+
+    public int getAttack() {
+        return attack;
+    }
+
+    public void setAttack(int attack) {
+        this.attack = attack;
+    }
+
+    public Image getCharImg() {
+        return charImg;
+    }
+
+    public String getImageDirectory() {
+        return imageDirectory;
+    }
+    
+    
 } 

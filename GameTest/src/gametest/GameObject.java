@@ -104,6 +104,11 @@ public abstract class GameObject {
         alive = false;
     }
     
+    public void revive()
+    {
+        alive = true;
+    }
+    
     public boolean alive()
     {
         return alive;

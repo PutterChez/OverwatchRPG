@@ -34,7 +34,7 @@ public class Game extends Canvas implements Runnable {
     private Handler handler;
     private HUD playerHUD, enemyHUD;
     Player player;
-
+    ActionControl control;
     //private WorldPhaseEntity player;
     //private boolean BattlePhase = false;
     public Game() {
@@ -206,8 +206,7 @@ public class Game extends Canvas implements Runnable {
         Menu menu = new Menu(WIDTH / 2 - 700, 600, ID.Menu, 1400, 300, "..\\resources\\maps\\hud_1.png");
         Menu popUp = new Menu(WIDTH / 2 - 170, 1000, ID.PopUp, 500, 300, "..\\resources\\maps\\hud_box.png");
         Menu cursor = new Menu(WIDTH / 2 + 150, 1000, ID.Cursor, 30, 30, "..\\resources\\ui\\cursor.png");
-        Menu merCursor = new Menu(WIDTH / 2 + 150, 1000, ID.Menu, 30, 30, "..\\resources\\ui\\cursor.png");
-        
+        Menu merCursor = new Menu(WIDTH / 2 + 150, 1000, ID.Menu, 30, 30, "..\\resources\\misc\\cursor_E.png");
         
         //IMPORTANT DO NOT CHANGE THESE NAME
         cursor.setName("SelectionCursor");
@@ -253,10 +252,12 @@ public class Game extends Canvas implements Runnable {
         handler.addBattlePhaseObject(enemyHUD);
         handler.addBattlePhaseObject(cursor);
 
-        ActionControl control = new ActionControl(handler, playerParty, enemyParty, player);
+        control = new ActionControl(handler, playerParty, enemyParty, player);
         control.setPlayerHUD(playerHUD);
         control.setEnemyHUD(enemyHUD);
         control.setMerchantCursor(merCursor);
+        
+        player.setPlayerParty(playerParty);
 
         //Render Player
         handler.addWorldPhaseObject(player);
@@ -343,7 +344,7 @@ public class Game extends Canvas implements Runnable {
 
         Graphics g = bs.getDrawGraphics();
         Graphics2D g2d = (Graphics2D) g;
-
+        
         g.setColor(Color.black);
         g.fillRect(0, 0, WIDTH, HEIGHT);
 

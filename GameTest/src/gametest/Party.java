@@ -5,6 +5,7 @@
  */
 package gametest;
 
+import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;

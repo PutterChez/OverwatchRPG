@@ -26,8 +26,12 @@ public class Player extends WorldPhaseEntity{
     
     protected boolean interacting;
     protected boolean inventoryStatus = false;
+    protected boolean partyView = false;
+    
+    protected Party playerParty;
     
     protected Menu dialogueBox;
+    protected Menu partyViewer;
     protected String dialogue;
     protected LinkedList<String> imgList;
     protected Inventory inventory;
@@ -54,6 +58,7 @@ public class Player extends WorldPhaseEntity{
         
         //Please adjust x and y
         dialogueBox = new Menu(x, y, ID.Default, 1400, 200, "..\\resources\\ui\\hud_box_full_res.png");
+        partyViewer = new Menu(x, y, ID.Menu, 1000, 571, "..\\resources\\misc\\inventory.png");
         
         imgList = new LinkedList<>();
         //North
@@ -198,6 +203,8 @@ public class Player extends WorldPhaseEntity{
         
         setDialogueBoxPosition(x - 700, y + 200);
         inventory.setInventoryPosition(x - 500, y - 300);
+        partyViewer.x = x - 500;
+        partyViewer.y = y - 300;
     }
     
     public void render(Graphics g)
@@ -266,6 +273,50 @@ public class Player extends WorldPhaseEntity{
             g.setColor(Color.yellow);
             g.drawString("Money : " + inventory.currentMoney + " $", x + 150, y - 200);
         }
+        
+        if(partyView)
+        {
+            partyViewer.render(g);
+            
+            int posX, posY, rowCount = 0;
+            posX = partyViewer.x + 110;
+            posY = partyViewer.y + 185;
+            
+            for(PartyMember p : playerParty.memberList)
+            {
+                imageDirectory = p.entity.getImageDirectory();
+                charImg = new ImageIcon(imageDirectory).getImage();
+                g.drawImage(charImg, posX - 30, posY - 30, 100, 100, null);
+                
+                int offset = 90;
+                
+                g.setColor(Color.cyan);
+                g.setFont(new Font("Minecraft Bold", Font.PLAIN, 30));
+                g.drawString(p.entity.getCharName(), posX + offset, posY);
+                
+                g.setColor(Color.white);
+                g.setFont(new Font("Minecraft Bold", Font.PLAIN, 20));
+                
+                g.drawString("HP: " + p.entity.getHP(), posX + offset, posY + 30);
+                g.drawString("MP: " + p.entity.getMP(), posX + 140 + offset, posY + 30);
+                
+                g.drawString("Attack: " + p.entity.getAttack(), posX + offset, posY + 50);
+                g.drawString("Defense: " + p.entity.getDefense(), posX + 140 + offset, posY + 50);
+                
+                g.drawString("Speed: " + p.entity.getSpeed(), posX + offset, posY + 70);
+                g.drawString("Evasion: " + p.entity.getEvasion(), posX + 140 + offset, posY + 70);
+                
+                rowCount++;
+                posY += 175;
+                
+                if(rowCount >= 2)
+                {
+                    posX += 420;
+                    posY = partyViewer.y + 185;
+                    rowCount = 0;
+                }
+            }
+        }
     }
     
     public void setDialogueBoxPosition(int x, int y)
@@ -280,11 +331,21 @@ public class Player extends WorldPhaseEntity{
     }
     
     public void interacted(){ interacted = true; }
-    
     public void unInteracted(){ interacted = false; }
     
     public void inventoryOpen(){ inventoryStatus = true; }
     public void inventoryClose(){ inventoryStatus = false; }
+    
+    public void partyViewOpen() {partyView = true;}
+    public void partyViewClosed(){partyView = false;}
+
+    public Party getPlayerParty() {
+        return playerParty;
+    }
+
+    public void setPlayerParty(Party playerParty) {
+        this.playerParty = playerParty;
+    }
     
     
 }

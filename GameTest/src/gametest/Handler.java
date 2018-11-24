@@ -22,12 +22,13 @@ public class Handler {
     boolean colision = false;
     boolean inventory = false;
     boolean merchantInteracting = false;
+    boolean openUI = false;
     
     RenderModule battleRender;
     RenderModule worldRender;
     
     LinkedList<GameObject> objectList;
-    LinkedList<WorldPhaseEntity> colisionList;
+    LinkedList<WorldPhaseEntity> colisionList; 
     
     Handler()
     {
@@ -48,7 +49,7 @@ public class Handler {
         if(battlePhase)  
             battleRender.render(g);
         else
-            worldRender.render(g);           
+            worldRender.render(g);          
     }
     
     public void updateBattleObject(WorldPhaseEntity player)
@@ -110,7 +111,7 @@ public class Handler {
                 return true;
         return false;
     }
-    
+      
     public void battlePhaseOn(){ battlePhase = true;}
     public void battlePhaseOff(){ battlePhase = false;}
     public boolean battlePhaseStatus(){ return battlePhase; }
@@ -130,5 +131,11 @@ public class Handler {
     public void merchantOpen(){ merchantInteracting = true; }
     public void merchantClose() { merchantInteracting = false; }
     public boolean merchantStatus() { return merchantInteracting; }
+    
+    public void UIOpen(){ openUI = true; }
+    public void UIClose(){ openUI = false; }
+    public boolean UIStatus(){ return openUI; }
+    
+    
 }
 

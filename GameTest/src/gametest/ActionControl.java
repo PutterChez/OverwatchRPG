@@ -5,6 +5,9 @@
  */
 package gametest;
 
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
@@ -27,7 +30,7 @@ class ActionControl extends KeyAdapter {
 
     HUD playerHUD;
     HUD enemyHUD;
-
+    
     boolean PopUp = false;
     boolean select = false;
     boolean playerSelect = false;
@@ -213,7 +216,7 @@ class ActionControl extends KeyAdapter {
                 }
             }
             //System.out.println(cursorPos);      
-        } else //WorldPhase part
+        } else //WorldPhase part-----------------------------------------------------------------------------------------------------------
         {
             //System.out.println("CurrentMap x: " + currentMap.x);
             //System.out.println("CurrentMap y:" + currentMap.y);
@@ -222,12 +225,12 @@ class ActionControl extends KeyAdapter {
 
             if (key == KeyEvent.VK_A && handler.merchantStatus()) {
                 merchantCursorPos = 0;
-                merchantCursor.setX(player.x + 350 + (175 * merchantCursorPos));
+                merchantCursor.setX(player.x + 375 + (175 * merchantCursorPos));
             }
 
             if (key == KeyEvent.VK_D && handler.merchantStatus()) {
                 merchantCursorPos = 1;
-                merchantCursor.setX(player.x + 350 + (175 * merchantCursorPos));
+                merchantCursor.setX(player.x + 375 + (175 * merchantCursorPos));
             }
 
             if (key == KeyEvent.VK_B) {
@@ -235,7 +238,7 @@ class ActionControl extends KeyAdapter {
                 handler.battlePhaseOn();
             }
 
-            if (!handler.interactStatus()) {
+            if (!handler.interactStatus() && !handler.UIStatus()) {
                 if (key == KeyEvent.VK_W) {
                     //System.out.println("Character Moving Up");
                     player.setDirection(0);
@@ -267,9 +270,26 @@ class ActionControl extends KeyAdapter {
                 if (!handler.interactStatus() && !handler.inventoryStatus()) {
                     handler.inventoryOpen();
                     player.inventoryOpen();
+                    handler.UIOpen();
                 } else if (!handler.interactStatus() && handler.inventoryStatus()) {
                     handler.inventoryClose();
+                    handler.UIClose();
                     player.inventoryClose();
+                }
+            }
+            
+            if (key == KeyEvent.VK_P)
+            {
+                if(!handler.interactStatus() && !handler.UIStatus())
+                {
+                    player.partyViewOpen();
+                    handler.UIOpen();
+                }
+                else
+                {
+                    player.partyViewClosed();
+                    handler.UIClose();
+
                 }
             }
 
@@ -388,7 +408,7 @@ class ActionControl extends KeyAdapter {
                             else if (handler.merchantStatus() == false) {
                                 String temp_String = obj.getDialogue();
                                 if (temp_String != null) {
-                                    merchantCursor.setX(player.x + 350);
+                                    merchantCursor.setX(player.x + 375);
                                     merchantCursor.setY(player.y + 275);
                                     player.setDialogue(temp_String);
                                     handler.merchantOpen();
@@ -453,5 +473,4 @@ class ActionControl extends KeyAdapter {
     public void setMerchantCursor(Menu e) {
         merchantCursor = e;
     }
-
 }

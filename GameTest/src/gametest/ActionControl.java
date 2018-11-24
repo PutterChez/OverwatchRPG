@@ -36,6 +36,9 @@ class ActionControl extends KeyAdapter {
     ArrayList<Skill> attack_list;
     int cursorPos = 0, selectPos = 0, selectSkill = 0, finalPosX = 950, finalPosY = 660;
 
+    Menu merchantCursor;
+    int merchantCursorPos = 0;
+
     public ActionControl(Handler handler, Party player, Party enemy, Player playerUnit) {
         this.handler = handler;
         this.playerParty = player;
@@ -210,13 +213,22 @@ class ActionControl extends KeyAdapter {
                 }
             }
             //System.out.println(cursorPos);      
-        } 
-        else //WorldPhase part
+        } else //WorldPhase part
         {
             //System.out.println("CurrentMap x: " + currentMap.x);
             //System.out.println("CurrentMap y:" + currentMap.y);
             //System.out.println("Player x:" + player.x);
             //System.out.println("Player y:" + player.y);
+
+            if (key == KeyEvent.VK_A && handler.merchantStatus()) {
+                merchantCursorPos = 0;
+                merchantCursor.setX(player.x + 350 + (175 * merchantCursorPos));
+            }
+
+            if (key == KeyEvent.VK_D && handler.merchantStatus()) {
+                merchantCursorPos = 1;
+                merchantCursor.setX(player.x + 350 + (175 * merchantCursorPos));
+            }
 
             if (key == KeyEvent.VK_B) {
                 System.out.println("Entering Battle Phase");
@@ -283,15 +295,26 @@ class ActionControl extends KeyAdapter {
                             player.setDialogue(obj.getDialogue());
                             player.interacted();
                         }
-                        
-                        if (obj.id == ID.Chest)
-                        {
+
+                        if (obj.id == ID.Chest) {
                             handler.interacted();
                             Item tempLoot = obj.getLoot();
                             obj.setImageDirectory("..\\resources\\misc\\chest_opened.png");
                             obj.addDialogue("You got " + tempLoot.itemName);
-                            
+
                             player.addItem(tempLoot);
+                            player.setDialogue(obj.getDialogue());
+                            player.interacted();
+                        }
+
+                        if (obj.id == ID.Merchant) {
+                            handler.interacted();
+
+                            Item tempLoot = obj.lootList.get(0);
+                            obj.addDialogue("I'm selling " + tempLoot.itemName + " for " + tempLoot.itemPrice + " $");
+                            obj.addDialogue("Would you like to buy it?                                                 Yes          No");
+                            obj.setPriceCondition(tempLoot.itemPrice);
+
                             player.setDialogue(obj.getDialogue());
                             player.interacted();
                         }
@@ -343,26 +366,55 @@ class ActionControl extends KeyAdapter {
                                 handler.uninteracted();
                                 player.unInteracted();
                             }
-                        } else if (obj.getId() == ID.Chest){
+                        } else if (obj.getId() == ID.Chest) {
                             Item tempLoot = obj.getLoot();
-                            if(tempLoot != null)
-                            {
+                            if (tempLoot != null) {
                                 player.addItem(tempLoot);
                                 player.setDialogue("You got " + tempLoot.itemName);
-                            }
-                            else
-                            {
+                            } else {
                                 obj.die();
                                 handler.removeColisionObject(obj.name);
                                 handler.uninteracted();
                                 player.unInteracted();
                             }
+                        } else if (obj.getId() == ID.Merchant) {
+                            if(merchantCursorPos == -1)
+                            {
+                                player.unInteracted();
+                                handler.uninteracted();
+                                merchantCursorPos = 0;
+                            }
+                            
+                            else if (handler.merchantStatus() == false) {
+                                String temp_String = obj.getDialogue();
+                                if (temp_String != null) {
+                                    merchantCursor.setX(player.x + 350);
+                                    merchantCursor.setY(player.y + 275);
+                                    player.setDialogue(temp_String);
+                                    handler.merchantOpen();
+                                }
+                            } else if (handler.merchantStatus() == true) {
+                                merchantCursor.setY(1000);
+                                if (merchantCursorPos == 0) {
+                                    if (player.inventory.currentMoney > obj.merchantCondition) {
+                                        player.addItem(obj.lootList.get(0));
+                                        player.inventory.reduceMoney(obj.merchantCondition);
+                                        player.setDialogue("Thanks for your patronage");
+                                    } else {
+                                        player.setDialogue("You don't have enough money :(");
+                                    }
+                                } else {
+                                    player.setDialogue("Too bad, see you next time!!!");
+                                }
+                                
+                                merchantCursorPos = -1;
+                                handler.merchantClose();
+                            } 
                         }
                     }
                 }
             }
         }
-
         //Check for alive member of the enemyParty
         for (int i = 0; i < enemyParty.memberList.size(); i++) {
             if (!enemyParty.memberList.get(i).entity.alive()) {
@@ -370,21 +422,21 @@ class ActionControl extends KeyAdapter {
                 enemyParty.deleteMember(i);
             }
         }
-        
-        if (enemyParty.memberList.size() <= 0) {
-                PopUp = false;
-                System.out.println("Exit Battle Phase");
-                handler.battlePhaseOff();
 
-                for (WorldPhaseEntity obj : handler.colisionList) {
-                    WorldPhaseEntity temp = player.getInteractArea();
-                    if (obj.checkColision(temp)) {
-                        if (obj.getId() == ID.BattleNPC) {
-                            player.setDialogue(obj.getDialogue());
-                        }
+        if (enemyParty.memberList.size() <= 0) {
+            PopUp = false;
+            System.out.println("Exit Battle Phase");
+            handler.battlePhaseOff();
+
+            for (WorldPhaseEntity obj : handler.colisionList) {
+                WorldPhaseEntity temp = player.getInteractArea();
+                if (obj.checkColision(temp)) {
+                    if (obj.getId() == ID.BattleNPC) {
+                        player.setDialogue(obj.getDialogue());
                     }
                 }
             }
+        }
 
         player.setVelX(0);
         player.setVelY(0);
@@ -396,6 +448,10 @@ class ActionControl extends KeyAdapter {
 
     public void setEnemyHUD(HUD enemyHUD) {
         this.enemyHUD = enemyHUD;
+    }
+
+    public void setMerchantCursor(Menu e) {
+        merchantCursor = e;
     }
 
 }

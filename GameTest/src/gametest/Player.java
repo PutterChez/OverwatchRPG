@@ -261,6 +261,10 @@ public class Player extends WorldPhaseEntity{
                     posX = inventory.itemViewer.x + 125;
                 }
             }        
+            
+            g.setFont(new Font("Minecraft Bold", Font.PLAIN, 30));
+            g.setColor(Color.yellow);
+            g.drawString("Money : " + inventory.currentMoney + " $", x + 150, y - 200);
         }
     }
     

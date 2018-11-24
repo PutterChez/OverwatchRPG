@@ -14,6 +14,7 @@ import java.util.LinkedList;
 public class Inventory {
     protected LinkedList<Item> itemList;
     protected Menu itemViewer;
+    protected int currentMoney;
     
     Inventory()
     {
@@ -42,4 +43,8 @@ public class Inventory {
         this.itemViewer.x = x;
         this.itemViewer.y = y;
     }
+    
+    public void addMoney(int e){ currentMoney += e; }
+    public void reduceMoney(int e){ currentMoney -= e; }
+    public int getCurrentMoney() {return currentMoney; }
 }

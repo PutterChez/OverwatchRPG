@@ -33,6 +33,8 @@ public class WorldPhaseEntity extends GameObject {
     protected int currentLoot = 0;
     protected boolean lootStatus = true;
     
+    protected int merchantCondition;
+    
     protected Party enemyParty;
 
     WorldPhaseEntity(int x, int y, ID id, int width, int height, String imageDirectory, String charName) {
@@ -180,4 +182,6 @@ public class WorldPhaseEntity extends GameObject {
     }
     
     public boolean getLootStatus() { return lootStatus; }
+    
+    public void setPriceCondition(int e) { merchantCondition = e; }
 }

@@ -21,6 +21,7 @@ public class Handler {
     boolean battlePhase = false;
     boolean colision = false;
     boolean inventory = false;
+    boolean merchantInteracting = false;
     
     RenderModule battleRender;
     RenderModule worldRender;
@@ -125,5 +126,9 @@ public class Handler {
     public void inventoryOpen(){ inventory = true; }
     public void inventoryClose() { inventory = false; }
     public boolean inventoryStatus() { return inventory; }
+    
+    public void merchantOpen(){ merchantInteracting = true; }
+    public void merchantClose() { merchantInteracting = false; }
+    public boolean merchantStatus() { return merchantInteracting; }
 }
 

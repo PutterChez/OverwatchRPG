@@ -44,6 +44,8 @@ public class Game extends Canvas implements Runnable {
 
         //WorldPhase Part-----------------------------------------------------------------------------------------------------
         player = new Player(800, 450, ID.Player, 50, 60, "..\\resources\\characters\\RedSquare.png", "Player");
+        player.inventory.addMoney(6000);
+        
         HPItem test1 = new HPItem(ID.Item, "HP Potion1", 100);
         HPItem test2 = new HPItem(ID.Item, "MP Potion1", 200);
         HPItem test3 = new HPItem(ID.Item, "HP Potion2", 100);
@@ -161,6 +163,13 @@ public class Game extends Canvas implements Runnable {
         testChest.addLoot(new HPItem(ID.Item, "100$", 100));
         testChest.addLoot(new HPItem(ID.Item, "200$", 200));
         handler.addWorldColisionObject(testChest);
+        
+        //Merchant Test-------------------------------------------------------------------------------------------------------
+        //Merchant must have only 1 item in the itemList
+        WorldPhaseEntity testMerchant = new WorldPhaseEntity(800, 600, ID.Merchant, 100, 80, "..\\resources\\characters_world\\mei_1.png", "MeiMerchant");
+        testMerchant.addLoot(new HPItem(ID.Item, "Snowy Robot", 1700));
+        
+        handler.addWorldColisionObject(testMerchant);
 
         //BattlePhase Part----------------------------------------------------------------------------------------------------
         BattlePhaseEntity genji = new BattlePhaseEntity(P_POS1.x, P_POS1.y, ID.Ally, 230, 230, "..\\resources\\characters_fixed\\genji_1.png", 200, 100, "Genji", 40, 10, 100, 40);
@@ -197,9 +206,12 @@ public class Game extends Canvas implements Runnable {
         Menu menu = new Menu(WIDTH / 2 - 700, 600, ID.Menu, 1400, 300, "..\\resources\\maps\\hud_1.png");
         Menu popUp = new Menu(WIDTH / 2 - 170, 1000, ID.PopUp, 500, 300, "..\\resources\\maps\\hud_box.png");
         Menu cursor = new Menu(WIDTH / 2 + 150, 1000, ID.Cursor, 30, 30, "..\\resources\\ui\\cursor.png");
+        Menu merCursor = new Menu(WIDTH / 2 + 150, 1000, ID.Menu, 30, 30, "..\\resources\\ui\\cursor.png");
         
-        //IMPORTANT DO NOT CHANGE THIS NAME
+        
+        //IMPORTANT DO NOT CHANGE THESE NAME
         cursor.setName("SelectionCursor");
+        merCursor.setName("MerchantCursor");
         
         Menu background = new Menu(20, 0, ID.Background, WIDTH, HEIGHT, "..\\resources\\maps\\battle_bg.png");
 
@@ -244,7 +256,9 @@ public class Game extends Canvas implements Runnable {
         ActionControl control = new ActionControl(handler, playerParty, enemyParty, player);
         control.setPlayerHUD(playerHUD);
         control.setEnemyHUD(enemyHUD);
+        control.setMerchantCursor(merCursor);
 
+        //Render Player
         handler.addWorldPhaseObject(player);
         
         //Object that on top of player
@@ -252,6 +266,7 @@ public class Game extends Canvas implements Runnable {
         handler.addWorldPhaseObject(house2_left_roof);
         handler.addWorldPhaseObject(house1_right_roof);
         handler.addWorldPhaseObject(house2_right_roof);
+        handler.addWorldPhaseObject(merCursor);
 
         this.addKeyListener(control);
 
@@ -333,8 +348,13 @@ public class Game extends Canvas implements Runnable {
         g.fillRect(0, 0, WIDTH, HEIGHT);
 
         g2d.translate(cam.getX(), cam.getY());
+        
         handler.render(g);
         player.renderMenu(g);
+        for (GameObject o : handler.worldRender.renderList)
+            if(o.getName().equals("MerchantCursor"))
+                o.render(g);
+
         g2d.translate(-cam.getX(), -cam.getY());
 
         g.dispose();

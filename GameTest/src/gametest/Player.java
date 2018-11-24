@@ -225,7 +225,9 @@ public class Player extends WorldPhaseEntity{
             case East: interactD.render(g); break;
         }
         */
-        
+    }
+    
+    public void renderMenu(Graphics g){
         if(interacted)
         {
             dialogueBox.render(g);
@@ -258,8 +260,7 @@ public class Player extends WorldPhaseEntity{
                     posY += 70;
                     posX = inventory.itemViewer.x + 125;
                 }
-            }
-            
+            }        
         }
     }
     

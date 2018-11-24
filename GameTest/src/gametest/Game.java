@@ -114,10 +114,12 @@ public class Game extends Canvas implements Runnable {
         handler.addWorldColisionObject(house1);
         handler.addWorldColisionObject(house2);
 
+        /*
         handler.addWorldPhaseObject(house1_left_roof);
         handler.addWorldPhaseObject(house2_left_roof);
         handler.addWorldPhaseObject(house1_right_roof);
         handler.addWorldPhaseObject(house2_right_roof);
+        */
 
         //Object Interaction
         WorldPhaseEntity obj_box = new WorldPhaseEntity(275, 380, ID.NPC, 45, 70, null, "obj_left_fountain");
@@ -244,6 +246,12 @@ public class Game extends Canvas implements Runnable {
         control.setEnemyHUD(enemyHUD);
 
         handler.addWorldPhaseObject(player);
+        
+        //Object that on top of player
+        handler.addWorldPhaseObject(house1_left_roof);
+        handler.addWorldPhaseObject(house2_left_roof);
+        handler.addWorldPhaseObject(house1_right_roof);
+        handler.addWorldPhaseObject(house2_right_roof);
 
         this.addKeyListener(control);
 
@@ -326,6 +334,7 @@ public class Game extends Canvas implements Runnable {
 
         g2d.translate(cam.getX(), cam.getY());
         handler.render(g);
+        player.renderMenu(g);
         g2d.translate(-cam.getX(), -cam.getY());
 
         g.dispose();

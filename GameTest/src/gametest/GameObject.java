@@ -20,6 +20,7 @@ public abstract class GameObject {
     protected int velX, velY;
     protected ID id;
     protected String name;
+    protected boolean alive = true;
 
     public GameObject(int x, int y,int width, int height, String name, ID id) {
         this.x = x;
@@ -100,12 +101,12 @@ public abstract class GameObject {
 
     public void die()
     {
-        ;
+        alive = false;
     }
     
     public boolean alive()
     {
-        return true;
+        return alive;
     }
     
 }

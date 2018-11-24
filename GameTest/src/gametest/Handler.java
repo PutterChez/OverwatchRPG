@@ -81,8 +81,8 @@ public class Handler {
     
     public void removeObject(String name)
     {
-        worldRender.remove(name);
-        battleRender.remove(name);
+        //worldRender.remove(name);
+        //battleRender.remove(name);
         
         for(GameObject o : objectList)
             if (o.getName().equals(name))
@@ -90,22 +90,14 @@ public class Handler {
                 objectList.remove(o);
                 break;
             }
-        
-        for(WorldPhaseEntity o : colisionList)
-            if (o.getName().equals(name))
-            {
-                colisionList.remove(o);
-                break;
-            }
     }
     
     public void removeColisionObject(String name)
     {
-        worldRender.remove(name);
         for(WorldPhaseEntity o : colisionList)
-            if (o.getName().equals(name))
+            if(o.getName().equals(name))
             {
-                objectList.remove(o);
+                colisionList.remove(o);
                 break;
             }
     }

@@ -123,7 +123,4 @@ public class BattlePhaseEntity extends GameObject {
     public void setSelectSkill(Skill selectSkill) {
         this.selectSkill = selectSkill;
     }
-    
-    public void die(){ alive = false; }
-    public boolean alive() {return alive;}
 } 

@@ -352,7 +352,8 @@ class ActionControl extends KeyAdapter {
                             }
                             else
                             {
-                                handler.removeObject(obj.getName());
+                                obj.die();
+                                handler.removeColisionObject(obj.name);
                                 handler.uninteracted();
                                 player.unInteracted();
                             }

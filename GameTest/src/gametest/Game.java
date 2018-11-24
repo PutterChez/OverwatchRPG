@@ -139,7 +139,7 @@ public class Game extends Canvas implements Runnable {
         handler.addWorldColisionObject(testNPC);
 
         //Battle NPC Test-----------------------------------------------------------------------------------------------------
-        WorldPhaseEntity testBattleNPC = new WorldPhaseEntity(1000, 450, ID.BattleNPC, 150, 150, "..\\resources\\characters_world\\dva_1.png", "DvaBattle");
+        WorldPhaseEntity testBattleNPC = new WorldPhaseEntity(1000, 450, ID.BattleNPC, 150, 130, "..\\resources\\characters_world\\dva_1.png", "DvaBattle");
         //Pre - Battle Dialogue
         testBattleNPC.addDialogue("Love DVA!!!");
         //Post - Battle Dialogue

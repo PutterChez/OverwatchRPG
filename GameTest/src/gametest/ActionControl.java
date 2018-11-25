@@ -11,6 +11,7 @@ import java.awt.Graphics;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import javax.sound.sampled.FloatControl;
 
 /**
  *
@@ -30,6 +31,8 @@ class ActionControl extends KeyAdapter {
 
     HUD playerHUD;
     HUD enemyHUD;
+    
+    Sound SFX;
     
     boolean PopUp = false;
     boolean select = false;
@@ -52,6 +55,8 @@ class ActionControl extends KeyAdapter {
         coord_list = new ArrayList<Coordinate>();
         player_coord_list = new ArrayList<Coordinate>();
         attack_list = new ArrayList<Skill>();
+        
+        SFX = new Sound();
 
         coord_list.add(Game.POS1);
         coord_list.add(Game.POS2);
@@ -306,10 +311,18 @@ class ActionControl extends KeyAdapter {
 
             if (key == KeyEvent.VK_I) {
                 if (!handler.interactStatus() && !handler.inventoryStatus()) {
+                    SFX.setSoundDirectory("..\\resources\\sfx\\UIOpen.wav");
+                    SFX.setVolume(0);
+                    
+                    SFX.play();
+                    
                     handler.inventoryOpen();
                     player.inventoryOpen();
                     handler.UIOpen();
                 } else if (!handler.interactStatus() && handler.inventoryStatus()) {
+                    SFX.setSoundDirectory("..\\resources\\sfx\\UIOpen.wav");
+                    SFX.play();
+                    
                     handler.inventoryClose();
                     handler.UIClose();
                     player.inventoryClose();
@@ -330,7 +343,7 @@ class ActionControl extends KeyAdapter {
 
                 }
             }
-
+            
             //Temporary exit game method
             if (key == KeyEvent.VK_ESCAPE) {
                 System.exit(1);

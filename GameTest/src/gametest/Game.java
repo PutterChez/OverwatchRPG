@@ -170,6 +170,8 @@ public class Game extends Canvas implements Runnable {
         testMerchant.addLoot(new HPItem(ID.Item, "Snowy Robot", 1700));
         
         handler.addWorldColisionObject(testMerchant);
+        
+        
 
         //BattlePhase Part----------------------------------------------------------------------------------------------------
         BattlePhaseEntity genji = new BattlePhaseEntity(P_POS1.x, P_POS1.y, ID.Ally, 230, 230, "..\\resources\\characters_fixed\\genji_1.png", 200, 100, "Genji", 40, 10, 100, 40);

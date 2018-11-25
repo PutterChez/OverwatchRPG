@@ -24,6 +24,8 @@ public class Handler {
     boolean merchantInteracting = false;
     boolean openUI = false;
     
+    Sound bgm;
+    
     RenderModule battleRender;
     RenderModule worldRender;
     
@@ -36,6 +38,7 @@ public class Handler {
         this.worldRender = new RenderModule();
         objectList = new LinkedList<>();
         colisionList = new LinkedList<>();
+        bgm = new Sound();
     }
     
     public void tick() {
@@ -110,6 +113,21 @@ public class Handler {
             if(c.checkColision(p))
                 return true;
         return false;
+    }
+    
+    public void playBGM()
+    {
+        bgm.play();
+    }
+    
+    public void stopBGM()
+    {
+        bgm.stop();
+    }
+    
+    public void setBGM(String url)
+    {
+        bgm.setSoundDirectory(url);
     }
       
     public void battlePhaseOn(){ battlePhase = true;}

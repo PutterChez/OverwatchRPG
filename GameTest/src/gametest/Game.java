@@ -314,7 +314,9 @@ public class Game extends Canvas implements Runnable {
         handler.addWorldPhaseObject(house1_right_roof);
         handler.addWorldPhaseObject(house2_right_roof);
         handler.addWorldPhaseObject(merCursor);
-
+        
+        
+       handler.MainPhaseOn();
         this.addKeyListener(control);
 
     }
@@ -375,6 +377,9 @@ public class Game extends Canvas implements Runnable {
                 //System.out.println(obj);
             }
         }
+        
+        handler.mainMenu.x = player.x - 775;
+        handler.mainMenu.y = player.y - 450;
 
         if (!colision) {
             handler.updateBattleObject(player);

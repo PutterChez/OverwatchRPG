@@ -421,9 +421,21 @@ class ActionControl extends KeyAdapter {
             if (key == KeyEvent.VK_Q)
             {
                 handler.stopBGM();
+                handler.gameOver = true;
+                
+                SFX.setSoundDirectory("..\\resources\\sfx\\Defeat.wav");
+                SFX.play();
+                
+                try{
+                Thread.sleep(SFX.clip.getMicrosecondLength()/1000);
+                }
+                catch(Exception except)
+                {
+                    System.out.println(except.toString());
+                }
+                
                 handler.setBGM("..\\resources\\music\\SadViolin.wav");
                 handler.playBGM();
-                handler.gameOver = true;
             }
 
         }

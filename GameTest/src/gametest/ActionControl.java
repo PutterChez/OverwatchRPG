@@ -12,6 +12,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Random;
 import javax.sound.sampled.FloatControl;
 
 /**
@@ -198,7 +199,42 @@ class ActionControl extends KeyAdapter {
                             } else if (cursorPos == 1) {
                                 System.out.println("Items");
                             } else if (cursorPos == 2) {
-                                System.out.println("Run");
+                                Random randRunChance = new Random(System.currentTimeMillis());
+                                if(randRunChance.nextInt(100) < 80)
+                                {
+                                    SFX.setSoundDirectory("..\\resources\\sfx\\Flee.wav");
+                                    SFX.play();
+                                    
+                                    PopUp = false;
+                                    System.out.println("Exit Battle Phase");
+                                    handler.battlePhaseOff();
+                                    handler.stopBGM();
+
+                                    for (WorldPhaseEntity obj : handler.colisionList) {
+                                        WorldPhaseEntity temp = player.getInteractArea();
+                                        if (obj.checkColision(temp)) {
+                                            if (obj.getId() == ID.BattleNPC) {
+                                                String temp_String = obj.getDialogue();
+                                                while (temp_String != null) {
+                                                    temp_String = obj.getDialogue();
+                                                    //SFX.setSoundDirectory("..\\resources\\sfx\\DialogueChange.wav");
+                                                    //SFX.play();
+                                                    //player.setDialogue(temp_String);
+                                                }
+                                                handler.uninteracted();
+                                                player.unInteracted();    
+                                            }
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    SFX.setSoundDirectory("..\\resources\\sfx\\Failed.wav");
+                                    SFX.play();
+                                    
+                                    //Function to skip player turn
+                                    System.out.println("Can not RUN :P");
+                                }
                             }
                         }
                         tempObject.setY(finalPosY);
@@ -255,6 +291,10 @@ class ActionControl extends KeyAdapter {
                                     skillListSelect = false;
                                     select = true;
                                     playerHUD.setSelectedPlayer(selectedPlayer);
+                                    
+                                    //PunPun Edit
+                                    tempObject.setX(enemyParty.memberList.get(enemySelectPos).entity.getX() + 60);
+                                    tempObject.setY(enemyParty.memberList.get(enemySelectPos).entity.getY() + 70);
                                 }
                                 else{
                                     select = false;
@@ -378,7 +418,8 @@ class ActionControl extends KeyAdapter {
                         }
                     }
                 }
-            }*/
+            }
+            */
         } else //WorldPhase part-----------------------------------------------------------------------------------------------------------
         {
             //System.out.println("CurrentMap x: " + currentMap.x);

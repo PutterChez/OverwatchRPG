@@ -211,14 +211,36 @@ public class Game extends Canvas implements Runnable {
         mccree.addSkill(normalShot);
         mccree.addSkill(headShot);
         mccree.addSkill(deadeye);
-
+        
+        //Mercy Skills
         Skill blaster = new Skill("Caduceus Blaster", 20, 10, 100);
         blaster.setDescription("Mercy shoots a round from her sidearm");
+        Skill heal = new Skill("Heal", 100, 50, 200);
+        heal.setDescription("Mercy maintains a beam of healing onto and ally, healing them for 100 health");
+        Skill damageBoost = new Skill("Damage Boost", 30, 50, 100);
+        damageBoost.setDescription("Mercy maintains a beam of damage boost onto and ally, increasing their damage by 30%");
+        Skill valkyrie = new Skill("Valkyrie", 150, 100, 200);
+        valkyrie.setDescription("Mercy transforms, enchancing her ablitites and damaging the target by 150 points");
+        valkyrie.setUltimate(true);
+        valkyrie.setColor(Color.YELLOW);
         mercy.addSkill(blaster);
-
+        mercy.addSkill(heal);
+        mercy.addSkill(damageBoost);
+        mercy.addSkill(valkyrie);
+       
+        //Reinhardt Skills
         Skill hammer = new Skill("Rocket Hammer", 75, 40, 150);
         hammer.setDescription("Reinhardt swings his hammer in a wide arc");
+        Skill firestrike = new Skill("Fire Strike", 100, 60, 60);
+        firestrike.setDescription("By whipping his Rocket Hammer forward, Reinhardt slings a flaming projectile.");
+        Skill earthshatter = new Skill("Earthshatter", 200, 100, 100);
+        earthshatter.setDescription("Reinhardt forcefully slams his rocket hammer into the ground, damaging all enemies in front of him.");
+        earthshatter.setUltimate(true);
+        earthshatter.setColor(Color.ORANGE);
         reinhardt.addSkill(hammer);
+        reinhardt.addSkill(firestrike);
+        reinhardt.addSkill(earthshatter);
+        
 
         Menu menu = new Menu(WIDTH / 2 - 700, 600, ID.Menu, 1400, 300, "..\\resources\\maps\\hud_1.png");
         Menu popUp = new Menu(WIDTH / 2 - 170, 1000, ID.PopUp, 500, 300, "..\\resources\\maps\\hud_box.png");

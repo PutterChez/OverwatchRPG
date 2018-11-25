@@ -99,7 +99,7 @@ class ActionControl extends KeyAdapter {
             {
                 if(handler.mainCursorPos >= 1)
                     handler.mainCursorPos -= 1;
-                handler.mainCursor.x = handler.mainMenu.x + 25;
+                handler.mainCursor.x = handler.mainMenu.x + 40;
                 handler.mainCursor.y = handler.mainMenu.y + 300 + (handler.mainCursorPos * 100);
             }
             
@@ -107,7 +107,7 @@ class ActionControl extends KeyAdapter {
             {
                 if(handler.mainCursorPos < 2)
                     handler.mainCursorPos += 1;
-                handler.mainCursor.x = handler.mainMenu.x + 25;
+                handler.mainCursor.x = handler.mainMenu.x + 40;
                 handler.mainCursor.y = handler.mainMenu.y + 300 + (handler.mainCursorPos * 100);
             }
             

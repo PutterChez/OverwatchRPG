@@ -49,7 +49,7 @@ public class Handler {
         bgm = new Sound();
         
         mainMenu = new Menu(0, 0, ID.Menu, 1600, 900, "..\\resources\\misc\\main_menu.png");
-        mainCursor = new Menu(5000, 5000, ID.Cursor, 50, 50, "..\\resources\\misc\\cursor_E.png");
+        mainCursor = new Menu(5000, 5000, ID.Cursor, 50, 50, "..\\resources\\misc\\cursor_E_white.png");
     }
     
     public void tick() {
@@ -178,7 +178,7 @@ public class Handler {
         bgm.setVolume(-5);
         playBGM();
         
-        mainCursor.x = mainMenu.x + 25;
+        mainCursor.x = mainMenu.x + 40;
         mainCursor.y = mainMenu.y + 300 + (mainCursorPos * 100);
         mainPhase = true; 
     }

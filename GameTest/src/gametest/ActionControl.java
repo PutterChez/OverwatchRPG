@@ -255,6 +255,9 @@ class ActionControl extends KeyAdapter {
                                     skillListSelect = false;
                                     select = true;
                                     playerHUD.setSelectedPlayer(selectedPlayer);
+                                    
+                                    tempObject.setX(enemyParty.memberList.get(enemySelectPos).entity.getX() + 60);
+                                    tempObject.setY(enemyParty.memberList.get(enemySelectPos).entity.getY() + 70);
                                 }
                                 else{
                                     select = false;

@@ -96,7 +96,7 @@ class ActionControl extends KeyAdapter {
                             PopUp = false;
                         }
                     } else {
-                        if (key == KeyEvent.VK_ENTER) {
+                        if ((key == KeyEvent.VK_ENTER) && (skillSelect == false) && (playerSelect == false) && (select == false)) {
                             tempObject.setY(player.getY() + 150);
                             PopUp = true;
                         } else {
@@ -107,7 +107,7 @@ class ActionControl extends KeyAdapter {
 
                 if (tempObject.getId() == ID.Cursor) {
                     if (PopUp == true) {
-
+                        playerHUD.setShowSkills(false);
                         if (key == KeyEvent.VK_DOWN) {
                             if (cursorPos < 2) {
                                 cursorPos++;

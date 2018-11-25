@@ -41,7 +41,7 @@ class ActionControl extends KeyAdapter {
     ArrayList<Coordinate> coord_list;
     ArrayList<Coordinate> player_coord_list;
     ArrayList<Skill> attack_list;
-    int cursorPos = 0, selectPos = 0, selectSkillNum = 0,selectedPlayer = 0, finalPosX = 950, finalPosY = 660;
+    int cursorPos = 0, selectPos = 0, selectSkillNum = 0, selectedPlayer = 0, finalPosX = 950, finalPosY = 660;
 
     Menu merchantCursor;
     int merchantCursorPos = 0;
@@ -86,8 +86,7 @@ class ActionControl extends KeyAdapter {
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
         if (handler.battlePhaseStatus()) {
-            if(handler.getBgmStatus() == false)
-            {
+            if (handler.getBgmStatus() == false) {
                 handler.setBGM("..\\resources\\music\\Hanamura.wav");
                 handler.playBGM();
             }
@@ -146,24 +145,19 @@ class ActionControl extends KeyAdapter {
                         }
                         tempObject.setY(finalPosY);
                         tempObject.setX(finalPosX);
-                    }
-                    else if (skillSelect == true){
+                    } else if (skillSelect == true) {
                         if (key == KeyEvent.VK_LEFT) {
-                            if(selectPos == 3){
+                            if (selectPos == 3) {
                                 selectPos = 0;
-                            }
-
-                            else if (selectPos < playerParty.memberList.size() - 1) {
+                            } else if (selectPos < playerParty.memberList.size() - 1) {
                                 selectPos++;
                             }
                         }
 
                         if (key == KeyEvent.VK_RIGHT) {
-                            if(selectPos == 0){
+                            if (selectPos == 0) {
                                 selectPos = 3;
-                            }
-
-                            else if (selectPos > 0) {
+                            } else if (selectPos > 0) {
                                 selectPos--;
                             }
                         }
@@ -179,29 +173,24 @@ class ActionControl extends KeyAdapter {
                         tempObject.setX(playerParty.memberList.get(selectPos).entity.getX() + 60);
                         tempObject.setY(playerParty.memberList.get(selectPos).entity.getY() + 70);
 
-                    }
-                    else if (skillListSelect == true) {
+                    } else if (skillListSelect == true) {
                         System.out.println("Skill Select Enter");
                         playerHUD.setShowSkills(true);
                         playerHUD.setSelectedPlayer(selectedPlayer);
                         int skillListSize = playerParty.memberList.get(selectedPlayer).entity.skillList.size() - 1;
 
                         if (key == KeyEvent.VK_DOWN) {
-                            if(selectPos == skillListSize){
+                            if (selectPos == skillListSize) {
                                 selectPos = 0;
-                            }
-
-                            else if (selectPos < skillListSize) {
+                            } else if (selectPos < skillListSize) {
                                 selectPos++;
                             }
                         }
 
                         if (key == KeyEvent.VK_UP) {
-                            if(selectPos == 0){
+                            if (selectPos == 0) {
                                 selectPos = skillListSize;
-                            }
-
-                            else if (selectPos > 0) {
+                            } else if (selectPos > 0) {
                                 selectPos--;
                             }
                         }
@@ -222,7 +211,7 @@ class ActionControl extends KeyAdapter {
                         }
 
                         tempObject.setX(player.getX() + 60);
-                        tempObject.setY(player.getY() + 250 + (35*selectPos));
+                        tempObject.setY(player.getY() + 250 + (35 * selectPos));
 
                     } else if (select == true) {
                         System.out.println("Enter Enemy Select");
@@ -254,7 +243,7 @@ class ActionControl extends KeyAdapter {
 
                         if (key == KeyEvent.VK_E) {
                             System.out.println(playerParty.memberList.get(selectedPlayer).entity.getCharName() + " attacked " + enemyParty.memberList.get(selectPos).entity.getCharName()
-                            + " using " + playerParty.memberList.get(selectedPlayer).entity.getSelectSkill().skillName);
+                                    + " using " + playerParty.memberList.get(selectedPlayer).entity.getSelectSkill().skillName);
                             Action.attack(playerParty.memberList.get(selectedPlayer).entity, playerParty.memberList.get(selectedPlayer).entity.getSelectSkill(), enemyParty.memberList.get(selectPos).entity);
 
                             selectPos = 0;
@@ -269,6 +258,7 @@ class ActionControl extends KeyAdapter {
             }
 
             //Change to battle finishd function later
+            /*
             if (key == KeyEvent.VK_ESCAPE) {
                 PopUp = false;
                 System.out.println("Exit Battle Phase");
@@ -283,19 +273,17 @@ class ActionControl extends KeyAdapter {
                         }
                     }
                 }
-            }
+            }*/
         } else //WorldPhase part-----------------------------------------------------------------------------------------------------------
         {
             //System.out.println("CurrentMap x: " + currentMap.x);
             //System.out.println("CurrentMap y:" + currentMap.y);
             //System.out.println("Player x:" + player.x);
             //System.out.println("Player y:" + player.y);
-            if(handler.getBgmStatus() == false)
-            {
+            if (handler.getBgmStatus() == false) {
                 handler.setBGM("..\\resources\\music\\Chiisana Koi no Uta.wav");
                 handler.playBGM();
             }
-
 
             if (key == KeyEvent.VK_A && handler.merchantStatus()) {
                 merchantCursorPos = 0;
@@ -357,19 +345,15 @@ class ActionControl extends KeyAdapter {
                 }
             }
 
-            if (key == KeyEvent.VK_P)
-            {
-                if(!handler.interactStatus() && !handler.UIStatus())
-                {
+            if (key == KeyEvent.VK_P) {
+                if (!handler.interactStatus() && !handler.UIStatus()) {
                     SFX.setSoundDirectory("..\\resources\\sfx\\UIOpen.wav");
                     SFX.setVolume(-10);
                     SFX.play();
 
                     player.partyViewOpen();
                     handler.UIOpen();
-                }
-                else
-                {
+                } else {
                     SFX.setSoundDirectory("..\\resources\\sfx\\UIOpen.wav");
                     SFX.setVolume(-10);
                     SFX.play();
@@ -493,10 +477,11 @@ class ActionControl extends KeyAdapter {
                         } else if (obj.getId() == ID.Chest) {
                             Item tempLoot = obj.getLoot();
                             if (tempLoot != null) {
-                                if(tempLoot instanceof MoneyItem)
+                                if (tempLoot instanceof MoneyItem) {
                                     player.inventory.addMoney(tempLoot.itemPrice);
-                                else
+                                } else {
                                     player.addItem(tempLoot);
+                                }
                                 player.setDialogue("You got " + tempLoot.itemName);
                                 SFX.setSoundDirectory("..\\resources\\sfx\\DialogueChange.wav");
                                 SFX.play();
@@ -507,15 +492,12 @@ class ActionControl extends KeyAdapter {
                                 player.unInteracted();
                             }
                         } else if (obj.getId() == ID.Merchant) {
-                            if(merchantCursorPos == -1)
-                            {
+                            if (merchantCursorPos == -1) {
                                 player.unInteracted();
                                 handler.uninteracted();
                                 merchantCursor.setY(3000);
                                 merchantCursorPos = 0;
-                            }
-
-                            else if (handler.merchantStatus() == false) {
+                            } else if (handler.merchantStatus() == false) {
                                 String temp_String = obj.getDialogue();
                                 if (temp_String != null) {
                                     SFX.setSoundDirectory("..\\resources\\sfx\\DialogueChange.wav");
@@ -568,15 +550,21 @@ class ActionControl extends KeyAdapter {
             PopUp = false;
             System.out.println("Exit Battle Phase");
             handler.battlePhaseOff();
+            handler.stopBGM();
 
+            
+            /*
             for (WorldPhaseEntity obj : handler.colisionList) {
                 WorldPhaseEntity temp = player.getInteractArea();
                 if (obj.checkColision(temp)) {
                     if (obj.getId() == ID.BattleNPC) {
-                        player.setDialogue(obj.getDialogue());
+                        String tempString = obj.getDialogue();
+                        System.out.println(tempString);
+                        player.setDialogue(tempString);
                     }
                 }
             }
+                    */
         }
 
         player.setVelX(0);

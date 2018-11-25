@@ -323,7 +323,13 @@ class ActionControl extends KeyAdapter {
                                 select = false;
                                 PopUp = false;
                                 skillListSelect = true;
-                                tempObject.setY(player.getY() + 450);
+                                
+                                //PunPun Edit
+                                selectPos = 0;
+                                tempObject.setX(player.getX() + 100);
+                                tempObject.setY(player.getY() + 250 + (35 * selectPos));
+                                playerHUD.setSelectedPlayer(selectedPlayer);
+                                playerHUD.setShowSkills(true );
                             }
                         
                         }

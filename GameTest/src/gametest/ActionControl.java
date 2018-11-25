@@ -11,6 +11,7 @@ import java.awt.Graphics;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import java.util.Collections;
 import javax.sound.sampled.FloatControl;
 
 /**
@@ -40,7 +41,7 @@ class ActionControl extends KeyAdapter {
     boolean skillSelect = false;
     ArrayList<Coordinate> coord_list;
     ArrayList<Coordinate> player_coord_list;
-    ArrayList<Skill> attack_list;
+    ArrayList<BattlePhaseEntity> attack_list;
     int cursorPos = 0, selectPos = 0, selectSkillNum = 0, selectedPlayer = 0, finalPosX = 950, finalPosY = 660;
 
     Menu merchantCursor;
@@ -54,7 +55,7 @@ class ActionControl extends KeyAdapter {
 
         coord_list = new ArrayList<Coordinate>();
         player_coord_list = new ArrayList<Coordinate>();
-        attack_list = new ArrayList<Skill>();
+        attack_list = new ArrayList<BattlePhaseEntity>();
 
         SFX = new Sound();
 
@@ -134,9 +135,8 @@ class ActionControl extends KeyAdapter {
 
                         if (key == KeyEvent.VK_A) {
                             if (cursorPos == 0) {
-                                //playerSelect = true;
-                                skillSelect = true;
                                 PopUp = false;
+                                skillListSelect = true;
                             } else if (cursorPos == 1) {
                                 System.out.println("Items");
                             } else if (cursorPos == 2) {
@@ -145,78 +145,56 @@ class ActionControl extends KeyAdapter {
                         }
                         tempObject.setY(finalPosY);
                         tempObject.setX(finalPosX);
-                    } else if (skillSelect == true) {
-                        if (key == KeyEvent.VK_LEFT) {
-                            if (selectPos == 3) {
-                                selectPos = 0;
-                            } else if (selectPos < playerParty.memberList.size() - 1) {
+                    } 
+ 
+                    else if (skillListSelect == true) {
+                        if (selectedPlayer < playerParty.memberList.size()) {
+                            playerHUD.setShowSkills(true);
+                            playerHUD.setSelectedPlayer(selectedPlayer);
+                            int skillListSize = playerParty.memberList.get(selectedPlayer).entity.skillList.size() - 1;
+
+                            if (key == KeyEvent.VK_DOWN) {
+                                if (selectPos == skillListSize) {
+                                    selectPos = 0;
+                                } else if (selectPos < skillListSize) {
+                                    selectPos++;
+                                }
+                                else{
+                                    selectPos = 0;
+                                }
+                            }
+
+                            if (key == KeyEvent.VK_UP) {
+                                if (selectPos == 0) {
+                                    selectPos = skillListSize;
+                                } else if (selectPos > 0) {
+                                    selectPos--;
+                                }
+                            }
+                                
+                            tempObject.setX(player.getX() + 100);
+                            tempObject.setY(player.getY() + 250 + (35 * selectPos));
+                            
+                            if (key == KeyEvent.VK_E) {
+                                Skill selectedSkill = playerParty.memberList.get(selectedPlayer).entity.skillList.get(selectPos);
+                                playerParty.memberList.get(selectedPlayer).entity.setSelectSkill(selectedSkill);
+                                attack_list.add(playerParty.memberList.get(selectedPlayer).entity);
+                                selectedPlayer++;
                                 selectPos++;
+                                System.out.println("Selected Skill: " + selectedSkill.getSkillName());
                             }
                         }
-
-                        if (key == KeyEvent.VK_RIGHT) {
-                            if (selectPos == 0) {
-                                selectPos = 3;
-                            } else if (selectPos > 0) {
-                                selectPos--;
-                            }
-                        }
-
-                        if (key == KeyEvent.VK_E) {
-                            selectedPlayer = selectPos;
-                            selectPos = 0;
-                            skillSelect = false;
-                            skillListSelect = true;
-                            tempObject.setY(player.getY() + 450);
-                        }
-
-                        tempObject.setX(playerParty.memberList.get(selectPos).entity.getX() + 60);
-                        tempObject.setY(playerParty.memberList.get(selectPos).entity.getY() + 70);
-
-                    } else if (skillListSelect == true) {
-                        System.out.println("Skill Select Enter");
-                        playerHUD.setShowSkills(true);
-                        playerHUD.setSelectedPlayer(selectedPlayer);
-                        int skillListSize = playerParty.memberList.get(selectedPlayer).entity.skillList.size() - 1;
-
-                        if (key == KeyEvent.VK_DOWN) {
-                            if (selectPos == skillListSize) {
-                                selectPos = 0;
-                            } else if (selectPos < skillListSize) {
-                                selectPos++;
-                            }
-                        }
-
-                        if (key == KeyEvent.VK_UP) {
-                            if (selectPos == 0) {
-                                selectPos = skillListSize;
-                            } else if (selectPos > 0) {
-                                selectPos--;
-                            }
-                        }
-
-                        if (key == KeyEvent.VK_A) {
-                            selectSkillNum = selectPos;
-
-                            Skill selectedSkill = playerParty.memberList.get(selectedPlayer).entity.skillList.get(selectSkillNum);
-                            playerParty.memberList.get(selectedPlayer).entity.setSelectSkill(selectedSkill);
-                            attack_list.add(selectedSkill);
-
-                            System.out.println("Selected Skill: " + selectedSkill.getSkillName());
+                        else{
                             selectPos = 0;
                             PopUp = false;
-                            select = true;
                             skillListSelect = false;
+                            select = true;
                             tempObject.setY(player.getY() + 450);
                         }
-
-                        tempObject.setX(player.getX() + 60);
-                        tempObject.setY(player.getY() + 250 + (35 * selectPos));
-
-                    } else if (select == true) {
+                    } 
+                    else if (select == true) {
+                        playerHUD.setShowSkills(false);
                         System.out.println("Enter Enemy Select");
-                        //tempObject.setY(player.getY() + 210);
-                        //tempObject.setX(player.getX() + 150);
 
                         if (key == KeyEvent.VK_RIGHT) {
                             if (selectPos < enemyParty.memberList.size() - 1) {
@@ -229,25 +207,35 @@ class ActionControl extends KeyAdapter {
                                 selectPos--;
                             }
                         }
-
-                        System.out.println("selectPos: " + selectPos);
-
-                        System.out.println("X: " + enemyParty.memberList.get(selectPos).entity.getX());
-                        System.out.println("Y: " + enemyParty.memberList.get(selectPos).entity.getY());
-
-                        //CHEZBALL WHY DO U NEED FINAL POS AND STUFF
-                        //tempObject.setX(finalPosX + enemyParty.memberList.get(selectPos).entity.getX() - 700);
-                        //tempObject.setY(finalPosY + enemyParty.memberList.get(selectPos).entity.getY() - 550);
+                        
                         tempObject.setX(enemyParty.memberList.get(selectPos).entity.getX() + 60);
                         tempObject.setY(enemyParty.memberList.get(selectPos).entity.getY() + 70);
 
                         if (key == KeyEvent.VK_E) {
+                            /*Odd attack
                             System.out.println(playerParty.memberList.get(selectedPlayer).entity.getCharName() + " attacked " + enemyParty.memberList.get(selectPos).entity.getCharName()
                                     + " using " + playerParty.memberList.get(selectedPlayer).entity.getSelectSkill().skillName);
                             Action.attack(playerParty.memberList.get(selectedPlayer).entity, playerParty.memberList.get(selectedPlayer).entity.getSelectSkill(), enemyParty.memberList.get(selectPos).entity);
-
+                            */
+                            
+                            //New sorted attack by speed
+                            Collections.sort(attack_list);
+                            
+                            for(int j = 0; j < attack_list.size();j++){
+                                for(int k = 0;k < playerParty.memberList.size();k++){
+                                    if(attack_list.get(j).getCharName().equals(playerParty.memberList.get(k).entity.getCharName())){
+                                        System.out.println(playerParty.memberList.get(k).entity.getCharName() + " attacked " + enemyParty.memberList.get(selectPos).entity.getCharName()
+                                        + " using " + playerParty.memberList.get(k).entity.getSelectSkill().skillName);
+                                        Action.attack(playerParty.memberList.get(k).entity, playerParty.memberList.get(k).entity.getSelectSkill(), enemyParty.memberList.get(selectPos).entity);
+                                    }
+                                }
+                                
+                            }
+                            
                             selectPos = 0;
+                            selectedPlayer = 0;
                             select = false;
+                            PopUp = false;
                             playerHUD.setShowSkills(false);
                             tempObject.setY(player.getY() + 450);
                         }

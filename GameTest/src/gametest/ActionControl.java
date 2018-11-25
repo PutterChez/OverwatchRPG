@@ -112,6 +112,8 @@ class ActionControl extends KeyAdapter {
             
             if(key == KeyEvent.VK_SPACE)
             {
+                SFX.setSoundDirectory("..\\resources\\sfx\\Selection Confirm.wav");
+                SFX.play();
                 if(handler.mainCursorPos == 0)
                 {
                     handler.MainPhaseOff();
@@ -374,16 +376,16 @@ class ActionControl extends KeyAdapter {
 
             if (key == KeyEvent.VK_I) {
                 if (!handler.interactStatus() && !handler.inventoryStatus()) {
-                    SFX.setSoundDirectory("..\\resources\\sfx\\UIOpen.wav");
-                    SFX.setVolume(-10);
+                    SFX.setSoundDirectory("..\\resources\\sfx\\MENU Open.wav");
+                    SFX.setVolume(-5);
                     SFX.play();
 
                     handler.inventoryOpen();
                     player.inventoryOpen();
                     handler.UIOpen();
                 } else if (!handler.interactStatus() && handler.inventoryStatus()) {
-                    SFX.setSoundDirectory("..\\resources\\sfx\\UIOpen.wav");
-                    SFX.setVolume(-10);
+                    SFX.setSoundDirectory("..\\resources\\sfx\\MENU Close.wav");
+                    SFX.setVolume(-5);
                     SFX.play();
 
                     handler.inventoryClose();
@@ -394,15 +396,15 @@ class ActionControl extends KeyAdapter {
 
             if (key == KeyEvent.VK_P) {
                 if (!handler.interactStatus() && !handler.UIStatus()) {
-                    SFX.setSoundDirectory("..\\resources\\sfx\\UIOpen.wav");
-                    SFX.setVolume(-10);
+                    SFX.setSoundDirectory("..\\resources\\sfx\\MENU Open.wav");
+                    SFX.setVolume(-5);
                     SFX.play();
 
                     player.partyViewOpen();
                     handler.UIOpen();
                 } else {
-                    SFX.setSoundDirectory("..\\resources\\sfx\\UIOpen.wav");
-                    SFX.setVolume(-10);
+                    SFX.setSoundDirectory("..\\resources\\sfx\\MENU Close.wav");
+                    SFX.setVolume(-5);
                     SFX.play();
 
                     player.partyViewClosed();
@@ -546,7 +548,6 @@ class ActionControl extends KeyAdapter {
                             if (merchantCursorPos == -1) {
                                 player.unInteracted();
                                 handler.uninteracted();
-                                merchantCursor.setY(3000);
                                 merchantCursorPos = 0;
                             } else if (handler.merchantStatus() == false) {
                                 String temp_String = obj.getDialogue();
@@ -582,6 +583,7 @@ class ActionControl extends KeyAdapter {
                                 }
 
                                 merchantCursorPos = -1;
+                                merchantCursor.setY(5000);
                                 handler.merchantClose();
                             }
                         }

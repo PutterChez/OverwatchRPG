@@ -25,10 +25,17 @@ public class Handler {
     boolean openUI = false;
     boolean bgmStatus = false;
     
+    
+    boolean mainPhase = true;
+    
     Sound bgm;
     
     RenderModule battleRender;
     RenderModule worldRender;
+    
+    Menu mainMenu;
+    Menu mainCursor;
+    int mainCursorPos = 0;
     
     LinkedList<GameObject> objectList;
     LinkedList<WorldPhaseEntity> colisionList; 
@@ -40,6 +47,9 @@ public class Handler {
         objectList = new LinkedList<>();
         colisionList = new LinkedList<>();
         bgm = new Sound();
+        
+        mainMenu = new Menu(0, 0, ID.Menu, 1600, 900, "..\\resources\\misc\\main_menu.png");
+        mainCursor = new Menu(5000, 5000, ID.Cursor, 50, 50, "..\\resources\\misc\\cursor_E.png");
     }
     
     public void tick() {
@@ -52,6 +62,11 @@ public class Handler {
     public void render(Graphics g) {
         if(battlePhase)  
             battleRender.render(g);
+        else if(mainPhase)
+        {
+            mainMenu.render(g);
+            mainCursor.render(g);
+        }
         else
             worldRender.render(g);          
     }
@@ -157,6 +172,21 @@ public class Handler {
     public void UIOpen(){ openUI = true; }
     public void UIClose(){ openUI = false; }
     public boolean UIStatus(){ return openUI; }
+
+    public void MainPhaseOn() { 
+        bgm.setSoundDirectory("..\\resources\\music\\Overtime.wav");
+        bgm.setVolume(-5);
+        playBGM();
+        
+        mainCursor.x = mainMenu.x + 25;
+        mainCursor.y = mainMenu.y + 300 + (mainCursorPos * 100);
+        mainPhase = true; 
+    }
+    public void MainPhaseOff() { 
+        mainPhase = false; 
+    }
+    public boolean MainPhaseStatus() {return mainPhase;}
+    
 
     public boolean getBgmStatus() {
         return bgmStatus;

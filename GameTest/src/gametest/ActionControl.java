@@ -85,7 +85,54 @@ class ActionControl extends KeyAdapter {
 
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
-        if (handler.battlePhaseStatus()) {
+        
+        if(handler.MainPhaseStatus())
+        {
+            if (handler.getBgmStatus() == false) {
+                handler.setBGM("..\\resources\\music\\Overtime.wav");
+                handler.bgm.setVolume(-5);
+                handler.playBGM();
+            }
+            
+            if(key == KeyEvent.VK_W)
+            {
+                if(handler.mainCursorPos >= 1)
+                    handler.mainCursorPos -= 1;
+                handler.mainCursor.x = handler.mainMenu.x + 25;
+                handler.mainCursor.y = handler.mainMenu.y + 300 + (handler.mainCursorPos * 100);
+            }
+            
+            if(key == KeyEvent.VK_S)
+            {
+                if(handler.mainCursorPos < 2)
+                    handler.mainCursorPos += 1;
+                handler.mainCursor.x = handler.mainMenu.x + 25;
+                handler.mainCursor.y = handler.mainMenu.y + 300 + (handler.mainCursorPos * 100);
+            }
+            
+            if(key == KeyEvent.VK_SPACE)
+            {
+                if(handler.mainCursorPos == 0)
+                {
+                    handler.MainPhaseOff();
+                    handler.stopBGM();
+                }
+                else if (handler.mainCursorPos == 1)
+                {
+                    System.out.println("Turotial");
+                }
+                else if (handler.mainCursorPos == 2)
+                {
+                    System.exit(0);
+                }
+            }
+            
+            if (key == KeyEvent.VK_ESCAPE) {
+                System.exit(1);
+            }
+        }
+        
+        else if (handler.battlePhaseStatus()) {
             if (handler.getBgmStatus() == false) {
                 handler.setBGM("..\\resources\\music\\Hanamura.wav");
                 handler.playBGM();
@@ -364,9 +411,10 @@ class ActionControl extends KeyAdapter {
                 }
             }
 
-            //Temporary exit game method
+            //exit to mainMenu, need to change the condition later
             if (key == KeyEvent.VK_ESCAPE) {
-                System.exit(1);
+                handler.stopBGM();
+                handler.MainPhaseOn();
             }
 
         }
@@ -479,6 +527,9 @@ class ActionControl extends KeyAdapter {
                             if (tempLoot != null) {
                                 if (tempLoot instanceof MoneyItem) {
                                     player.inventory.addMoney(tempLoot.itemPrice);
+                                    SFX.setSoundDirectory("..\\resources\\sfx\\coin.wav");
+                                    SFX.setVolume(0);
+                                    SFX.play();
                                 } else {
                                     player.addItem(tempLoot);
                                 }

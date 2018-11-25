@@ -362,6 +362,9 @@ public class Game extends Canvas implements Runnable {
 
         for (WorldPhaseEntity obj : handler.colisionList) {
             if (obj.checkColision(player)) {
+                control.SFX.setSoundDirectory("..\\resources\\sfx\\Colision.wav");
+                control.SFX.play();
+                
                 obj.getOutOfHere(player);
                 colision = true;
                 break;

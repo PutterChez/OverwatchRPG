@@ -317,6 +317,8 @@ class ActionControl extends KeyAdapter {
                                     }
 
                                 }
+                                
+                                attack_list.clear();
                             }
                             else{
                                 enemySelectPos = 0;

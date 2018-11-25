@@ -39,6 +39,11 @@ public class Sound {
         clip.stop();
     }
     
+    public void playLoop(){
+        clip.setLoopPoints(0, -1);
+        clip.loop(10);
+    }
+    
     public void setVolume(int e)
     {
         FloatControl volume = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);

@@ -86,6 +86,12 @@ class ActionControl extends KeyAdapter {
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
         if (handler.battlePhaseStatus()) {
+            if(handler.getBgmStatus() == false)
+            {
+                handler.setBGM("..\\resources\\music\\Hanamura.wav");
+                handler.playBGM();
+            }
+            
             /*Movement controls*/
             for (int i = 0; i < handler.objectList.size(); i++) {
 
@@ -248,6 +254,7 @@ class ActionControl extends KeyAdapter {
                 PopUp = false;
                 System.out.println("Exit Battle Phase");
                 handler.battlePhaseOff();
+                handler.stopBGM();
 
                 for (WorldPhaseEntity obj : handler.colisionList) {
                     WorldPhaseEntity temp = player.getInteractArea();
@@ -265,6 +272,12 @@ class ActionControl extends KeyAdapter {
             //System.out.println("CurrentMap y:" + currentMap.y);
             //System.out.println("Player x:" + player.x);
             //System.out.println("Player y:" + player.y);
+            if(handler.getBgmStatus() == false)
+            {
+                handler.setBGM("..\\resources\\music\\Chiisana Koi no Uta.wav");
+                handler.playBGM();
+            }
+            
 
             if (key == KeyEvent.VK_A && handler.merchantStatus()) {
                 merchantCursorPos = 0;
@@ -281,7 +294,7 @@ class ActionControl extends KeyAdapter {
                 handler.battlePhaseOn();
             }
 
-            if (!handler.interactStatus() && !handler.UIStatus()) {
+            if (!handler.interactStatus() && !handler.UIStatus()) {  
                 if (key == KeyEvent.VK_W) {
                     //System.out.println("Character Moving Up");
                     player.setDirection(0);
@@ -312,8 +325,7 @@ class ActionControl extends KeyAdapter {
             if (key == KeyEvent.VK_I) {
                 if (!handler.interactStatus() && !handler.inventoryStatus()) {
                     SFX.setSoundDirectory("..\\resources\\sfx\\UIOpen.wav");
-                    SFX.setVolume(0);
-                    
+                    SFX.setVolume(-10);
                     SFX.play();
                     
                     handler.inventoryOpen();
@@ -321,6 +333,7 @@ class ActionControl extends KeyAdapter {
                     handler.UIOpen();
                 } else if (!handler.interactStatus() && handler.inventoryStatus()) {
                     SFX.setSoundDirectory("..\\resources\\sfx\\UIOpen.wav");
+                    SFX.setVolume(-10);
                     SFX.play();
                     
                     handler.inventoryClose();
@@ -334,6 +347,7 @@ class ActionControl extends KeyAdapter {
                 if(!handler.interactStatus() && !handler.UIStatus())
                 {
                     SFX.setSoundDirectory("..\\resources\\sfx\\UIOpen.wav");   
+                    SFX.setVolume(-10);
                     SFX.play();
                     
                     player.partyViewOpen();
@@ -342,6 +356,7 @@ class ActionControl extends KeyAdapter {
                 else
                 {
                     SFX.setSoundDirectory("..\\resources\\sfx\\UIOpen.wav");   
+                    SFX.setVolume(-10);
                     SFX.play();
                     
                     player.partyViewClosed();
@@ -371,6 +386,9 @@ class ActionControl extends KeyAdapter {
                             handler.interacted();
                             player.setDialogue(obj.getDialogue());
                             player.interacted();
+                            
+                            SFX.setSoundDirectory("..\\resources\\sfx\\DialogueChange.wav");
+                            SFX.play();
                         }
 
                         if (obj.id == ID.Chest) {
@@ -382,6 +400,10 @@ class ActionControl extends KeyAdapter {
                             player.addItem(tempLoot);
                             player.setDialogue(obj.getDialogue());
                             player.interacted();
+                            
+                            SFX.setSoundDirectory("..\\resources\\sfx\\ChestOpen.wav");
+                            SFX.setVolume(-10);
+                            SFX.play();
                         }
 
                         if (obj.id == ID.Merchant) {
@@ -394,6 +416,9 @@ class ActionControl extends KeyAdapter {
 
                             player.setDialogue(obj.getDialogue());
                             player.interacted();
+                            
+                            SFX.setSoundDirectory("..\\resources\\sfx\\DialogueChange.wav");
+                            SFX.play();
                         }
 
                         try {
@@ -401,6 +426,9 @@ class ActionControl extends KeyAdapter {
                                 handler.interacted();
                                 player.setDialogue(obj.getDialogue());
                                 player.interacted();
+                                
+                                SFX.setSoundDirectory("..\\resources\\sfx\\DialogueChange.wav");
+                                SFX.play();
 
                                 for (int i = 0; i < enemyParty.memberList.size(); i++) {
                                     String tempName = enemyParty.memberList.get(i).entity.getCharName();
@@ -419,6 +447,7 @@ class ActionControl extends KeyAdapter {
                                 }
 
                                 Thread.sleep(2000);
+                                handler.stopBGM();
                                 handler.battlePhaseOn();
                             }
                         } catch (InterruptedException ex) {
@@ -430,6 +459,8 @@ class ActionControl extends KeyAdapter {
                             //.getDialogue() must be called exactly 1 time
                             String temp_String = obj.getDialogue();
                             if (temp_String != null) {
+                                SFX.setSoundDirectory("..\\resources\\sfx\\DialogueChange.wav");
+                                SFX.play();
                                 player.setDialogue(temp_String);
                             } else {
                                 handler.uninteracted();
@@ -438,6 +469,8 @@ class ActionControl extends KeyAdapter {
                         } else if (obj.getId() == ID.BattleNPC) {
                             String temp_String = obj.getDialogue();
                             if (temp_String != null) {
+                                SFX.setSoundDirectory("..\\resources\\sfx\\DialogueChange.wav");
+                                SFX.play();
                                 player.setDialogue(temp_String);
                             } else {
                                 handler.uninteracted();
@@ -448,6 +481,8 @@ class ActionControl extends KeyAdapter {
                             if (tempLoot != null) {
                                 player.addItem(tempLoot);
                                 player.setDialogue("You got " + tempLoot.itemName);
+                                SFX.setSoundDirectory("..\\resources\\sfx\\DialogueChange.wav");
+                                SFX.play();
                             } else {
                                 obj.die();
                                 handler.removeColisionObject(obj.name);
@@ -465,6 +500,8 @@ class ActionControl extends KeyAdapter {
                             else if (handler.merchantStatus() == false) {
                                 String temp_String = obj.getDialogue();
                                 if (temp_String != null) {
+                                    SFX.setSoundDirectory("..\\resources\\sfx\\DialogueChange.wav");
+                                    SFX.play();
                                     merchantCursor.setX(player.x + 375);
                                     merchantCursor.setY(player.y + 275);
                                     player.setDialogue(temp_String);
@@ -477,10 +514,19 @@ class ActionControl extends KeyAdapter {
                                         player.addItem(obj.lootList.get(0));
                                         player.inventory.reduceMoney(obj.merchantCondition);
                                         player.setDialogue("Thank you for your patronage!!!");
+                                        
+                                        SFX.setSoundDirectory("..\\resources\\sfx\\coin.wav");
+                                        SFX.setVolume(-10);
+                                        SFX.play();
+                                        
                                     } else {
+                                        SFX.setSoundDirectory("..\\resources\\sfx\\DialogueChange.wav");
+                                        SFX.play();
                                         player.setDialogue("You do not have enough money!!!");
                                     }
                                 } else {
+                                    SFX.setSoundDirectory("..\\resources\\sfx\\DialogueChange.wav");
+                                    SFX.play();
                                     player.setDialogue("Too bad, see you next time!!!");
                                 }
                                 

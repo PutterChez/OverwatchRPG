@@ -23,6 +23,7 @@ public class Handler {
     boolean inventory = false;
     boolean merchantInteracting = false;
     boolean openUI = false;
+    boolean bgmStatus = false;
     
     Sound bgm;
     
@@ -117,12 +118,15 @@ public class Handler {
     
     public void playBGM()
     {
-        bgm.play();
+        bgm.clip.setLoopPoints(0, -1);
+        bgm.clip.loop(10);
+        bgmStatus = true;
     }
     
     public void stopBGM()
     {
         bgm.stop();
+        bgmStatus = false;
     }
     
     public void setBGM(String url)
@@ -153,6 +157,11 @@ public class Handler {
     public void UIOpen(){ openUI = true; }
     public void UIClose(){ openUI = false; }
     public boolean UIStatus(){ return openUI; }
+
+    public boolean getBgmStatus() {
+        return bgmStatus;
+    }
+    
     
     
 }

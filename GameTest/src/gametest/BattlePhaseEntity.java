@@ -7,7 +7,7 @@ import java.util.Random;
 import javax.swing.ImageIcon;
 
 //Main entities of game: player, enemy, npc, etc.
-public class BattlePhaseEntity extends GameObject {
+public class BattlePhaseEntity extends GameObject implements Comparable {
     protected int HP, MP, maxHP, maxMP, speed, evasion, defense, attack;
     protected String charName;
     protected ArrayList<Skill> skillList;
@@ -82,7 +82,14 @@ public class BattlePhaseEntity extends GameObject {
             System.out.println("The player uses an item!");
         }
     }
-
+    
+    @Override
+    public int compareTo(Object compareEntity) {
+        int compareSpeed = ((BattlePhaseEntity)compareEntity).getSpeed();
+        
+        return this.speed-compareSpeed;
+    }
+    
     public int getMaxHP() {
         return maxHP;
     }
@@ -174,6 +181,5 @@ public class BattlePhaseEntity extends GameObject {
     public String getImageDirectory() {
         return imageDirectory;
     }
-    
     
 } 

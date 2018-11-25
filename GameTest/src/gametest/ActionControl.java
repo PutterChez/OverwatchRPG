@@ -156,7 +156,7 @@ class ActionControl extends KeyAdapter {
                             PopUp = false;
                         }
                     } else {
-                        if ((key == KeyEvent.VK_ENTER) && (skillSelect == false) && (skillListSelect == false) && (select == false)) {
+                        if ((key == KeyEvent.VK_SPACE) && (skillSelect == false) && (skillListSelect == false) && (select == false)) {
                             tempObject.setY(player.getY() + 150);
                             PopUp = true;
                         } else {
@@ -168,13 +168,13 @@ class ActionControl extends KeyAdapter {
                 if (tempObject.getId() == ID.Cursor) {
                     if (PopUp == true) {
                         playerHUD.setShowSkills(false);
-                        if (key == KeyEvent.VK_DOWN) {
+                        if (key == KeyEvent.VK_S) {
                             if (cursorPos < 2) {
                                 cursorPos++;
                             } else if (cursorPos > 2) {
                                 cursorPos = 0;
                             }
-                        } else if (key == KeyEvent.VK_UP) {
+                        } else if (key == KeyEvent.VK_W) {
                             if (cursorPos > 0) {
                                 cursorPos--;
                             }
@@ -182,10 +182,19 @@ class ActionControl extends KeyAdapter {
 
                         finalPosY += cursorPos * 60;
 
-                        if (key == KeyEvent.VK_A) {
+                        if (key == KeyEvent.VK_E) {
                             if (cursorPos == 0) {
                                 PopUp = false;
                                 skillListSelect = true;
+                                
+                                //PunPun Edit
+                                for(GameObject o : handler.objectList)
+                                    if(o.getId() == ID.PopUp)
+                                        o.setY(player.getY() + 1000);
+                                
+                                playerHUD.setShowSkills(true);
+                                playerHUD.setSelectedPlayer(selectedPlayer);
+                                
                             } else if (cursorPos == 1) {
                                 System.out.println("Items");
                             } else if (cursorPos == 2) {
@@ -194,15 +203,22 @@ class ActionControl extends KeyAdapter {
                         }
                         tempObject.setY(finalPosY);
                         tempObject.setX(finalPosX);
+                        
+                        //PunPun Edit
+                        if(skillListSelect)
+                        {
+                            tempObject.setX(player.getX() + 100);
+                            tempObject.setY(player.getY() + 250 + (35 * 0));
+                        }
                     } 
  
                     else if (skillListSelect == true) {
                         if (selectedPlayer < playerParty.memberList.size()) {
-                            playerHUD.setShowSkills(true);
-                            playerHUD.setSelectedPlayer(selectedPlayer);
+                            //playerHUD.setShowSkills(true);
+                            //playerHUD.setSelectedPlayer(selectedPlayer);
                             int skillListSize = playerParty.memberList.get(selectedPlayer).entity.skillList.size() - 1;
 
-                            if (key == KeyEvent.VK_DOWN) {
+                            if (key == KeyEvent.VK_S) {
                                 if (selectPos == skillListSize) {
                                     selectPos = 0;
                                 } else if (selectPos < skillListSize) {
@@ -213,7 +229,7 @@ class ActionControl extends KeyAdapter {
                                 }
                             }
 
-                            if (key == KeyEvent.VK_UP) {
+                            if (key == KeyEvent.VK_W) {
                                 if (selectPos == 0) {
                                     selectPos = skillListSize;
                                 } else if (selectPos > 0) {
@@ -248,13 +264,13 @@ class ActionControl extends KeyAdapter {
                     } 
                     else if (select == true) {
 
-                        if (key == KeyEvent.VK_RIGHT) {
+                        if (key == KeyEvent.VK_S) {
                             if (enemySelectPos < enemyParty.memberList.size() - 1) {
                                 enemySelectPos++;
                             }
                         }
 
-                        if (key == KeyEvent.VK_LEFT) {
+                        if (key == KeyEvent.VK_W) {
                             if (enemySelectPos > 0) {
                                 enemySelectPos--;
                             }
@@ -318,10 +334,12 @@ class ActionControl extends KeyAdapter {
 
                                 }
                                 
+                                //PunPun Edit
                                 attack_list.clear();
                                 tempObject.setY(player.getY() + 1000);
-                                
-                                
+                                System.out.println("------------------------------------------");
+                                System.out.println("Finished execute attack");
+                                System.out.println("------------------------------------------");
                             }
                             else{
                                 enemySelectPos = 0;

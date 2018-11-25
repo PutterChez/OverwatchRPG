@@ -229,7 +229,6 @@ class ActionControl extends KeyAdapter {
                                 playerParty.memberList.get(selectedPlayer).entity.setSelectSkill(selectedSkill);
                                 attack_list.add(playerParty.memberList.get(selectedPlayer).entity);
                                 selectedPlayer++;
-                                selectPos++;
                                 System.out.println("Selected Skill: " + selectedSkill.getSkillName());
                             }
                         }

@@ -259,6 +259,7 @@ class ActionControl extends KeyAdapter {
 
                             selectPos = 0;
                             select = false;
+                            playerHUD.setShowSkills(false);
                             tempObject.setY(player.getY() + 450);
                         }
                     } else {

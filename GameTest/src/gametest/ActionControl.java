@@ -238,6 +238,11 @@ class ActionControl extends KeyAdapter {
                                     playerHUD.setShowSkills(false);
                                     tempObject.setX(enemyParty.memberList.get(selectPos).entity.getX() + 60);
                                     tempObject.setY(enemyParty.memberList.get(selectPos).entity.getY() + 70);
+                                    
+                                    selectPos = 0;
+                                    PopUp = false;
+                                    skillListSelect = false;
+                                    select = true;
                                 }
                                 else
                                 {
@@ -245,13 +250,6 @@ class ActionControl extends KeyAdapter {
                                     playerHUD.setSelectedPlayer(selectedPlayer);
                                 }
                             }
-                        }
-                        else{
-                            selectPos = 0;
-                            PopUp = false;
-                            skillListSelect = false;
-                            select = true;
-                            //tempObject.setY(player.getY() + 450);                
                         }
                     } 
                     else if (select == true) {

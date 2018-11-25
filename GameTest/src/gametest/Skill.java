@@ -1,6 +1,9 @@
 package gametest;
 
 //Skills for entities to use
+
+import java.awt.Color;
+
 public class Skill {
 
     protected String skillName;
@@ -8,6 +11,8 @@ public class Skill {
     protected int mpCost;
     protected int accuracy;
     protected String description = "";
+    protected Color color = Color.WHITE;
+    protected boolean ultimate = false;
 
     public Skill(String name, double atkPower, int mpCost, int accuracy) {
         this.skillName = name;
@@ -59,4 +64,21 @@ public class Skill {
     public void act() {
 
     }
+
+    public Color getColor() {
+        return color;
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
+    }
+
+    public boolean isUltimate() {
+        return ultimate;
+    }
+
+    public void setUltimate(boolean ultimate) {
+        this.ultimate = ultimate;
+    }
+    
 }

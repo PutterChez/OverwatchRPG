@@ -11,6 +11,9 @@ public class HUD extends GameObject{
     private int nameX, nameY, velX, velY, speed, limit, gap;
     protected Party party;
     protected int originalSize;
+    protected boolean showSkills = false;
+    protected int changeColor = 0;
+    protected int selectedPlayer = 0;
     
     public HUD(int x, int y, int nameX, int nameY,int speed,int limit,int gap, Party party) {
         super(x, y, 100, 100, "HUD", ID.Background);
@@ -25,8 +28,47 @@ public class HUD extends GameObject{
 
     public void tick() {
     }
-
+    
     public void render(Graphics g) {
+        if(showSkills == true){
+            g.setFont(new Font("Minecraft Bold", Font.PLAIN, 25));
+            g.setColor(Color.white);
+            g.drawString("Skills : ", x - 560, y + 90);
+            
+            Color textColor;
+            g.setFont(new Font("Minecraft Bold", Font.PLAIN, 20));
+            
+            
+            
+            for(int i = 1;i < party.memberList.get(selectedPlayer).entity.skillList.size()+1;i++){
+                //Changing text color
+                changeColor++;
+                
+                if(changeColor < 50){
+                    textColor = party.memberList.get(selectedPlayer).entity.skillList.get(i-1).getColor();
+                }
+                else if(changeColor < 100){
+                    textColor = Color.WHITE;
+                }
+                else{
+                    textColor = party.memberList.get(selectedPlayer).entity.skillList.get(i-1).getColor();
+                    changeColor = 0;
+                }
+                
+                //If skill is an ultimate, change color
+                if(!party.memberList.get(selectedPlayer).entity.skillList.get(i-1).isUltimate()){
+                    g.setColor(party.memberList.get(selectedPlayer).entity.skillList.get(i-1).getColor());
+                }
+                
+                else{
+                    g.setColor(textColor);
+                }
+                
+                g.drawString(party.memberList.get(selectedPlayer).entity.skillList.get(i-1).skillName, x - 560, y + 90 + (30* i));
+            }
+        }
+        
+        
         //HP Bar, gray background, green bar, and white outline
         for (int i = 0; i < party.memberList.size(); i++) {
             int barX = x + 100;
@@ -92,5 +134,21 @@ public class HUD extends GameObject{
             
             g.drawString(party.memberList.get(i).entity.getMP() + " / " + party.memberList.get(i).entity.getMaxMP(), barX - 90, barY + 14);
         }
+    }
+
+    public boolean isShowSkills() {
+        return showSkills;
+    }
+
+    public void setShowSkills(boolean showSkills) {
+        this.showSkills = showSkills;
+    }
+
+    public int getSelectedPlayer() {
+        return selectedPlayer;
+    }
+
+    public void setSelectedPlayer(int selectedPlayer) {
+        this.selectedPlayer = selectedPlayer;
     }
 }

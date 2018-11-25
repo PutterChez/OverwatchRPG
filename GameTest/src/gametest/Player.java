@@ -58,7 +58,7 @@ public class Player extends WorldPhaseEntity{
         
         //Please adjust x and y
         dialogueBox = new Menu(x, y, ID.Default, 1400, 200, "..\\resources\\ui\\hud_box_full_res.png");
-        partyViewer = new Menu(x, y, ID.Menu, 1000, 571, "..\\resources\\misc\\inventory.png");
+        partyViewer = new Menu(x, y, ID.Menu, 1000, 571, "..\\resources\\misc\\party_ui.png");
         
         imgList = new LinkedList<>();
         //North

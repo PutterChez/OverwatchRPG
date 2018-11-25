@@ -183,17 +183,32 @@ public class Game extends Canvas implements Runnable {
         BattlePhaseEntity junkrat = new BattlePhaseEntity(POS4.x, POS4.y, ID.Enemy, 170, 170, "..\\resources\\characters_fixed\\jake_2.png", 200, 200, "Junkrat", 40, 10, 100, 40);
         BattlePhaseEntity sombra = new BattlePhaseEntity(POS5.x, POS5.y, ID.Enemy, 170, 170, "..\\resources\\characters_fixed\\sombra_2.png", 200, 200, "Sombra", 40, 10, 100, 40);
         BattlePhaseEntity bastion = new BattlePhaseEntity(POS6.x, POS6.y, ID.Enemy, 170, 170, "..\\resources\\characters_fixed\\bastion_2.png", 200, 200, "Bastion", 40, 10, 100, 40);
-
+        
+        //Genji Skills
         Skill swiftStrike = new Skill("Swift Strike", 50, 60, 80);
         swiftStrike.setDescription("Genji darts forward, slashing with his katana and passing through foes in his path");
+        Skill shuriken = new Skill("Shuriken", 28, 20, 100);
+        swiftStrike.setDescription("Genji looses three deadly throwing stars in quick succession.");
         Skill dragonBlade = new Skill("Dragonblade", 120, 100, 200);
         dragonBlade.setDescription("Genji brandishes his katana for a brief period of time");
+        dragonBlade.setColor(Color.GREEN);
+        dragonBlade.setUltimate(true);
         genji.addSkill(swiftStrike);
+        genji.addSkill(shuriken);
         genji.addSkill(dragonBlade);
-
+        
+        //Mccree Skills
+        Skill normalShot = new Skill("Normal Shot", 70, 20, 100);
+        normalShot.setDescription("McCree fires off a round from his trusty six-shooter.");
         Skill headShot = new Skill("Head Shot", 200, 40, 200);
         headShot.setDescription("Mccree aims for the target's head and fires with accuracy");
+        Skill deadeye = new Skill("Deadeye",1000,100,200);
+        deadeye.setDescription("Focus. Mark. Draw. McCree shoots every enemy in his line of sight.");
+        deadeye.setUltimate(true);
+        deadeye.setColor(Color.RED);
+        mccree.addSkill(normalShot);
         mccree.addSkill(headShot);
+        mccree.addSkill(deadeye);
 
         Skill blaster = new Skill("Caduceus Blaster", 20, 10, 100);
         blaster.setDescription("Mercy shoots a round from her sidearm");

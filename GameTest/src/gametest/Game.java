@@ -180,6 +180,11 @@ public class Game extends Canvas implements Runnable {
         BattlePhaseEntity mccree = new BattlePhaseEntity(P_POS2.x, P_POS2.y, ID.Ally, 170, 170, "..\\resources\\characters_fixed\\mccree_1.png", 250, 200, "Mccree", 40, 10, 100, 40);
         BattlePhaseEntity mercy = new BattlePhaseEntity(P_POS3.x, P_POS3.y, ID.Ally, 230, 230, "..\\resources\\characters_fixed\\mercy_1.png", 200, 150, "Mercy", 40, 10, 100, 40);
         BattlePhaseEntity reinhardt = new BattlePhaseEntity(P_POS4.x, P_POS4.y, ID.Ally, 280, 250, "..\\resources\\characters_fixed\\rein_1.png", 500, 150, "Reinhardt", 40, 10, 100, 40);
+        
+        genji.setCharIcon("..\\resources\\character_heads\\genji_ult.png");
+        mccree.setCharIcon("..\\resources\\character_heads\\mccree_ult.png");
+        mercy.setCharIcon("..\\resources\\character_heads\\mercy_ult.png");
+        reinhardt.setCharIcon("..\\resources\\character_heads\\rein_ult.png");
 
         BattlePhaseEntity doomfist = new BattlePhaseEntity(POS1.x, POS1.y, ID.Enemy, 170, 170, "..\\resources\\characters_fixed\\doom_2.png", 250, 200, "Doomfist", 40, 10, 100, 40);
         BattlePhaseEntity widowmaker = new BattlePhaseEntity(POS2.x, POS2.y, ID.Enemy, 170, 170, "..\\resources\\characters_fixed\\widow_2.png", 200, 200, "Widowmaker", 40, 10, 100, 40);
@@ -247,7 +252,7 @@ public class Game extends Canvas implements Runnable {
         Menu menu = new Menu(WIDTH / 2 - 700, 600, ID.Menu, 1400, 300, "..\\resources\\maps\\hud_1.png");
         Menu popUp = new Menu(WIDTH / 2 - 170, 1000, ID.PopUp, 500, 300, "..\\resources\\maps\\hud_box.png");
         Menu cursor = new Menu(WIDTH / 2 + 150, 1000, ID.Cursor, 30, 30, "..\\resources\\ui\\cursor.png");
-        Menu merCursor = new Menu(WIDTH / 2 + 150, 1000, ID.Menu, 30, 30, "..\\resources\\misc\\cursor_E.png");
+        Menu merCursor = new Menu(WIDTH / 2 + 150, 3000, ID.Menu, 30, 30, "..\\resources\\misc\\cursor_E.png");
         
         //IMPORTANT DO NOT CHANGE THESE NAME
         cursor.setName("SelectionCursor");

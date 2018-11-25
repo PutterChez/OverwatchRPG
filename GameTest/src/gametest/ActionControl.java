@@ -510,6 +510,7 @@ class ActionControl extends KeyAdapter {
                             {
                                 player.unInteracted();
                                 handler.uninteracted();
+                                merchantCursor.setY(3000);
                                 merchantCursorPos = 0;
                             }
 

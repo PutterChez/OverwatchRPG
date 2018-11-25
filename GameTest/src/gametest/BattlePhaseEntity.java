@@ -16,6 +16,7 @@ public class BattlePhaseEntity extends GameObject {
 
     private Image charImg;
     private String imageDirectory;
+    private String charIcon;
 
     public BattlePhaseEntity(int x, int y, ID id, int width, int height, String imageDirectory, int maxHP, int maxMP, String charName, int attack, int defense, int speed, int evasion) {
         super(x, y, width, height, charName, id);
@@ -60,6 +61,16 @@ public class BattlePhaseEntity extends GameObject {
         charImg = new ImageIcon(imageDirectory).getImage();
         g.drawImage(charImg, x, y, width, height, null);
     }
+
+    public String getCharIcon() {
+        return charIcon;
+    }
+
+    public void setCharIcon(String charIcon) {
+        this.charIcon = charIcon;
+    }
+    
+    
 
     //Act test function
     public void act(String action) {

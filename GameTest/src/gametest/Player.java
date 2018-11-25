@@ -284,7 +284,7 @@ public class Player extends WorldPhaseEntity{
             
             for(PartyMember p : playerParty.memberList)
             {
-                imageDirectory = p.entity.getImageDirectory();
+                imageDirectory = p.entity.getCharIcon();
                 charImg = new ImageIcon(imageDirectory).getImage();
                 g.drawImage(charImg, posX - 30, posY - 30, 100, 100, null);
                 

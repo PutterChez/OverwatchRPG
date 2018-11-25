@@ -31,6 +31,9 @@ public class HUD extends GameObject{
     
     public void render(Graphics g) {
         if(showSkills == true){
+            g.setFont(new Font("Minecraft Bold", Font.PLAIN, 30));
+            g.setColor(Color.BLACK);
+            g.drawString(party.memberList.get(selectedPlayer).entity.getCharName(), x - 420, y + 55);
             g.setFont(new Font("Minecraft Bold", Font.PLAIN, 25));
             g.setColor(Color.white);
             g.drawString("Skills : ", x - 560, y + 90);

@@ -17,6 +17,8 @@ public class BattlePhaseEntity extends GameObject implements Comparable {
     private Image charImg;
     private String imageDirectory;
     private String charIcon;
+    
+    protected BattlePhaseEntity target;
 
     public BattlePhaseEntity(int x, int y, ID id, int width, int height, String imageDirectory, int maxHP, int maxMP, String charName, int attack, int defense, int speed, int evasion) {
         super(x, y, width, height, charName, id);
@@ -87,7 +89,7 @@ public class BattlePhaseEntity extends GameObject implements Comparable {
     public int compareTo(Object compareEntity) {
         int compareSpeed = ((BattlePhaseEntity)compareEntity).getSpeed();
         
-        return this.speed-compareSpeed;
+        return compareSpeed - this.speed;
     }
     
     public int getMaxHP() {
@@ -180,6 +182,14 @@ public class BattlePhaseEntity extends GameObject implements Comparable {
 
     public String getImageDirectory() {
         return imageDirectory;
+    }
+
+    public BattlePhaseEntity getTarget() {
+        return target;
+    }
+
+    public void setTarget(BattlePhaseEntity target) {
+        this.target = target;
     }
     
 } 

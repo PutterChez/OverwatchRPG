@@ -42,7 +42,7 @@ class ActionControl extends KeyAdapter {
     ArrayList<Coordinate> coord_list;
     ArrayList<Coordinate> player_coord_list;
     ArrayList<BattlePhaseEntity> attack_list;
-    int cursorPos = 0, selectPos = 0, selectSkillNum = 0, selectedPlayer = 0, finalPosX = 950, finalPosY = 660;
+    int cursorPos = 0, selectPos = 0, enemySelectPos = 0, selectedPlayer = 0, finalPosX = 950, finalPosY = 660;
 
     Menu merchantCursor;
     int merchantCursorPos = 0;
@@ -229,46 +229,39 @@ class ActionControl extends KeyAdapter {
                                 playerParty.memberList.get(selectedPlayer).entity.setSelectSkill(selectedSkill);
                                 attack_list.add(playerParty.memberList.get(selectedPlayer).entity);
                                 
+                                playerHUD.setShowSkills(false);
+                                tempObject.setX(enemyParty.memberList.get(selectPos).entity.getX() + 60);
+                                tempObject.setY(enemyParty.memberList.get(selectPos).entity.getY() + 70);
                                 
-                                System.out.println("Selected Skill: " + selectedSkill.getSkillName());
-                                if(selectedPlayer >= player.playerParty.memberList.size() - 1)
+                                if(selectedPlayer < playerParty.memberList.size())
                                 {
-                                    //playerHUD.setSelectedPlayer(selectedPlayer);
-                                    selectedPlayer++;
-                                    playerHUD.setShowSkills(false);
-                                    tempObject.setX(enemyParty.memberList.get(selectPos).entity.getX() + 60);
-                                    tempObject.setY(enemyParty.memberList.get(selectPos).entity.getY() + 70);
-                                    
-                                    selectPos = 0;
                                     PopUp = false;
                                     skillListSelect = false;
                                     select = true;
-                                }
-                                else
-                                {
-                                    selectedPlayer++;
                                     playerHUD.setSelectedPlayer(selectedPlayer);
+                                }
+                                else{
+                                    select = false;
                                 }
                             }
                         }
                     } 
                     else if (select == true) {
-                        System.out.println("Enter Enemy Select");
 
                         if (key == KeyEvent.VK_RIGHT) {
-                            if (selectPos < enemyParty.memberList.size() - 1) {
-                                selectPos++;
+                            if (enemySelectPos < enemyParty.memberList.size() - 1) {
+                                enemySelectPos++;
                             }
                         }
 
                         if (key == KeyEvent.VK_LEFT) {
-                            if (selectPos > 0) {
-                                selectPos--;
+                            if (enemySelectPos > 0) {
+                                enemySelectPos--;
                             }
                         }
                         
-                        tempObject.setX(enemyParty.memberList.get(selectPos).entity.getX() + 60);
-                        tempObject.setY(enemyParty.memberList.get(selectPos).entity.getY() + 70);
+                        tempObject.setX(enemyParty.memberList.get(enemySelectPos).entity.getX() + 60);
+                        tempObject.setY(enemyParty.memberList.get(enemySelectPos).entity.getY() + 70);
 
                         if (key == KeyEvent.VK_E) {
                             /*Odd attack
@@ -278,6 +271,7 @@ class ActionControl extends KeyAdapter {
                             */
                             
                             //New sorted attack by speed
+                            /*
                             Collections.sort(attack_list);
                             
                             for(int j = 0; j < attack_list.size();j++){
@@ -288,15 +282,50 @@ class ActionControl extends KeyAdapter {
                                         Action.attack(playerParty.memberList.get(k).entity, playerParty.memberList.get(k).entity.getSelectSkill(), enemyParty.memberList.get(selectPos).entity);
                                     }
                                 }
-                                
-                            }
                             
-                            selectPos = 0;
-                            selectedPlayer = 0;
-                            select = false;
-                            PopUp = false;
-                            playerHUD.setShowSkills(false);
-                            tempObject.setY(player.getY() + 450);
+                            }
+                            */
+                            
+                            playerParty.memberList.get(selectedPlayer).entity.setTarget(enemyParty.memberList.get(enemySelectPos).entity);
+                            System.out.println(playerParty.memberList.get(selectedPlayer).entity.getCharName() + " will attack " + 
+                                    enemyParty.memberList.get(enemySelectPos).entity.getName() + " using " + 
+                                    playerParty.memberList.get(selectedPlayer).entity.getSelectSkill().getSkillName());
+                            
+                            
+                            
+                            selectedPlayer++;
+                            
+                            if(selectedPlayer >= playerParty.memberList.size()){
+                                skillListSelect = false;
+                                enemySelectPos = 0;
+                                cursorPos = 0; 
+                                selectPos = 0;
+                                selectedPlayer = 0;
+                                select = false;
+                                PopUp = false;
+                                playerHUD.setShowSkills(false);
+                                System.out.println("Exit Player Turn");
+                                Collections.sort(attack_list);
+                                System.out.println("------------------------------------------");
+                                for(int j = 0; j < attack_list.size();j++){
+                                    for(int k = 0;k < playerParty.memberList.size();k++){
+                                        if(attack_list.get(j).getCharName().equals(playerParty.memberList.get(k).entity.getCharName())){
+                                            System.out.println(playerParty.memberList.get(k).entity.getCharName() + " attacked " + enemyParty.memberList.get(selectPos).entity.getCharName()
+                                            + " using " + playerParty.memberList.get(k).entity.getSelectSkill().skillName);
+                                            Action.attack(playerParty.memberList.get(k).entity, playerParty.memberList.get(k).entity.getSelectSkill(), enemyParty.memberList.get(selectPos).entity);
+                                        }
+                                    }
+
+                                }
+                            }
+                            else{
+                                enemySelectPos = 0;
+                                select = false;
+                                PopUp = false;
+                                skillListSelect = true;
+                                tempObject.setY(player.getY() + 450);
+                            }
+                        
                         }
                     } else {
                         tempObject.setY(player.getY() + 450);

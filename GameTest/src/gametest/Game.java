@@ -160,8 +160,10 @@ public class Game extends Canvas implements Runnable {
         
         //Chest Test-----------------------------------------------------------------------------------------------------------
         WorldPhaseEntity testChest = new WorldPhaseEntity(800, 0, ID.Chest, 50, 50, "..\\resources\\misc\\chest_closed.png", "TreasureChest");
-        testChest.addLoot(new HPItem(ID.Item, "100$", 100));
-        testChest.addLoot(new HPItem(ID.Item, "200$", 200));
+        testChest.addLoot(new HPItem(ID.Item, "Loot1", 100));
+        testChest.addLoot(new HPItem(ID.Item, "Loot2", 200));
+        testChest.addLoot(new MoneyItem(ID.Item, "100 $", 100));
+        
         handler.addWorldColisionObject(testChest);
         
         //Merchant Test-------------------------------------------------------------------------------------------------------
@@ -361,10 +363,7 @@ public class Game extends Canvas implements Runnable {
         handler.tick();
 
         for (WorldPhaseEntity obj : handler.colisionList) {
-            if (obj.checkColision(player)) {
-                control.SFX.setSoundDirectory("..\\resources\\sfx\\Colision.wav");
-                control.SFX.play();
-                
+            if (obj.checkColision(player)) {    
                 obj.getOutOfHere(player);
                 colision = true;
                 break;

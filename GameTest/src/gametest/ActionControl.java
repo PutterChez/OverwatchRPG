@@ -492,7 +492,10 @@ class ActionControl extends KeyAdapter {
                         } else if (obj.getId() == ID.Chest) {
                             Item tempLoot = obj.getLoot();
                             if (tempLoot != null) {
-                                player.addItem(tempLoot);
+                                if(tempLoot instanceof MoneyItem)
+                                    player.inventory.addMoney(tempLoot.itemPrice);
+                                else
+                                    player.addItem(tempLoot);
                                 player.setDialogue("You got " + tempLoot.itemName);
                                 SFX.setSoundDirectory("..\\resources\\sfx\\DialogueChange.wav");
                                 SFX.play();

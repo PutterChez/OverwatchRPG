@@ -380,6 +380,9 @@ public class Game extends Canvas implements Runnable {
         
         handler.mainMenu.x = player.x - 775;
         handler.mainMenu.y = player.y - 450;
+        
+        handler.gameOverScreen.x = player.x - 775;
+        handler.gameOverScreen.y = player.y - 450;  
 
         if (!colision) {
             handler.updateBattleObject(player);

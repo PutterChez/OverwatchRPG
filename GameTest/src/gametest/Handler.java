@@ -27,6 +27,7 @@ public class Handler {
     
     
     boolean mainPhase = true;
+    boolean gameOver = false;
     
     Sound bgm;
     
@@ -36,6 +37,8 @@ public class Handler {
     Menu mainMenu;
     Menu mainCursor;
     int mainCursorPos = 0;
+    
+    Menu gameOverScreen;
     
     LinkedList<GameObject> objectList;
     LinkedList<WorldPhaseEntity> colisionList; 
@@ -48,6 +51,7 @@ public class Handler {
         colisionList = new LinkedList<>();
         bgm = new Sound();
         
+        gameOverScreen = new Menu(0, 0, ID.Menu, 1600, 900, "..\\resources\\misc\\GameOver.png");
         mainMenu = new Menu(0, 0, ID.Menu, 1600, 900, "..\\resources\\misc\\main_menu.png");
         mainCursor = new Menu(5000, 5000, ID.Cursor, 50, 50, "..\\resources\\misc\\cursor_E_white.png");
     }
@@ -62,6 +66,10 @@ public class Handler {
     public void render(Graphics g) {
         if(battlePhase)  
             battleRender.render(g);
+        else if(gameOver)
+        {
+            gameOverScreen.render(g);
+        }
         else if(mainPhase)
         {
             mainMenu.render(g);

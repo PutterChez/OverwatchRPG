@@ -331,6 +331,12 @@ class ActionControl extends KeyAdapter {
                 handler.setBGM("..\\resources\\music\\Chiisana Koi no Uta.wav");
                 handler.playBGM();
             }
+            
+            if (handler.gameOver && key == KeyEvent.VK_SPACE) {
+                handler.stopBGM();
+                handler.MainPhaseOn();
+                handler.gameOver = false;
+            }
 
             if (key == KeyEvent.VK_A && handler.merchantStatus()) {
                 merchantCursorPos = 0;
@@ -412,9 +418,12 @@ class ActionControl extends KeyAdapter {
             }
 
             //exit to mainMenu, need to change the condition later
-            if (key == KeyEvent.VK_ESCAPE) {
+            if (key == KeyEvent.VK_Q)
+            {
                 handler.stopBGM();
-                handler.MainPhaseOn();
+                handler.setBGM("..\\resources\\music\\SadViolin.wav");
+                handler.playBGM();
+                handler.gameOver = true;
             }
 
         }
@@ -603,6 +612,16 @@ class ActionControl extends KeyAdapter {
             handler.battlePhaseOff();
             handler.stopBGM();
 
+        if (playerParty.memberList.size() <= 0){
+            PopUp = false;
+            System.out.println("Exit Battle Phase: Player NOOB");
+            handler.battlePhaseOff();
+            
+            handler.stopBGM();
+            handler.setBGM("..\\resources\\music\\SadViolin.wav");
+            handler.playBGM();
+            handler.gameOver = true;
+        }
             
             /*
             for (WorldPhaseEntity obj : handler.colisionList) {

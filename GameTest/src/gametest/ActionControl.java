@@ -319,6 +319,9 @@ class ActionControl extends KeyAdapter {
                                 }
                                 
                                 attack_list.clear();
+                                tempObject.setY(player.getY() + 1000);
+                                
+                                
                             }
                             else{
                                 enemySelectPos = 0;

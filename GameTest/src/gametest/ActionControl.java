@@ -233,9 +233,11 @@ class ActionControl extends KeyAdapter {
                                 System.out.println("Selected Skill: " + selectedSkill.getSkillName());
                                 if(selectedPlayer >= player.playerParty.memberList.size() - 1)
                                 {
-                                    playerHUD.setSelectedPlayer(selectedPlayer);
+                                    //playerHUD.setSelectedPlayer(selectedPlayer);
                                     selectedPlayer++;
-                                    
+                                    playerHUD.setShowSkills(false);
+                                    tempObject.setX(enemyParty.memberList.get(selectPos).entity.getX() + 60);
+                                    tempObject.setY(enemyParty.memberList.get(selectPos).entity.getY() + 70);
                                 }
                                 else
                                 {
@@ -249,11 +251,10 @@ class ActionControl extends KeyAdapter {
                             PopUp = false;
                             skillListSelect = false;
                             select = true;
-                            tempObject.setY(player.getY() + 450);
+                            //tempObject.setY(player.getY() + 450);                
                         }
                     } 
                     else if (select == true) {
-                        playerHUD.setShowSkills(false);
                         System.out.println("Enter Enemy Select");
 
                         if (key == KeyEvent.VK_RIGHT) {

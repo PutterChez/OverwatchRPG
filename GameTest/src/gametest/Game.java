@@ -80,7 +80,7 @@ public class Game extends Canvas implements Runnable {
         //player.removeItem("HP Potion1");
         
         //Test Map
-        Map testMap = new Map(-1400, -7200, ID.Background, 9600, 9600, "..\\resources\\maps\\open_world_extra_border_2.png");
+        Map testMap = new Map(-1400, -7200, ID.Background, 9600, 9600, "..\\resources\\maps\\open_world_extended.png");
         cam = new Camera(0, 0, ID.Camera, 0, 0, player);
 
         //handler.addWorldPhaseObject(player); has been move down to the end of function
@@ -130,11 +130,34 @@ public class Game extends Canvas implements Runnable {
 
         handler.addWorldColisionObject(obj_box);
         
-        WorldPhaseEntity obj_box2 = new WorldPhaseEntity(1440, 380, ID.NPC, 45, 70, "..\\\\resources\\\\maps\\\\spawn_wall.png", "obj_right_fountain");
+        WorldPhaseEntity obj_box2 = new WorldPhaseEntity(1440, 380, ID.NPC, 45, 70, null, "obj_right_fountain");
         obj_box2.addDialogue("It's DVA's fountain.");
         obj_box2.addDialogue("The water looks very clear.");
 
         handler.addWorldColisionObject(obj_box2);
+        
+        WorldPhaseEntity mei_plant = new WorldPhaseEntity(593, -2089, ID.NPC, 45, 50, "..\\\\resources\\\\maps\\\\spawn_wall.png", "obj_mei_plant");
+        mei_plant.addDialogue("It's Mei's plant.");
+        mei_plant.addDialogue("It looks very healthy!");
+        
+        handler.addWorldColisionObject(mei_plant);
+        
+        WorldPhaseEntity mei_stool = new WorldPhaseEntity(1107, -2091, ID.NPC, 42, 70, "..\\\\resources\\\\maps\\\\spawn_wall.png", "obj_mei_stool");
+        mei_stool.addDialogue("An old wooden stool.");
+        
+        handler.addWorldColisionObject(mei_stool);
+        
+        WorldPhaseEntity mei_log = new WorldPhaseEntity(1041, -2211, ID.NPC, 50, 50, "..\\\\resources\\\\maps\\\\spawn_wall.png", "obj_mei_stool");
+        mei_log.addDialogue("A pile of cut wood.");
+        mei_log.addDialogue("The timber looks high-quality.");
+        
+        handler.addWorldColisionObject(mei_log);
+        
+        WorldPhaseEntity mei_pots = new WorldPhaseEntity(651, -2235, ID.NPC, 45, 60, "..\\\\resources\\\\maps\\\\spawn_wall.png", "obj_mei_stool");
+        mei_pots.addDialogue("Two small potted plants.");
+        
+        handler.addWorldColisionObject(mei_pots);
+        
         //Interaction Test----------------------------------------------------------------------------------------------------
         WorldPhaseEntity testNPC = new WorldPhaseEntity(420, 480, ID.NPC, 150, 150, "..\\resources\\characters_fixed\\hog_2.png", "Hog");
         testNPC.addDialogue("Roadhog : Hello World");

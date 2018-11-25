@@ -333,11 +333,17 @@ class ActionControl extends KeyAdapter {
             {
                 if(!handler.interactStatus() && !handler.UIStatus())
                 {
+                    SFX.setSoundDirectory("..\\resources\\sfx\\UIOpen.wav");   
+                    SFX.play();
+                    
                     player.partyViewOpen();
                     handler.UIOpen();
                 }
                 else
                 {
+                    SFX.setSoundDirectory("..\\resources\\sfx\\UIOpen.wav");   
+                    SFX.play();
+                    
                     player.partyViewClosed();
                     handler.UIClose();
 

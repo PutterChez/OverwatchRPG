@@ -44,7 +44,7 @@ public class Game extends Canvas implements Runnable {
 
         //WorldPhase Part-----------------------------------------------------------------------------------------------------
         player = new Player(800, 450, ID.Player, 50, 60, "..\\resources\\characters\\RedSquare.png", "Player");
-        player.inventory.addMoney(6000);
+        player.inventory.addMoney(200);
         
         HPItem HP1 = new HPItem(ID.Item, "HP Potion(S)", 100);
         HP1.setAttributeHP(40);
@@ -244,11 +244,11 @@ public class Game extends Canvas implements Runnable {
         handler.addWorldColisionObject(mei_pots);
         
         //Interaction Test----------------------------------------------------------------------------------------------------
-        WorldPhaseEntity testNPC = new WorldPhaseEntity(420, 480, ID.NPC, 150, 150, "..\\resources\\characters_fixed\\hog_2.png", "Hog");
-        testNPC.addDialogue("Roadhog: Now where's that Junkrat gone off to?");
-        testNPC.addDialogue("Roadhog: What? I don't know anything about Talon.");
-        testNPC.addDialogue("Roadhog: Now get off my lawn!!");
-        handler.addWorldColisionObject(testNPC);
+        WorldPhaseEntity roadHog = new WorldPhaseEntity(420, 480, ID.NPC, 150, 150, "..\\resources\\characters_fixed\\hog_2.png", "Hog");
+        roadHog.addDialogue("Roadhog: Now where's that Junkrat gone off to?");
+        roadHog.addDialogue("Roadhog: What? I don't know anything about Talon.");
+        roadHog.addDialogue("Roadhog: Now get off my lawn!!");
+        handler.addWorldColisionObject(roadHog);
         
         WorldPhaseEntity meiNPC = new WorldPhaseEntity(820, -2230, ID.NPC, 150, 150, "..\\resources\\characters_fixed\\mei_2.png", "Mei");
         meiNPC.addDialogue("Mei: I've been getting a lot less customers.");
@@ -257,28 +257,33 @@ public class Game extends Canvas implements Runnable {
         handler.addWorldColisionObject(meiNPC);
         
         //Battle NPC Test-----------------------------------------------------------------------------------------------------
-        WorldPhaseEntity testBattleNPC = new WorldPhaseEntity(1000, 450, ID.BattleNPC, 150, 130, "..\\resources\\characters_world\\dva_1.png", "DvaBattle");
+        WorldPhaseEntity Dva = new WorldPhaseEntity(1150, 490, ID.BattleNPC, 150, 130, "..\\resources\\characters_world\\dva_1.png", "DvaBattle");
         //Pre - Battle Dialogue
-        testBattleNPC.addDialogue("Love DVA!!!");
+        Dva.addDialogue("DVA: SOME Dialogue");
         //Post - Battle Dialogue
-        testBattleNPC.addDialogue("Dva 1 : 0 Enemy");
-        testBattleNPC.addDialogue("GitGud");
-        handler.addWorldColisionObject(testBattleNPC);
+        Dva.addDialogue("DVA SOME Dialogue");
+        Dva.addDialogue("DVA SOME Dialogue");
+        handler.addWorldColisionObject(Dva);
 
         //Add Enemy into the Party
         BattlePhaseEntity dva = new BattlePhaseEntity(POS1.x, POS1.y, ID.Enemy, 200, 200, "..\\resources\\characters_fixed\\dva_2.png", 250, 200, "Enemy_Dva", 40, 10, 100, 40);
-        testBattleNPC.addEnemyPartyMember(dva, 0);
+        Dva.addEnemyPartyMember(dva, 0);
 
         //Item Test-----------------------------------------------------------------------------------------------------------
-        HPItem itemTest = new HPItem(ID.Item, "AtkBoost", 10);
         
         //Chest Test-----------------------------------------------------------------------------------------------------------
-        WorldPhaseEntity testChest = new WorldPhaseEntity(800, 0, ID.Chest, 50, 50, "..\\resources\\misc\\chest_closed.png", "TreasureChest");
-        testChest.addLoot(HP1);
-        testChest.addLoot(MP1);
-        testChest.addLoot(new MoneyItem(ID.Item, "100 $", 100));
+        WorldPhaseEntity behindHouseChest = new WorldPhaseEntity(465, -150, ID.Chest, 50, 50, "..\\resources\\misc\\chest_closed.png", "BehindHouseChest");
+        behindHouseChest.addDialogue("Is this Roadhog's chest?");
+        behindHouseChest.addDialogue(" 'You can take anything you want from this chest' - Mr.Goodaim");
+        behindHouseChest.addLoot(HP1);
+        behindHouseChest.addLoot(MP1);
+        handler.addWorldColisionObject(behindHouseChest);
         
-        handler.addWorldColisionObject(testChest);
+        WorldPhaseEntity behindHouseChest2 = new WorldPhaseEntity(1230, -150, ID.Chest, 50, 50, "..\\resources\\misc\\chest_closed.png", "BehindHouseChest2");
+        behindHouseChest2.addDialogue("Dva's secret stash");
+        behindHouseChest2.addDialogue(" 'Goodluck on your mission' - Love, D.Va");
+        behindHouseChest2.addLoot(new MoneyItem(ID.Item, "1000 $", 1000));
+        handler.addWorldColisionObject(behindHouseChest2);
         
         //Merchant Test-------------------------------------------------------------------------------------------------------
         //Merchant must have only 1 item in the itemList

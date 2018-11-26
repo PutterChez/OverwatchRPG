@@ -60,14 +60,14 @@ public class BattlePhaseEntity extends GameObject implements Comparable {
         charImg = new ImageIcon(imageDirectory).getImage();
         g.drawImage(charImg, x, y, width, height, null);
         
-        
+         
         g.setFont(new Font("Minecraft Bold", Font.PLAIN, 30));
         g.setColor(Color.WHITE);
             
         if(missed == true){
             g.setFont(new Font("Minecraft Bold", Font.PLAIN, 30));
             g.setColor(Color.WHITE);
-            g.drawString("Missed!", x, y - height/2 + 180);
+            g.drawString("Missed!", x, y - height/2 + 120);
         }
     }
 

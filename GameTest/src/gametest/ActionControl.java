@@ -383,14 +383,16 @@ class ActionControl extends KeyAdapter {
                                     select = true;
                                     playerHUD.setSelectedPlayer(selectedPlayer);
                                     
-                                    if(playerParty.memberList.get(selectedPlayer).entity.getSelectSkill().getSkillName().equals("Heal")){
+                                    if(playerParty.memberList.get(selectedPlayer).entity.getSelectSkill().getSkillName().equals("Heal") ||
+                                            playerParty.memberList.get(selectedPlayer).entity.getSelectSkill().getSkillName().equals("Valkyrie")){
                                         tempObject.setX(playerParty.memberList.get(enemySelectPos).entity.getX() + 60);
                                         tempObject.setY(playerParty.memberList.get(enemySelectPos).entity.getY() + 70);
                                     }
                                     else{
                                         tempObject.setX(enemyParty.memberList.get(enemySelectPos).entity.getX() + 60);
                                         tempObject.setY(enemyParty.memberList.get(enemySelectPos).entity.getY() + 70);
-                                   }
+                                    }
+                                    
                                     }
                                 else{
                                     select = false;
@@ -400,7 +402,8 @@ class ActionControl extends KeyAdapter {
                     } 
                     else if (select == true) {
                         
-                        if(playerParty.memberList.get(selectedPlayer).entity.getSelectSkill().getSkillName().equals("Heal")){
+                        if(playerParty.memberList.get(selectedPlayer).entity.getSelectSkill().getSkillName().equals("Heal") || 
+                            playerParty.memberList.get(selectedPlayer).entity.getSelectSkill().getSkillName().equals("Valkyrie")){
                             if (key == KeyEvent.VK_S) {
                                 if (enemySelectPos < playerParty.memberList.size() - 1) {
                                     enemySelectPos++;
@@ -437,17 +440,19 @@ class ActionControl extends KeyAdapter {
                             
                             SFX.setSoundDirectory("..\\resources\\sfx\\MENU_Pick.wav");
                             SFX.play();
-                            if(playerParty.memberList.get(selectedPlayer).entity.getSelectSkill().getSkillName().equals("Heal")){
+                            if(playerParty.memberList.get(selectedPlayer).entity.getSelectSkill().getSkillName().equals("Heal") || 
+                            playerParty.memberList.get(selectedPlayer).entity.getSelectSkill().getSkillName().equals("Valkyrie")){
                                 playerParty.memberList.get(selectedPlayer).entity.setTarget(playerParty.memberList.get(enemySelectPos).entity);
                             }
                             else{
                                 playerParty.memberList.get(selectedPlayer).entity.setTarget(enemyParty.memberList.get(enemySelectPos).entity);
                             }
                             
+                            /*Print test
                             System.out.println(playerParty.memberList.get(selectedPlayer).entity.getCharName() + " will attack " + 
                                     enemyParty.memberList.get(enemySelectPos).entity.getName() + " using " + 
                                     playerParty.memberList.get(selectedPlayer).entity.getSelectSkill().getSkillName());
-                            
+                            */
                             
                             
                             selectedPlayer++;
@@ -478,19 +483,21 @@ class ActionControl extends KeyAdapter {
                                 for(int j = 0; j < attack_list.size();j++){
                                     for(int k = 0;k < playerParty.memberList.size();k++){
                                         if(attack_list.get(j).getCharName().equals(playerParty.memberList.get(k).entity.getCharName())){
+                                            
                                             System.out.println(playerParty.memberList.get(k).entity.getCharName() + " attacked " + playerParty.memberList.get(k).entity.getTarget().getCharName()
                                             + " using " + playerParty.memberList.get(k).entity.getSelectSkill().skillName);
                                             
-                                            if(!playerParty.memberList.get(k).entity.getSelectSkill().getSkillName().equals("Heal"))
-                                                Action.attack(playerParty.memberList.get(k).entity, playerParty.memberList.get(k).entity.getSelectSkill(), playerParty.memberList.get(k).entity.getTarget());
-                                            else{
+                                            //Single Target Heal
+                                            if(playerParty.memberList.get(k).entity.getSelectSkill().getSkillName().equals("Heal"))
                                                 Action.healing(playerParty.memberList.get(k).entity, playerParty.memberList.get(k).entity.getSelectSkill(), playerParty.memberList.get(k).entity.getTarget());
-                                                //Group Heal
-                                                /*
+                                            //Team Heal
+                                            else if(playerParty.memberList.get(k).entity.getSelectSkill().getSkillName().equals("Valkyrie")){
                                                 for(int n = 0;n < playerParty.memberList.size();n++){
                                                     Action.healing(playerParty.memberList.get(k).entity,playerParty.memberList.get(k).entity.getSelectSkill(), playerParty.memberList.get(n).entity);
                                                 }
-                                                */
+                                            }
+                                            else{
+                                                Action.attack(playerParty.memberList.get(k).entity, playerParty.memberList.get(k).entity.getSelectSkill(), playerParty.memberList.get(k).entity.getTarget());
                                             }
                                             
                                             playerParty.memberList.get(k).entity.x -= 100;

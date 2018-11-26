@@ -358,8 +358,8 @@ public class Game extends Canvas implements Runnable {
         heal.setDescription("Mercy maintains a beam of healing onto and ally, healing them for 40 health");
         Skill damageBoost = new Skill("Damage Boost", 30, 50, 100);
         damageBoost.setDescription("Mercy maintains a beam of damage boost onto and ally, increasing their damage by 30%");
-        Skill valkyrie = new Skill("Valkyrie", 150, 100, 200);
-        valkyrie.setDescription("Mercy transforms, enchancing her ablitites and damaging the target by 150 points");
+        Skill valkyrie = new Skill("Valkyrie", 3, 100, 200);
+        valkyrie.setDescription("Mercy transforms and heals the entire party 120 points");
         valkyrie.setUltimate(true);
         valkyrie.setColor(Color.YELLOW);
         mercy.addSkill(blaster);

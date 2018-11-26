@@ -1012,19 +1012,7 @@ class ActionControl extends KeyAdapter {
             System.out.println("Exit Battle Phase");
             handler.battlePhaseOff();
             handler.stopBGM();
-
-        if (playerParty.memberList.size() <= 0){
-            PopUp = false;
-            skillListSelect = false;
-            System.out.println("Exit Battle Phase: Player NOOB");
-            handler.battlePhaseOff();
-            
-            handler.stopBGM();
-            handler.setBGM("..\\resources\\music\\SadViolin.wav");
-            handler.playBGM();
-            handler.gameOver = true;
-        }
-            
+     
             /*
             for (WorldPhaseEntity obj : handler.colisionList) {
                 WorldPhaseEntity temp = player.getInteractArea();
@@ -1037,6 +1025,20 @@ class ActionControl extends KeyAdapter {
                 }
             }
                     */
+        }
+        
+        System.out.println(playerParty.memberList.size());
+            
+        if (playerParty.memberList.size() <= 0){
+            PopUp = false;
+            skillListSelect = false;
+            System.out.println("Exit Battle Phase: Player NOOB");
+            handler.battlePhaseOff();
+            
+            handler.stopBGM();
+            handler.setBGM("..\\resources\\music\\SadViolin.wav");
+            handler.playBGM();
+            handler.gameOver = true;
         }
 
         player.setVelX(0);

@@ -383,10 +383,15 @@ class ActionControl extends KeyAdapter {
                                     select = true;
                                     playerHUD.setSelectedPlayer(selectedPlayer);
                                     
-                                    //PunPun Edit
-                                    tempObject.setX(enemyParty.memberList.get(enemySelectPos).entity.getX() + 60);
-                                    tempObject.setY(enemyParty.memberList.get(enemySelectPos).entity.getY() + 70);
-                                }
+                                    if(playerParty.memberList.get(selectedPlayer).entity.getSelectSkill().getSkillName().equals("Heal")){
+                                        tempObject.setX(playerParty.memberList.get(enemySelectPos).entity.getX() + 60);
+                                        tempObject.setY(playerParty.memberList.get(enemySelectPos).entity.getY() + 70);
+                                    }
+                                    else{
+                                        tempObject.setX(enemyParty.memberList.get(enemySelectPos).entity.getX() + 60);
+                                        tempObject.setY(enemyParty.memberList.get(enemySelectPos).entity.getY() + 70);
+                                   }
+                                    }
                                 else{
                                     select = false;
                                 }
@@ -394,49 +399,51 @@ class ActionControl extends KeyAdapter {
                         }
                     } 
                     else if (select == true) {
-
-                        if (key == KeyEvent.VK_S) {
-                            if (enemySelectPos < enemyParty.memberList.size() - 1) {
-                                enemySelectPos++;
-                            }
-                        }
-
-                        if (key == KeyEvent.VK_W) {
-                            if (enemySelectPos > 0) {
-                                enemySelectPos--;
-                            }
-                        }
                         
-                        tempObject.setX(enemyParty.memberList.get(enemySelectPos).entity.getX() + 60);
-                        tempObject.setY(enemyParty.memberList.get(enemySelectPos).entity.getY() + 70);
+                        if(playerParty.memberList.get(selectedPlayer).entity.getSelectSkill().getSkillName().equals("Heal")){
+                            if (key == KeyEvent.VK_S) {
+                                if (enemySelectPos < playerParty.memberList.size() - 1) {
+                                    enemySelectPos++;
+                                }
+                            }
+
+                            if (key == KeyEvent.VK_W) {
+                                if (enemySelectPos > 0) {
+                                    enemySelectPos--;
+                                }
+                            }
+                            
+                            tempObject.setX(playerParty.memberList.get(enemySelectPos).entity.getX() + 60);
+                            tempObject.setY(playerParty.memberList.get(enemySelectPos).entity.getY() + 70);
+                        }
+                        else{
+                            if (key == KeyEvent.VK_S) {
+                                if (enemySelectPos < enemyParty.memberList.size() - 1) {
+                                    enemySelectPos++;
+                                }
+                            }
+
+                            if (key == KeyEvent.VK_W) {
+                                if (enemySelectPos > 0) {
+                                    enemySelectPos--;
+                                }
+                            }
+                            
+                            tempObject.setX(enemyParty.memberList.get(enemySelectPos).entity.getX() + 60);
+                            tempObject.setY(enemyParty.memberList.get(enemySelectPos).entity.getY() + 70);
+                        }
 
                         if (key == KeyEvent.VK_E) {
-                            /*Odd attack
-                            System.out.println(playerParty.memberList.get(selectedPlayer).entity.getCharName() + " attacked " + enemyParty.memberList.get(selectPos).entity.getCharName()
-                                    + " using " + playerParty.memberList.get(selectedPlayer).entity.getSelectSkill().skillName);
-                            Action.attack(playerParty.memberList.get(selectedPlayer).entity, playerParty.memberList.get(selectedPlayer).entity.getSelectSkill(), enemyParty.memberList.get(selectPos).entity);
-                            */
-                            
-                            //New sorted attack by speed
-                            /*
-                            Collections.sort(attack_list);
-                            
-                            for(int j = 0; j < attack_list.size();j++){
-                                for(int k = 0;k < playerParty.memberList.size();k++){
-                                    if(attack_list.get(j).getCharName().equals(playerParty.memberList.get(k).entity.getCharName())){
-                                        System.out.println(playerParty.memberList.get(k).entity.getCharName() + " attacked " + enemyParty.memberList.get(selectPos).entity.getCharName()
-                                        + " using " + playerParty.memberList.get(k).entity.getSelectSkill().skillName);
-                                        Action.attack(playerParty.memberList.get(k).entity, playerParty.memberList.get(k).entity.getSelectSkill(), enemyParty.memberList.get(selectPos).entity);
-                                    }
-                                }
-                            
-                            }
-                            */
                             
                             SFX.setSoundDirectory("..\\resources\\sfx\\MENU_Pick.wav");
                             SFX.play();
+                            if(playerParty.memberList.get(selectedPlayer).entity.getSelectSkill().getSkillName().equals("Heal")){
+                                playerParty.memberList.get(selectedPlayer).entity.setTarget(playerParty.memberList.get(enemySelectPos).entity);
+                            }
+                            else{
+                                playerParty.memberList.get(selectedPlayer).entity.setTarget(enemyParty.memberList.get(enemySelectPos).entity);
+                            }
                             
-                            playerParty.memberList.get(selectedPlayer).entity.setTarget(enemyParty.memberList.get(enemySelectPos).entity);
                             System.out.println(playerParty.memberList.get(selectedPlayer).entity.getCharName() + " will attack " + 
                                     enemyParty.memberList.get(enemySelectPos).entity.getName() + " using " + 
                                     playerParty.memberList.get(selectedPlayer).entity.getSelectSkill().getSkillName());
@@ -473,7 +480,18 @@ class ActionControl extends KeyAdapter {
                                         if(attack_list.get(j).getCharName().equals(playerParty.memberList.get(k).entity.getCharName())){
                                             System.out.println(playerParty.memberList.get(k).entity.getCharName() + " attacked " + playerParty.memberList.get(k).entity.getTarget().getCharName()
                                             + " using " + playerParty.memberList.get(k).entity.getSelectSkill().skillName);
-                                            Action.attack(playerParty.memberList.get(k).entity, playerParty.memberList.get(k).entity.getSelectSkill(), playerParty.memberList.get(k).entity.getTarget());
+                                            
+                                            if(!playerParty.memberList.get(k).entity.getSelectSkill().getSkillName().equals("Heal"))
+                                                Action.attack(playerParty.memberList.get(k).entity, playerParty.memberList.get(k).entity.getSelectSkill(), playerParty.memberList.get(k).entity.getTarget());
+                                            else{
+                                                Action.healing(playerParty.memberList.get(k).entity, playerParty.memberList.get(k).entity.getSelectSkill(), playerParty.memberList.get(k).entity.getTarget());
+                                                //Group Heal
+                                                /*
+                                                for(int n = 0;n < playerParty.memberList.size();n++){
+                                                    Action.healing(playerParty.memberList.get(k).entity,playerParty.memberList.get(k).entity.getSelectSkill(), playerParty.memberList.get(n).entity);
+                                                }
+                                                */
+                                            }
                                             
                                             playerParty.memberList.get(k).entity.x -= 100;
                                             try{

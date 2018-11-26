@@ -354,8 +354,8 @@ public class Game extends Canvas implements Runnable {
         //Mercy Skills    
         Skill blaster = new Skill("Caduceus Blaster", 20, 10, 1);
         blaster.setDescription("Mercy shoots a round from her sidearm");
-        Skill heal = new Skill("Heal", 100, 50, 200);
-        heal.setDescription("Mercy maintains a beam of healing onto and ally, healing them for 100 health");
+        Skill heal = new Skill("Heal", 1, 50, 200);
+        heal.setDescription("Mercy maintains a beam of healing onto and ally, healing them for 40 health");
         Skill damageBoost = new Skill("Damage Boost", 30, 50, 100);
         damageBoost.setDescription("Mercy maintains a beam of damage boost onto and ally, increasing their damage by 30%");
         Skill valkyrie = new Skill("Valkyrie", 150, 100, 200);

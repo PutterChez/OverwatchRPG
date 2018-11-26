@@ -62,14 +62,13 @@ public class Game extends Canvas implements Runnable {
         Elixir.setAttributeHP(1000);
         Elixir.setAttributeMP(1000);
         
-        
-        player.addItem(HP1);
-        player.addItem(HP1);
-        player.addItem(HP1);
-        player.addItem(HP1);
-        player.addItem(HP2);
-        player.addItem(HP2);
         /*
+        player.addItem(HP1);
+        player.addItem(HP1);
+        player.addItem(HP1);
+        player.addItem(HP1);
+        player.addItem(HP2);
+        player.addItem(HP2);
         player.addItem(MP1);
         player.addItem(MP1);
         player.addItem(MP2);
@@ -246,11 +245,17 @@ public class Game extends Canvas implements Runnable {
         
         //Interaction Test----------------------------------------------------------------------------------------------------
         WorldPhaseEntity testNPC = new WorldPhaseEntity(420, 480, ID.NPC, 150, 150, "..\\resources\\characters_fixed\\hog_2.png", "Hog");
-        testNPC.addDialogue("Roadhog : Hello World");
-        testNPC.addDialogue("Roadhog: Whole HOG !!!");
-        testNPC.addDialogue("Roadhog: Hook!!!");
+        testNPC.addDialogue("Roadhog: Now where's that Junkrat gone off to?");
+        testNPC.addDialogue("Roadhog: What? I don't know anything about Talon.");
+        testNPC.addDialogue("Roadhog: Now get off my lawn!!");
         handler.addWorldColisionObject(testNPC);
-
+        
+        WorldPhaseEntity meiNPC = new WorldPhaseEntity(820, -2230, ID.NPC, 150, 150, "..\\resources\\characters_fixed\\mei_2.png", "Mei");
+        meiNPC.addDialogue("Mei: I've been getting a lot less customers.");
+        meiNPC.addDialogue("Mei: It must be because those Talon baddies!");
+        meiNPC.addDialogue("Mei: Only if Soldier 76 did something about it.");
+        handler.addWorldColisionObject(meiNPC);
+        
         //Battle NPC Test-----------------------------------------------------------------------------------------------------
         WorldPhaseEntity testBattleNPC = new WorldPhaseEntity(1000, 450, ID.BattleNPC, 150, 130, "..\\resources\\characters_world\\dva_1.png", "DvaBattle");
         //Pre - Battle Dialogue
@@ -269,19 +274,34 @@ public class Game extends Canvas implements Runnable {
         
         //Chest Test-----------------------------------------------------------------------------------------------------------
         WorldPhaseEntity testChest = new WorldPhaseEntity(800, 0, ID.Chest, 50, 50, "..\\resources\\misc\\chest_closed.png", "TreasureChest");
-        testChest.addLoot(new HPItem(ID.Item, "Loot1", 100));
-        testChest.addLoot(new HPItem(ID.Item, "Loot2", 200));
+        testChest.addLoot(HP1);
+        testChest.addLoot(MP1);
         testChest.addLoot(new MoneyItem(ID.Item, "100 $", 100));
         
         handler.addWorldColisionObject(testChest);
         
         //Merchant Test-------------------------------------------------------------------------------------------------------
         //Merchant must have only 1 item in the itemList
-        WorldPhaseEntity testMerchant = new WorldPhaseEntity(815, -2185, ID.Merchant, 100, 80, "..\\resources\\characters_world\\mei_1.png", "MeiMerchant");
-        testMerchant.addLoot(new HPItem(ID.Item, "Snowy Robot", 1700));
+        //Mei Merchant
+        //WorldPhaseEntity testMerchant = new WorldPhaseEntity(815, -2185, ID.Merchant, 100, 80, "..\\resources\\characters_world\\mei_1.png", "MeiMerchant");
+        //testMerchant.addLoot(new HPItem(ID.Item, "Snowy Robot", 1700));
         
-        handler.addWorldColisionObject(testMerchant);
+        //handler.addWorldColisionObject(testMerchant);
         
+        WorldPhaseEntity hpBox = new WorldPhaseEntity(777, -2125, ID.Merchant, 62, 92, "..\\resources\\misc\\fruit_1.png", "HPBox");
+        hpBox.addLoot(HP1);
+        
+        handler.addWorldColisionObject(hpBox);
+        
+        WorldPhaseEntity mpBox = new WorldPhaseEntity(839, -2125, ID.Merchant, 62, 92, "..\\resources\\misc\\fruit_2.png", "HPBox");
+        mpBox.addLoot(MP1);
+        
+        handler.addWorldColisionObject(mpBox);
+        
+        WorldPhaseEntity elixirBox = new WorldPhaseEntity(904, -2125, ID.Merchant, 62, 92, "..\\resources\\misc\\fruit_3.png", "HPBox");
+        elixirBox.addLoot(Elixir);
+        
+        handler.addWorldColisionObject(elixirBox);
         
 
         //BattlePhase Part----------------------------------------------------------------------------------------------------

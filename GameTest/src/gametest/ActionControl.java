@@ -892,6 +892,13 @@ class ActionControl extends KeyAdapter {
                 enemyParty.deleteMember(i);
             }
         }
+        
+        for (int i = 0; i < playerParty.memberList.size(); i++) {
+            if (!playerParty.memberList.get(i).entity.alive()) {
+                System.out.println("Dead: " + playerParty.memberList.get(i).entity.charName);
+                playerParty.deleteMember(i);
+            }
+        }
 
         if (enemyParty.memberList.size() <= 0) {
             PopUp = false;
@@ -901,6 +908,7 @@ class ActionControl extends KeyAdapter {
 
         if (playerParty.memberList.size() <= 0){
             PopUp = false;
+            skillListSelect = false;
             System.out.println("Exit Battle Phase: Player NOOB");
             handler.battlePhaseOff();
             

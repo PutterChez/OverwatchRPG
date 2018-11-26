@@ -30,5 +30,10 @@ public class Action {
         if(target.HP > target.maxHP){
             target.HP = target.maxHP;
         }
+        
+        //Prevent Revive
+        if(target.HP < 0){
+            target.HP = 0;
+        }
     }
 }

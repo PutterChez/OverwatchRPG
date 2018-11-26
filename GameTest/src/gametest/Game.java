@@ -295,33 +295,33 @@ public class Game extends Canvas implements Runnable {
         
         
         //doomfistSkill
-        Skill normalPunch = new Skill("Normal Punch", 70, 20, 100);
+        Skill normalPunch = new Skill("Normal Punch", 9999, 20, 100);
         normalPunch.setDescription("Doom punch sth");
-        Skill PowerPunch = new Skill("PowerPunch", 200, 40, 200);
+        Skill PowerPunch = new Skill("PowerPunch", 9999, 40, 200);
         PowerPunch.setDescription("Doom powerPunch sth");
         doomfist.addSkill(normalPunch);
         doomfist.addSkill(PowerPunch);
         
         //widowmakerSkill
-        Skill scopeShot = new Skill("Scope Shot", 200, 40, 200);
+        Skill scopeShot = new Skill("Scope Shot", 9999, 40, 200);
         scopeShot.setDescription("Click the head");
-        Skill jumpShot = new Skill("Jump Shot", 500, 20, 50);
+        Skill jumpShot = new Skill("Jump Shot", 9999, 20, 50);
         jumpShot.setDescription("Cool, Powerful but ez to miss");
         widowmaker.addSkill(scopeShot);
         widowmaker.addSkill(jumpShot);
         
         //reaperSkill
-        Skill spreadShot = new Skill("Spread Shot", 60, 20, 140);
+        Skill spreadShot = new Skill("Spread Shot", 9999, 20, 140);
         spreadShot.setDescription("Shotgun what do u expected?");
-        Skill pointBlank = new Skill("Point Blank", 100, 100, 200);
+        Skill pointBlank = new Skill("Point Blank", 9999, 100, 200);
         pointBlank.setDescription("Shotgun at pointBlank range");
         reaper.addSkill(spreadShot);
         reaper.addSkill(pointBlank);
         
         //junKratSkill
-        Skill normalBomb = new Skill("Normal Bomb", 100, 10, 30);
+        Skill normalBomb = new Skill("Normal Bomb", 9999, 10, 30);
         normalBomb.setDescription(" 'ตัวกระจอก' qtd PKs and Shadder4k");
-        Skill handBomb = new Skill("Hand Bomb", 60, 10, 70);
+        Skill handBomb = new Skill("Hand Bomb", 9999, 10, 70);
         handBomb.setDescription(" 'ตัวกระจอก(1)' qtd PKs and Shadder4k");
         junkrat.addSkill(normalBomb);
         junkrat.addSkill(handBomb);

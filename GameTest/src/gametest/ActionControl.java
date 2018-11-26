@@ -282,8 +282,8 @@ class ActionControl extends KeyAdapter {
                                 attack_list.add(playerParty.memberList.get(selectedPlayer).entity);
                                 
                                 playerHUD.setShowSkills(false);
-                                tempObject.setX(enemyParty.memberList.get(selectPos).entity.getX() + 60);
-                                tempObject.setY(enemyParty.memberList.get(selectPos).entity.getY() + 70);
+                                //tempObject.setX(enemyParty.memberList.get(0).entity.getX() + 60);
+                                //tempObject.setY(enemyParty.memberList.get(0).entity.getY() + 70);
                                 
                                 if(selectedPlayer < playerParty.memberList.size())
                                 {

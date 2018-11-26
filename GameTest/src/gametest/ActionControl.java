@@ -31,6 +31,8 @@ class ActionControl extends KeyAdapter {
     Player player;
     Map currentMap;
 
+    Random rand = new Random(System.currentTimeMillis());
+    
     HUD playerHUD;
     HUD enemyHUD;
 
@@ -361,6 +363,17 @@ class ActionControl extends KeyAdapter {
                                 PopUp = false;
                                 playerHUD.setShowSkills(false);
                                 System.out.println("Exit Player Turn");
+                                
+                                for(int p = 0; p < enemyParty.memberList.size(); p++)
+                                {
+                                    BattlePhaseEntity temp = enemyParty.memberList.get(p).entity;
+                                    Skill selectedSkill = temp.skillList.get(rand.nextInt(temp.skillList.size()));
+                                    temp.setSelectSkill(selectedSkill);
+                                    temp.setTarget(playerParty.memberList.get(rand.nextInt(playerParty.memberList.size())).entity);
+                                    attack_list.add(temp);
+                                }
+                                
+                                
                                 Collections.sort(attack_list);
                                 System.out.println("------------------------------------------");
                                 for(int j = 0; j < attack_list.size();j++){
@@ -370,8 +383,20 @@ class ActionControl extends KeyAdapter {
                                             + " using " + playerParty.memberList.get(k).entity.getSelectSkill().skillName);
                                             Action.attack(playerParty.memberList.get(k).entity, playerParty.memberList.get(k).entity.getSelectSkill(), playerParty.memberList.get(k).entity.getTarget());
                                         }
-                                    }
-
+                                    } 
+                                }
+                                
+                                
+                                System.out.println("------------------------------------------");
+                                for(int j = 0; j < attack_list.size();j++){
+                                    for(int k = 0; k < enemyParty.memberList.size(); k++)
+                                        {
+                                            if(attack_list.get(j).getCharName().equals(enemyParty.memberList.get(k).entity.getCharName())){
+                                                System.out.println(enemyParty.memberList.get(k).entity.getCharName() + " attacked " + enemyParty.memberList.get(k).entity.getTarget().getCharName()
+                                                + " using " + enemyParty.memberList.get(k).entity.getSelectSkill().skillName);
+                                                Action.attack(enemyParty.memberList.get(k).entity, enemyParty.memberList.get(k).entity.getSelectSkill(), enemyParty.memberList.get(k).entity.getTarget());
+                                            }
+                                        }
                                 }
                                 
                                 //PunPun Edit

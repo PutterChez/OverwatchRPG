@@ -954,7 +954,8 @@ class ActionControl extends KeyAdapter {
                                 SFX.play();
                             } else {
                                 obj.die();
-                                handler.removeColisionObject(obj.name);
+                                System.out.println(obj.alive());
+                                //handler.removeColisionObject(obj.name);
                                 handler.uninteracted();
                                 player.unInteracted();
                             }

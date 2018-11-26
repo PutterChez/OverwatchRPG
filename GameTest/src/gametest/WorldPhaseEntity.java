@@ -97,6 +97,9 @@ public class WorldPhaseEntity extends GameObject {
 
     public boolean checkColision(WorldPhaseEntity p) {
         //Prototype
+        if(!alive)
+            return false;
+        
         for (int i = 0; i < p.cornerList.size(); i++) {
             Coordinate temp = p.cornerList.get(i);
             Coordinate upperLeft = cornerList.get(0);

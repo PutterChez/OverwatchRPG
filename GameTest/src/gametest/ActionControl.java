@@ -889,7 +889,7 @@ class ActionControl extends KeyAdapter {
 
                             Item tempLoot = obj.lootList.get(0);
                             obj.addDialogue("Mei: I'm selling " + tempLoot.itemName + " for " + tempLoot.itemPrice + " $");
-                            obj.addDialogue("Mei: Would you like to buy it?                                                 Yes          No");
+                            obj.addDialogue("Mei: Would you like to buy it?                                            Yes         No");
                             obj.setPriceCondition(tempLoot.itemPrice);
 
                             player.setDialogue(obj.getDialogue());

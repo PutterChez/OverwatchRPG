@@ -355,6 +355,7 @@ class ActionControl extends KeyAdapter {
                                     
                                     System.out.println("Exit Battle Phase");
                                     handler.battlePhaseOff();
+                                    player.battlePhaseOff();
                                     handler.stopBGM();
 
                                     for (WorldPhaseEntity obj : handler.colisionList) {
@@ -769,6 +770,7 @@ class ActionControl extends KeyAdapter {
             if (key == KeyEvent.VK_B) {
                 System.out.println("Entering Battle Phase");
                 handler.battlePhaseOn();
+                player.battlePhaseOn();
             }
 
             if (!handler.interactStatus() && !handler.UIStatus()) {
@@ -944,6 +946,7 @@ class ActionControl extends KeyAdapter {
                                 Thread.sleep(2000);
                                 handler.stopBGM();
                                 handler.battlePhaseOn();
+                                player.battlePhaseOn();
                             }
                         } catch (InterruptedException ex) {
                             Thread.currentThread().interrupt();
@@ -1073,6 +1076,7 @@ class ActionControl extends KeyAdapter {
             PopUp = false;
             System.out.println("Exit Battle Phase");
             handler.battlePhaseOff();
+            player.battlePhaseOff();
             handler.stopBGM();
      
             /*
@@ -1095,6 +1099,7 @@ class ActionControl extends KeyAdapter {
             skillListSelect = false;
             System.out.println("Exit Battle Phase: Player NOOB");
             handler.battlePhaseOff();
+            player.battlePhaseOff();
             
             handler.stopBGM();
             handler.setBGM("..\\resources\\music\\SadViolin.wav");

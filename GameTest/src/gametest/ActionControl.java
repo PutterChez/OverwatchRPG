@@ -301,6 +301,13 @@ class ActionControl extends KeyAdapter {
                                 
                             } 
                             else if (cursorPos == 1 && !handler.inventoryStatus()) {
+                                if(player.inventory.itemList.size() == 0)
+                                {
+                                    SFX.setSoundDirectory("..\\resources\\sfx\\Error.wav");
+                                    SFX.play();
+                                    return;
+                                }
+                                
                                 player.inventoryOpen();
                                 handler.inventoryOpen();
                                 

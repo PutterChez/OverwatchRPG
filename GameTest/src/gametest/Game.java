@@ -62,6 +62,7 @@ public class Game extends Canvas implements Runnable {
         Elixir.setAttributeHP(1000);
         Elixir.setAttributeMP(1000);
         
+        /*
         player.addItem(HP1);
         player.addItem(HP1);
         player.addItem(HP1);
@@ -75,6 +76,7 @@ public class Game extends Canvas implements Runnable {
         player.addItem(MP2);
         
         player.addItem(Elixir);
+        */
 
         
         /*

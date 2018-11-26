@@ -425,6 +425,11 @@ class ActionControl extends KeyAdapter {
                                 System.out.println("------------------------------------------");
                             }
                             else{
+                                for(int j = 0; j < playerParty.memberList.size();j++){
+                                    if(playerParty.memberList.get(j).entity.isMissed())
+                                        playerParty.memberList.get(j).entity.setMissed(false);
+                                }
+                                
                                 enemySelectPos = 0;
                                 select = false;
                                 PopUp = false;

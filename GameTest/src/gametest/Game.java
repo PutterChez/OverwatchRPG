@@ -538,9 +538,10 @@ public class Game extends Canvas implements Runnable {
         g2d.translate(cam.getX(), cam.getY());
         
         handler.render(g);
+        player.renderMenu(g);
+        
         if(!handler.battlePhaseStatus())
         {
-            player.renderMenu(g);
             for (GameObject o : handler.worldRender.renderList)
                 if(o.getName().equals("MerchantCursor"))
                     o.render(g);

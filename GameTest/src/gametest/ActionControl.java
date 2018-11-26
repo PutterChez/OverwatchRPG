@@ -205,10 +205,14 @@ class ActionControl extends KeyAdapter {
                                 playerHUD.setShowSkills(true);
                                 playerHUD.setSelectedPlayer(selectedPlayer);
                                 
-                            } else if (cursorPos == 1) {
+                            } else if (cursorPos == 1 && !handler.inventoryStatus()) {
+                                player.inventoryOpen();
+                                handler.inventoryOpen();
                                 System.out.println("Items");
-                                playerParty.manaRegen(10);
-                            } else if (cursorPos == 2) {
+                            } else if (cursorPos == 1 && handler.inventoryStatus()) {
+                                player.inventoryClose();
+                                handler.inventoryClose();
+                            }else if (cursorPos == 2) {
                                 playerParty.manaRegen(10);
                                 chooseRun = true;
                                 Random randRunChance = new Random(System.currentTimeMillis());

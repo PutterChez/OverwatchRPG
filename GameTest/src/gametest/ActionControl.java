@@ -133,7 +133,8 @@ class ActionControl extends KeyAdapter {
                 }
                 else if (handler.mainCursorPos == 1)
                 {
-                    System.out.println("Turotial");
+                    handler.MainPhaseOff();
+                    handler.ControlsPhaseOn();
                 }
                 else if (handler.mainCursorPos == 2)
                 {
@@ -143,6 +144,22 @@ class ActionControl extends KeyAdapter {
             
             if (key == KeyEvent.VK_ESCAPE) {
                 System.exit(1);
+            }
+        }
+        
+        else if(handler.ControlsPhaseStatus())
+        {
+            if(key == KeyEvent.VK_SPACE)
+            {
+                SFX.setSoundDirectory("..\\resources\\sfx\\Selection Confirm.wav");
+                SFX.play();
+                handler.controlsPhaseNext();
+            }
+            
+            if (key == KeyEvent.VK_ESCAPE) {
+                handler.stopBGM();
+                handler.MainPhaseOn();
+                handler.ControlsPhaseOff();
             }
         }
         

@@ -27,6 +27,7 @@ public class Handler {
     
     
     boolean mainPhase = true;
+    boolean controlsPhase = false;
     boolean gameOver = false;
     
     Sound bgm;
@@ -35,6 +36,7 @@ public class Handler {
     RenderModule worldRender;
     
     Menu mainMenu;
+    Menu controlsPage1;
     Menu mainCursor;
     int mainCursorPos = 0;
     
@@ -42,6 +44,8 @@ public class Handler {
     
     LinkedList<GameObject> objectList;
     LinkedList<WorldPhaseEntity> colisionList; 
+    
+    protected String controlsPath = "..\\resources\\misc\\controls_open_world.png";
     
     Handler()
     {
@@ -53,6 +57,7 @@ public class Handler {
         
         gameOverScreen = new Menu(0, 0, ID.Menu, 1600, 900, "..\\resources\\misc\\GameOver.png");
         mainMenu = new Menu(0, 0, ID.Menu, 1600, 900, "..\\resources\\misc\\main_menu.png");
+        controlsPage1 = new Menu(0, 0, ID.Menu, 1620, 900, controlsPath);
         mainCursor = new Menu(5000, 5000, ID.Cursor, 50, 50, "..\\resources\\misc\\cursor_E_white.png");
     }
     
@@ -75,8 +80,21 @@ public class Handler {
             mainMenu.render(g);
             mainCursor.render(g);
         }
+        else if(controlsPhase){
+            controlsPage1.render(g);
+        }
         else
             worldRender.render(g);          
+    }
+    
+    public void controlsPhaseNext(){
+        if(controlsPath.equals("..\\resources\\misc\\controls_open_world.png")){
+            controlsPath = "..\\resources\\misc\\controls_battle_phase.png";
+        }
+        else if(controlsPath.equals("..\\resources\\misc\\controls_battle_phase.png")){
+            controlsPath = "..\\resources\\misc\\controls_open_world.png";
+        }
+        System.out.println(controlsPath);
     }
     
     public void updateBattleObject(WorldPhaseEntity player)
@@ -193,8 +211,16 @@ public class Handler {
     public void MainPhaseOff() { 
         mainPhase = false; 
     }
+    
+    public void ControlsPhaseOn() { 
+        controlsPhase = true; 
+    }
+    public void ControlsPhaseOff() { 
+        controlsPhase = false; 
+    }
     public boolean MainPhaseStatus() {return mainPhase;}
     
+    public boolean ControlsPhaseStatus() {return controlsPhase;}
 
     public boolean getBgmStatus() {
         return bgmStatus;

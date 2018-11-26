@@ -22,6 +22,7 @@ public class BattlePhaseEntity extends GameObject implements Comparable {
     private String charIcon;
     
     protected BattlePhaseEntity target;
+    protected String displayString = "";
 
     public BattlePhaseEntity(int x, int y, ID id, int width, int height, String imageDirectory, int maxHP, int maxMP, String charName, int attack, int defense, int speed, int evasion) {
         super(x, y, width, height, charName, id);
@@ -77,6 +78,14 @@ public class BattlePhaseEntity extends GameObject implements Comparable {
 
     public void setCharIcon(String charIcon) {
         this.charIcon = charIcon;
+    }
+
+    public void setDisplayString(String displayString) {
+        this.displayString = displayString;
+    }
+
+    public String getDisplayString() {
+        return displayString;
     }
     
     

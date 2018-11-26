@@ -12,6 +12,7 @@ public class HUD extends GameObject{
     protected Party party;
     protected int originalSize;
     protected boolean showSkills = false;
+    protected boolean showDisplay = false;
     protected int changeColor = 0;
     protected int selectedPlayer = 0;
     protected String name;
@@ -32,6 +33,22 @@ public class HUD extends GameObject{
     }
     
     public void render(Graphics g) {
+        if(showDisplay){
+            if(name.equals("Player Party")){
+                g.setFont(new Font("Minecraft Bold", Font.PLAIN, 30));
+                if(party.memberList.get(selectedPlayer).entity.getSelectSkill() instanceof HealSkill)
+                    g.setColor(Color.YELLOW);
+                else
+                    g.setColor(Color.BLACK);
+                g.drawString(party.memberList.get(selectedPlayer).entity.getDisplayString(), x - 800, y - 500);
+            }
+            else if(name.equals("Enemy Party")){
+                g.setFont(new Font("Minecraft Bold", Font.PLAIN, 30));
+                g.setColor(Color.RED);
+                g.drawString(party.memberList.get(selectedPlayer).entity.getDisplayString(), x + 300, y - 500);
+            }
+        }
+        
         if((showSkills == true) && (party.memberList.get(selectedPlayer).entity.alive())){
             g.setFont(new Font("Minecraft Bold", Font.PLAIN, 30));
             g.setColor(Color.BLACK);
@@ -161,5 +178,13 @@ public class HUD extends GameObject{
 
     public void setSelectedPlayer(int selectedPlayer) {
         this.selectedPlayer = selectedPlayer;
+    }
+
+    public boolean isShowDisplay() {
+        return showDisplay;
+    }
+
+    public void setShowDisplay(boolean showDisplay) {
+        this.showDisplay = showDisplay;
     }
 }

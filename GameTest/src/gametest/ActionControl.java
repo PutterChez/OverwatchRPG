@@ -604,9 +604,21 @@ class ActionControl extends KeyAdapter {
                                 for(int j = 0; j < attack_list.size();j++){
                                     for(int k = 0;k < playerParty.memberList.size();k++){
                                         if(attack_list.get(j).getCharName().equals(playerParty.memberList.get(k).entity.getCharName())){
-                                            
-                                            System.out.println(playerParty.memberList.get(k).entity.getCharName() + " attacked " + playerParty.memberList.get(k).entity.getTarget().getCharName()
-                                            + " using " + playerParty.memberList.get(k).entity.getSelectSkill().skillName);
+                                            playerHUD.setShowDisplay(true);
+                                            playerHUD.setSelectedPlayer(k);
+                                            String displayString;
+                                            if(playerParty.memberList.get(k).entity.getSelectSkill() instanceof HealSkill){
+                                                if(playerParty.memberList.get(k).entity.getSelectSkill().getSkillName().equals("Valkyrie"))
+                                                    displayString = playerParty.memberList.get(k).entity.getCharName() + " healed everyone using Valkyrie!";
+                                                else
+                                                    displayString = playerParty.memberList.get(k).entity.getCharName() + " healed " + playerParty.memberList.get(k).entity.getTarget().getCharName()
+                                                + " using " + playerParty.memberList.get(k).entity.getSelectSkill().skillName;
+                                            }
+                                            else{
+                                                displayString = playerParty.memberList.get(k).entity.getCharName() + " attacked " + playerParty.memberList.get(k).entity.getTarget().getCharName()
+                                            + " using " + playerParty.memberList.get(k).entity.getSelectSkill().skillName;
+                                            }
+                                            playerParty.memberList.get(k).entity.setDisplayString(displayString);
                                             
                                             if(playerParty.memberList.get(k).entity.getSelectSkill() instanceof HealSkill){
                                                 //Single Target Heal
@@ -624,7 +636,7 @@ class ActionControl extends KeyAdapter {
                                             
                                             playerParty.memberList.get(k).entity.x -= 100;
                                             try{
-                                                Thread.sleep(500);
+                                                Thread.sleep(2000);
                                             }
                                             catch(Exception ex)
                                             {
@@ -635,7 +647,8 @@ class ActionControl extends KeyAdapter {
                                             if(playerParty.memberList.get(k).entity.isMissed())
                                                 playerParty.memberList.get(k).entity.setMissed(false);
                                         }
-                                    } 
+                                        playerHUD.setShowDisplay(false);
+                                    }
                                 }
                                 
                                 
@@ -644,13 +657,15 @@ class ActionControl extends KeyAdapter {
                                     for(int k = 0; k < enemyParty.memberList.size(); k++)
                                         {
                                             if(attack_list.get(j).getCharName().equals(enemyParty.memberList.get(k).entity.getCharName())){
-                                                System.out.println(enemyParty.memberList.get(k).entity.getCharName() + " attacked " + enemyParty.memberList.get(k).entity.getTarget().getCharName()
+                                                enemyHUD.setShowDisplay(true);
+                                                enemyHUD.setSelectedPlayer(k);
+                                                enemyParty.memberList.get(k).entity.setDisplayString(enemyParty.memberList.get(k).entity.getCharName() + " attacked " + enemyParty.memberList.get(k).entity.getTarget().getCharName()
                                                 + " using " + enemyParty.memberList.get(k).entity.getSelectSkill().skillName);
                                                 Action.attack(enemyParty.memberList.get(k).entity, enemyParty.memberList.get(k).entity.getSelectSkill(), enemyParty.memberList.get(k).entity.getTarget());
                                                 
                                                 enemyParty.memberList.get(k).entity.x += 100;
                                                 try{
-                                                    Thread.sleep(500);
+                                                    Thread.sleep(2000);
                                                 }
                                                 catch(Exception ex)
                                                 {
@@ -661,6 +676,7 @@ class ActionControl extends KeyAdapter {
                                             if(enemyParty.memberList.get(k).entity.isMissed())
                                                 enemyParty.memberList.get(k).entity.setMissed(false);
                                         }
+                                    enemyHUD.setShowDisplay(false);
                                 }
                                 
                                 //PunPun Edit
@@ -1058,7 +1074,6 @@ class ActionControl extends KeyAdapter {
                     */
         }
         
-        System.out.println(playerParty.memberList.size());
             
         if (playerParty.memberList.size() <= 0){
             PopUp = false;

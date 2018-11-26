@@ -283,95 +283,102 @@ public class Game extends Canvas implements Runnable {
         
 
         //BattlePhase Part----------------------------------------------------------------------------------------------------
-        BattlePhaseEntity genji = new BattlePhaseEntity(P_POS1.x, P_POS1.y, ID.Ally, 230, 230, "..\\resources\\characters_fixed\\genji_1.png", 200, 200, "Genji", 40, 10, 100, 40);
-        BattlePhaseEntity mccree = new BattlePhaseEntity(P_POS2.x, P_POS2.y, ID.Ally, 170, 170, "..\\resources\\characters_fixed\\mccree_1.png", 250, 200, "Mccree", 40, 10, 70, 40);
-        BattlePhaseEntity mercy = new BattlePhaseEntity(P_POS3.x, P_POS3.y, ID.Ally, 230, 230, "..\\resources\\characters_fixed\\mercy_1.png", 200, 150, "Mercy", 40, 10, 80, 40);
-        BattlePhaseEntity reinhardt = new BattlePhaseEntity(P_POS4.x, P_POS4.y, ID.Ally, 280, 250, "..\\resources\\characters_fixed\\rein_1.png", 500, 150, "Reinhardt", 40, 10, 40, 40);
+        BattlePhaseEntity genji = new BattlePhaseEntity(P_POS1.x, P_POS1.y, ID.Ally, 230, 230, "..\\resources\\characters_fixed\\genji_1.png", 200, 200, "Genji", 40, 10, 100, 60);
+        BattlePhaseEntity mccree = new BattlePhaseEntity(P_POS2.x, P_POS2.y, ID.Ally, 170, 170, "..\\resources\\characters_fixed\\mccree_1.png", 250, 200, "Mccree", 40, 10, 70, 30);
+        BattlePhaseEntity mercy = new BattlePhaseEntity(P_POS3.x, P_POS3.y, ID.Ally, 230, 230, "..\\resources\\characters_fixed\\mercy_1.png", 200, 150, "Mercy", 40, 10, 80, 50);
+        BattlePhaseEntity reinhardt = new BattlePhaseEntity(P_POS4.x, P_POS4.y, ID.Ally, 280, 250, "..\\resources\\characters_fixed\\rein_1.png", 500, 150, "Reinhardt", 40, 10, 40, 10);
         
         genji.setCharIcon("..\\resources\\character_heads\\genji_ult.png");
         mccree.setCharIcon("..\\resources\\character_heads\\mccree_ult.png");
         mercy.setCharIcon("..\\resources\\character_heads\\mercy_ult.png");
         reinhardt.setCharIcon("..\\resources\\character_heads\\rein_ult.png");
 
-        BattlePhaseEntity doomfist = new BattlePhaseEntity(POS1.x, POS1.y, ID.Enemy, 170, 170, "..\\resources\\characters_fixed\\doom_2.png", 250, 200, "Doomfist", 40, 10, 100, 40);
-        BattlePhaseEntity widowmaker = new BattlePhaseEntity(POS2.x, POS2.y, ID.Enemy, 170, 170, "..\\resources\\characters_fixed\\widow_2.png", 200, 200, "Widowmaker", 40, 10, 100, 40);
-        BattlePhaseEntity reaper = new BattlePhaseEntity(POS3.x, POS3.y, ID.Enemy, 170, 170, "..\\resources\\characters_fixed\\reaper_2.png", 200, 200, "Reaper", 40, 10, 100, 40);
-        BattlePhaseEntity junkrat = new BattlePhaseEntity(POS4.x, POS4.y, ID.Enemy, 170, 170, "..\\resources\\characters_fixed\\jake_2.png", 200, 200, "Junkrat", 40, 10, 100, 40);
-        BattlePhaseEntity sombra = new BattlePhaseEntity(POS5.x, POS5.y, ID.Enemy, 170, 170, "..\\resources\\characters_fixed\\sombra_2.png", 200, 200, "Sombra", 40, 10, 100, 40);
-        BattlePhaseEntity bastion = new BattlePhaseEntity(POS6.x, POS6.y, ID.Enemy, 170, 170, "..\\resources\\characters_fixed\\bastion_2.png", 200, 200, "Bastion", 40, 10, 100, 40);
+        BattlePhaseEntity doomfist = new BattlePhaseEntity(POS1.x, POS1.y, ID.Enemy, 170, 170, "..\\resources\\characters_fixed\\doom_2.png", 250, 200, "Doomfist", 40, 10, 60, 40);
+        BattlePhaseEntity widowmaker = new BattlePhaseEntity(POS2.x, POS2.y, ID.Enemy, 170, 170, "..\\resources\\characters_fixed\\widow_2.png", 200, 200, "Widowmaker", 40, 10, 100, 50);
+        BattlePhaseEntity reaper = new BattlePhaseEntity(POS3.x, POS3.y, ID.Enemy, 170, 170, "..\\resources\\characters_fixed\\reaper_2.png", 200, 200, "Reaper", 40, 10, 60, 50);
+        BattlePhaseEntity junkrat = new BattlePhaseEntity(POS4.x, POS4.y, ID.Enemy, 170, 170, "..\\resources\\characters_fixed\\jake_2.png", 200, 200, "Junkrat", 40, 10, 50, 30);
+        BattlePhaseEntity sombra = new BattlePhaseEntity(POS5.x, POS5.y, ID.Enemy, 170, 170, "..\\resources\\characters_fixed\\sombra_2.png", 200, 200, "Sombra", 40, 10, 60, 50);
+        BattlePhaseEntity bastion = new BattlePhaseEntity(POS6.x, POS6.y, ID.Enemy, 170, 170, "..\\resources\\characters_fixed\\bastion_2.png", 200, 200, "Bastion", 40, 10, 40, 10);
+        
         
         //doomfistSkill
-        Skill normalPunch = new Skill("Normal Punch", 70, 20, 100);
+        Skill normalPunch = new Skill("Normal Punch", 9999, 20, 100);
         normalPunch.setDescription("Doom punch sth");
-        Skill PowerPunch = new Skill("PowerPunch", 200, 40, 200);
+        Skill PowerPunch = new Skill("PowerPunch", 9999, 40, 200);
         PowerPunch.setDescription("Doom powerPunch sth");
         doomfist.addSkill(normalPunch);
         doomfist.addSkill(PowerPunch);
         
         //widowmakerSkill
-        Skill scopeShot = new Skill("Scope Shot", 200, 40, 200);
+        Skill scopeShot = new Skill("Scope Shot", 9999, 40, 200);
         scopeShot.setDescription("Click the head");
-        Skill jumpShot = new Skill("Jump Shot", 500, 20, 50);
+        Skill jumpShot = new Skill("Jump Shot", 9999, 20, 50);
         jumpShot.setDescription("Cool, Powerful but ez to miss");
         widowmaker.addSkill(scopeShot);
         widowmaker.addSkill(jumpShot);
         
         //reaperSkill
-        Skill spreadShot = new Skill("Spread Shot", 60, 20, 140);
+        Skill spreadShot = new Skill("Spread Shot", 9999, 20, 140);
         spreadShot.setDescription("Shotgun what do u expected?");
-        Skill pointBlank = new Skill("Point Blank", 100, 100, 200);
+        Skill pointBlank = new Skill("Point Blank", 9999, 100, 200);
         pointBlank.setDescription("Shotgun at pointBlank range");
         reaper.addSkill(spreadShot);
         reaper.addSkill(pointBlank);
         
         //junKratSkill
-        Skill normalBomb = new Skill("Normal Bomb", 100, 10, 30);
+        Skill normalBomb = new Skill("Normal Bomb", 9999, 10, 30);
         normalBomb.setDescription(" 'ตัวกระจอก' qtd PKs and Shadder4k");
-        Skill handBomb = new Skill("Hand Bomb", 60, 10, 70);
+        Skill handBomb = new Skill("Hand Bomb", 9999, 10, 70);
         handBomb.setDescription(" 'ตัวกระจอก(1)' qtd PKs and Shadder4k");
         junkrat.addSkill(normalBomb);
         junkrat.addSkill(handBomb);
         
+        //Melee Skill
+        Skill melee = new Skill("Melee", 60, 0, 100);
+        melee.setDescription("A standard melee attack.");
+        
         //Genji Skills
-        Skill swiftStrike = new Skill("Swift Strike", 50, 60, 80);
+        Skill swiftStrike = new Skill("Swift Strike", 120, 60, 80);
         swiftStrike.setDescription("Genji darts forward, slashing with his katana and passing through foes in his path");
-        Skill shuriken = new Skill("Shuriken", 28, 20, 100);
+        Skill shuriken = new Skill("Shuriken", 90, 20, 100);
         swiftStrike.setDescription("Genji looses three deadly throwing stars in quick succession.");
-        Skill dragonBlade = new Skill("Dragonblade", 120, 100, 200);
+        Skill dragonBlade = new Skill("Dragonblade", 240, 100, 200);
         dragonBlade.setDescription("Genji brandishes his katana for a brief period of time");
         dragonBlade.setColor(Color.GREEN);
         dragonBlade.setUltimate(true);
         genji.addSkill(swiftStrike);
         genji.addSkill(shuriken);
+        genji.addSkill(melee);
         genji.addSkill(dragonBlade);
+        
         
         //Mccree Skills
         Skill normalShot = new Skill("Normal Shot", 70, 20, 100);
         normalShot.setDescription("McCree fires off a round from his trusty six-shooter.");
         Skill headShot = new Skill("Head Shot", 200, 40, 200);
         headShot.setDescription("Mccree aims for the target's head and fires with accuracy");
-        Skill deadeye = new Skill("Deadeye",1000,100,200);
+        Skill deadeye = new Skill("Deadeye",240,100,200);
         deadeye.setDescription("Focus. Mark. Draw. McCree shoots every enemy in his line of sight.");
         deadeye.setUltimate(true);
         deadeye.setColor(Color.RED);
         mccree.addSkill(normalShot);
         mccree.addSkill(headShot);
+        mccree.addSkill(melee);
         mccree.addSkill(deadeye);
+        
         
         //Mercy Skills    
         Skill blaster = new Skill("Caduceus Blaster", 20, 10, 1);
         blaster.setDescription("Mercy shoots a round from her sidearm");
         Skill heal = new Skill("Heal", 1, 50, 200);
         heal.setDescription("Mercy maintains a beam of healing onto and ally, healing them for 40 health");
-        Skill damageBoost = new Skill("Damage Boost", 30, 50, 100);
-        damageBoost.setDescription("Mercy maintains a beam of damage boost onto and ally, increasing their damage by 30%");
-        Skill valkyrie = new Skill("Valkyrie", 150, 100, 200);
-        valkyrie.setDescription("Mercy transforms, enchancing her ablitites and damaging the target by 150 points");
+        Skill valkyrie = new Skill("Valkyrie", 3, 100, 200);
+        valkyrie.setDescription("Mercy transforms and heals the entire party by 120 points");
         valkyrie.setUltimate(true);
         valkyrie.setColor(Color.YELLOW);
         mercy.addSkill(blaster);
         mercy.addSkill(heal);
-        mercy.addSkill(damageBoost);
+        mercy.addSkill(melee);
         mercy.addSkill(valkyrie);
        
         //Reinhardt Skills
@@ -379,12 +386,13 @@ public class Game extends Canvas implements Runnable {
         hammer.setDescription("Reinhardt swings his hammer in a wide arc");
         Skill firestrike = new Skill("Fire Strike", 100, 60, 60);
         firestrike.setDescription("By whipping his Rocket Hammer forward, Reinhardt slings a flaming projectile.");
-        Skill earthshatter = new Skill("Earthshatter", 200, 100, 100);
+        Skill earthshatter = new Skill("Earthshatter", 230, 100, 100);
         earthshatter.setDescription("Reinhardt forcefully slams his rocket hammer into the ground, damaging all enemies in front of him.");
         earthshatter.setUltimate(true);
         earthshatter.setColor(Color.ORANGE);
         reinhardt.addSkill(hammer);
         reinhardt.addSkill(firestrike);
+        reinhardt.addSkill(melee);
         reinhardt.addSkill(earthshatter);
         
 

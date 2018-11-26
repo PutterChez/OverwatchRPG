@@ -25,5 +25,15 @@ public class Action {
     public static void healing(BattlePhaseEntity healer, Skill healerSkill, BattlePhaseEntity target) {
         target.HP += (healer.attack * healerSkill.skillPower);
         healer.MP -= healerSkill.mpCost;
+        
+        //Prevent Overheal
+        if(target.HP > target.maxHP){
+            target.HP = target.maxHP;
+        }
+        
+        //Prevent Revive
+        if(target.HP < 0){
+            target.HP = 0;
+        }
     }
 }

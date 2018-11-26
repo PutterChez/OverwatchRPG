@@ -32,7 +32,7 @@ public class HUD extends GameObject{
     }
     
     public void render(Graphics g) {
-        if(showSkills == true){
+        if((showSkills == true) && (party.memberList.get(selectedPlayer).entity.alive())){
             g.setFont(new Font("Minecraft Bold", Font.PLAIN, 30));
             g.setColor(Color.BLACK);
             g.drawString(party.memberList.get(selectedPlayer).entity.getCharName(), x - 420, y + 55);

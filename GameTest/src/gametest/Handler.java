@@ -75,13 +75,13 @@ public class Handler {
         {
             gameOverScreen.render(g);
         }
+        else if(controlsPhase){
+            controlsPage1.render(g);
+        }
         else if(mainPhase)
         {
             mainMenu.render(g);
             mainCursor.render(g);
-        }
-        else if(controlsPhase){
-            controlsPage1.render(g);
         }
         else
             worldRender.render(g);          
@@ -94,6 +94,7 @@ public class Handler {
         else if(controlsPath.equals("..\\resources\\misc\\controls_battle_phase.png")){
             controlsPath = "..\\resources\\misc\\controls_open_world.png";
         }
+        controlsPage1.setImageDirectory(controlsPath);
         System.out.println(controlsPath);
     }
     

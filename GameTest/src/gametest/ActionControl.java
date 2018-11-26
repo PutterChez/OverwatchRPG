@@ -97,8 +97,15 @@ class ActionControl extends KeyAdapter {
 
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
-        
-        if(handler.MainPhaseStatus())
+        if(handler.ControlsPhaseStatus())
+        {  
+            if (key == KeyEvent.VK_SPACE) {
+                SFX.setSoundDirectory("..\\resources\\sfx\\MENU A - Back.wav");
+                SFX.play();
+                handler.ControlsPhaseOff();
+            }
+        } 
+        else if(handler.MainPhaseStatus())
         {
             if (handler.getBgmStatus() == false) {
                 handler.setBGM("..\\resources\\music\\Overtime.wav");
@@ -124,7 +131,7 @@ class ActionControl extends KeyAdapter {
             
             if(key == KeyEvent.VK_SPACE)
             {
-                SFX.setSoundDirectory("..\\resources\\sfx\\Selection Confirm.wav");
+                SFX.setSoundDirectory("..\\resources\\sfx\\MENU A_Select.wav");
                 SFX.play();
                 if(handler.mainCursorPos == 0)
                 {
@@ -133,7 +140,6 @@ class ActionControl extends KeyAdapter {
                 }
                 else if (handler.mainCursorPos == 1)
                 {
-                    handler.MainPhaseOff();
                     handler.ControlsPhaseOn();
                 }
                 else if (handler.mainCursorPos == 2)
@@ -145,24 +151,7 @@ class ActionControl extends KeyAdapter {
             if (key == KeyEvent.VK_ESCAPE) {
                 System.exit(1);
             }
-        }
-        
-        else if(handler.ControlsPhaseStatus())
-        {
-            if(key == KeyEvent.VK_SPACE)
-            {
-                SFX.setSoundDirectory("..\\resources\\sfx\\Selection Confirm.wav");
-                SFX.play();
-                handler.controlsPhaseNext();
-            }
-            
-            if (key == KeyEvent.VK_ESCAPE) {
-                handler.stopBGM();
-                handler.MainPhaseOn();
-                handler.ControlsPhaseOff();
-            }
-        }
-        
+        }  
         else if (handler.battlePhaseStatus()) {
             if (handler.getBgmStatus() == false) {
                 handler.setBGM("..\\resources\\music\\Hanamura.wav");
@@ -856,6 +845,16 @@ class ActionControl extends KeyAdapter {
     public void keyReleased(KeyEvent e) {
         int key = e.getKeyCode();
 
+        if(handler.ControlsPhaseStatus())
+        {
+            if(key == KeyEvent.VK_A || key == KeyEvent.VK_D)
+            {
+                SFX.setSoundDirectory("..\\resources\\sfx\\DialogueChange.wav");
+                SFX.play();
+                handler.controlsPhaseNext();
+            }
+        }
+        
         if (key == KeyEvent.VK_SPACE && !handler.battlePhaseStatus()) {
             for (WorldPhaseEntity obj : handler.colisionList) {
                 WorldPhaseEntity temp = player.getInteractArea();

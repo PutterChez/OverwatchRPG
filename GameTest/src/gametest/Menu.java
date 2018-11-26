@@ -39,5 +39,15 @@ public class Menu extends GameObject {
             g.drawString("Run", x + 100,y + 210);
         }
     }
+
+    public String getImageDirectory() {
+        return imageDirectory;
+    }
+
+    public void setImageDirectory(String imageDirectory) {
+        this.imageDirectory = imageDirectory;
+    }
+    
+    
     
 }

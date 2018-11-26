@@ -43,7 +43,8 @@ public class Game extends Canvas implements Runnable {
         new Window(WIDTH, HEIGHT, "Overwatch RPG Test", this);
 
         //WorldPhase Part-----------------------------------------------------------------------------------------------------
-        player = new Player(800, 450, ID.Player, 50, 60, "..\\resources\\characters\\RedSquare.png", "Player");
+        //player = new Player(800, 450, ID.Player, 50, 60, "..\\resources\\characters\\RedSquare.png", "Player");
+        player = new Player(845, -1960, ID.Player, 50, 60, "..\\resources\\characters\\RedSquare.png", "Player");
         player.inventory.addMoney(6000);
         
         HPItem test1 = new HPItem(ID.Item, "HP Potion1", 100);
@@ -89,15 +90,32 @@ public class Game extends Canvas implements Runnable {
 
         //String path = "..\\resources\\maps\\spawn_wall.png";
         String path = null;
+        String path2 = "..\\\\resources\\\\maps\\\\spawn_wall.png";
 
         WorldPhaseEntity spawn_wall_left = new WorldPhaseEntity(65, -300, ID.Box, 200, 1030, path, "Spawn_LeftWall");
         WorldPhaseEntity spawn_wall_right = new WorldPhaseEntity(1480, -300, ID.Box, 200, 1030, path, "Spawn_RightWall");
         WorldPhaseEntity spawn_wall_bottom = new WorldPhaseEntity(270, 740, ID.Box, 1200, 200, path, "Spawn_BottomWall");
         WorldPhaseEntity spawn_fountains_left = new WorldPhaseEntity(720, 0, ID.Box, 45, 460, path, "Spawn_LeftFountains");
         WorldPhaseEntity spawn_fountains_right = new WorldPhaseEntity(980, 0, ID.Box, 45, 460, path, "Spawn_RightFountains");
-        WorldPhaseEntity spawn_walls_top1 = new WorldPhaseEntity(266, -300, ID.Box, 440, 100, path, "Spawn_TopWall1");
-        WorldPhaseEntity spawn_walls_top2 = new WorldPhaseEntity(1036, -300, ID.Box, 440, 100, path, "Spawn_TopWall2");
-
+        WorldPhaseEntity spawn_walls_top1 = new WorldPhaseEntity(266, -300, ID.Box, 430, 100, path, "Spawn_TopWall1");
+        WorldPhaseEntity spawn_walls_top2 = new WorldPhaseEntity(1036, -300, ID.Box, 430, 100, path, "Spawn_TopWall2");
+        
+        WorldPhaseEntity walkway_left = new WorldPhaseEntity(645, -1940, ID.Box, 60, 1740,path , "Walkway_Left");
+        WorldPhaseEntity walkway_right = new WorldPhaseEntity(1040, -1300, ID.Box, 60, 1100,path , "Walkway_Right");
+        WorldPhaseEntity walkway_right_top = new WorldPhaseEntity(1040, -1940, ID.Box, 60, 300,path2 , "Walkway_Right_Top");
+        
+        WorldPhaseEntity graveyard_top = new WorldPhaseEntity(1100, -1700, ID.Box, 2800, 60,path , "Graveyard_Top");
+        WorldPhaseEntity graveyard_bottom = new WorldPhaseEntity(1100, -1300, ID.Box, 2800, 50,path , "Graveyard_Bottom");
+        WorldPhaseEntity graveyard_back = new WorldPhaseEntity(4560, -1665, ID.Box, 50, 340,path , "Graveyard_Bottom");
+        WorldPhaseEntity graveyard_top1 = new WorldPhaseEntity(3900, -1765, ID.Box, 130, 60,path , "Graveyard_Top1");
+        WorldPhaseEntity graveyard_bottom1 = new WorldPhaseEntity(3900, -1255, ID.Box, 130, 60,path , "Graveyard_Bottom1");
+        WorldPhaseEntity graveyard_top2 = new WorldPhaseEntity(4300, -1765, ID.Box, 130, 60,path , "Graveyard_Top2");
+        WorldPhaseEntity graveyard_bottom2 = new WorldPhaseEntity(4300, -1255, ID.Box, 130, 60,path , "Graveyard_Bottom2");
+        WorldPhaseEntity graveyard_top3 = new WorldPhaseEntity(4430, -1315, ID.Box, 130, 60,path, "Graveyard_Top3");
+        WorldPhaseEntity graveyard_bottom3 = new WorldPhaseEntity(4430, -1705, ID.Box, 130, 60,path , "Graveyard_Bottom3");
+        WorldPhaseEntity graveyard_top4 = new WorldPhaseEntity(4030, -1830, ID.Box, 250, 60,path , "Graveyard_Top4");
+        WorldPhaseEntity graveyard_bottom4 = new WorldPhaseEntity(4030, -1190, ID.Box, 250, 60,path , "Graveyard_Bottom4");
+        
         WorldPhaseEntity house1 = new WorldPhaseEntity(390, 80, ID.Box, 260, 300, path, "House1");
         WorldPhaseEntity house2 = new WorldPhaseEntity(1100, 80, ID.Box, 245, 300, path, "House2");
         WorldPhaseEntity house1_left_roof = new WorldPhaseEntity(340, 125, ID.Box, 55, 130, "..\\resources\\maps\\nihon_roof_left.png", "House1_Roof_Left");
@@ -112,18 +130,57 @@ public class Game extends Canvas implements Runnable {
         handler.addWorldColisionObject(spawn_fountains_right);
         handler.addWorldColisionObject(spawn_walls_top1);
         handler.addWorldColisionObject(spawn_walls_top2);
-
+        
+        handler.addWorldColisionObject(walkway_left);
+        handler.addWorldColisionObject(walkway_right);
+        handler.addWorldColisionObject(walkway_right_top);
+        
+        handler.addWorldColisionObject(graveyard_top);
+        handler.addWorldColisionObject(graveyard_bottom);
+        handler.addWorldColisionObject(graveyard_back);
+        handler.addWorldColisionObject(graveyard_top1);
+        handler.addWorldColisionObject(graveyard_bottom1);
+        handler.addWorldColisionObject(graveyard_top2);
+        handler.addWorldColisionObject(graveyard_bottom2);
+        handler.addWorldColisionObject(graveyard_top3);
+        handler.addWorldColisionObject(graveyard_bottom3);
+        handler.addWorldColisionObject(graveyard_top4);
+        handler.addWorldColisionObject(graveyard_bottom4);
+        
         handler.addWorldColisionObject(house1);
         handler.addWorldColisionObject(house2);
-
-        /*
-        handler.addWorldPhaseObject(house1_left_roof);
-        handler.addWorldPhaseObject(house2_left_roof);
-        handler.addWorldPhaseObject(house1_right_roof);
-        handler.addWorldPhaseObject(house2_right_roof);
-        */
-
+        
         //Object Interaction
+        WorldPhaseEntity obj_tree1 = new WorldPhaseEntity(680, -63, ID.NPC, 65, 65, path2, "obj_tree1");
+        obj_tree1.addDialogue("It's a large leafless tree");
+        
+        handler.addWorldColisionObject(obj_tree1);
+        
+        WorldPhaseEntity obj_tree2 = new WorldPhaseEntity(1002, -63, ID.NPC, 65, 65, path2, "obj_tree2");
+        obj_tree2.addDialogue("It appears that winter is coming.");
+        
+        handler.addWorldColisionObject(obj_tree2);
+        
+        WorldPhaseEntity obj_tree3 = new WorldPhaseEntity(395, -170, ID.NPC, 50, 60, path2, "obj_tree3");
+        obj_tree3.addDialogue("It's a withering tree.");
+
+        handler.addWorldColisionObject(obj_tree3);
+        
+        WorldPhaseEntity obj_tree4 = new WorldPhaseEntity(531, -170, ID.NPC, 50, 60, path2, "obj_tree4");
+        obj_tree4.addDialogue("It's a withering tree,");
+
+        handler.addWorldColisionObject(obj_tree4);
+        
+        WorldPhaseEntity obj_tree5 = new WorldPhaseEntity(1171, -170, ID.NPC, 50, 60, path2, "obj_tree5");
+        obj_tree5.addDialogue("It's an old tree.");
+
+        handler.addWorldColisionObject(obj_tree5);
+        
+        WorldPhaseEntity obj_tree6 = new WorldPhaseEntity(1297, -170, ID.NPC, 50, 60, path2, "obj_tree6");
+        obj_tree6.addDialogue("It's an old tree.");
+
+        handler.addWorldColisionObject(obj_tree6);
+        
         WorldPhaseEntity obj_box = new WorldPhaseEntity(275, 380, ID.NPC, 45, 70, null, "obj_left_fountain");
         obj_box.addDialogue("It's Roadhog's fountain.");
         obj_box.addDialogue("It seems like the water hasn't been changed in days.");
@@ -136,24 +193,24 @@ public class Game extends Canvas implements Runnable {
 
         handler.addWorldColisionObject(obj_box2);
         
-        WorldPhaseEntity mei_plant = new WorldPhaseEntity(593, -2089, ID.NPC, 45, 50, "..\\\\resources\\\\maps\\\\spawn_wall.png", "obj_mei_plant");
+        WorldPhaseEntity mei_plant = new WorldPhaseEntity(593, -2089, ID.NPC, 45, 60, path2, "obj_mei_plant");
         mei_plant.addDialogue("It's Mei's plant.");
         mei_plant.addDialogue("It looks very healthy!");
         
         handler.addWorldColisionObject(mei_plant);
         
-        WorldPhaseEntity mei_stool = new WorldPhaseEntity(1107, -2091, ID.NPC, 42, 70, "..\\\\resources\\\\maps\\\\spawn_wall.png", "obj_mei_stool");
+        WorldPhaseEntity mei_stool = new WorldPhaseEntity(1107, -2085, ID.NPC, 65, 70, path2, "obj_mei_stool");
         mei_stool.addDialogue("An old wooden stool.");
         
         handler.addWorldColisionObject(mei_stool);
         
-        WorldPhaseEntity mei_log = new WorldPhaseEntity(1041, -2211, ID.NPC, 50, 50, "..\\\\resources\\\\maps\\\\spawn_wall.png", "obj_mei_stool");
+        WorldPhaseEntity mei_log = new WorldPhaseEntity(1041, -2211, ID.NPC, 50, 60, path2, "obj_mei_stool");
         mei_log.addDialogue("A pile of cut wood.");
         mei_log.addDialogue("The timber looks high-quality.");
         
         handler.addWorldColisionObject(mei_log);
         
-        WorldPhaseEntity mei_pots = new WorldPhaseEntity(651, -2235, ID.NPC, 45, 60, "..\\\\resources\\\\maps\\\\spawn_wall.png", "obj_mei_stool");
+        WorldPhaseEntity mei_pots = new WorldPhaseEntity(651, -2235, ID.NPC, 45, 60, path2, "obj_mei_stool");
         mei_pots.addDialogue("Two small potted plants.");
         
         handler.addWorldColisionObject(mei_pots);
@@ -191,7 +248,7 @@ public class Game extends Canvas implements Runnable {
         
         //Merchant Test-------------------------------------------------------------------------------------------------------
         //Merchant must have only 1 item in the itemList
-        WorldPhaseEntity testMerchant = new WorldPhaseEntity(800, 600, ID.Merchant, 100, 80, "..\\resources\\characters_world\\mei_1.png", "MeiMerchant");
+        WorldPhaseEntity testMerchant = new WorldPhaseEntity(815, -2185, ID.Merchant, 100, 80, "..\\resources\\characters_world\\mei_1.png", "MeiMerchant");
         testMerchant.addLoot(new HPItem(ID.Item, "Snowy Robot", 1700));
         
         handler.addWorldColisionObject(testMerchant);

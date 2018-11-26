@@ -70,6 +70,10 @@ public class HUD extends GameObject{
                 }
                 
                 g.drawString(party.memberList.get(selectedPlayer).entity.skillList.get(i-1).skillName, x - 560, y + 90 + (30* i));
+                 
+                g.setColor(Color.BLUE);
+                g.drawString(party.memberList.get(selectedPlayer).entity.skillList.get(i-1).getMpCost() + " MP", x - 300, y + 90 + (30* i));
+                
             }
         }
         
@@ -108,36 +112,38 @@ public class HUD extends GameObject{
             g.drawString(party.memberList.get(i).entity.getHP() + " / " + party.memberList.get(i).entity.getMaxHP(), barX - 90, barY + 14);
         }
         
-        for (int i = 0; i < party.memberList.size(); i++) {
-            int barX = super.x + 100;
-            int barY = y + gap * (i + 1) + 28;
-            
-            if((party.memberList.size() > 4) && (i >= 3)){
-                barX = x + 350;
-                barY = y + gap * (i - 3 + 1)+ 28;
-            }
-            else{
-                barY = y + gap * (i + 1)+ 28;
-                if((i == 3) && (originalSize > 3) && (name.equals("Enemy Party"))){
-                    barX = x + 350;
-                    barY = y + gap * 1 + 28;
-                }
-            }
-            
-            double mpPercent = (double)( party.memberList.get(i).entity.getMP()) / (double) (party.memberList.get(i).entity.getMaxMP());
-            int currentMP = (int) (mpPercent * 200.0);
-            
-            g.setColor(Color.GRAY);
-            g.fillRect(barX - 100, barY, 200, 16);
-            g.setColor(Color.BLUE);
-            g.fillRect(barX - 100, barY, currentMP, 16);
-            g.setColor(Color.WHITE);
-            g.drawRect(barX - 100, barY, 200, 16);
+        if(!name.equals("Enemy Party")){
+            for (int i = 0; i < party.memberList.size(); i++) {
+                int barX = super.x + 100;
+                int barY = y + gap * (i + 1) + 28;
 
-            g.setFont(new Font("Minecraft Bold", Font.PLAIN, 15));
-            g.setColor(Color.white);
-            
-            g.drawString(party.memberList.get(i).entity.getMP() + " / " + party.memberList.get(i).entity.getMaxMP(), barX - 90, barY + 14);
+                if((party.memberList.size() > 4) && (i >= 3)){
+                    barX = x + 350;
+                    barY = y + gap * (i - 3 + 1)+ 28;
+                }
+                else{
+                    barY = y + gap * (i + 1)+ 28;
+                    if((i == 3) && (originalSize > 3) && (name.equals("Enemy Party"))){
+                        barX = x + 350;
+                        barY = y + gap * 1 + 28;
+                    }
+                }
+
+                double mpPercent = (double)( party.memberList.get(i).entity.getMP()) / (double) (party.memberList.get(i).entity.getMaxMP());
+                int currentMP = (int) (mpPercent * 200.0);
+
+                g.setColor(Color.GRAY);
+                g.fillRect(barX - 100, barY, 200, 16);
+                g.setColor(Color.BLUE);
+                g.fillRect(barX - 100, barY, currentMP, 16);
+                g.setColor(Color.WHITE);
+                g.drawRect(barX - 100, barY, 200, 16);
+
+                g.setFont(new Font("Minecraft Bold", Font.PLAIN, 15));
+                g.setColor(Color.white);
+
+                g.drawString(party.memberList.get(i).entity.getMP() + " / " + party.memberList.get(i).entity.getMaxMP(), barX - 90, barY + 14);
+            }
         }
     }
 

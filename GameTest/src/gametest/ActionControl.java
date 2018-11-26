@@ -44,6 +44,7 @@ class ActionControl extends KeyAdapter {
     boolean skillSelect = false;
     boolean itemSelection = false;
     boolean itemTargetSelect = false;
+    boolean moreString = true;
     ArrayList<Coordinate> coord_list;
     ArrayList<Coordinate> player_coord_list;
     ArrayList<BattlePhaseEntity> attack_list;
@@ -871,11 +872,11 @@ class ActionControl extends KeyAdapter {
 
                         if (obj.id == ID.Chest) {
                             handler.interacted();
-                            Item tempLoot = obj.getLoot();
+                            //Item tempLoot = obj.getLoot();
                             obj.setImageDirectory("..\\resources\\misc\\chest_opened.png");
-                            obj.addDialogue("You got " + tempLoot.itemName);
-
-                            player.addItem(tempLoot);
+                            //obj.addDialogue("You got " + tempLoot.itemName);
+                            
+                            //player.addItem(tempLoot);
                             player.setDialogue(obj.getDialogue());
                             player.interacted();
 
@@ -955,6 +956,19 @@ class ActionControl extends KeyAdapter {
                                 player.unInteracted();
                             }
                         } else if (obj.getId() == ID.Chest) {
+                            if(moreString)
+                            {
+                                String temp_String = obj.getDialogue();
+                                if (temp_String != null) {
+                                    SFX.setSoundDirectory("..\\resources\\sfx\\DialogueChange.wav");
+                                    SFX.play();
+                                    player.setDialogue(temp_String);
+                                    continue;
+                                } 
+                                else
+                                    moreString = false;
+                            }
+                            
                             Item tempLoot = obj.getLoot();
                             if (tempLoot != null) {
                                 if (tempLoot instanceof MoneyItem) {
@@ -971,6 +985,7 @@ class ActionControl extends KeyAdapter {
                             } else {
                                 obj.die();
                                 System.out.println(obj.alive());
+                                moreString = true;
                                 //handler.removeColisionObject(obj.name);
                                 handler.uninteracted();
                                 player.unInteracted();

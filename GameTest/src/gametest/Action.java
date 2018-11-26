@@ -5,6 +5,7 @@ import java.util.*;
 public class Action {
 
     public static void attack(BattlePhaseEntity attacker, Skill attackerSkill, BattlePhaseEntity target) {
+        
         //Example
         Random randHit = new Random(System.currentTimeMillis());
         int attackHitRate = attackerSkill.accuracy - target.evasion;

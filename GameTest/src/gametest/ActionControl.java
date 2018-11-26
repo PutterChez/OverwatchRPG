@@ -491,8 +491,6 @@ class ActionControl extends KeyAdapter {
                                 attack_list.add(playerParty.memberList.get(selectedPlayer).entity);
                                 
                                 playerHUD.setShowSkills(false);
-                                //tempObject.setX(enemyParty.memberList.get(0).entity.getX() + 60);
-                                //tempObject.setY(enemyParty.memberList.get(0).entity.getY() + 70);
                                 
                                 if(selectedPlayer < playerParty.memberList.size())
                                 {
@@ -501,8 +499,7 @@ class ActionControl extends KeyAdapter {
                                     select = true;
                                     playerHUD.setSelectedPlayer(selectedPlayer);
                                     
-                                    if(playerParty.memberList.get(selectedPlayer).entity.getSelectSkill().getSkillName().equals("Heal") ||
-                                            playerParty.memberList.get(selectedPlayer).entity.getSelectSkill().getSkillName().equals("Valkyrie")){
+                                    if(playerParty.memberList.get(selectedPlayer).entity.getSelectSkill() instanceof HealSkill){
                                         tempObject.setX(playerParty.memberList.get(enemySelectPos).entity.getX() + 60);
                                         tempObject.setY(playerParty.memberList.get(enemySelectPos).entity.getY() + 70);
                                     }
@@ -511,7 +508,7 @@ class ActionControl extends KeyAdapter {
                                         tempObject.setY(enemyParty.memberList.get(enemySelectPos).entity.getY() + 70);
                                     }
                                     
-                                    }
+                                }
                                 else{
                                     select = false;
                                 }
@@ -610,9 +607,7 @@ class ActionControl extends KeyAdapter {
                                                 
                                                 //Team Heal
                                                 else if(playerParty.memberList.get(k).entity.getSelectSkill().getSkillName().equals("Valkyrie")){
-                                                    for(int n = 0;n < playerParty.memberList.size();n++){
-                                                        Action.healing(playerParty.memberList.get(k).entity,playerParty.memberList.get(k).entity.getSelectSkill(), playerParty.memberList.get(n).entity);
-                                                    }
+                                                    Action.groupHealing(playerParty.memberList.get(k).entity, playerParty.memberList.get(k).entity.getSelectSkill(), playerParty);
                                                 }
                                             }
                                             else{

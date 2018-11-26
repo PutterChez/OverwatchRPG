@@ -30,10 +30,26 @@ public class Action {
         if(target.HP > target.maxHP){
             target.HP = target.maxHP;
         }
+    }
+    
+    public static void groupHealing(BattlePhaseEntity healer, Skill healerSkill, Party party){
+        for(int i = 0; i < party.memberList.size();i++){
+            party.memberList.get(i).entity.HP += (healer.attack * healerSkill.skillPower);
+            
+            //Prevent Overheal
+            if(party.memberList.get(i).entity.HP > party.memberList.get(i).entity.maxHP){
+                party.memberList.get(i).entity.HP = party.memberList.get(i).entity.maxHP;
+            }
         
-        //Prevent Revive
-        if(target.HP < 0){
-            target.HP = 0;
+            //Prevent Revive
+            if(party.memberList.get(i).entity.HP < 0){
+                party.memberList.get(i).entity.HP = 0;
+            }
         }
+        
+        healer.MP -= healerSkill.mpCost;
+        
+        
+        
     }
 }

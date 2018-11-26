@@ -62,14 +62,14 @@ public class Game extends Canvas implements Runnable {
         Elixir.setAttributeHP(1000);
         Elixir.setAttributeMP(1000);
         
-        /*
-        player.addItem(HP1);
-        player.addItem(HP1);
-        player.addItem(HP1);
-        player.addItem(HP1);
-        player.addItem(HP2);
-        player.addItem(HP2);
         
+        player.addItem(HP1);
+        player.addItem(HP1);
+        player.addItem(HP1);
+        player.addItem(HP1);
+        player.addItem(HP2);
+        player.addItem(HP2);
+        /*
         player.addItem(MP1);
         player.addItem(MP1);
         player.addItem(MP2);
@@ -304,33 +304,33 @@ public class Game extends Canvas implements Runnable {
         
         
         //doomfistSkill
-        Skill normalPunch = new Skill("Normal Punch", 9999, 20, 100);
+        Skill normalPunch = new Skill("Normal Punch", 100, 20, 100);
         normalPunch.setDescription("Doom punch sth");
-        Skill PowerPunch = new Skill("PowerPunch", 9999, 40, 200);
+        Skill PowerPunch = new Skill("PowerPunch", 200, 40, 200);
         PowerPunch.setDescription("Doom powerPunch sth");
         doomfist.addSkill(normalPunch);
         doomfist.addSkill(PowerPunch);
         
         //widowmakerSkill
-        Skill scopeShot = new Skill("Scope Shot", 9999, 40, 200);
+        Skill scopeShot = new Skill("Scope Shot", 100, 40, 200);
         scopeShot.setDescription("Click the head");
-        Skill jumpShot = new Skill("Jump Shot", 9999, 20, 50);
+        Skill jumpShot = new Skill("Jump Shot", 250, 20, 50);
         jumpShot.setDescription("Cool, Powerful but ez to miss");
         widowmaker.addSkill(scopeShot);
         widowmaker.addSkill(jumpShot);
         
         //reaperSkill
-        Skill spreadShot = new Skill("Spread Shot", 9999, 20, 140);
+        Skill spreadShot = new Skill("Spread Shot", 100, 20, 140);
         spreadShot.setDescription("Shotgun what do u expected?");
-        Skill pointBlank = new Skill("Point Blank", 9999, 100, 200);
+        Skill pointBlank = new Skill("Point Blank", 200, 100, 200);
         pointBlank.setDescription("Shotgun at pointBlank range");
         reaper.addSkill(spreadShot);
         reaper.addSkill(pointBlank);
         
         //junKratSkill
-        Skill normalBomb = new Skill("Normal Bomb", 9999, 10, 30);
+        Skill normalBomb = new Skill("Normal Bomb", 120, 10, 30);
         normalBomb.setDescription(" 'ตัวกระจอก' qtd PKs and Shadder4k");
-        Skill handBomb = new Skill("Hand Bomb", 9999, 10, 70);
+        Skill handBomb = new Skill("Hand Bomb", 100, 10, 70);
         handBomb.setDescription(" 'ตัวกระจอก(1)' qtd PKs and Shadder4k");
         junkrat.addSkill(normalBomb);
         junkrat.addSkill(handBomb);
@@ -372,9 +372,9 @@ public class Game extends Canvas implements Runnable {
         //Mercy Skills    
         Skill blaster = new Skill("Caduceus Blaster", 20, 10, 1);
         blaster.setDescription("Mercy shoots a round from her sidearm");
-        Skill heal = new Skill("Heal", 1, 50, 200);
+        HealSkill heal = new HealSkill("Heal", 1, 50, 200);
         heal.setDescription("Mercy maintains a beam of healing onto and ally, healing them for 40 health");
-        Skill valkyrie = new Skill("Valkyrie", 3, 100, 200);
+        HealSkill valkyrie = new HealSkill("Valkyrie", 3, 100, 120);
         valkyrie.setDescription("Mercy transforms and heals the entire party by 120 points");
         valkyrie.setUltimate(true);
         valkyrie.setColor(Color.YELLOW);

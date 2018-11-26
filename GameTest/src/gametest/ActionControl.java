@@ -520,8 +520,7 @@ class ActionControl extends KeyAdapter {
                     } 
                     else if (select == true) {
                         
-                        if(playerParty.memberList.get(selectedPlayer).entity.getSelectSkill().getSkillName().equals("Heal") || 
-                            playerParty.memberList.get(selectedPlayer).entity.getSelectSkill().getSkillName().equals("Valkyrie")){
+                        if(playerParty.memberList.get(selectedPlayer).entity.getSelectSkill() instanceof HealSkill){
                             if (key == KeyEvent.VK_S) {
                                 if (enemySelectPos < playerParty.memberList.size() - 1) {
                                     enemySelectPos++;
@@ -558,8 +557,7 @@ class ActionControl extends KeyAdapter {
                             
                             SFX.setSoundDirectory("..\\resources\\sfx\\MENU_Pick.wav");
                             SFX.play();
-                            if(playerParty.memberList.get(selectedPlayer).entity.getSelectSkill().getSkillName().equals("Heal") || 
-                            playerParty.memberList.get(selectedPlayer).entity.getSelectSkill().getSkillName().equals("Valkyrie")){
+                            if(playerParty.memberList.get(selectedPlayer).entity.getSelectSkill() instanceof HealSkill){
                                 playerParty.memberList.get(selectedPlayer).entity.setTarget(playerParty.memberList.get(enemySelectPos).entity);
                             }
                             else{
@@ -605,13 +603,16 @@ class ActionControl extends KeyAdapter {
                                             System.out.println(playerParty.memberList.get(k).entity.getCharName() + " attacked " + playerParty.memberList.get(k).entity.getTarget().getCharName()
                                             + " using " + playerParty.memberList.get(k).entity.getSelectSkill().skillName);
                                             
-                                            //Single Target Heal
-                                            if(playerParty.memberList.get(k).entity.getSelectSkill().getSkillName().equals("Heal"))
-                                                Action.healing(playerParty.memberList.get(k).entity, playerParty.memberList.get(k).entity.getSelectSkill(), playerParty.memberList.get(k).entity.getTarget());
-                                            //Team Heal
-                                            else if(playerParty.memberList.get(k).entity.getSelectSkill().getSkillName().equals("Valkyrie")){
-                                                for(int n = 0;n < playerParty.memberList.size();n++){
-                                                    Action.healing(playerParty.memberList.get(k).entity,playerParty.memberList.get(k).entity.getSelectSkill(), playerParty.memberList.get(n).entity);
+                                            if(playerParty.memberList.get(k).entity.getSelectSkill() instanceof HealSkill){
+                                                //Single Target Heal
+                                                if(playerParty.memberList.get(k).entity.getSelectSkill().getSkillName().equals("Heal"))
+                                                    Action.healing(playerParty.memberList.get(k).entity, playerParty.memberList.get(k).entity.getSelectSkill(), playerParty.memberList.get(k).entity.getTarget());
+                                                
+                                                //Team Heal
+                                                else if(playerParty.memberList.get(k).entity.getSelectSkill().getSkillName().equals("Valkyrie")){
+                                                    for(int n = 0;n < playerParty.memberList.size();n++){
+                                                        Action.healing(playerParty.memberList.get(k).entity,playerParty.memberList.get(k).entity.getSelectSkill(), playerParty.memberList.get(n).entity);
+                                                    }
                                                 }
                                             }
                                             else{

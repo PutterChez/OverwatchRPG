@@ -18,6 +18,9 @@ public enum ID {
     Item(),
     Colision(),
     Merchant(),
+    HPBox(),
+    MPBox(),
+    Elixir(),
     WorldItem(),
     Chest(),
     Camera();

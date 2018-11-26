@@ -872,8 +872,8 @@ class ActionControl extends KeyAdapter {
                             handler.interacted();
 
                             Item tempLoot = obj.lootList.get(0);
-                            obj.addDialogue("I'm selling " + tempLoot.itemName + " for " + tempLoot.itemPrice + " $");
-                            obj.addDialogue("Would you like to buy it?                                                 Yes          No");
+                            obj.addDialogue("Mei: I'm selling " + tempLoot.itemName + " for " + tempLoot.itemPrice + " $");
+                            obj.addDialogue("Mei: Would you like to buy it?                                                 Yes          No");
                             obj.setPriceCondition(tempLoot.itemPrice);
 
                             player.setDialogue(obj.getDialogue());
@@ -979,7 +979,7 @@ class ActionControl extends KeyAdapter {
                                     if (player.inventory.currentMoney > obj.merchantCondition) {
                                         player.addItem(obj.lootList.get(0));
                                         player.inventory.reduceMoney(obj.merchantCondition);
-                                        player.setDialogue("Thank you for your patronage!!!");
+                                        player.setDialogue("Mei: Thank you for your patronage!!!");
 
                                         SFX.setSoundDirectory("..\\resources\\sfx\\coin.wav");
                                         SFX.setVolume(-10);
@@ -988,12 +988,12 @@ class ActionControl extends KeyAdapter {
                                     } else {
                                         SFX.setSoundDirectory("..\\resources\\sfx\\DialogueChange.wav");
                                         SFX.play();
-                                        player.setDialogue("You do not have enough money!!!");
+                                        player.setDialogue("Mei: You do not have enough money!!!");
                                     }
                                 } else {
                                     SFX.setSoundDirectory("..\\resources\\sfx\\DialogueChange.wav");
                                     SFX.play();
-                                    player.setDialogue("Too bad, see you next time!!!");
+                                    player.setDialogue("Mei: Too bad, see you next time!!!");
                                 }
 
                                 merchantCursorPos = -1;

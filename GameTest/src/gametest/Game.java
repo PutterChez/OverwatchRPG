@@ -265,15 +265,25 @@ public class Game extends Canvas implements Runnable {
         //Battle NPC Test-----------------------------------------------------------------------------------------------------
         WorldPhaseEntity Dva = new WorldPhaseEntity(1150, 490, ID.BattleNPC, 150, 130, "..\\resources\\characters_world\\dva_1.png", "DvaBattle");
         //Pre - Battle Dialogue
-        Dva.addDialogue("D.VA: Soldier asked me to train you! Time to raise my APM!");
+        Dva.addDialogue("D.Va: Soldier asked me to train you! Time to raise my APM!");
         //Post - Battle Dialogue
-        Dva.addDialogue("D.VA: Nice one!");
-        Dva.addDialogue("D.VA: Good luck! Love, D.VA! >:3");
+        Dva.addDialogue("D.Va: Nice one!");
+        Dva.addDialogue("D.Va: Good luck! Love, D.VA! >:3");
         handler.addWorldColisionObject(Dva);
 
         //Add Enemy into the Party
-        BattlePhaseEntity dva = new BattlePhaseEntity(POS1.x, POS1.y, ID.Enemy, 200, 200, "..\\resources\\characters_fixed\\dva_2.png", 250, 200, "Enemy_Dva", 40, 10, 100, 40);
+        BattlePhaseEntity dva = new BattlePhaseEntity(POS1.x, POS1.y, ID.Enemy, 200, 200, "..\\resources\\characters_fixed\\dva_2.png", 250, 200, "D.Va", 40, 10, 100, 40);
+        Skill fusionCannons = new Skill("Fusion Cannons", 100, 40, 80);
+        fusionCannons.setDescription("D.Va shoots her twin short-range rotating cannons");
+        Skill microMissiles = new Skill("Micro Missiles", 150, 80, 100);
+        microMissiles.setDescription("D.Va launches a volley of explosive rockets.");
+        Skill boosters = new Skill("Boost", 60, 20, 120);
+        boosters.setDescription("D.Va boosts into the enemy!");
+        dva.addSkill(fusionCannons);
+        dva.addSkill(microMissiles);
+        dva.addSkill(boosters);
         Dva.addEnemyPartyMember(dva, 0);
+        
 
         //Item Test-----------------------------------------------------------------------------------------------------------
         

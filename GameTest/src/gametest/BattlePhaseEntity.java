@@ -1,5 +1,7 @@
 package gametest;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.util.ArrayList;
@@ -13,6 +15,7 @@ public class BattlePhaseEntity extends GameObject implements Comparable {
     protected ArrayList<Skill> skillList;
     protected Skill selectSkill;
     protected boolean alive = true;
+    protected boolean missed = false;
 
     private Image charImg;
     private String imageDirectory;
@@ -53,15 +56,19 @@ public class BattlePhaseEntity extends GameObject implements Comparable {
     }
 
     public void render(Graphics g) {
-        /* Old Square Player
-         if(id == ID.Player){
-         g.setColor(Color.blue);
-         g.fillRect(x, y, width, height);
-         }*/
-
         //New Texture
         charImg = new ImageIcon(imageDirectory).getImage();
         g.drawImage(charImg, x, y, width, height, null);
+        
+        
+        g.setFont(new Font("Minecraft Bold", Font.PLAIN, 30));
+        g.setColor(Color.WHITE);
+            
+        if(missed == true){
+            g.setFont(new Font("Minecraft Bold", Font.PLAIN, 30));
+            g.setColor(Color.WHITE);
+            g.drawString("Missed!", x, y - height/2 + 180);
+        }
     }
 
     public String getCharIcon() {
@@ -190,6 +197,14 @@ public class BattlePhaseEntity extends GameObject implements Comparable {
 
     public void setTarget(BattlePhaseEntity target) {
         this.target = target;
+    }
+
+    public boolean isMissed() {
+        return missed;
+    }
+
+    public void setMissed(boolean missed) {
+        this.missed = missed;
     }
     
 } 

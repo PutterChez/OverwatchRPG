@@ -319,8 +319,8 @@ public class Game extends Canvas implements Runnable {
         mccree.addSkill(headShot);
         mccree.addSkill(deadeye);
         
-        //Mercy Skills
-        Skill blaster = new Skill("Caduceus Blaster", 20, 10, 100);
+        //Mercy Skills    
+        Skill blaster = new Skill("Caduceus Blaster", 20, 10, 1);
         blaster.setDescription("Mercy shoots a round from her sidearm");
         Skill heal = new Skill("Heal", 100, 50, 200);
         heal.setDescription("Mercy maintains a beam of healing onto and ally, healing them for 100 health");
@@ -336,7 +336,7 @@ public class Game extends Canvas implements Runnable {
         mercy.addSkill(valkyrie);
        
         //Reinhardt Skills
-        Skill hammer = new Skill("Rocket Hammer", 75, 40, 150);
+        Skill hammer = new Skill("Rocket Hammer", 75, 40, 1);
         hammer.setDescription("Reinhardt swings his hammer in a wide arc");
         Skill firestrike = new Skill("Fire Strike", 100, 60, 60);
         firestrike.setDescription("By whipping his Rocket Hammer forward, Reinhardt slings a flaming projectile.");

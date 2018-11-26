@@ -472,7 +472,7 @@ class ActionControl extends KeyAdapter {
                             }
                                 
                             tempObject.setX(player.getX() + 100);
-                            tempObject.setY(player.getY() + 250 + (35 * selectPos));
+                            tempObject.setY(player.getY() + 255 + (35 * selectPos));
                             
                             if (key == KeyEvent.VK_E) {
                                 if(playerParty.memberList.get(selectedPlayer).entity.skillList.get(selectPos).mpCost > playerParty.memberList.get(selectedPlayer).entity.MP)

@@ -244,6 +244,12 @@ public class Game extends Canvas implements Runnable {
         handler.addWorldColisionObject(mei_pots);
         
         //Interaction Test----------------------------------------------------------------------------------------------------
+        WorldPhaseEntity s76 = new WorldPhaseEntity(800, 630, ID.NPC, 130, 130, "..\\resources\\characters_fixed\\76_2.png", "S76");
+        s76.addDialogue("Soldier 76: Recruit, your mission is to eliminate Talon's leader: Reaper!");
+        s76.addDialogue("Soldier 76: Get to it! Ask the people around here about his whereabouts.");
+        s76.addDialogue("Soldier 76: Oh, and go to Agent D.VA for your training.");
+        handler.addWorldColisionObject(s76);
+        
         WorldPhaseEntity roadHog = new WorldPhaseEntity(420, 480, ID.NPC, 150, 150, "..\\resources\\characters_fixed\\hog_2.png", "Hog");
         roadHog.addDialogue("Roadhog: Now where's that Junkrat gone off to?");
         roadHog.addDialogue("Roadhog: What? I don't know anything about Talon.");
@@ -252,17 +258,17 @@ public class Game extends Canvas implements Runnable {
         
         WorldPhaseEntity meiNPC = new WorldPhaseEntity(820, -2230, ID.NPC, 150, 150, "..\\resources\\characters_fixed\\mei_2.png", "Mei");
         meiNPC.addDialogue("Mei: I've been getting a lot less customers.");
-        meiNPC.addDialogue("Mei: It must be because those Talon baddies!");
-        meiNPC.addDialogue("Mei: Only if Soldier 76 did something about it.");
+        meiNPC.addDialogue("Mei: Those Talon guys at the graveyard won't leave either.");
+        meiNPC.addDialogue("Mei: Only if Soldier 76 did something about it!");
         handler.addWorldColisionObject(meiNPC);
         
         //Battle NPC Test-----------------------------------------------------------------------------------------------------
         WorldPhaseEntity Dva = new WorldPhaseEntity(1150, 490, ID.BattleNPC, 150, 130, "..\\resources\\characters_world\\dva_1.png", "DvaBattle");
         //Pre - Battle Dialogue
-        Dva.addDialogue("DVA: SOME Dialogue");
+        Dva.addDialogue("D.VA: Soldier asked me to train you! Time to raise my APM!");
         //Post - Battle Dialogue
-        Dva.addDialogue("DVA SOME Dialogue");
-        Dva.addDialogue("DVA SOME Dialogue");
+        Dva.addDialogue("D.VA: Nice one!");
+        Dva.addDialogue("D.VA: Good luck! Love, D.VA! >:3");
         handler.addWorldColisionObject(Dva);
 
         //Add Enemy into the Party

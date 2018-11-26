@@ -192,7 +192,6 @@ class ActionControl extends KeyAdapter {
                     {
                         if(key == KeyEvent.VK_W)
                         {
-                            System.out.println("Run");
                             if(playerSelectPos > 0)
                                 playerSelectPos--;
                         }
@@ -212,6 +211,40 @@ class ActionControl extends KeyAdapter {
                             handler.inventoryClose();
                             itemTargetSelect = false;
                             tempObject.setY(5000);
+                            
+         
+                                    {
+                                        for(int p = 0; p < enemyParty.memberList.size(); p++)
+                                            {
+                                                BattlePhaseEntity temp = enemyParty.memberList.get(p).entity;
+                                                Skill selectedSkill = temp.skillList.get(rand.nextInt(temp.skillList.size()));
+                                                temp.setSelectSkill(selectedSkill);
+                                                temp.setTarget(playerParty.memberList.get(rand.nextInt(playerParty.memberList.size())).entity);
+                                                attack_list.add(temp);
+                                            }
+                                    }
+                                    for(int j = 0; j < attack_list.size();j++){
+                                        for(int k = 0; k < enemyParty.memberList.size(); k++)
+                                        {
+                                            if(attack_list.get(j).getCharName().equals(enemyParty.memberList.get(k).entity.getCharName())){
+                                                System.out.println(enemyParty.memberList.get(k).entity.getCharName() + " attacked " + enemyParty.memberList.get(k).entity.getTarget().getCharName()
+                                                + " using " + enemyParty.memberList.get(k).entity.getSelectSkill().skillName);
+                                                Action.attack(enemyParty.memberList.get(k).entity, enemyParty.memberList.get(k).entity.getSelectSkill(), enemyParty.memberList.get(k).entity.getTarget());
+                                                enemyParty.memberList.get(k).entity.x += 100;
+                                                try{
+                                                    tempObject.setY(5000);
+                                                    Thread.sleep(500);
+                                                }
+                                                catch(Exception ex)
+                                                {
+                                                    System.out.println(ex.toString());
+                                                }
+                                                enemyParty.memberList.get(k).entity.x -= 100;                           
+                                            }
+                                            if(enemyParty.memberList.get(k).entity.isMissed())
+                                                enemyParty.memberList.get(k).entity.setMissed(false);
+                                        }
+                                    }
                             
                             
                         }       

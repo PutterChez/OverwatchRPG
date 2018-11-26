@@ -14,8 +14,9 @@ public class HUD extends GameObject{
     protected boolean showSkills = false;
     protected int changeColor = 0;
     protected int selectedPlayer = 0;
+    protected String name;
     
-    public HUD(int x, int y, int nameX, int nameY,int speed,int limit,int gap, Party party) {
+    public HUD(int x, int y, int nameX, int nameY,int speed,int limit,int gap, Party party, String name) {
         super(x, y, 100, 100, "HUD", ID.Background);
         this.nameX = nameX;
         this.nameY = nameY;
@@ -24,6 +25,7 @@ public class HUD extends GameObject{
         this.limit = limit;
         this.gap = gap;
         this.originalSize = party.memberList.size();
+        this.name = name;
     }
 
     public void tick() {
@@ -83,7 +85,7 @@ public class HUD extends GameObject{
             }
             else{
                 barY = y + gap * (i + 1)+ 8;
-                if((i == 3) && (originalSize > 4)){
+                if((i == 3) && (originalSize > 3) && (name.equals("Enemy Party"))){
                     barX = x + 350;
                     barY = y + gap * 1 + 8;
                 }
@@ -116,7 +118,7 @@ public class HUD extends GameObject{
             }
             else{
                 barY = y + gap * (i + 1)+ 28;
-                if((i == 3) && (originalSize > 4)){
+                if((i == 3) && (originalSize > 3) && (name.equals("Enemy Party"))){
                     barX = x + 350;
                     barY = y + gap * 1 + 28;
                 }

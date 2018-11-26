@@ -10,7 +10,7 @@ package gametest;
  * @author DELL
  */
 public class HPItem extends Item{
-    protected int speed, evasion, defense, attack = 0;
+    protected int speed, evasion, defense, attack, healHP, healMP = 0;
     
     HPItem(ID id, String name, int price)
     {
@@ -37,8 +37,26 @@ public class HPItem extends Item{
         evasion = e;
     }
     
+    public void setAttributeHP(int e)
+    {
+        healHP = e;
+    }
+    
+    public void setAttributeMP(int e)
+    {
+        healMP = e;
+    }
+    
     public void use(BattlePhaseEntity e)
     {
+        e.HP += healHP;
+        e.MP += healMP;
+        
+        if(e.HP > e.maxHP)
+            e.HP = e.maxHP;
+        if(e.MP > e.maxMP)
+            e.MP = e.maxMP;
+        
         e.attack += attack;
         e.defense += defense;
         e.speed += speed;

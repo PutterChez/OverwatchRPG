@@ -42,10 +42,18 @@ class ActionControl extends KeyAdapter {
     boolean select = false;
     boolean skillListSelect = false;
     boolean skillSelect = false;
+    boolean itemSelection = false;
+    boolean itemTargetSelect = false;
     ArrayList<Coordinate> coord_list;
     ArrayList<Coordinate> player_coord_list;
     ArrayList<BattlePhaseEntity> attack_list;
     int cursorPos = 0, selectPos = 0, enemySelectPos = 0, selectedPlayer = 0, finalPosX = 950, finalPosY = 660;
+    
+    Item selectItem;
+    int itemCursorColumn = 0;
+    int itemCursorRow = 0;
+    int itemCursorCount = 0;
+    int playerSelectPos = 0;
 
     Menu merchantCursor;
     int merchantCursorPos = 0;
@@ -173,7 +181,93 @@ class ActionControl extends KeyAdapter {
                 }
 
                 if (tempObject.getId() == ID.Cursor) {
-                    if (PopUp == true) {
+                    if(itemTargetSelect == true)
+                    {
+                        if(key == KeyEvent.VK_W)
+                        {
+                            System.out.println("Run");
+                            if(playerSelectPos > 0)
+                                playerSelectPos--;
+                        }
+                        
+                        if(key == KeyEvent.VK_S)
+                        {
+                            if(playerSelectPos < playerParty.memberList.size() - 1)
+                                playerSelectPos++;
+                        }
+                        
+                        tempObject.x = playerParty.memberList.get(playerSelectPos).entity.x + 100;
+                        tempObject.y = playerParty.memberList.get(playerSelectPos).entity.y + 100;
+                        
+                        if(key == KeyEvent.VK_E)
+                        {
+                            selectItem.use(playerParty.memberList.get(playerSelectPos).entity);
+                            handler.inventoryClose();
+                            itemTargetSelect = false;
+                            tempObject.setY(5000);
+                            
+                            
+                        }       
+                    }
+                    else if(itemSelection == true)
+                    {
+                        if(key == KeyEvent.VK_W)
+                            {
+                                //System.out.println(itemCursorCount);
+                                //System.out.println(player.inventory.itemList.size());
+                                if(itemCursorCount > 0)
+                                {
+                                    if(itemCursorColumn > 0)
+                                    {
+                                        itemCursorColumn--;
+                                        itemCursorCount--;
+                                    }
+                                    else  if (itemCursorColumn <= 0)
+                                    {
+                                        itemCursorColumn = 3;
+                                        itemCursorCount--;
+                                        itemCursorRow -= 1;
+                                    }
+
+                                    tempObject.x = player.inventory.itemViewer.x + 90 + (itemCursorColumn * 200);
+                                    tempObject.y = player.inventory.itemViewer.y + 160 + (itemCursorRow * 70);
+                                }
+                            }
+                            else if (key == KeyEvent.VK_S)
+                            {
+                                //System.out.println(itemCursorCount);
+                                //System.out.println(player.inventory.itemList.size());
+                                if(itemCursorCount < player.inventory.itemList.size() - 1)
+                                {
+                                    if(itemCursorColumn < 3)
+                                    {
+                                        itemCursorColumn++;
+                                        itemCursorCount++;
+                                    }
+                                    else  if (itemCursorColumn >=3)
+                                    {
+                                        itemCursorColumn = 0;
+                                        itemCursorCount++;
+                                        itemCursorRow += 1;
+                                    }
+                                }
+                                tempObject.x = player.inventory.itemViewer.x + 90 + (itemCursorColumn * 200);
+                                tempObject.y = player.inventory.itemViewer.y + 160 + (itemCursorRow * 70); 
+                            }
+                        
+                            if(key == KeyEvent.VK_E)
+                            {
+                                selectItem = player.inventory.itemList.get(itemCursorCount);
+                                player.inventoryClose();
+                                itemSelection = false;
+                                itemTargetSelect = true;
+                                tempObject.x = playerParty.memberList.get(playerSelectPos).entity.x + 100;
+                                tempObject.y = playerParty.memberList.get(playerSelectPos).entity.y + 100;
+                                player.inventory.itemList.remove(selectItem);
+                            }
+                        }
+                    
+                    else if (PopUp == true) {
                         playerHUD.setShowSkills(false);
                         if (key == KeyEvent.VK_S) {
                             if (cursorPos < 2) {
@@ -205,9 +299,19 @@ class ActionControl extends KeyAdapter {
                                 playerHUD.setShowSkills(true);
                                 playerHUD.setSelectedPlayer(selectedPlayer);
                                 
-                            } else if (cursorPos == 1 && !handler.inventoryStatus()) {
+                            } 
+                            else if (cursorPos == 1 && !handler.inventoryStatus()) {
                                 player.inventoryOpen();
                                 handler.inventoryOpen();
+                                
+                                PopUp = false;
+                                itemSelection = true;
+                                for(GameObject obj : handler.objectList)
+                                        if(obj.getId() == ID.PopUp)
+                                            obj.setY(player.getY() + 1000);
+                                
+                                tempObject.x = player.inventory.itemViewer.x + 90;
+                                tempObject.y = player.inventory.itemViewer.y + 160;
                                 System.out.println("Items");
                             } else if (cursorPos == 1 && handler.inventoryStatus()) {
                                 player.inventoryClose();
@@ -229,6 +333,7 @@ class ActionControl extends KeyAdapter {
                                     SFX.play();
                                     
                                     PopUp = false;
+                                    
                                     
                                     for(GameObject obj : handler.objectList)
                                         if(obj.getId() == ID.PopUp)
@@ -319,9 +424,11 @@ class ActionControl extends KeyAdapter {
                             tempObject.setY(5000);
                             chooseRun = false;
                         }
-                        else
+                        else if(!itemSelection)
                             tempObject.setY(finalPosY);
-                        tempObject.setX(finalPosX);
+                        
+                        if(!itemSelection)
+                            tempObject.setX(finalPosX);
                         
                         //PunPun Edit
                         if(skillListSelect)

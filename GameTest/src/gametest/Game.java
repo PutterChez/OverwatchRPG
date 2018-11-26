@@ -46,31 +46,38 @@ public class Game extends Canvas implements Runnable {
         player = new Player(800, 450, ID.Player, 50, 60, "..\\resources\\characters\\RedSquare.png", "Player");
         player.inventory.addMoney(6000);
         
-        HPItem test1 = new HPItem(ID.Item, "HP Potion1", 100);
-        HPItem test2 = new HPItem(ID.Item, "MP Potion1", 200);
-        HPItem test3 = new HPItem(ID.Item, "HP Potion2", 100);
-        HPItem test4 = new HPItem(ID.Item, "HP Potion3", 100);
-        HPItem test5 = new HPItem(ID.Item, "MP Potion2", 100);
+        HPItem HP1 = new HPItem(ID.Item, "HP Potion(S)", 100);
+        HP1.setAttributeHP(40);
+        
+        HPItem HP2 = new HPItem(ID.Item, "HP Potion(L)", 200);
+        HP2.setAttributeHP(100);
+        
+        HPItem MP1 = new HPItem(ID.Item, "MP Potion(S)", 100);
+        MP1.setAttributeMP(40);
+        
+        HPItem MP2 = new HPItem(ID.Item, "MP Potion(L)", 200);
+        MP2.setAttributeMP(100);
+        
+        HPItem Elixir = new HPItem(ID.Item, "Elixr", 1000);
+        Elixir.setAttributeHP(1000);
+        Elixir.setAttributeMP(1000);
+        
+        player.addItem(HP1);
+        player.addItem(HP1);
+        player.addItem(HP1);
+        player.addItem(HP1);
+        player.addItem(HP2);
+        player.addItem(HP2);
+        
+        player.addItem(MP1);
+        player.addItem(MP1);
+        player.addItem(MP2);
+        player.addItem(MP2);
+        
+        player.addItem(Elixir);
 
-        //Inventory limit
-        // Not more than 20 items
-        player.addItem(test1);
-        player.addItem(test2);
-        player.addItem(test3);
-        player.addItem(test4);
-        player.addItem(test5);
-        player.addItem(test5);
         
         /*
-        player.addItem(test5);
-        player.addItem(test5);
-        player.addItem(test5);
-        player.addItem(test5);
-        player.addItem(test5);
-        player.addItem(test5);
-        player.addItem(test5);
-        player.addItem(test5);
-        player.addItem(test5);
         player.addItem(test5);
         player.addItem(test5);
         player.addItem(test5);
@@ -546,6 +553,10 @@ public class Game extends Canvas implements Runnable {
                 if(o.getName().equals("MerchantCursor"))
                     o.render(g);
         }
+        if(handler.inventoryStatus())
+            for (GameObject o : handler.battleRender.renderList)
+                if(o.getName().equals("SelectionCursor"))
+                    o.render(g);
 
         g2d.translate(-cam.getX(), -cam.getY());
 

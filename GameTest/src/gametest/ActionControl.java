@@ -366,7 +366,7 @@ class ActionControl extends KeyAdapter {
                                 for(int j = 0; j < attack_list.size();j++){
                                     for(int k = 0;k < playerParty.memberList.size();k++){
                                         if(attack_list.get(j).getCharName().equals(playerParty.memberList.get(k).entity.getCharName())){
-                                            System.out.println(playerParty.memberList.get(k).entity.getCharName() + " attacked " + playerParty.memberList.get(k).entity.getCharName()
+                                            System.out.println(playerParty.memberList.get(k).entity.getCharName() + " attacked " + playerParty.memberList.get(k).entity.getTarget().getCharName()
                                             + " using " + playerParty.memberList.get(k).entity.getSelectSkill().skillName);
                                             Action.attack(playerParty.memberList.get(k).entity, playerParty.memberList.get(k).entity.getSelectSkill(), playerParty.memberList.get(k).entity.getTarget());
                                         }

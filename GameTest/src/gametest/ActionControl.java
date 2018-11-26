@@ -160,6 +160,8 @@ class ActionControl extends KeyAdapter {
                         }
                     } else {
                         if ((key == KeyEvent.VK_SPACE) && (skillSelect == false) && (skillListSelect == false) && (select == false)) {
+                            SFX.setSoundDirectory("..\\resources\\sfx\\MENU_Pick.wav");
+                            SFX.play();
                             tempObject.setY(player.getY() + 150);
                             PopUp = true;
                         } else {
@@ -187,6 +189,8 @@ class ActionControl extends KeyAdapter {
 
                         if (key == KeyEvent.VK_E) {
                             if (cursorPos == 0) {
+                                SFX.setSoundDirectory("..\\resources\\sfx\\MENU_Pick.wav");
+                                SFX.play();
                                 PopUp = false;
                                 skillListSelect = true;
                                 
@@ -279,6 +283,17 @@ class ActionControl extends KeyAdapter {
                             tempObject.setY(player.getY() + 250 + (35 * selectPos));
                             
                             if (key == KeyEvent.VK_E) {
+                                if(playerParty.memberList.get(selectedPlayer).entity.skillList.get(selectPos).mpCost > playerParty.memberList.get(selectedPlayer).entity.MP)
+                                {
+                                    SFX.setSoundDirectory("..\\resources\\sfx\\Error.wav");
+                                    SFX.play();
+                                    System.out.println("Not enuff Mana");
+                                    return;
+                                }
+                                
+                                SFX.setSoundDirectory("..\\resources\\sfx\\MENU_Pick.wav");
+                                SFX.play();
+                                
                                 Skill selectedSkill = playerParty.memberList.get(selectedPlayer).entity.skillList.get(selectPos);
                                 playerParty.memberList.get(selectedPlayer).entity.setSelectSkill(selectedSkill);
                                 attack_list.add(playerParty.memberList.get(selectedPlayer).entity);
@@ -343,6 +358,9 @@ class ActionControl extends KeyAdapter {
                             
                             }
                             */
+                            
+                            SFX.setSoundDirectory("..\\resources\\sfx\\MENU_Pick.wav");
+                            SFX.play();
                             
                             playerParty.memberList.get(selectedPlayer).entity.setTarget(enemyParty.memberList.get(enemySelectPos).entity);
                             System.out.println(playerParty.memberList.get(selectedPlayer).entity.getCharName() + " will attack " + 

@@ -47,4 +47,11 @@ public class Party {
         
         return totalHP;
     }
+    
+    public void manaRegen(int e)
+    {
+        for(PartyMember p : memberList)
+            if((p.entity.MP + e) <= p.entity.maxMP)
+                p.entity.MP += e;
+    }
 }

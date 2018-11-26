@@ -191,6 +191,7 @@ class ActionControl extends KeyAdapter {
 
                         if (key == KeyEvent.VK_E) {
                             if (cursorPos == 0) {
+                                playerParty.manaRegen(10);
                                 SFX.setSoundDirectory("..\\resources\\sfx\\MENU_Pick.wav");
                                 SFX.play();
                                 PopUp = false;
@@ -206,7 +207,9 @@ class ActionControl extends KeyAdapter {
                                 
                             } else if (cursorPos == 1) {
                                 System.out.println("Items");
+                                playerParty.manaRegen(10);
                             } else if (cursorPos == 2) {
+                                playerParty.manaRegen(10);
                                 chooseRun = true;
                                 Random randRunChance = new Random(System.currentTimeMillis());
                                 

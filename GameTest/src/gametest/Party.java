@@ -38,4 +38,13 @@ public class Party {
     {
         memberList.remove(position);
     }
+    
+    public int getTotalHP()
+    {
+        int totalHP = 0;
+        for(PartyMember p : memberList)
+            totalHP += p.entity.getHP();
+        
+        return totalHP;
+    }
 }

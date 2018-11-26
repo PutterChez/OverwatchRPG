@@ -15,7 +15,6 @@ public class Action {
             target.HP -= (attacker.attack * (attackerSkill.getAtkPower() / 100) - target.defense);
         } else {
             System.out.println(attacker.getCharName() + " missed!");
-            attacker.MP -= attackerSkill.mpCost;
             attacker.setMissed(true);
             //Miss
             //Do something, IDK

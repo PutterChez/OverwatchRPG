@@ -147,6 +147,8 @@ class ActionControl extends KeyAdapter {
             /*Movement controls*/
             for (int i = 0; i < handler.objectList.size(); i++) {
 
+                boolean chooseRun = false;
+                
                 GameObject tempObject = handler.objectList.get(i);
                 finalPosY = player.getY() + 230;
                 finalPosX = player.getX() + 50;
@@ -205,13 +207,26 @@ class ActionControl extends KeyAdapter {
                             } else if (cursorPos == 1) {
                                 System.out.println("Items");
                             } else if (cursorPos == 2) {
+                                chooseRun = true;
                                 Random randRunChance = new Random(System.currentTimeMillis());
-                                if(randRunChance.nextInt(100) < 80)
+                                
+                                int runPercentage;
+                                if(playerParty.getTotalHP() > enemyParty.getTotalHP())
+                                    runPercentage = 80;
+                                else
+                                    runPercentage = 20;
+                                
+                                if(randRunChance.nextInt(100) < runPercentage)
                                 {
                                     SFX.setSoundDirectory("..\\resources\\sfx\\Flee.wav");
                                     SFX.play();
                                     
                                     PopUp = false;
+                                    
+                                    for(GameObject obj : handler.objectList)
+                                        if(obj.getId() == ID.PopUp)
+                                            obj.setY(player.getY() + 1000);
+                                    
                                     System.out.println("Exit Battle Phase");
                                     handler.battlePhaseOff();
                                     handler.stopBGM();
@@ -238,12 +253,51 @@ class ActionControl extends KeyAdapter {
                                     SFX.setSoundDirectory("..\\resources\\sfx\\Failed.wav");
                                     SFX.play();
                                     
+                                    PopUp = false;
+                                    
+                                    for(GameObject obj : handler.objectList)
+                                        if(obj.getId() == ID.PopUp)
+                                            obj.setY(player.getY() + 1000);
+                                        
+                                    
                                     //Function to skip player turn
                                     System.out.println("Can not RUN :P");
+                                    {
+                                        for(int p = 0; p < enemyParty.memberList.size(); p++)
+                                            {
+                                                BattlePhaseEntity temp = enemyParty.memberList.get(p).entity;
+                                                Skill selectedSkill = temp.skillList.get(rand.nextInt(temp.skillList.size()));
+                                                temp.setSelectSkill(selectedSkill);
+                                                temp.setTarget(playerParty.memberList.get(rand.nextInt(playerParty.memberList.size())).entity);
+                                                attack_list.add(temp);
+                                            }
+                                    }
+                                    for(int j = 0; j < attack_list.size();j++){
+                                    for(int k = 0; k < enemyParty.memberList.size(); k++)
+                                        {
+                                            if(attack_list.get(j).getCharName().equals(enemyParty.memberList.get(k).entity.getCharName())){
+                                                System.out.println(enemyParty.memberList.get(k).entity.getCharName() + " attacked " + enemyParty.memberList.get(k).entity.getTarget().getCharName()
+                                                + " using " + enemyParty.memberList.get(k).entity.getSelectSkill().skillName);
+                                                Action.attack(enemyParty.memberList.get(k).entity, enemyParty.memberList.get(k).entity.getSelectSkill(), enemyParty.memberList.get(k).entity.getTarget());
+                                            }
+                                        }
+                                    }
+
+                                    //PunPun Edit
+                                    attack_list.clear();
+                                    System.out.println("------------------------------------------");
+                                    System.out.println("Finished execute attack");
+                                    System.out.println("------------------------------------------");
                                 }
-                            }
+                            }       
                         }
-                        tempObject.setY(finalPosY);
+                        if(chooseRun)
+                        {
+                            tempObject.setY(5000);
+                            chooseRun = false;
+                        }
+                        else
+                            tempObject.setY(finalPosY);
                         tempObject.setX(finalPosX);
                         
                         //PunPun Edit

@@ -588,6 +588,17 @@ public class Game extends Canvas implements Runnable {
         handler.render(g);
         player.renderMenu(g);
         
+        /*
+        if(handler.battlePhaseStatus())
+        {
+            for (GameObject o : handler.battleRender.renderList)
+                o.render(g);
+            
+            if(handler.inventoryStatus())
+                player.inventory.itemViewer.render(g);
+        }
+        */
+        
         if(!handler.battlePhaseStatus())
         {
             for (GameObject o : handler.worldRender.renderList)

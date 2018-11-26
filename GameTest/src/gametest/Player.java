@@ -27,6 +27,7 @@ public class Player extends WorldPhaseEntity{
     protected boolean interacting;
     protected boolean inventoryStatus = false;
     protected boolean partyView = false;
+    protected boolean battlePhase = false;
     
     protected Party playerParty;
     
@@ -235,7 +236,7 @@ public class Player extends WorldPhaseEntity{
     }
     
     public void renderMenu(Graphics g){
-        if(interacted)
+        if(interacted && !battlePhase)
         {
             dialogueBox.render(g);
             g.setFont(new Font("Minecraft Bold", Font.PLAIN, 30));
@@ -347,5 +348,7 @@ public class Player extends WorldPhaseEntity{
         this.playerParty = playerParty;
     }
     
-    
+    public void battlePhaseOn(){ battlePhase = true;}
+    public void battlePhaseOff(){ battlePhase = false;}
+    public boolean battlePhaseStatus(){ return battlePhase; }
 }

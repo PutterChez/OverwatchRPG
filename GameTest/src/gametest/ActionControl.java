@@ -392,7 +392,7 @@ class ActionControl extends KeyAdapter {
                                             }
                                     }
                                     for(int j = 0; j < attack_list.size();j++){
-                                    for(int k = 0; k < enemyParty.memberList.size(); k++)
+                                        for(int k = 0; k < enemyParty.memberList.size(); k++)
                                         {
                                             if(attack_list.get(j).getCharName().equals(enemyParty.memberList.get(k).entity.getCharName())){
                                                 System.out.println(enemyParty.memberList.get(k).entity.getCharName() + " attacked " + enemyParty.memberList.get(k).entity.getTarget().getCharName()
@@ -409,6 +409,8 @@ class ActionControl extends KeyAdapter {
                                                 }
                                                 enemyParty.memberList.get(k).entity.x -= 100;                           
                                             }
+                                            if(enemyParty.memberList.get(k).entity.isMissed())
+                                                enemyParty.memberList.get(k).entity.setMissed(false);
                                         }
                                     }
 
@@ -623,6 +625,9 @@ class ActionControl extends KeyAdapter {
                                                 System.out.println(ex.toString());
                                             }
                                             playerParty.memberList.get(k).entity.x += 100;
+                                            
+                                            if(playerParty.memberList.get(k).entity.isMissed())
+                                                playerParty.memberList.get(k).entity.setMissed(false);
                                         }
                                     } 
                                 }
@@ -647,6 +652,8 @@ class ActionControl extends KeyAdapter {
                                                 }
                                                 enemyParty.memberList.get(k).entity.x -= 100;
                                                 }
+                                            if(enemyParty.memberList.get(k).entity.isMissed())
+                                                enemyParty.memberList.get(k).entity.setMissed(false);
                                         }
                                 }
                                 
@@ -656,8 +663,10 @@ class ActionControl extends KeyAdapter {
                                 System.out.println("------------------------------------------");
                                 System.out.println("Finished execute attack");
                                 System.out.println("------------------------------------------");
+     
                             }
                             else{
+                                /*
                                 for(int j = 0; j < playerParty.memberList.size();j++){
                                     if(playerParty.memberList.get(j).entity.isMissed())
                                         playerParty.memberList.get(j).entity.setMissed(false);
@@ -667,6 +676,7 @@ class ActionControl extends KeyAdapter {
                                     if(enemyParty.memberList.get(j).entity.isMissed())
                                         enemyParty.memberList.get(j).entity.setMissed(false);
                                 }
+                                */
                                 
                                 enemySelectPos = 0;
                                 select = false;
@@ -995,6 +1005,7 @@ class ActionControl extends KeyAdapter {
                 }
             }
         }
+        
         //Check for alive member of the enemyParty
         for (int i = 0; i < enemyParty.memberList.size(); i++) {
             if (!enemyParty.memberList.get(i).entity.alive()) {

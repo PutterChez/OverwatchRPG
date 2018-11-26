@@ -215,7 +215,7 @@ class ActionControl extends KeyAdapter {
                                 
                                 int runPercentage;
                                 if(playerParty.getTotalHP() > enemyParty.getTotalHP())
-                                    runPercentage = 80;
+                                    runPercentage = 0;
                                 else
                                     runPercentage = 20;
                                 
@@ -282,6 +282,16 @@ class ActionControl extends KeyAdapter {
                                                 System.out.println(enemyParty.memberList.get(k).entity.getCharName() + " attacked " + enemyParty.memberList.get(k).entity.getTarget().getCharName()
                                                 + " using " + enemyParty.memberList.get(k).entity.getSelectSkill().skillName);
                                                 Action.attack(enemyParty.memberList.get(k).entity, enemyParty.memberList.get(k).entity.getSelectSkill(), enemyParty.memberList.get(k).entity.getTarget());
+                                                enemyParty.memberList.get(k).entity.x += 100;
+                                                try{
+                                                    tempObject.setY(5000);
+                                                    Thread.sleep(500);
+                                                }
+                                                catch(Exception ex)
+                                                {
+                                                    System.out.println(ex.toString());
+                                                }
+                                                enemyParty.memberList.get(k).entity.x -= 100;                           
                                             }
                                         }
                                     }
@@ -291,7 +301,13 @@ class ActionControl extends KeyAdapter {
                                     System.out.println("------------------------------------------");
                                     System.out.println("Finished execute attack");
                                     System.out.println("------------------------------------------");
+                                    
+                                    for(int j = 0; j < enemyParty.memberList.size();j++){
+                                    if(enemyParty.memberList.get(j).entity.isMissed())
+                                        enemyParty.memberList.get(j).entity.setMissed(false);
+                                    }
                                 }
+                                cursorPos = 0;
                             }       
                         }
                         if(chooseRun)
@@ -309,6 +325,7 @@ class ActionControl extends KeyAdapter {
                             tempObject.setX(player.getX() + 100);
                             tempObject.setY(player.getY() + 250 + (35 * 0));
                         }
+                        
                     } 
  
                     else if (skillListSelect == true) {
@@ -457,6 +474,16 @@ class ActionControl extends KeyAdapter {
                                             System.out.println(playerParty.memberList.get(k).entity.getCharName() + " attacked " + playerParty.memberList.get(k).entity.getTarget().getCharName()
                                             + " using " + playerParty.memberList.get(k).entity.getSelectSkill().skillName);
                                             Action.attack(playerParty.memberList.get(k).entity, playerParty.memberList.get(k).entity.getSelectSkill(), playerParty.memberList.get(k).entity.getTarget());
+                                            
+                                            playerParty.memberList.get(k).entity.x -= 100;
+                                            try{
+                                                Thread.sleep(500);
+                                            }
+                                            catch(Exception ex)
+                                            {
+                                                System.out.println(ex.toString());
+                                            }
+                                            playerParty.memberList.get(k).entity.x += 100;
                                         }
                                     } 
                                 }
@@ -470,7 +497,17 @@ class ActionControl extends KeyAdapter {
                                                 System.out.println(enemyParty.memberList.get(k).entity.getCharName() + " attacked " + enemyParty.memberList.get(k).entity.getTarget().getCharName()
                                                 + " using " + enemyParty.memberList.get(k).entity.getSelectSkill().skillName);
                                                 Action.attack(enemyParty.memberList.get(k).entity, enemyParty.memberList.get(k).entity.getSelectSkill(), enemyParty.memberList.get(k).entity.getTarget());
-                                            }
+                                                
+                                                enemyParty.memberList.get(k).entity.x += 100;
+                                                try{
+                                                    Thread.sleep(500);
+                                                }
+                                                catch(Exception ex)
+                                                {
+                                                    System.out.println(ex.toString());
+                                                }
+                                                enemyParty.memberList.get(k).entity.x -= 100;
+                                                }
                                         }
                                 }
                                 

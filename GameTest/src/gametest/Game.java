@@ -43,8 +43,7 @@ public class Game extends Canvas implements Runnable {
         new Window(WIDTH, HEIGHT, "Overwatch RPG Test", this);
 
         //WorldPhase Part-----------------------------------------------------------------------------------------------------
-        //player = new Player(800, 450, ID.Player, 50, 60, "..\\resources\\characters\\RedSquare.png", "Player");
-        player = new Player(845, -1960, ID.Player, 50, 60, "..\\resources\\characters\\RedSquare.png", "Player");
+        player = new Player(800, 450, ID.Player, 50, 60, "..\\resources\\characters\\RedSquare.png", "Player");
         player.inventory.addMoney(6000);
         
         HPItem test1 = new HPItem(ID.Item, "HP Potion1", 100);
@@ -102,7 +101,7 @@ public class Game extends Canvas implements Runnable {
         
         WorldPhaseEntity walkway_left = new WorldPhaseEntity(645, -1940, ID.Box, 60, 1740,path , "Walkway_Left");
         WorldPhaseEntity walkway_right = new WorldPhaseEntity(1040, -1300, ID.Box, 60, 1100,path , "Walkway_Right");
-        WorldPhaseEntity walkway_right_top = new WorldPhaseEntity(1040, -1940, ID.Box, 60, 300,path2 , "Walkway_Right_Top");
+        WorldPhaseEntity walkway_right_top = new WorldPhaseEntity(1040, -1940, ID.Box, 60, 300,path , "Walkway_Right_Top");
         
         WorldPhaseEntity graveyard_top = new WorldPhaseEntity(1100, -1700, ID.Box, 2800, 60,path , "Graveyard_Top");
         WorldPhaseEntity graveyard_bottom = new WorldPhaseEntity(1100, -1300, ID.Box, 2800, 50,path , "Graveyard_Bottom");
@@ -115,6 +114,17 @@ public class Game extends Canvas implements Runnable {
         WorldPhaseEntity graveyard_bottom3 = new WorldPhaseEntity(4430, -1705, ID.Box, 130, 60,path , "Graveyard_Bottom3");
         WorldPhaseEntity graveyard_top4 = new WorldPhaseEntity(4030, -1830, ID.Box, 250, 60,path , "Graveyard_Top4");
         WorldPhaseEntity graveyard_bottom4 = new WorldPhaseEntity(4030, -1190, ID.Box, 250, 60,path , "Graveyard_Bottom4");
+        
+        WorldPhaseEntity shop_top = new WorldPhaseEntity(700, -2350, ID.Box, 350, 60,path, "Shop_Top");
+        WorldPhaseEntity shop_left = new WorldPhaseEntity(1170, -2200, ID.Box, 60, 200,path , "Shop_Left");
+        WorldPhaseEntity shop_right = new WorldPhaseEntity(530, -2175, ID.Box, 60, 200,path , "Shop_Right");
+        
+        WorldPhaseEntity shop_block1 = new WorldPhaseEntity(600, -2295, ID.Box, 60, 130,path , "Shop_Block1");
+        WorldPhaseEntity shop_block2 = new WorldPhaseEntity(650, -2350, ID.Box, 60, 100,path , "Shop_Block2");
+        WorldPhaseEntity shop_block3 = new WorldPhaseEntity(1045, -2350, ID.Box, 60, 100,path , "Shop_Block3");
+        WorldPhaseEntity shop_block4 = new WorldPhaseEntity(1110, -2295, ID.Box, 60, 130,path , "Shop_Block4");
+        WorldPhaseEntity shop_block5 = new WorldPhaseEntity(590, -2000, ID.Box, 60, 60,path , "Shop_Block5");
+        WorldPhaseEntity shop_block6 = new WorldPhaseEntity(1113, -2000, ID.Box, 60, 60,path , "Shop_Block6");
         
         WorldPhaseEntity house1 = new WorldPhaseEntity(390, 80, ID.Box, 260, 300, path, "House1");
         WorldPhaseEntity house2 = new WorldPhaseEntity(1100, 80, ID.Box, 245, 300, path, "House2");
@@ -147,36 +157,46 @@ public class Game extends Canvas implements Runnable {
         handler.addWorldColisionObject(graveyard_top4);
         handler.addWorldColisionObject(graveyard_bottom4);
         
+        handler.addWorldColisionObject(shop_top);
+        handler.addWorldColisionObject(shop_left);
+        handler.addWorldColisionObject(shop_right);
+        handler.addWorldColisionObject(shop_block1);
+        handler.addWorldColisionObject(shop_block2);
+        handler.addWorldColisionObject(shop_block3);
+        handler.addWorldColisionObject(shop_block4);
+        handler.addWorldColisionObject(shop_block5);
+        handler.addWorldColisionObject(shop_block6);
+        
         handler.addWorldColisionObject(house1);
         handler.addWorldColisionObject(house2);
         
         //Object Interaction
-        WorldPhaseEntity obj_tree1 = new WorldPhaseEntity(680, -63, ID.NPC, 65, 65, path2, "obj_tree1");
+        WorldPhaseEntity obj_tree1 = new WorldPhaseEntity(680, -63, ID.NPC, 65, 65, path, "obj_tree1");
         obj_tree1.addDialogue("It's a large leafless tree");
         
         handler.addWorldColisionObject(obj_tree1);
         
-        WorldPhaseEntity obj_tree2 = new WorldPhaseEntity(1002, -63, ID.NPC, 65, 65, path2, "obj_tree2");
+        WorldPhaseEntity obj_tree2 = new WorldPhaseEntity(1002, -63, ID.NPC, 65, 65, path, "obj_tree2");
         obj_tree2.addDialogue("It appears that winter is coming.");
         
         handler.addWorldColisionObject(obj_tree2);
         
-        WorldPhaseEntity obj_tree3 = new WorldPhaseEntity(395, -170, ID.NPC, 50, 60, path2, "obj_tree3");
+        WorldPhaseEntity obj_tree3 = new WorldPhaseEntity(395, -170, ID.NPC, 50, 60, path, "obj_tree3");
         obj_tree3.addDialogue("It's a withering tree.");
 
         handler.addWorldColisionObject(obj_tree3);
         
-        WorldPhaseEntity obj_tree4 = new WorldPhaseEntity(531, -170, ID.NPC, 50, 60, path2, "obj_tree4");
+        WorldPhaseEntity obj_tree4 = new WorldPhaseEntity(531, -170, ID.NPC, 50, 60, path, "obj_tree4");
         obj_tree4.addDialogue("It's a withering tree,");
 
         handler.addWorldColisionObject(obj_tree4);
         
-        WorldPhaseEntity obj_tree5 = new WorldPhaseEntity(1171, -170, ID.NPC, 50, 60, path2, "obj_tree5");
+        WorldPhaseEntity obj_tree5 = new WorldPhaseEntity(1171, -170, ID.NPC, 50, 60, path, "obj_tree5");
         obj_tree5.addDialogue("It's an old tree.");
 
         handler.addWorldColisionObject(obj_tree5);
         
-        WorldPhaseEntity obj_tree6 = new WorldPhaseEntity(1297, -170, ID.NPC, 50, 60, path2, "obj_tree6");
+        WorldPhaseEntity obj_tree6 = new WorldPhaseEntity(1297, -170, ID.NPC, 50, 60, path, "obj_tree6");
         obj_tree6.addDialogue("It's an old tree.");
 
         handler.addWorldColisionObject(obj_tree6);
@@ -187,31 +207,31 @@ public class Game extends Canvas implements Runnable {
 
         handler.addWorldColisionObject(obj_box);
         
-        WorldPhaseEntity obj_box2 = new WorldPhaseEntity(1440, 380, ID.NPC, 45, 70, null, "obj_right_fountain");
+        WorldPhaseEntity obj_box2 = new WorldPhaseEntity(1440, 380, ID.NPC, 45, 70, path, "obj_right_fountain");
         obj_box2.addDialogue("It's DVA's fountain.");
         obj_box2.addDialogue("The water looks very clear.");
 
         handler.addWorldColisionObject(obj_box2);
         
-        WorldPhaseEntity mei_plant = new WorldPhaseEntity(593, -2089, ID.NPC, 45, 60, path2, "obj_mei_plant");
+        WorldPhaseEntity mei_plant = new WorldPhaseEntity(570, -2080, ID.NPC, 50, 60, path, "obj_mei_plant");
         mei_plant.addDialogue("It's Mei's plant.");
         mei_plant.addDialogue("It looks very healthy!");
         
         handler.addWorldColisionObject(mei_plant);
         
-        WorldPhaseEntity mei_stool = new WorldPhaseEntity(1107, -2085, ID.NPC, 65, 70, path2, "obj_mei_stool");
+        WorldPhaseEntity mei_stool = new WorldPhaseEntity(1107, -2080, ID.NPC, 65, 70, path, "obj_mei_stool");
         mei_stool.addDialogue("An old wooden stool.");
         
         handler.addWorldColisionObject(mei_stool);
         
-        WorldPhaseEntity mei_log = new WorldPhaseEntity(1041, -2211, ID.NPC, 50, 60, path2, "obj_mei_stool");
+        WorldPhaseEntity mei_log = new WorldPhaseEntity(1035, -2210, ID.NPC, 60, 60, path, "obj_mei_stool");
         mei_log.addDialogue("A pile of cut wood.");
         mei_log.addDialogue("The timber looks high-quality.");
         
         handler.addWorldColisionObject(mei_log);
         
-        WorldPhaseEntity mei_pots = new WorldPhaseEntity(651, -2235, ID.NPC, 45, 60, path2, "obj_mei_stool");
-        mei_pots.addDialogue("Two small potted plants.");
+        WorldPhaseEntity mei_pots = new WorldPhaseEntity(640, -2230, ID.NPC, 60, 60, path, "obj_mei_stool");
+        mei_pots.addDialogue("It looks like Mei's growing something.");
         
         handler.addWorldColisionObject(mei_pots);
         

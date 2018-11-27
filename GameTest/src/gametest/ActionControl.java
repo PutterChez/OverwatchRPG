@@ -841,14 +841,21 @@ class ActionControl extends KeyAdapter {
             //System.out.println("Player x:" + player.x);
             //System.out.println("Player y:" + player.y);
             if (handler.getBgmStatus() == false) {
-                handler.setBGM("..\\resources\\music\\Chiisana Koi no Uta.wav");
+                handler.setBGM("..\\resources\\music\\Gymnopedie.wav");
                 handler.playBGM();
             }
             
             if (handler.gameOver && key == KeyEvent.VK_SPACE) {
                 handler.stopBGM();
+                System.exit(0);
                 handler.MainPhaseOn();
                 handler.gameOver = false;
+            }
+            
+            if (handler.gameWin && key == KeyEvent.VK_SPACE)
+            {
+                handler.stopBGM();
+                System.exit(0);
             }
 
             if (key == KeyEvent.VK_A && handler.merchantStatus()) {
@@ -1073,6 +1080,7 @@ class ActionControl extends KeyAdapter {
                                 if(obj.id == ID.Boss)
                                 {
                                     //GameExitCode here
+                                    handler.gameWin = true;
                                     System.out.println("GameExit");
                                 }
                                 obj.die();
@@ -1163,6 +1171,8 @@ class ActionControl extends KeyAdapter {
         }
         
         //Check for alive member of the enemyParty
+        
+        /*
         for (int i = 0; i < enemyParty.memberList.size(); i++) {
             if (!enemyParty.memberList.get(i).entity.alive()) {
                 System.out.println("Dead: " + enemyParty.memberList.get(i).entity.charName);
@@ -1176,13 +1186,17 @@ class ActionControl extends KeyAdapter {
                 playerParty.deleteMember(i);
             }
         }
+        */
 
+        /*
         if (enemyParty.memberList.size() <= 0) {
             PopUp = false;
             System.out.println("Exit Battle Phase");
             handler.battlePhaseOff();
             player.battlePhaseOff();
             handler.stopBGM();
+        }
+        */
         
             /*
             for (WorldPhaseEntity obj : handler.colisionList) {
@@ -1195,10 +1209,11 @@ class ActionControl extends KeyAdapter {
                     }
                 }
             }
-                    */
+
         }
+        */
         
-            
+        /*
         if (playerParty.memberList.size() <= 0){
             PopUp = false;
             skillListSelect = false;
@@ -1211,6 +1226,8 @@ class ActionControl extends KeyAdapter {
             handler.playBGM();
             handler.gameOver = true;
         }
+                */
+        
 
         player.setVelX(0);
         player.setVelY(0);

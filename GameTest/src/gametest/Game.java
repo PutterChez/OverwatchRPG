@@ -46,6 +46,8 @@ public class Game extends Canvas implements Runnable {
         player = new Player(800, 450, ID.Player, 50, 60, "..\\resources\\characters\\RedSquare.png", "Player");
         player.inventory.addMoney(200);
 
+        
+        //ItemList----------------------------------------------------------------------------------------
         HPItem HP1 = new HPItem(ID.Item, "HP Potion(S)", 100);
         HP1.setAttributeHP(40);
 
@@ -62,6 +64,12 @@ public class Game extends Canvas implements Runnable {
         Elixir.setAttributeHP(1000);
         Elixir.setAttributeMP(1000);
 
+        HPItem defenseDrug = new HPItem(ID.Item, "DefenseDrug", 400);
+        defenseDrug.setAttributeDef(100);
+        
+        HPItem demonDrug = new HPItem(ID.Item, "Demon Drug", 400);
+        demonDrug.setAttributeAtk(100);
+        
         /*
         player.addItem(HP1);
         player.addItem(HP1);
@@ -215,15 +223,10 @@ public class Game extends Canvas implements Runnable {
 
         handler.addWorldColisionObject(obj_box);
 
-        WorldPhaseEntity obj_box2 = new WorldPhaseEntity(1440, 380, ID.Chest, 45, 70, path, "obj_right_fountain");
+        WorldPhaseEntity obj_box2 = new WorldPhaseEntity(1440, 380, ID.NPC, 45, 70, path, "obj_right_fountain");
         obj_box2.addDialogue("It's DVA's fountain.");
         obj_box2.addDialogue("The water looks very clear.");
 
-        HPItem defenseDrug = new HPItem(ID.Item, "DefenseDrug", 400);
-        defenseDrug.setAttributeDef(100);
-
-        obj_box2.addLoot(defenseDrug);
-        obj_box2.addDialogue(path2);
 
         handler.addWorldColisionObject(obj_box2);
 
@@ -243,13 +246,10 @@ public class Game extends Canvas implements Runnable {
         mei_log.addDialogue("The timber looks high-quality.");
 
         handler.addWorldColisionObject(mei_log);
+        
 
-        WorldPhaseEntity mei_pots = new WorldPhaseEntity(640, -2230, ID.Chest, 60, 60, path, "obj_mei_stool");
+        WorldPhaseEntity mei_pots = new WorldPhaseEntity(640, -2230, ID.NPC, 60, 60, path, "obj_mei_stool");
         mei_pots.addDialogue("It looks like Mei's growing something.");
-
-        HPItem demonDrug = new HPItem(ID.Item, "Demon Drug", 400);
-        demonDrug.setAttributeAtk(100);
-        mei_pots.addLoot(demonDrug);
 
         handler.addWorldColisionObject(mei_pots);
 
@@ -317,6 +317,12 @@ public class Game extends Canvas implements Runnable {
         behindHouseChest2.addDialogue(" 'Goodluck on your mission' - Love, D.Va");
         behindHouseChest2.addLoot(new MoneyItem(ID.Item, "1000 $", 1000));
         handler.addWorldColisionObject(behindHouseChest2);
+        
+        WorldPhaseEntity meiChest = new WorldPhaseEntity(590, -2150, ID.Chest, 50, 50, "..\\resources\\misc\\chest_closed.png", "Mei Chest" );
+        meiChest.addDialogue("Mei's Ultimate Drug");
+        meiChest.addLoot(demonDrug);
+        
+        handler.addWorldColisionObject(meiChest);
 
         //Merchant Test-------------------------------------------------------------------------------------------------------
         //Merchant must have only 1 item in the itemList

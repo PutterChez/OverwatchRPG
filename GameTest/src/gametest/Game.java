@@ -272,7 +272,7 @@ public class Game extends Canvas implements Runnable {
         handler.addWorldColisionObject(Dva);
 
         //Add Enemy into the Party
-        BattlePhaseEntity dva = new BattlePhaseEntity(POS1.x, POS1.y, ID.Enemy, 200, 200, "..\\resources\\characters_fixed\\dva_2.png", 250, 200, "D.Va", 40, 10, 100, 40);
+        BattlePhaseEntity dva = new BattlePhaseEntity(POS1.x, POS1.y, ID.Enemy, 200, 200, "..\\resources\\characters_fixed\\dva_2.png", 250, 200, "D.Va", 40, 10, 100, 10);
         Skill fusionCannons = new Skill("Fusion Cannons", 100, 40, 80);
         fusionCannons.setDescription("D.Va shoots her twin short-range rotating cannons");
         Skill microMissiles = new Skill("Micro Missiles", 150, 80, 100);

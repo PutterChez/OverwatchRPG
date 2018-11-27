@@ -1056,6 +1056,7 @@ class ActionControl extends KeyAdapter {
                                 SFX.play();
                                 player.setDialogue(temp_String);
                             } else {
+                                obj.die();
                                 handler.uninteracted();
                                 player.unInteracted();
                             }

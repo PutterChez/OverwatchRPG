@@ -5,7 +5,7 @@
             <url>src/gametest/Game.java</url>
             <bookmark id="1">
                 <name/>
-                <line>159</line>
+                <line>173</line>
                 <key/>
             </bookmark>
         </file>
@@ -15,9 +15,9 @@
             <file>file:/C:/Users/DELL/Desktop/Works/GitHub/OverwatchRPG/GameTest/src/gametest/Game.java</file>
             <file>file:/C:/Users/DELL/Desktop/Works/GitHub/OverwatchRPG/GameTest/src/gametest/WorldPhaseEntity.java</file>
             <file>file:/C:/Users/DELL/Desktop/Works/GitHub/OverwatchRPG/GameTest/src/gametest/Player.java</file>
-            <file>file:/C:/Users/DELL/Desktop/Works/GitHub/OverwatchRPG/GameTest/src/gametest/Skill.java</file>
             <file>file:/C:/Users/DELL/Desktop/Works/GitHub/OverwatchRPG/GameTest/src/gametest/Handler.java</file>
             <file>file:/C:/Users/DELL/Desktop/Works/GitHub/OverwatchRPG/GameTest/src/gametest/ActionControl.java</file>
+            <file>file:/C:/Users/DELL/Desktop/Works/GitHub/OverwatchRPG/GameTest/src/gametest/HUD.java</file>
             <file>file:/C:/Users/DELL/Desktop/Works/GitHub/OverwatchRPG/GameTest/src/gametest/Menu.java</file>
         </group>
     </open-files>

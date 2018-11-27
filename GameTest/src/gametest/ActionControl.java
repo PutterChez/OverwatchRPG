@@ -375,7 +375,7 @@ class ActionControl extends KeyAdapter {
                                 
                                 int runPercentage;
                                 if(playerParty.getTotalHP() > enemyParty.getTotalHP())
-                                    runPercentage = 0;
+                                    runPercentage = 80;
                                 else
                                     runPercentage = 20;
                                 

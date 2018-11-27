@@ -215,9 +215,15 @@ public class Game extends Canvas implements Runnable {
 
         handler.addWorldColisionObject(obj_box);
         
-        WorldPhaseEntity obj_box2 = new WorldPhaseEntity(1440, 380, ID.NPC, 45, 70, path, "obj_right_fountain");
+        WorldPhaseEntity obj_box2 = new WorldPhaseEntity(1440, 380, ID.Chest, 45, 70, path, "obj_right_fountain");
         obj_box2.addDialogue("It's DVA's fountain.");
         obj_box2.addDialogue("The water looks very clear.");
+        
+        HPItem defenseDrug = new HPItem(ID.Item, "DefenseDrug", 400);
+        defenseDrug.setAttributeDef(100);
+        
+        obj_box2.addLoot(defenseDrug);
+        obj_box2.addDialogue(path2);
 
         handler.addWorldColisionObject(obj_box2);
         
@@ -248,23 +254,29 @@ public class Game extends Canvas implements Runnable {
         handler.addWorldColisionObject(mei_pots);
         
         //Interaction Test----------------------------------------------------------------------------------------------------
-        WorldPhaseEntity s76 = new WorldPhaseEntity(800, 630, ID.NPC, 130, 130, "..\\resources\\characters_fixed\\76_2.png", "S76");
+        WorldPhaseEntity s76 = new WorldPhaseEntity(800, 630, ID.NPC, 120, 94, "..\\resources\\characters_world\\76_2.png", "S76");
         s76.addDialogue("Soldier 76: Recruit, your mission is to eliminate Talon's leader: Reaper!");
         s76.addDialogue("Soldier 76: Get to it! Ask the people around here about his whereabouts.");
         s76.addDialogue("Soldier 76: Oh, and go to Agent D.VA for your training.");
         handler.addWorldColisionObject(s76);
         
-        WorldPhaseEntity roadHog = new WorldPhaseEntity(420, 480, ID.NPC, 150, 150, "..\\resources\\characters_fixed\\hog_2.png", "Hog");
+        WorldPhaseEntity roadHog = new WorldPhaseEntity(420, 480, ID.NPC, 150, 150, "..\\resources\\characters_world\\hog_2.png", "Hog");
         roadHog.addDialogue("Roadhog: Now where's that Junkrat gone off to?");
         roadHog.addDialogue("Roadhog: What? I don't know anything about Talon.");
         roadHog.addDialogue("Roadhog: Now get off my lawn!!");
         handler.addWorldColisionObject(roadHog);
         
-        WorldPhaseEntity meiNPC = new WorldPhaseEntity(820, -2230, ID.NPC, 150, 150, "..\\resources\\characters_fixed\\mei_2.png", "Mei");
+        WorldPhaseEntity meiNPC = new WorldPhaseEntity(820, -2200, ID.NPC, 130, 94, "..\\resources\\characters_world\\mei_2.png", "Mei");
         meiNPC.addDialogue("Mei: I've been getting a lot less customers.");
         meiNPC.addDialogue("Mei: Those Talon guys at the graveyard won't leave either.");
         meiNPC.addDialogue("Mei: Only if Soldier 76 did something about it!");
         handler.addWorldColisionObject(meiNPC);
+        
+        WorldPhaseEntity  brigNPC = new WorldPhaseEntity(1028 , -1639, ID.NPC, 130, 98, "..\\resources\\characters_world\\brig_2.png", "Brigitte");
+        brigNPC.addDialogue("Brigitte : SOME DIALOGUE1" );
+        brigNPC.addDialogue("Brigitte : SOME DIALOGUE2" );
+        brigNPC.addDialogue("Brigitte : SOME DIALOGUE3" );
+        handler.addWorldColisionObject(brigNPC);
         
         //Battle NPC Test-----------------------------------------------------------------------------------------------------
         WorldPhaseEntity Dva = new WorldPhaseEntity(1150, 490, ID.BattleNPC, 150, 130, "..\\resources\\characters_world\\dva_1.png", "DvaBattle");

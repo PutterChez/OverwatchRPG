@@ -48,8 +48,5 @@ public class Action {
         }
         
         healer.MP -= healerSkill.mpCost;
-        
-        
-        
     }
 }

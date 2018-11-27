@@ -262,69 +262,7 @@ public class Game extends Canvas implements Runnable {
         meiNPC.addDialogue("Mei: Only if Soldier 76 did something about it!");
         handler.addWorldColisionObject(meiNPC);
         
-        //Battle NPC Test-----------------------------------------------------------------------------------------------------
-        WorldPhaseEntity Dva = new WorldPhaseEntity(1150, 490, ID.BattleNPC, 150, 130, "..\\resources\\characters_world\\dva_1.png", "DvaBattle");
-        //Pre - Battle Dialogue
-        Dva.addDialogue("D.Va: Soldier asked me to train you! Time to raise my APM!");
-        //Post - Battle Dialogue
-        Dva.addDialogue("D.Va: Nice one!");
-        Dva.addDialogue("D.Va: Good luck! Love, D.VA! >:3");
-        handler.addWorldColisionObject(Dva);
-
-        //Add Enemy into the Party
-        BattlePhaseEntity dva = new BattlePhaseEntity(POS1.x, POS1.y, ID.Enemy, 200, 200, "..\\resources\\characters_fixed\\dva_2.png", 250, 200, "D.Va", 40, 10, 100, 10);
-        Skill fusionCannons = new Skill("Fusion Cannons", 100, 40, 80);
-        fusionCannons.setDescription("D.Va shoots her twin short-range rotating cannons");
-        Skill microMissiles = new Skill("Micro Missiles", 150, 80, 100);
-        microMissiles.setDescription("D.Va launches a volley of explosive rockets.");
-        Skill boosters = new Skill("Boost", 60, 20, 120);
-        boosters.setDescription("D.Va boosts into the enemy!");
-        dva.addSkill(fusionCannons);
-        dva.addSkill(microMissiles);
-        dva.addSkill(boosters);
-        Dva.addEnemyPartyMember(dva, 0);
-        
-
-        //Item Test-----------------------------------------------------------------------------------------------------------
-        
-        //Chest Test-----------------------------------------------------------------------------------------------------------
-        WorldPhaseEntity behindHouseChest = new WorldPhaseEntity(465, -150, ID.Chest, 50, 50, "..\\resources\\misc\\chest_closed.png", "BehindHouseChest");
-        behindHouseChest.addDialogue("Is this Roadhog's chest?");
-        behindHouseChest.addDialogue(" 'You can take anything you want from this chest' - Mr.Goodaim");
-        behindHouseChest.addLoot(HP1);
-        behindHouseChest.addLoot(MP1);
-        handler.addWorldColisionObject(behindHouseChest);
-        
-        WorldPhaseEntity behindHouseChest2 = new WorldPhaseEntity(1230, -150, ID.Chest, 50, 50, "..\\resources\\misc\\chest_closed.png", "BehindHouseChest2");
-        behindHouseChest2.addDialogue("Dva's secret stash");
-        behindHouseChest2.addDialogue(" 'Goodluck on your mission' - Love, D.Va");
-        behindHouseChest2.addLoot(new MoneyItem(ID.Item, "1000 $", 1000));
-        handler.addWorldColisionObject(behindHouseChest2);
-        
-        //Merchant Test-------------------------------------------------------------------------------------------------------
-        //Merchant must have only 1 item in the itemList
-        //Mei Merchant
-        //WorldPhaseEntity testMerchant = new WorldPhaseEntity(815, -2185, ID.Merchant, 100, 80, "..\\resources\\characters_world\\mei_1.png", "MeiMerchant");
-        //testMerchant.addLoot(new HPItem(ID.Item, "Snowy Robot", 1700));
-        
-        //handler.addWorldColisionObject(testMerchant);
-        
-        WorldPhaseEntity hpBox = new WorldPhaseEntity(777, -2125, ID.Merchant, 62, 92, "..\\resources\\misc\\fruit_1.png", "HPBox");
-        hpBox.addLoot(HP1);
-        
-        handler.addWorldColisionObject(hpBox);
-        
-        WorldPhaseEntity mpBox = new WorldPhaseEntity(839, -2125, ID.Merchant, 62, 92, "..\\resources\\misc\\fruit_2.png", "HPBox");
-        mpBox.addLoot(MP1);
-        
-        handler.addWorldColisionObject(mpBox);
-        
-        WorldPhaseEntity elixirBox = new WorldPhaseEntity(904, -2125, ID.Merchant, 62, 92, "..\\resources\\misc\\fruit_3.png", "HPBox");
-        elixirBox.addLoot(Elixir);
-        
-        handler.addWorldColisionObject(elixirBox);
-        
-
+        //BATTLE PHASE
         //BattlePhase Part----------------------------------------------------------------------------------------------------
         BattlePhaseEntity genji = new BattlePhaseEntity(P_POS1.x, P_POS1.y, ID.Ally, 230, 230, "..\\resources\\characters_fixed\\genji_1.png", 200, 200, "Genji", 40, 10, 100, 60);
         BattlePhaseEntity mccree = new BattlePhaseEntity(P_POS2.x, P_POS2.y, ID.Ally, 170, 170, "..\\resources\\characters_fixed\\mccree_1.png", 250, 200, "Mccree", 40, 10, 70, 30);
@@ -336,21 +274,39 @@ public class Game extends Canvas implements Runnable {
         mercy.setCharIcon("..\\resources\\character_heads\\mercy_ult.png");
         reinhardt.setCharIcon("..\\resources\\character_heads\\rein_ult.png");
 
-        BattlePhaseEntity doomfist = new BattlePhaseEntity(POS1.x, POS1.y, ID.Enemy, 170, 170, "..\\resources\\characters_fixed\\doom_2.png", 250, 200, "Doomfist", 999, 10, 60, 40);
-        BattlePhaseEntity widowmaker = new BattlePhaseEntity(POS2.x, POS2.y, ID.Enemy, 170, 170, "..\\resources\\characters_fixed\\widow_2.png", 200, 200, "Widowmaker", 999, 10, 100, 50);
-        BattlePhaseEntity reaper = new BattlePhaseEntity(POS3.x, POS3.y, ID.Enemy, 170, 170, "..\\resources\\characters_fixed\\reaper_2.png", 200, 200, "Reaper", 999, 10, 60, 50);
-        BattlePhaseEntity junkrat = new BattlePhaseEntity(POS4.x, POS4.y, ID.Enemy, 170, 170, "..\\resources\\characters_fixed\\jake_2.png", 200, 200, "Junkrat", 999, 10, 50, 30);
+        BattlePhaseEntity doomfist = new BattlePhaseEntity(POS1.x, POS1.y, ID.Enemy, 170, 170, "..\\resources\\characters_fixed\\doom_2.png", 250, 200, "Doomfist", 40, 10, 60, 40);
+        BattlePhaseEntity widowmaker = new BattlePhaseEntity(POS2.x, POS2.y, ID.Enemy, 170, 170, "..\\resources\\characters_fixed\\widow_2.png", 200, 200, "Widowmaker", 40, 10, 100, 50);
+        BattlePhaseEntity reaper = new BattlePhaseEntity(POS3.x, POS3.y, ID.Boss, 170, 170, "..\\resources\\characters_fixed\\reaper_2.png", 200, 200, "Reaper", 40, 10, 60, 50);
+        BattlePhaseEntity junkrat = new BattlePhaseEntity(POS4.x, POS4.y, ID.Enemy, 170, 170, "..\\resources\\characters_fixed\\jake_2.png", 200, 200, "Junkrat", 40, 10, 50, 30);
         BattlePhaseEntity sombra = new BattlePhaseEntity(POS5.x, POS5.y, ID.Enemy, 170, 170, "..\\resources\\characters_fixed\\sombra_2.png", 200, 200, "Sombra", 40, 10, 60, 50);
         BattlePhaseEntity bastion = new BattlePhaseEntity(POS6.x, POS6.y, ID.Enemy, 170, 170, "..\\resources\\characters_fixed\\bastion_2.png", 200, 200, "Bastion", 40, 10, 40, 10);
         
+        BattlePhaseEntity ashe = new BattlePhaseEntity(POS1.x, POS1.y, ID.Enemy, 170, 170, "..\\resources\\characters_fixed\\ashe_2.png", 200, 200, "Ashe", 40, 10, 50, 30);
         
+        //Ashe skill
+        Skill viperHip = new Skill("Viper Hip Shot", 80, 10, 80);
+        viperHip.setDescription("Ashe's semi-automatic rifle fires quick shots.");
+        Skill viperScope = new Skill("Viper Scoped Shot", 150, 40, 120);
+        viperScope.setDescription("Ashe can use her aim-down sights for a more damaging, precise shot.");
+        Skill dynamite = new Skill("Dynamite", 180, 100, 100);
+        dynamite.setDescription("Ashe throws an explosive that detonates!");
+        ashe.addSkill(viperHip);
+        ashe.addSkill(viperScope);
+        ashe.addSkill(dynamite);     
+         
         //doomfistSkill
         Skill normalPunch = new Skill("Normal Punch", 100, 20, 100);
-        normalPunch.setDescription("Doom punch sth");
-        Skill PowerPunch = new Skill("PowerPunch", 200, 40, 200);
-        PowerPunch.setDescription("Doom powerPunch sth");
+        normalPunch.setDescription("Doomfist punches the enemy with his fist.");
+        Skill PowerPunch = new Skill("Power Punch", 150, 40, 120);
+        PowerPunch.setDescription("Doomfist punches with great force.");
+        Skill handCannon = new Skill("Hand Cannon", 60, 10, 150);
+        handCannon.setDescription("Doomfist fires a short-range burst from the knuckles of his fist.");
+        Skill meteorStrike = new Skill("Meteor Strike", 220, 100, 180);
+        meteorStrike.setDescription("Doomfist leaps into the sky, then crashes to the ground, dealing significant damage.");
         doomfist.addSkill(normalPunch);
         doomfist.addSkill(PowerPunch);
+        doomfist.addSkill(handCannon);
+        doomfist.addSkill(meteorStrike);
         
         //widowmakerSkill
         Skill scopeShot = new Skill("Scope Shot", 100, 40, 200);
@@ -360,19 +316,25 @@ public class Game extends Canvas implements Runnable {
         widowmaker.addSkill(scopeShot);
         widowmaker.addSkill(jumpShot);
         
-        //reaperSkill
-        Skill spreadShot = new Skill("Spread Shot", 100, 20, 140);
-        spreadShot.setDescription("Shotgun what do u expected?");
-        Skill pointBlank = new Skill("Point Blank", 200, 100, 200);
-        pointBlank.setDescription("Shotgun at pointBlank range");
+        //Reaper Final Form Skill
+        Skill spreadShot = new Skill("Spread Shot", 100, 30, 90);
+        spreadShot.setDescription("Reaper shoots his both his shotguns at the same time.");
+        Skill pointBlank = new Skill("Point Blank", 150, 100, 140);
+        pointBlank.setDescription("Repear Blasts the enemy at point black range!");
+        Skill wraithForm = new Skill("Wraith Form", 200, 120, 120);
+        wraithForm.setDescription("Reaper telelports behind the enemy and fires his shotguns");
+        Skill deathBlossom = new Skill("Death Blossom", 230, 150, 160);
+        wraithForm.setDescription("In a blur of motion, Reaper empties both Hellfire Shotguns at breakneck speed, ");
         reaper.addSkill(spreadShot);
         reaper.addSkill(pointBlank);
+        reaper.addSkill(wraithForm);
+        reaper.addSkill(deathBlossom);
         
         //junKratSkill
-        Skill normalBomb = new Skill("Normal Bomb", 120, 10, 30);
-        normalBomb.setDescription(" 'ตัวกระจอก' qtd PKs and Shadder4k");
+        Skill normalBomb = new Skill("Normal Bomb", 120, 30, 30);
+        normalBomb.setDescription("Junkrat fires off a grenade.");
         Skill handBomb = new Skill("Hand Bomb", 100, 10, 70);
-        handBomb.setDescription(" 'ตัวกระจอก(1)' qtd PKs and Shadder4k");
+        handBomb.setDescription("Junkrat throws out a hand bomb.");
         junkrat.addSkill(normalBomb);
         junkrat.addSkill(handBomb);
         
@@ -437,6 +399,85 @@ public class Game extends Canvas implements Runnable {
         reinhardt.addSkill(firestrike);
         reinhardt.addSkill(melee);
         reinhardt.addSkill(earthshatter);
+        
+        //Battle NPC Test-----------------------------------------------------------------------------------------------------
+        WorldPhaseEntity Dva = new WorldPhaseEntity(1150, 490, ID.BattleNPC, 150, 130, "..\\resources\\characters_world\\dva_1.png", "DvaBattle");
+        //Pre - Battle Dialogue
+        Dva.addDialogue("D.Va: Soldier asked me to train you! Time to raise my APM!");
+        //Post - Battle Dialogue
+        Dva.addDialogue("D.Va: Nice one!");
+        Dva.addDialogue("D.Va: Good luck! Love, D.VA! >:3");
+        handler.addWorldColisionObject(Dva);
+
+        //Add Enemy into the Party
+        BattlePhaseEntity dva = new BattlePhaseEntity(POS1.x, POS1.y, ID.Enemy, 200, 200, "..\\resources\\characters_fixed\\dva_2.png", 250, 200, "D.Va", 40, 10, 100, 10);
+        Skill fusionCannons = new Skill("Fusion Cannons", 100, 40, 80);
+        fusionCannons.setDescription("D.Va shoots her twin short-range rotating cannons");
+        Skill microMissiles = new Skill("Micro Missiles", 150, 80, 100);
+        microMissiles.setDescription("D.Va launches a volley of explosive rockets.");
+        Skill boosters = new Skill("Boost", 60, 20, 120);
+        boosters.setDescription("D.Va boosts into the enemy!");
+        dva.addSkill(fusionCannons);
+        dva.addSkill(microMissiles);
+        dva.addSkill(boosters);
+        Dva.addEnemyPartyMember(dva, 0);
+        
+        //Reaper Encounter 1
+        WorldPhaseEntity reaper_noob = new WorldPhaseEntity(820, -620, ID.BattleNPC, 120, 120, "..\\resources\\characters_world\\reaper_1.png", "ReaperBattle");
+        //Pre - Battle Dialogue
+        reaper_noob.addDialogue("Reaper: Don't think you can catch me so easily!");
+        //Post - Battle Dialogue
+        reaper_noob.addDialogue("Reaper: Damn, I underestimated you!");
+        reaper_noob.addDialogue("Reaper: Fall back!");
+        handler.addWorldColisionObject(reaper_noob);
+        
+        BattlePhaseEntity reaper_noob_battle = new BattlePhaseEntity(POS1.x, POS1.y, ID.Enemy, 150, 150, "..\\resources\\characters_fixed\\reaper_2.png", 250, 200, "Reaper", 50, 15, 40, 10);
+        reaper_noob_battle.addSkill(spreadShot);
+        reaper_noob_battle.addSkill(pointBlank);
+        reaper_noob.addEnemyPartyMember(reaper_noob_battle, 0);
+        reaper_noob.addEnemyPartyMember(widowmaker, 1);
+        
+        //Item Test-----------------------------------------------------------------------------------------------------------
+        
+        //Chest Test-----------------------------------------------------------------------------------------------------------
+        WorldPhaseEntity behindHouseChest = new WorldPhaseEntity(465, -150, ID.Chest, 50, 50, "..\\resources\\misc\\chest_closed.png", "BehindHouseChest");
+        behindHouseChest.addDialogue("Is this Roadhog's chest?");
+        behindHouseChest.addDialogue(" 'You can take anything you want from this chest' - Mr.Goodaim");
+        behindHouseChest.addLoot(HP1);
+        behindHouseChest.addLoot(MP1);
+        handler.addWorldColisionObject(behindHouseChest);
+        
+        WorldPhaseEntity behindHouseChest2 = new WorldPhaseEntity(1230, -150, ID.Chest, 50, 50, "..\\resources\\misc\\chest_closed.png", "BehindHouseChest2");
+        behindHouseChest2.addDialogue("Dva's secret stash");
+        behindHouseChest2.addDialogue(" 'Goodluck on your mission' - Love, D.Va");
+        behindHouseChest2.addLoot(new MoneyItem(ID.Item, "1000 $", 1000));
+        handler.addWorldColisionObject(behindHouseChest2);
+        
+        //Merchant Test-------------------------------------------------------------------------------------------------------
+        //Merchant must have only 1 item in the itemList
+        //Mei Merchant
+        //WorldPhaseEntity testMerchant = new WorldPhaseEntity(815, -2185, ID.Merchant, 100, 80, "..\\resources\\characters_world\\mei_1.png", "MeiMerchant");
+        //testMerchant.addLoot(new HPItem(ID.Item, "Snowy Robot", 1700));
+        
+        //handler.addWorldColisionObject(testMerchant);
+        
+        WorldPhaseEntity hpBox = new WorldPhaseEntity(777, -2125, ID.Merchant, 62, 92, "..\\resources\\misc\\fruit_1.png", "HPBox");
+        hpBox.addLoot(HP1);
+        
+        handler.addWorldColisionObject(hpBox);
+        
+        WorldPhaseEntity mpBox = new WorldPhaseEntity(839, -2125, ID.Merchant, 62, 92, "..\\resources\\misc\\fruit_2.png", "HPBox");
+        mpBox.addLoot(MP1);
+        
+        handler.addWorldColisionObject(mpBox);
+        
+        WorldPhaseEntity elixirBox = new WorldPhaseEntity(904, -2125, ID.Merchant, 62, 92, "..\\resources\\misc\\fruit_3.png", "HPBox");
+        elixirBox.addLoot(Elixir);
+        
+        handler.addWorldColisionObject(elixirBox);
+        
+
+        //END OF NPCS
         
 
         Menu menu = new Menu(WIDTH / 2 - 700, 600, ID.Menu, 1400, 300, "..\\resources\\maps\\hud_1.png");

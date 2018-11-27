@@ -23,5 +23,6 @@ public enum ID {
     Elixir(),
     WorldItem(),
     Chest(),
+    Boss(),
     Camera();
 }

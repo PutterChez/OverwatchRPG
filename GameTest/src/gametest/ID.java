@@ -24,5 +24,6 @@ public enum ID {
     WorldItem(),
     Chest(),
     Boss(),
+    Quest(),
     Camera();
 }

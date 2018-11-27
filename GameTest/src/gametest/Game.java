@@ -369,6 +369,15 @@ public class Game extends Canvas implements Runnable {
         BattlePhaseEntity bastion = new BattlePhaseEntity(POS2.x, POS2.y, ID.Enemy, 170, 170, "..\\resources\\characters_fixed\\bastion_2.png", 200, 200, "Bastion", 40, 10, 40, 10);
         BattlePhaseEntity junkrat = new BattlePhaseEntity(POS3.x, POS3.y, ID.Enemy, 170, 170, "..\\resources\\characters_fixed\\jake_2.png", 200, 200, "Junkrat", 40, 10, 50, 30);
         
+        //Sombra skill
+        Skill smg = new Skill("SMG", 100, 10, 120);
+        Skill hack = new Skill("Hack", 120, 40, 80);
+        Skill emp = new Skill("EMP", 160, 100, 140);
+        sombra.addSkill(smg);
+        sombra.addSkill(hack);
+        sombra.addSkill(emp);
+
+        
         //Bastion skill
         Skill reconShot = new Skill("Recon Shot", 90, 10, 90);
         Skill sentryBarrage = new Skill("Sentry Barrage", 150, 40, 100);

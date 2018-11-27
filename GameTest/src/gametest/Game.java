@@ -238,8 +238,12 @@ public class Game extends Canvas implements Runnable {
         
         handler.addWorldColisionObject(mei_log);
         
-        WorldPhaseEntity mei_pots = new WorldPhaseEntity(640, -2230, ID.NPC, 60, 60, path, "obj_mei_stool");
+        WorldPhaseEntity mei_pots = new WorldPhaseEntity(640, -2230, ID.Chest, 60, 60, path, "obj_mei_stool");
         mei_pots.addDialogue("It looks like Mei's growing something.");
+         
+        HPItem demonDrug = new HPItem(ID.Item, "Demon Drug", 400);
+        demonDrug.setAttributeAtk(100);
+        mei_pots.addLoot(demonDrug);
         
         handler.addWorldColisionObject(mei_pots);
         

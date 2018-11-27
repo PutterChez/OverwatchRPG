@@ -479,6 +479,7 @@ public class Game extends Canvas implements Runnable {
         reinhardt.addSkill(earthshatter);
 
         //Battle NPC Test-----------------------------------------------------------------------------------------------------
+        /*
         WorldPhaseEntity Dva = new WorldPhaseEntity(1150, 490, ID.BattleNPC, 150, 130, "..\\resources\\characters_world\\dva_1.png", "DvaBattle");
         //Pre - Battle Dialogue
         Dva.addDialogue("D.Va: Soldier asked me to train you! Time to raise my APM!");
@@ -486,7 +487,9 @@ public class Game extends Canvas implements Runnable {
         Dva.addDialogue("D.Va: Nice one!");
         Dva.addDialogue("D.Va: Good luck! Love, D.VA! >:3");
         handler.addWorldColisionObject(Dva);
+        */
 
+        /*
         //Add Enemy into the Party
         BattlePhaseEntity dva = new BattlePhaseEntity(POS1.x, POS1.y, ID.Enemy, 200, 200, "..\\resources\\characters_fixed\\dva_2.png", 250, 200, "D.Va", 40, 10, 100, 10);
         Skill fusionCannons = new Skill("Fusion Cannons", 100, 40, 80);
@@ -499,6 +502,7 @@ public class Game extends Canvas implements Runnable {
         dva.addSkill(microMissiles);
         dva.addSkill(boosters);
         Dva.addEnemyPartyMember(dva, 0);
+        */
 
         //Reaper Encounter 1
         WorldPhaseEntity reaper_noob = new WorldPhaseEntity(820, -620, ID.BattleNPC, 120, 120, "..\\resources\\characters_world\\reaper_1.png", "ReaperBattle");
@@ -518,6 +522,7 @@ public class Game extends Canvas implements Runnable {
         //Item Test-----------------------------------------------------------------------------------------------------------
 
         //Chest Test-----------------------------------------------------------------------------------------------------------
+        /*
         WorldPhaseEntity behindHouseChest = new WorldPhaseEntity(465, -150, ID.Chest, 50, 50, "..\\resources\\misc\\chest_closed.png", "BehindHouseChest");
         behindHouseChest.addDialogue("Is this Roadhog's chest?");
         behindHouseChest.addDialogue(" 'You can take anything you want from this chest' - Mr.Goodaim");
@@ -530,7 +535,8 @@ public class Game extends Canvas implements Runnable {
         behindHouseChest2.addDialogue(" 'Goodluck on your mission' - Love, D.Va");
         behindHouseChest2.addLoot(new MoneyItem(ID.Item, "1000 $", 1000));
         handler.addWorldColisionObject(behindHouseChest2);
-
+        */
+        
         //Merchant Test-------------------------------------------------------------------------------------------------------
         //Merchant must have only 1 item in the itemList
         //Mei Merchant
@@ -539,6 +545,7 @@ public class Game extends Canvas implements Runnable {
 
         //handler.addWorldColisionObject(testMerchant);
 
+        /*
         WorldPhaseEntity hpBox = new WorldPhaseEntity(777, -2125, ID.Merchant, 62, 92, "..\\resources\\misc\\fruit_1.png", "HPBox");
         hpBox.addLoot(HP1);
 
@@ -553,6 +560,7 @@ public class Game extends Canvas implements Runnable {
         elixirBox.addLoot(Elixir);
 
         handler.addWorldColisionObject(elixirBox);
+        */
 
 
         //END OF NPCS

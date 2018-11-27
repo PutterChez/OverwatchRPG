@@ -249,6 +249,7 @@ class ActionControl extends KeyAdapter {
                                             if(enemyParty.memberList.get(k).entity.isMissed())
                                                 enemyParty.memberList.get(k).entity.setMissed(false);
                                         }
+                                        enemyHUD.setShowDisplay(false);
                                     }
                             
                             

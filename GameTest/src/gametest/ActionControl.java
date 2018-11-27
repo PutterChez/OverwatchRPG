@@ -1070,6 +1070,11 @@ class ActionControl extends KeyAdapter {
                                 SFX.play();
                                 player.setDialogue(temp_String);
                             } else {
+                                if(obj.id == ID.Boss)
+                                {
+                                    //GameExitCode here
+                                    System.out.println("GameExit");
+                                }
                                 obj.die();
                                 handler.uninteracted();
                                 player.unInteracted();

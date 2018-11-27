@@ -45,7 +45,8 @@ public class HUD extends GameObject{
             else if(name.equals("Enemy Party")){
                 g.setFont(new Font("Minecraft Bold", Font.PLAIN, 30));
                 g.setColor(Color.RED);
-                g.drawString(party.memberList.get(selectedPlayer).entity.getDisplayString(), x + 300, y - 500);
+                if(party.memberList.get(selectedPlayer).entity.alive())
+                    g.drawString(party.memberList.get(selectedPlayer).entity.getDisplayString(), x + 300, y - 500);
             }
         }
         

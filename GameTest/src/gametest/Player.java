@@ -19,7 +19,7 @@ import javax.swing.ImageIcon;
  * @author DELL
  */
 public class Player extends WorldPhaseEntity{
-    protected int currentSpeed = 6;
+    protected int currentSpeed = 12;
     protected Direction direction = Direction.North;
     protected WorldPhaseEntity interactW, interactA, interactS, interactD;
     protected LinkedList<WorldPhaseEntity> interactList; 

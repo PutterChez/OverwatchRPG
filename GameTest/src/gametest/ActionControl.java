@@ -229,7 +229,10 @@ class ActionControl extends KeyAdapter {
                                         for(int k = 0; k < enemyParty.memberList.size(); k++)
                                         {
                                             if(attack_list.get(j).getCharName().equals(enemyParty.memberList.get(k).entity.getCharName())){
-                                                System.out.println(enemyParty.memberList.get(k).entity.getCharName() + " attacked " + enemyParty.memberList.get(k).entity.getTarget().getCharName()
+                                                enemyHUD.setShowDisplay(true);
+                                                enemyHUD.setSelectedPlayer(k);
+                                                
+                                                enemyParty.memberList.get(k).entity.setDisplayString(enemyParty.memberList.get(k).entity.getCharName() + " attacked " + enemyParty.memberList.get(k).entity.getTarget().getCharName()
                                                 + " using " + enemyParty.memberList.get(k).entity.getSelectSkill().skillName);
                                                 Action.attack(enemyParty.memberList.get(k).entity, enemyParty.memberList.get(k).entity.getSelectSkill(), enemyParty.memberList.get(k).entity.getTarget());
                                                 enemyParty.memberList.get(k).entity.x += 100;
@@ -438,7 +441,10 @@ class ActionControl extends KeyAdapter {
                                         for(int k = 0; k < enemyParty.memberList.size(); k++)
                                         {
                                             if(attack_list.get(j).getCharName().equals(enemyParty.memberList.get(k).entity.getCharName())){
-                                                System.out.println(enemyParty.memberList.get(k).entity.getCharName() + " attacked " + enemyParty.memberList.get(k).entity.getTarget().getCharName()
+                                                enemyHUD.setShowDisplay(true);
+                                                enemyHUD.setSelectedPlayer(k);
+                                                
+                                                enemyParty.memberList.get(k).entity.setDisplayString(enemyParty.memberList.get(k).entity.getCharName() + " attacked " + enemyParty.memberList.get(k).entity.getTarget().getCharName()
                                                 + " using " + enemyParty.memberList.get(k).entity.getSelectSkill().skillName);
                                                 Action.attack(enemyParty.memberList.get(k).entity, enemyParty.memberList.get(k).entity.getSelectSkill(), enemyParty.memberList.get(k).entity.getTarget());
                                                 enemyParty.memberList.get(k).entity.x += 100;

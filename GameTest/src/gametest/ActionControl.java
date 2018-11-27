@@ -739,6 +739,7 @@ class ActionControl extends KeyAdapter {
                                         System.out.println("Exit Battle Phase: Player NOOB");
                                         handler.battlePhaseOff();
                                         player.battlePhaseOff();
+                                        player.unInteracted();
 
                                         handler.stopBGM();
                                         handler.setBGM("..\\resources\\music\\SadViolin.wav");
@@ -1223,6 +1224,7 @@ class ActionControl extends KeyAdapter {
             System.out.println("Exit Battle Phase: Player NOOB");
             handler.battlePhaseOff();
             player.battlePhaseOff();
+            player.unInteracted();
             
             handler.stopBGM();
             handler.setBGM("..\\resources\\music\\SadViolin.wav");

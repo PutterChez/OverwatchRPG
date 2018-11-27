@@ -50,6 +50,8 @@ class ActionControl extends KeyAdapter {
     ArrayList<BattlePhaseEntity> attack_list;
     int cursorPos = 0, selectPos = 0, enemySelectPos = 0, selectedPlayer = 0, finalPosX = 950, finalPosY = 660;
     
+    WorldPhaseEntity currentBattleNPC;
+    
     Item selectItem;
     int itemCursorColumn = 0;
     int itemCursorRow = 0;
@@ -685,55 +687,58 @@ class ActionControl extends KeyAdapter {
                                         playerHUD.setShowDisplay(false);
                                     }
                                     for (int t = 0; t < enemyParty.memberList.size(); t++) {
-            if (!enemyParty.memberList.get(t).entity.alive()) {
-                System.out.println("Dead: " + enemyParty.memberList.get(t).entity.charName);
-                enemyParty.deleteMember(t);
-            }
-        }
-        
-        for (int t = 0; t < playerParty.memberList.size(); t++) {
-            if (!playerParty.memberList.get(t).entity.alive()) {
-                System.out.println("Dead: " + playerParty.memberList.get(t).entity.charName);
-                playerParty.deleteMember(t);
-            }
-        }
+                                        if (!enemyParty.memberList.get(t).entity.alive()) {
+                                            System.out.println("Dead: " + enemyParty.memberList.get(t).entity.charName);
+                                            enemyParty.deleteMember(t);
+                                        }
+                                    }
 
-        if (enemyParty.memberList.size() <= 0) {
-            PopUp = false;
-            System.out.println("Exit Battle Phase");
-            handler.battlePhaseOff();
-            player.battlePhaseOff();
-            handler.stopBGM();
-            break;
-        
-            /*
-            for (WorldPhaseEntity obj : handler.colisionList) {
-                WorldPhaseEntity temp = player.getInteractArea();
-                if (obj.checkColision(temp)) {
-                    if (obj.getId() == ID.BattleNPC) {
-                        String tempString = obj.getDialogue();
-                        System.out.println(tempString);
-                        player.setDialogue(tempString);
-                    }
-                }
-            }
-                    */
-        }
-        
-            
-        if (playerParty.memberList.size() <= 0){
-            PopUp = false;
-            skillListSelect = false;
-            System.out.println("Exit Battle Phase: Player NOOB");
-            handler.battlePhaseOff();
-            player.battlePhaseOff();
-            
-            handler.stopBGM();
-            handler.setBGM("..\\resources\\music\\SadViolin.wav");
-            handler.playBGM();
-            handler.gameOver = true;
-            break;
-        }
+                                    for (int t = 0; t < playerParty.memberList.size(); t++) {
+                                        if (!playerParty.memberList.get(t).entity.alive()) {
+                                            System.out.println("Dead: " + playerParty.memberList.get(t).entity.charName);
+                                            playerParty.deleteMember(t);
+                                        }
+                                    }
+
+                                    if (enemyParty.memberList.size() <= 0) {
+                                        PopUp = false;
+                                        System.out.println("Exit Battle Phase");
+                                        player.setDialogue(currentBattleNPC.getDialogue());
+                                        
+                                        
+                                        handler.battlePhaseOff();
+                                        player.battlePhaseOff();
+                                        handler.stopBGM();
+                                        break;
+
+                                        /*
+                                        for (WorldPhaseEntity obj : handler.colisionList) {
+                                            WorldPhaseEntity temp = player.getInteractArea();
+                                            if (obj.checkColision(temp)) {
+                                                if (obj.getId() == ID.BattleNPC) {
+                                                    String tempString = obj.getDialogue();
+                                                    System.out.println(tempString);
+                                                    player.setDialogue(tempString);
+                                                }
+                                            }
+                                        }
+                                                */
+                                    }
+
+
+                                    if (playerParty.memberList.size() <= 0){
+                                        PopUp = false;
+                                        skillListSelect = false;
+                                        System.out.println("Exit Battle Phase: Player NOOB");
+                                        handler.battlePhaseOff();
+                                        player.battlePhaseOff();
+
+                                        handler.stopBGM();
+                                        handler.setBGM("..\\resources\\music\\SadViolin.wav");
+                                        handler.playBGM();
+                                        handler.gameOver = true;
+                                        break;
+                                    }
                                 }
                                 
                                 
@@ -1009,6 +1014,9 @@ class ActionControl extends KeyAdapter {
                                 player.setDialogue(obj.getDialogue());
                                 player.interacted();
 
+                                //PunPunEdit_Temp
+                                currentBattleNPC = obj;
+                                
                                 SFX.setSoundDirectory("..\\resources\\sfx\\DialogueChange.wav");
                                 SFX.play();
 

@@ -349,25 +349,33 @@ public class Game extends Canvas implements Runnable {
 
 
         //BattlePhase Part----------------------------------------------------------------------------------------------------
-        BattlePhaseEntity genji = new BattlePhaseEntity(P_POS1.x, P_POS1.y, ID.Ally, 230, 230, "..\\resources\\characters_fixed\\genji_1.png", 200, 200, "Genji", 40, 10, 100, 60);
-        BattlePhaseEntity mccree = new BattlePhaseEntity(P_POS2.x, P_POS2.y, ID.Ally, 170, 170, "..\\resources\\characters_fixed\\mccree_1.png", 250, 200, "Mccree", 40, 10, 70, 30);
-        BattlePhaseEntity mercy = new BattlePhaseEntity(P_POS3.x, P_POS3.y, ID.Ally, 230, 230, "..\\resources\\characters_fixed\\mercy_1.png", 200, 150, "Mercy", 40, 10, 80, 50);
-        BattlePhaseEntity reinhardt = new BattlePhaseEntity(P_POS4.x, P_POS4.y, ID.Ally, 280, 250, "..\\resources\\characters_fixed\\rein_1.png", 500, 150, "Reinhardt", 40, 10, 40, 10);
+        BattlePhaseEntity genji = new BattlePhaseEntity(P_POS1.x, P_POS1.y, ID.Ally, 230, 230, "..\\resources\\characters_fixed\\genji_1.png", 200, 200, "Genji", 999, 10, 100, 60);
+        BattlePhaseEntity mccree = new BattlePhaseEntity(P_POS2.x, P_POS2.y, ID.Ally, 170, 170, "..\\resources\\characters_fixed\\mccree_1.png", 250, 200, "Mccree", 999, 10, 70, 30);
+        BattlePhaseEntity mercy = new BattlePhaseEntity(P_POS3.x, P_POS3.y, ID.Ally, 230, 230, "..\\resources\\characters_fixed\\mercy_1.png", 200, 150, "Mercy", 999, 10, 80, 50);
+        BattlePhaseEntity reinhardt = new BattlePhaseEntity(P_POS4.x, P_POS4.y, ID.Ally, 280, 250, "..\\resources\\characters_fixed\\rein_1.png", 500, 150, "Reinhardt", 999, 10, 40, 10);
 
         genji.setCharIcon("..\\resources\\character_heads\\genji_ult.png");
         mccree.setCharIcon("..\\resources\\character_heads\\mccree_ult.png");
         mercy.setCharIcon("..\\resources\\character_heads\\mercy_ult.png");
         reinhardt.setCharIcon("..\\resources\\character_heads\\rein_ult.png");
  
-        BattlePhaseEntity reaper = new BattlePhaseEntity(POS1.x, POS1.y, ID.Enemy, 170, 170, "..\\resources\\characters_fixed\\reaper_2.png", 200, 200, "Reaper", 40, 10, 60, 50);
-        BattlePhaseEntity widowmaker = new BattlePhaseEntity(POS2.x, POS2.y, ID.Enemy, 170, 170, "..\\resources\\characters_fixed\\widow_2.png", 200, 200, "Widowmaker", 40, 10, 100, 50);
-        BattlePhaseEntity doomfist = new BattlePhaseEntity(POS3.x, POS3.y, ID.Enemy, 170, 170, "..\\resources\\characters_fixed\\doom_2.png", 250, 200, "Doomfist", 40, 10, 60, 40);
-        BattlePhaseEntity sombra = new BattlePhaseEntity(POS4.x, POS4.y, ID.Enemy, 170, 170, "..\\resources\\characters_fixed\\sombra_2.png", 200, 200, "Sombra", 40, 10, 60, 50);
+        BattlePhaseEntity reaper = new BattlePhaseEntity(POS1.x, POS1.y, ID.Enemy, 170, 170, "..\\resources\\characters_fixed\\reaper_2.png", 200, 200, "Reaper", 40, 10, 60, 10);
+        BattlePhaseEntity widowmaker = new BattlePhaseEntity(POS2.x, POS2.y, ID.Enemy, 170, 170, "..\\resources\\characters_fixed\\widow_2.png", 200, 200, "Widowmaker", 40, 10, 100, 10);
+        BattlePhaseEntity doomfist = new BattlePhaseEntity(POS3.x, POS3.y, ID.Enemy, 170, 170, "..\\resources\\characters_fixed\\doom_2.png", 250, 200, "Doomfist", 40, 10, 60, 10);
+        BattlePhaseEntity sombra = new BattlePhaseEntity(POS4.x, POS4.y, ID.Enemy, 170, 170, "..\\resources\\characters_fixed\\sombra_2.png", 200, 200, "Sombra", 40, 10, 60, 10);
         
 
         BattlePhaseEntity ashe = new BattlePhaseEntity(POS1.x, POS1.y, ID.Enemy, 170, 170, "..\\resources\\characters_fixed\\ashe_2.png", 200, 200, "Ashe", 40, 10, 50, 30);
         BattlePhaseEntity bastion = new BattlePhaseEntity(POS2.x, POS2.y, ID.Enemy, 170, 170, "..\\resources\\characters_fixed\\bastion_2.png", 200, 200, "Bastion", 40, 10, 40, 10);
         BattlePhaseEntity junkrat = new BattlePhaseEntity(POS3.x, POS3.y, ID.Enemy, 170, 170, "..\\resources\\characters_fixed\\jake_2.png", 200, 200, "Junkrat", 40, 10, 50, 30);
+        
+        //Sombra skill
+        Skill smg = new Skill("SMG", 100, 10, 120);
+        Skill hack = new Skill("Hack", 120, 40, 80);
+        Skill emp = new Skill("EMP", 160, 100, 140);
+        sombra.addSkill(smg);
+        sombra.addSkill(hack);
+        sombra.addSkill(emp);
         
         //Bastion skill
         Skill reconShot = new Skill("Recon Shot", 90, 10, 90);

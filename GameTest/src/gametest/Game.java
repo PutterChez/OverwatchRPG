@@ -359,10 +359,10 @@ public class Game extends Canvas implements Runnable {
         mercy.setCharIcon("..\\resources\\character_heads\\mercy_ult.png");
         reinhardt.setCharIcon("..\\resources\\character_heads\\rein_ult.png");
  
-        BattlePhaseEntity reaper = new BattlePhaseEntity(POS1.x, POS1.y, ID.Enemy, 170, 170, "..\\resources\\characters_fixed\\reaper_2.png", 200, 200, "Reaper", 40, 10, 60, 10);
-        BattlePhaseEntity widowmaker = new BattlePhaseEntity(POS2.x, POS2.y, ID.Enemy, 170, 170, "..\\resources\\characters_fixed\\widow_2.png", 200, 200, "Widowmaker", 40, 10, 100, 10);
-        BattlePhaseEntity doomfist = new BattlePhaseEntity(POS3.x, POS3.y, ID.Enemy, 170, 170, "..\\resources\\characters_fixed\\doom_2.png", 250, 200, "Doomfist", 40, 10, 60, 10);
-        BattlePhaseEntity sombra = new BattlePhaseEntity(POS4.x, POS4.y, ID.Enemy, 170, 170, "..\\resources\\characters_fixed\\sombra_2.png", 200, 200, "Sombra", 40, 10, 60, 10);
+        BattlePhaseEntity reaper = new BattlePhaseEntity(POS1.x, POS1.y, ID.Enemy, 170, 170, "..\\resources\\characters_fixed\\reaper_2.png", 200, 200, "Reaper", 999, 10, 60, 10);
+        BattlePhaseEntity widowmaker = new BattlePhaseEntity(POS2.x, POS2.y, ID.Enemy, 170, 170, "..\\resources\\characters_fixed\\widow_2.png", 200, 200, "Widowmaker", 999, 10, 100, 10);
+        BattlePhaseEntity doomfist = new BattlePhaseEntity(POS3.x, POS3.y, ID.Enemy, 170, 170, "..\\resources\\characters_fixed\\doom_2.png", 250, 200, "Doomfist", 999, 10, 60, 10);
+        BattlePhaseEntity sombra = new BattlePhaseEntity(POS4.x, POS4.y, ID.Enemy, 170, 170, "..\\resources\\characters_fixed\\sombra_2.png", 200, 200, "Sombra", 999, 10, 60, 10);
         
 
         BattlePhaseEntity ashe = new BattlePhaseEntity(POS1.x, POS1.y, ID.Enemy, 170, 170, "..\\resources\\characters_fixed\\ashe_2.png", 200, 200, "Ashe", 40, 10, 50, 30);
@@ -641,6 +641,8 @@ public class Game extends Canvas implements Runnable {
         //2 3
         //4 5
         Party enemyParty = new Party();
+        BattlePhaseEntity temp = new BattlePhaseEntity(POS2.x, POS2.y, ID.Enemy, 170, 170, "..\\resources\\characters_fixed\\widow_2.png", 200, 200, "Widowmaker", 40, 10, 50, 20);
+        enemyParty.addMember(temp, 1);
         //PunPun Lazy af
         //enemyParty.addMember(sombra, 3);
         //enemyParty.addMember(bastion, 5);

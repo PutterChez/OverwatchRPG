@@ -1173,7 +1173,7 @@ class ActionControl extends KeyAdapter {
         
         //Check for alive member of the enemyParty
         
-        /*
+        
         for (int i = 0; i < enemyParty.memberList.size(); i++) {
             if (!enemyParty.memberList.get(i).entity.alive()) {
                 System.out.println("Dead: " + enemyParty.memberList.get(i).entity.charName);
@@ -1187,9 +1187,9 @@ class ActionControl extends KeyAdapter {
                 playerParty.deleteMember(i);
             }
         }
-        */
+        
 
-        /*
+        
         if (enemyParty.memberList.size() <= 0) {
             PopUp = false;
             System.out.println("Exit Battle Phase");
@@ -1197,7 +1197,7 @@ class ActionControl extends KeyAdapter {
             player.battlePhaseOff();
             handler.stopBGM();
         }
-        */
+        
         
             /*
             for (WorldPhaseEntity obj : handler.colisionList) {
@@ -1214,7 +1214,7 @@ class ActionControl extends KeyAdapter {
         }
         */
         
-        /*
+        
         if (playerParty.memberList.size() <= 0){
             PopUp = false;
             skillListSelect = false;
@@ -1227,7 +1227,7 @@ class ActionControl extends KeyAdapter {
             handler.playBGM();
             handler.gameOver = true;
         }
-                */
+                
         
 
         player.setVelX(0);

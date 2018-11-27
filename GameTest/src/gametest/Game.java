@@ -283,9 +283,17 @@ public class Game extends Canvas implements Runnable {
         BattlePhaseEntity reaper = new BattlePhaseEntity(POS3.x, POS3.y, ID.Boss, 170, 170, "..\\resources\\characters_fixed\\reaper_2.png", 200, 200, "Reaper", 40, 10, 60, 50);
         BattlePhaseEntity junkrat = new BattlePhaseEntity(POS4.x, POS4.y, ID.Enemy, 170, 170, "..\\resources\\characters_fixed\\jake_2.png", 200, 200, "Junkrat", 40, 10, 50, 30);
         BattlePhaseEntity sombra = new BattlePhaseEntity(POS5.x, POS5.y, ID.Enemy, 170, 170, "..\\resources\\characters_fixed\\sombra_2.png", 200, 200, "Sombra", 40, 10, 60, 50);
-        BattlePhaseEntity bastion = new BattlePhaseEntity(POS6.x, POS6.y, ID.Enemy, 170, 170, "..\\resources\\characters_fixed\\bastion_2.png", 200, 200, "Bastion", 40, 10, 40, 10);
+        BattlePhaseEntity bastion = new BattlePhaseEntity(POS2.x, POS2.y, ID.Enemy, 170, 170, "..\\resources\\characters_fixed\\bastion_2.png", 200, 200, "Bastion", 40, 10, 40, 10);
         
         BattlePhaseEntity ashe = new BattlePhaseEntity(POS1.x, POS1.y, ID.Enemy, 170, 170, "..\\resources\\characters_fixed\\ashe_2.png", 200, 200, "Ashe", 40, 10, 50, 30);
+        
+        //Bastion skill
+        Skill reconShot = new Skill("Recon Shot", 90, 10, 90);
+        Skill sentryBarrage = new Skill("Sentry Barrage", 150, 40, 100);
+        Skill tankShot = new Skill("Tank Shot", 200, 100, 90);
+        bastion.addSkill(reconShot);
+        bastion.addSkill(sentryBarrage);
+        bastion.addSkill(tankShot);    
         
         //Ashe skill
         Skill viperHip = new Skill("Viper Hip Shot", 80, 10, 80);
@@ -438,8 +446,22 @@ public class Game extends Canvas implements Runnable {
         BattlePhaseEntity reaper_noob_battle = new BattlePhaseEntity(POS1.x, POS1.y, ID.Enemy, 150, 150, "..\\resources\\characters_fixed\\reaper_2.png", 250, 200, "Reaper", 50, 15, 40, 10);
         reaper_noob_battle.addSkill(spreadShot);
         reaper_noob_battle.addSkill(pointBlank);
+        BattlePhaseEntity widowmaker_noob = new BattlePhaseEntity(POS2.x, POS2.y, ID.Enemy, 170, 170, "..\\resources\\characters_fixed\\widow_2.png", 200, 200, "Widowmaker", 40, 10, 50, 20);
+        widowmaker_noob.addSkill(scopeShot);
+        widowmaker_noob.addSkill(jumpShot);
         reaper_noob.addEnemyPartyMember(reaper_noob_battle, 0);
-        reaper_noob.addEnemyPartyMember(widowmaker, 1);
+        reaper_noob.addEnemyPartyMember(widowmaker_noob, 1);
+        
+        //Ashe 1
+        WorldPhaseEntity ashe_world = new WorldPhaseEntity(1080, -1500, ID.BattleNPC, 120, 120, "..\\resources\\characters_world\\ashe_1.png", "AsheBattle");
+        //Pre - Battle Dialogue
+        ashe_world.addDialogue("Ashe: Where you ya think you're going McCree?");
+        //Post - Battle Dialogue
+        ashe_world.addDialogue("Ashe: I'll get you next time!");
+        handler.addWorldColisionObject(ashe_world);
+        
+        ashe_world.addEnemyPartyMember(ashe, 0);
+        ashe_world.addEnemyPartyMember(bastion, 1);
         
         //Item Test-----------------------------------------------------------------------------------------------------------
         

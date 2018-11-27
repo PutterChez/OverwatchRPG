@@ -1080,6 +1080,8 @@ class ActionControl extends KeyAdapter {
                             } else {
                                 if(obj.id == ID.Boss)
                                 {
+                                    handler.uninteracted();
+                                    player.unInteracted();
                                     //GameExitCode here
                                     handler.gameWin = true;
                                     System.out.println("GameExit");

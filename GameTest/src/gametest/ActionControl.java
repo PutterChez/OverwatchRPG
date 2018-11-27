@@ -399,7 +399,7 @@ class ActionControl extends KeyAdapter {
                                     for (WorldPhaseEntity obj : handler.colisionList) {
                                         WorldPhaseEntity temp = player.getInteractArea();
                                         if (obj.checkColision(temp)) {
-                                            if (obj.getId() == ID.BattleNPC) {
+                                            if (obj.getId() == ID.BattleNPC || obj.id == ID.Boss) {
                                                 String temp_String = obj.getDialogue();
                                                 while (temp_String != null) {
                                                     temp_String = obj.getDialogue();
@@ -1015,7 +1015,7 @@ class ActionControl extends KeyAdapter {
                         }
 
                         try {
-                            if (obj.id == ID.BattleNPC) {
+                            if (obj.id == ID.BattleNPC || obj.id == ID.Boss) {
                                 handler.interacted();
                                 player.setDialogue(obj.getDialogue());
                                 player.interacted();
@@ -1063,7 +1063,7 @@ class ActionControl extends KeyAdapter {
                                 handler.uninteracted();
                                 player.unInteracted();
                             }
-                        } else if (obj.getId() == ID.BattleNPC) {
+                        } else if (obj.getId() == ID.BattleNPC || obj.id == ID.Boss) {
                             String temp_String = obj.getDialogue();
                             if (temp_String != null) {
                                 SFX.setSoundDirectory("..\\resources\\sfx\\DialogueChange.wav");

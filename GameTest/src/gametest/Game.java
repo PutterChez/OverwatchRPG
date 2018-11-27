@@ -256,6 +256,7 @@ public class Game extends Canvas implements Runnable {
         //Interaction Test----------------------------------------------------------------------------------------------------
         WorldPhaseEntity s76 = new WorldPhaseEntity(800, 630, ID.NPC, 120, 94, "..\\resources\\characters_world\\76_2.png", "S76");
         s76.addDialogue("Soldier 76: Recruit, your mission is to eliminate Talon's leader: Reaper!");
+        s76.addDialogue("Soldier 76: Agents Genji, Reinhardt, Mercy, and McCree are on your team.");
         s76.addDialogue("Soldier 76: Get to it! Ask the people around here about his whereabouts.");
         s76.addDialogue("Soldier 76: Oh, and go to Agent D.VA for your training.");
         handler.addWorldColisionObject(s76);
@@ -273,9 +274,9 @@ public class Game extends Canvas implements Runnable {
         handler.addWorldColisionObject(meiNPC);
 
         WorldPhaseEntity  brigNPC = new WorldPhaseEntity(1028 , -1639, ID.NPC, 130, 98, "..\\resources\\characters_world\\brig_2.png", "Brigitte");
-        brigNPC.addDialogue("Brigitte : SOME DIALOGUE1" );
-        brigNPC.addDialogue("Brigitte : SOME DIALOGUE2" );
-        brigNPC.addDialogue("Brigitte : SOME DIALOGUE3" );
+        brigNPC.addDialogue("Brigitte: Hey recruit! Thanks for driving Reaper away." );
+        brigNPC.addDialogue("Brigitte: The shop is up there, and Reaper ran to the right." );
+        brigNPC.addDialogue("Brigitte: Be carefull of Ashe though, she's blocking the way!" );
         handler.addWorldColisionObject(brigNPC);
 
         //Battle NPC Test-----------------------------------------------------------------------------------------------------
@@ -351,16 +352,17 @@ public class Game extends Canvas implements Runnable {
         mccree.setCharIcon("..\\resources\\character_heads\\mccree_ult.png");
         mercy.setCharIcon("..\\resources\\character_heads\\mercy_ult.png");
         reinhardt.setCharIcon("..\\resources\\character_heads\\rein_ult.png");
-
-        BattlePhaseEntity doomfist = new BattlePhaseEntity(POS1.x, POS1.y, ID.Enemy, 170, 170, "..\\resources\\characters_fixed\\doom_2.png", 250, 200, "Doomfist", 40, 10, 60, 40);
+ 
+        BattlePhaseEntity reaper = new BattlePhaseEntity(POS1.x, POS1.y, ID.Enemy, 170, 170, "..\\resources\\characters_fixed\\reaper_2.png", 200, 200, "Reaper", 40, 10, 60, 50);
         BattlePhaseEntity widowmaker = new BattlePhaseEntity(POS2.x, POS2.y, ID.Enemy, 170, 170, "..\\resources\\characters_fixed\\widow_2.png", 200, 200, "Widowmaker", 40, 10, 100, 50);
-        BattlePhaseEntity reaper = new BattlePhaseEntity(POS3.x, POS3.y, ID.Boss, 170, 170, "..\\resources\\characters_fixed\\reaper_2.png", 200, 200, "Reaper", 40, 10, 60, 50);
-        BattlePhaseEntity junkrat = new BattlePhaseEntity(POS4.x, POS4.y, ID.Enemy, 170, 170, "..\\resources\\characters_fixed\\jake_2.png", 200, 200, "Junkrat", 40, 10, 50, 30);
-        BattlePhaseEntity sombra = new BattlePhaseEntity(POS5.x, POS5.y, ID.Enemy, 170, 170, "..\\resources\\characters_fixed\\sombra_2.png", 200, 200, "Sombra", 40, 10, 60, 50);
-        BattlePhaseEntity bastion = new BattlePhaseEntity(POS2.x, POS2.y, ID.Enemy, 170, 170, "..\\resources\\characters_fixed\\bastion_2.png", 200, 200, "Bastion", 40, 10, 40, 10);
+        BattlePhaseEntity doomfist = new BattlePhaseEntity(POS3.x, POS3.y, ID.Enemy, 170, 170, "..\\resources\\characters_fixed\\doom_2.png", 250, 200, "Doomfist", 40, 10, 60, 40);
+        BattlePhaseEntity sombra = new BattlePhaseEntity(POS4.x, POS4.y, ID.Enemy, 170, 170, "..\\resources\\characters_fixed\\sombra_2.png", 200, 200, "Sombra", 40, 10, 60, 50);
+        
 
         BattlePhaseEntity ashe = new BattlePhaseEntity(POS1.x, POS1.y, ID.Enemy, 170, 170, "..\\resources\\characters_fixed\\ashe_2.png", 200, 200, "Ashe", 40, 10, 50, 30);
-
+        BattlePhaseEntity bastion = new BattlePhaseEntity(POS2.x, POS2.y, ID.Enemy, 170, 170, "..\\resources\\characters_fixed\\bastion_2.png", 200, 200, "Bastion", 40, 10, 40, 10);
+        BattlePhaseEntity junkrat = new BattlePhaseEntity(POS3.x, POS3.y, ID.Enemy, 170, 170, "..\\resources\\characters_fixed\\jake_2.png", 200, 200, "Junkrat", 40, 10, 50, 30);
+        
         //Bastion skill
         Skill reconShot = new Skill("Recon Shot", 90, 10, 90);
         Skill sentryBarrage = new Skill("Sentry Barrage", 150, 40, 100);
@@ -531,7 +533,7 @@ public class Game extends Canvas implements Runnable {
         reaper_noob.addEnemyPartyMember(widowmaker_noob, 1);
 
         //Ashe 1
-        WorldPhaseEntity ashe_world = new WorldPhaseEntity(1080, -1500, ID.BattleNPC, 120, 120, "..\\resources\\characters_world\\ashe_1.png", "AsheBattle");
+        WorldPhaseEntity ashe_world = new WorldPhaseEntity(2300, -1550, ID.BattleNPC, 120, 120, "..\\resources\\characters_world\\ashe_1.png", "AsheBattle");
         //Pre - Battle Dialogue
         ashe_world.addDialogue("Ashe: Where you ya think you're going McCree?");
         //Post - Battle Dialogue
@@ -540,6 +542,20 @@ public class Game extends Canvas implements Runnable {
 
         ashe_world.addEnemyPartyMember(ashe, 0);
         ashe_world.addEnemyPartyMember(bastion, 1);
+        ashe_world.addEnemyPartyMember(junkrat, 2);
+        
+        //FinalBoss
+        WorldPhaseEntity reaper_final = new WorldPhaseEntity(4160, -1490, ID.Boss, 180, 180, "..\\resources\\characters_world\\reaper_1.png", "ReaperFinalBattle");
+        //Pre - Battle Dialogue
+        reaper_final.addDialogue("Reaper: I'm not going down without a fight!");
+        //Post - Battle Dialogue
+        reaper_final.addDialogue("Reaper: I'll get you next time!");
+        handler.addWorldColisionObject(reaper_final);
+
+        reaper_final.addEnemyPartyMember(reaper, 0);
+        reaper_final.addEnemyPartyMember(widowmaker, 1);
+        reaper_final.addEnemyPartyMember(doomfist, 2);
+        reaper_final.addEnemyPartyMember(sombra, 3);
 
         //Item Test-----------------------------------------------------------------------------------------------------------
 
@@ -611,10 +627,6 @@ public class Game extends Canvas implements Runnable {
         //2 3
         //4 5
         Party enemyParty = new Party();
-        enemyParty.addMember(doomfist, 0);
-        enemyParty.addMember(widowmaker, 2);
-        enemyParty.addMember(reaper, 4);
-        enemyParty.addMember(junkrat, 1);
         //PunPun Lazy af
         //enemyParty.addMember(sombra, 3);
         //enemyParty.addMember(bastion, 5);

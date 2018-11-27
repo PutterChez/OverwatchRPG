@@ -28,6 +28,7 @@ class ActionControl extends KeyAdapter {
     //private int mapSpeed = 1;
     Party playerParty;
     Party enemyParty;
+    Party tempEnemyParty;
     Player player;
     Map currentMap;
 
@@ -387,6 +388,12 @@ class ActionControl extends KeyAdapter {
                                     
                                     PopUp = false;
                                     
+                                    for(WorldPhaseEntity o : handler.colisionList)
+                                    {
+                                        if(o.checkColision(player))
+                                            if(o.getId() == ID.BattleNPC)
+                                                o.enemyParty = tempEnemyParty;
+                                    }
                                     
                                     for(GameObject obj : handler.objectList)
                                         if(obj.getId() == ID.PopUp)
@@ -1040,7 +1047,9 @@ class ActionControl extends KeyAdapter {
                                     handler.removeObject(tempName);
                                 }
 
+                             
                                 enemyParty = obj.getEnemyParty();
+                                tempEnemyParty = enemyParty;
                                 setEnemyHUDParty(enemyParty);
 
                                 for (int i = 0; i < enemyParty.memberList.size(); i++) {
